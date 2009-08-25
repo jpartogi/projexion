@@ -9,15 +9,39 @@
 	<script type="text/javascript" src="javascripts/ext-base.js"></script>
 	<script type="text/javascript" src="javascripts/ext-all.js"></script>
 	<script type="text/javascript"> 
-	  Ext.BLANK_IMAGE_URL = 'images/default/s.gif';
+	Ext.BLANK_IMAGE_URL = 'images/default/s.gif';
+	  
+	var tabPanel = new Ext.TabPanel({
+		height: '100%',
+		region: 'center',
+		tabPosition: 'bottom',
+		activeTab: 0,
+		enableTabScroll:true,
+		defaults:{autoScroll: true},
+		items:[{
+			title: 'Home'
+		}]	  
+	});
+	
+	var tabHandler = function(/** String */ tabId, /** String */ tabTitle){
+		if(tabPanel.get(tabId) === undefined){								
+			tabPanel.add({
+				id: tabId,
+				title: tabTitle, 
+				closable: true
+			}).show();
+		}else{
+			tabPanel.activate(tabId);
+		}	
+	}
 
-	  Ext.onReady(function() {
+	Ext.onReady(function() {
 		new Ext.Viewport({
 			layout: 'border',
 			items: [{
 				layout: 'vbox',
 				region: 'north',
-				height: 60,
+				height: 65,
 				items: [{
 					xtype: 'box',
 					height: 30,
@@ -25,35 +49,41 @@
 					applyTo: 'header'
 				},{
 					xtype: 'toolbar',
-					height: 30,
+					height: 35,
 					width: '100%',
 					items: [{
 						xtype: 'button',
-						text: 'Backlogs'
+						scale: 'medium',
+						text: 'Backlogs',
+						listeners: {
+							click : function (button, e){
+								tabHandler('backlogTab', 'Backlog');
+							}
+						}
 					},{
 						xtype: 'button',
-						text: 'Members'
+						scale: 'medium',
+						text: 'Members',
+						listeners: {
+							click : function (button, e){
+								tabHandler('memberTab', 'Member');
+							}
+						}
 					},{
 						xtype: 'button',
+						scale: 'medium',
 						text: 'Reports'
 					}]
 				}]
-			},{
-				xtype: 'tabpanel',
-				region: 'center',
-				height: '100%',
-				tabPosition: 'bottom',
-				items:[{
-					title: 'Home'
-				}]
-			},{
+			},tabPanel
+			,{
 				xtype: 'box',
 				region: 'south',
 				height: 25
 			}],
 			renderTo: Ext.getBody()
 		});
-	  });
+	});
 	</script>
   </head>
   <body>
