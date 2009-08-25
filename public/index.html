@@ -5,6 +5,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>Ext</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/ext-all.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/projexion.css">
 	<script type="text/javascript" src="javascripts/ext-base.js"></script>
 	<script type="text/javascript" src="javascripts/ext-all.js"></script>
 	<script type="text/javascript"> 
@@ -16,15 +17,15 @@
 			items: [{
 				layout: 'vbox',
 				region: 'north',
-				height: 50,
+				height: 60,
 				items: [{
-					xtype: 'panel',
-					height: 25,
+					xtype: 'box',
+					height: 30,
 					width: '100%',
-					html: 'top'
+					applyTo: 'header'
 				},{
 					xtype: 'toolbar',
-					height: 25,
+					height: 30,
 					width: '100%',
 					items: [{
 						xtype: 'button',
@@ -32,19 +33,23 @@
 					},{
 						xtype: 'button',
 						text: 'Members'
+					},{
+						xtype: 'button',
+						text: 'Reports'
 					}]
 				}]
 			},{
 				xtype: 'tabpanel',
 				region: 'center',
 				height: '100%',
+				tabPosition: 'bottom',
 				items:[{
 					title: 'Home'
 				}]
 			},{
 				xtype: 'box',
 				region: 'south',
-				height: 30
+				height: 25
 			}],
 			renderTo: Ext.getBody()
 		});
@@ -52,5 +57,6 @@
 	</script>
   </head>
   <body>
+	<div id="header"></div>
   </body>
 </html>

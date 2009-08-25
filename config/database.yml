@@ -13,8 +13,8 @@ development:
   encoding: utf8
   database: projexion
   pool: 5
-  username: joshua
-  password: elisha
+  username: 
+  password: 
   socket: /var/lib/mysql/mysql.sock
 
   # Connect on a TCP socket. Omitted by default since the client uses a

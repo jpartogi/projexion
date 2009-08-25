@@ -1,4 +1,5 @@
 .idea/
+Thumbs.db
 log/
 tmp/
 vendor/rails/
