@@ -35,53 +35,101 @@
 		}	
 	}
 
+	var toolbar = new Ext.Toolbar({
+		height: 35,
+		width: '100%'
+	});
+	
+	var projectMenu = new Ext.menu.Menu({
+		items: [{
+			text: 'Project List',
+			listeners: {
+				click : function (button, event){
+					tabHandler('projectListTab', 'Project List');
+				}
+			}
+		},{
+			text: 'Add New Project'
+		}]
+	});
+	
+	var backlogMenu = new Ext.menu.Menu({
+		items: [{
+			text: 'Search Backlog',
+			listeners: {
+				click : function (button, event){
+					tabHandler('backlogSearchTab', 'Search Backlog');
+				}
+			}
+		},{
+			text: 'Add New Backlog'
+		}]
+	});
+	
+	var clientMenu = new Ext.menu.Menu({
+		items: [{
+			text: 'Client List'
+		},{
+			text: 'Add New Client'
+		}]
+	});
+	
+	var userMenu = new Ext.menu.Menu({
+		items: [{
+			text: 'User List'
+		},{
+			text: 'Add New User'
+		}]
+	});
+	
+	toolbar.add({
+		text: 'Projects',
+		height: 30,	
+		width: 80,
+		menu: projectMenu  // assign menu by instance
+    },{
+		text: 'Backlogs',
+		height: 30,	
+		width: 80,
+		menu: backlogMenu
+	},{
+		text: 'Clients',
+		height: 30,	
+		width: 80,
+		menu: clientMenu
+	},{
+		text: 'Users',
+		height: 30,	
+		width: 80,
+		menu: userMenu
+	});
+	
 	Ext.onReady(function() {
 		new Ext.Viewport({
-			layout: 'border',
-			items: [{
-				layout: 'vbox',
-				region: 'north',
-				height: 65,
-				items: [{
+			layout: 'border',			
+			renderTo: Ext.getBody(),
+			items: [
+				{
+					layout: 'vbox',
+					region: 'north',
+					height: 65,
+					items: [
+						{
+							xtype: 'box',
+							height: 30,
+							width: '100%',
+							applyTo: 'header'
+						}, 
+						toolbar
+					]
+				},
+				tabPanel, // center region
+				{
 					xtype: 'box',
-					height: 30,
-					width: '100%',
-					applyTo: 'header'
-				},{
-					xtype: 'toolbar',
-					height: 35,
-					width: '100%',
-					items: [{
-						xtype: 'button',
-						scale: 'medium',
-						text: 'Backlogs',
-						listeners: {
-							click : function (button, e){
-								tabHandler('backlogTab', 'Backlog');
-							}
-						}
-					},{
-						xtype: 'button',
-						scale: 'medium',
-						text: 'Members',
-						listeners: {
-							click : function (button, e){
-								tabHandler('memberTab', 'Member');
-							}
-						}
-					},{
-						xtype: 'button',
-						scale: 'medium',
-						text: 'Reports'
-					}]
-				}]
-			},tabPanel
-			,{
-				xtype: 'box',
-				region: 'south',
-				height: 25
-			}],
-			renderTo: Ext.getBody()
+					region: 'south',
+					height: 25
+				}
+			]
 		});
 	});
 	</script>
