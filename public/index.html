@@ -34,11 +34,6 @@
 			tabPanel.activate(tabId);
 		}	
 	}
-
-	var toolbar = new Ext.Toolbar({
-		height: 35,
-		width: '100%'
-	});
 	
 	var projectMenu = new Ext.menu.Menu({
 		items: [{
@@ -82,27 +77,38 @@
 		}]
 	});
 	
-	toolbar.add({
-		text: 'Projects',
-		height: 30,	
-		width: 80,
-		menu: projectMenu  // assign menu by instance
-    },{
-		text: 'Backlogs',
-		height: 30,	
-		width: 80,
-		menu: backlogMenu
-	},{
-		text: 'Clients',
-		height: 30,	
-		width: 80,
-		menu: clientMenu
-	},{
-		text: 'Users',
-		height: 30,	
-		width: 80,
-		menu: userMenu
+	var toolbar = new Ext.Toolbar({
+		height: 35,
+		width: '100%',
+		defaults: {
+            scale: 'medium',
+			width: 75
+        },
+		items: [
+		{
+			text: 'Projects',
+			menu: projectMenu  
+		},{
+			text: 'Backlogs',
+			menu: backlogMenu
+		},{
+			text: 'Clients',
+			menu: clientMenu
+		},{
+			text: 'Users',
+			menu: userMenu
+		},{
+			xtype: 'tbfill' // start of right aligned
+		},{	
+			xtype: 'textfield',
+			width: 200
+		},{
+			xtype: 'tbspacer', // give space to the right 
+			width: 10
+		}
+		]
 	});
+	
 	
 	Ext.onReady(function() {
 		new Ext.Viewport({
@@ -119,15 +125,23 @@
 							height: 30,
 							width: '100%',
 							applyTo: 'header'
-						}, 
-						toolbar
+						},{
+							xtype: 'panel',
+							width: '100%',
+							tbar: toolbar
+						}
 					]
 				},
 				tabPanel, // center region
 				{
-					xtype: 'box',
+					xtype: 'panel',
 					region: 'south',
-					height: 25
+					height: 25,
+					bbar: new Ext.Toolbar({
+						id: 'statusbar',
+						statusAlign: 'right',
+						items: ['->','Logged in as: ']
+					})
 				}
 			]
 		});
