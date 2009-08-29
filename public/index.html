@@ -8,82 +8,259 @@
 	<link rel="stylesheet" type="text/css" href="stylesheets/projexion.css">
 	<script type="text/javascript" src="javascripts/ext-base.js"></script>
 	<script type="text/javascript" src="javascripts/ext-all.js"></script>
+	<script type="text/javascript" src="javascripts/ux/SearchField.js"></script>
 	<script type="text/javascript"> 
 	Ext.BLANK_IMAGE_URL = 'images/default/s.gif';
-	  
+	
+	var loginWindow = new Ext.Window({
+		title: 'Login',
+		closable:true,
+		width:600,		
+		//border:false,		
+		//layout: 'border',
+		//items: [nav, tabs],
+		height:350
+	});
+		
+	var homeSideTabPanel = new Ext.TabPanel({
+		border: false, // already wrapped so don't add another border
+		activeTab: 0, 
+		items: [{
+			title: 'My Tasks',
+			autoScroll: true
+		},{
+			title: 'My Profile',
+			autoScroll: true
+		}]
+	});
+					
+	var homeTab = new Ext.Panel({
+		title: 'Home',
+		layout: 'border',
+		items: [{
+			region: 'center'
+		},{
+			region: 'east',
+			collapsible: true, 
+			animate: false, 
+			split: true,
+			animCollapse:false, 
+			collapseMode:'mini', 
+			width: 210,
+			minSize: 175,
+            maxSize: 400,
+			margins: '0 5 0 0',
+			layout: 'fit',
+			items: [homeSideTabPanel]
+		}]
+	});
+	
+	var projects = [
+		['Web','Website']
+	];
+
+	var store = new Ext.data.ArrayStore({
+		// store configs
+		autoDestroy: true,
+		storeId: 'myStore',
+		// reader configs
+		idIndex: 0,
+		data: projects,
+		fields: [
+		   'company',
+		   'store'
+		]
+	});
+
+	var projectListGrid = new Ext.grid.GridPanel({
+		columnWidth: .5,
+		height: 400,
+        title:'Project List',
+		store: store,
+		columns:[{
+			header: 'Code'
+		},{
+			header: 'Name'
+		}],
+		bbar: new Ext.PagingToolbar({
+            pageSize: 25,
+            //store: store,
+            displayInfo: true,
+            displayMsg: 'Displaying topics {0} - {1} of {2}',
+            emptyMsg: "No topics to display",
+            items:[
+                '-', {
+                pressed: true,
+                enableToggle:true,
+                text: 'Show Preview',
+                cls: 'x-btn-text-icon details',
+                toggleHandler: function(btn, pressed){
+                    var view = grid.getView();
+                    view.showPreview = pressed;
+                    view.refresh();
+                }
+            }]
+        })
+	});
+	
+	var projectListTab = new Ext.Panel({
+		layout: 'column',		
+		bodyStyle:'padding:5px 0 5px 5px',
+		id: 'projectList',
+		title: 'Project List',
+		closable: true,
+		items: [ projectListGrid ]
+	});
+	
 	var tabPanel = new Ext.TabPanel({
 		height: '100%',
 		region: 'center',
 		tabPosition: 'bottom',
 		activeTab: 0,
-		enableTabScroll:true,
-		defaults:{autoScroll: true},
-		items:[{
-			title: 'Home'
-		}]	  
+		enableTabScroll: true,
+		border: false,
+		defaults: {autoScroll: true},
+		items: [ homeTab ]	  
 	});
 	
-	var tabHandler = function(/** String */ tabId, /** String */ tabTitle){
-		if(tabPanel.get(tabId) === undefined){								
-			tabPanel.add({
-				id: tabId,
-				title: tabTitle, 
-				closable: true
-			}).show();
+	var addTabHandler = function( /** Component */ tabItem ){
+		var tabId = tabItem.getId();
+		if(tabPanel.getItem( tabId ) === undefined){								
+			tabPanel.add( tabItem ).show();
 		}else{
-			tabPanel.activate(tabId);
+			tabPanel.activate(tabItem);
 		}	
 	}
-
-	Ext.onReady(function() {
+	
+	var projectMenu = new Ext.menu.Menu({
+		items: [{
+			text: 'Project List',
+			listeners: {
+				click : function (button, event){
+					addTabHandler(projectListTab);
+				}
+			}
+		}]
+	});
+	
+	var backlogMenu = new Ext.menu.Menu({
+		items: [{
+			text: 'Search Backlog',
+			listeners: {
+				click : function (button, event){
+					addTabHandler(backlogSearchTab);
+				}
+			}
+		},{
+			text: 'Add New Backlog'
+		}]
+	});
+	
+	var clientMenu = new Ext.menu.Menu({
+		items: [{
+			text: 'Client List'
+		},{
+			text: 'Add New Client'
+		}]
+	});
+	
+	var userMenu = new Ext.menu.Menu({
+		items: [{
+			text: 'User List'
+		},{
+			text: 'Add New User'
+		}]
+	});
+	
+	var adminMenu = new Ext.menu.Menu({
+		items: [{
+			text: 'Add New Project'
+		},{
+			text: 'Add New User'
+		},{
+			text: 'Add New Client'
+		},{
+			text: 'Settings'
+		}]
+	});
+	
+	var menubar = new Ext.Toolbar({
+		height: 35,
+		width: '100%',
+		defaults: {
+            scale: 'medium',
+			width: 75
+        },
+		items: [{
+				text: 'Project',
+				menu: projectMenu
+			},{
+				text: 'Backlog',
+				menu: backlogMenu
+			},{
+				text: 'Client',
+				//menu: clientMenu
+			},{
+				text: 'User',
+				//menu: userMenu
+			},{
+				text: 'Admin',
+				menu: adminMenu
+			},{
+				xtype: 'tbfill' // start of right aligned
+			}, {
+				xtype: 'searchfield', // extension
+				width: 200,
+				emptyText: 'Quick Search...'
+			},{
+				xtype: 'tbspacer', // give space to the right 
+				width: 10
+			}
+		]
+	});
+	
+	
+	Ext.onReady(function() {		
 		new Ext.Viewport({
-			layout: 'border',
-			items: [{
-				layout: 'vbox',
-				region: 'north',
-				height: 65,
-				items: [{
-					xtype: 'box',
-					height: 30,
-					width: '100%',
-					applyTo: 'header'
-				},{
-					xtype: 'toolbar',
-					height: 35,
-					width: '100%',
-					items: [{
-						xtype: 'button',
-						scale: 'medium',
-						text: 'Backlogs',
-						listeners: {
-							click : function (button, e){
-								tabHandler('backlogTab', 'Backlog');
-							}
+			layout: 'border',			
+			renderTo: Ext.getBody(),
+			items: [
+				{
+					layout: 'vbox',
+					region: 'north',
+					height: 90,
+					items: [
+						{
+							xtype: 'box',
+							width: '100%',
+							height: 30,
+							applyTo: 'header'
+						},{
+							id: 'statusbar',
+							xtype: 'panel',border: false,
+							width: '100%',
+							tbar: new Ext.Toolbar({
+								items:['->', 'Not Logged In', ' ']
+							}),
+							
+							bbar: menubar
 						}
-					},{
-						xtype: 'button',
-						scale: 'medium',
-						text: 'Members',
-						listeners: {
-							click : function (button, e){
-								tabHandler('memberTab', 'Member');
-							}
-						}
-					},{
-						xtype: 'button',
-						scale: 'medium',
-						text: 'Reports'
-					}]
-				}]
-			},tabPanel
-			,{
-				xtype: 'box',
-				region: 'south',
-				height: 25
-			}],
-			renderTo: Ext.getBody()
+					]
+				},
+				tabPanel // center region
+				/*,{
+					region: 'south',
+					title: 'Latest Info',
+					split: true,
+					collapsible: true,
+					closed: true,
+					height: 80,
+					maxSize: 200
+				}*/
+			]
 		});
 	});
+	
 	</script>
   </head>
   <body>
