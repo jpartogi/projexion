@@ -35,7 +35,8 @@
 	});
 					
 	var homeTab = new Ext.Panel({
-		title: 'Home',
+		id: 'home',
+        title: 'Home',
 		layout: 'border',
 		items: [{
 			region: 'center'
@@ -55,6 +56,30 @@
 		}]
 	});
 	
+    var projectDashboardTab = new Ext.Panel({
+        id: 'projectDashboard',
+        title: 'Project xxx',
+        layout: 'border',
+        closable: true,
+        items: [{
+            region: 'west',
+            width: 200,
+            collapsible: true,
+			split: true,
+			animCollapse:false,
+			collapseMode:'mini'
+        },{
+            region: 'center'
+        },{
+            region: 'east',
+            width: 200,
+            collapsible: true, 
+			split: true,
+			animCollapse:false,
+			collapseMode:'mini'
+        }]
+    });
+
 	var projects = [
 		['Web','Website']
 	];
@@ -73,43 +98,66 @@
 	});
 
 	var projectListGrid = new Ext.grid.GridPanel({
-		columnWidth: .5,
-		height: 400,
         title:'Project List',
+		height: 450,
 		store: store,
+        flex:1,
+        
 		columns:[{
 			header: 'Code'
 		},{
 			header: 'Name'
 		}],
+
+        tbar: [
+            new Ext.Button({
+                text: 'Add New',
+                listeners: {
+                    click: function(button, event){
+
+                    }
+                }
+            }),
+
+            new Ext.Button({
+                text: 'Delete'
+            }),
+
+            new Ext.Button({
+                text: 'Dashboard',
+                listeners: {
+                    click: function(button, event){
+                        addTabHandler(projectDashboardTab);
+                    }
+                }
+            })
+	    ],
+
 		bbar: new Ext.PagingToolbar({
             pageSize: 25,
-            //store: store,
             displayInfo: true,
             displayMsg: 'Displaying topics {0} - {1} of {2}',
-            emptyMsg: "No topics to display",
-            items:[
-                '-', {
-                pressed: true,
-                enableToggle:true,
-                text: 'Show Preview',
-                cls: 'x-btn-text-icon details',
-                toggleHandler: function(btn, pressed){
-                    var view = grid.getView();
-                    view.showPreview = pressed;
-                    view.refresh();
-                }
-            }]
+            emptyMsg: "No topics to display"
         })
 	});
+
+    var projectForm = new Ext.form.FormPanel({
+        title: 'Project Form',
+        height: 450,
+        flex:1
+    });
 	
 	var projectListTab = new Ext.Panel({
-		layout: 'column',		
-		bodyStyle:'padding:5px 0 5px 5px',
+		layout: 'hbox',
 		id: 'projectList',
 		title: 'Project List',
 		closable: true,
-		items: [ projectListGrid ]
+		layoutConfig: {
+            padding:'5',
+            align:'middle'
+        },
+        defaults:{margins:'0 5 0 0'},
+		items: [ projectListGrid, projectForm ]
 	});
 	
 	var tabPanel = new Ext.TabPanel({
@@ -198,10 +246,10 @@
 				text: 'Backlog',
 				menu: backlogMenu
 			},{
-				text: 'Client',
+				text: 'Client'
 				//menu: clientMenu
 			},{
-				text: 'User',
+				text: 'User'
 				//menu: userMenu
 			},{
 				text: 'Admin',
@@ -250,13 +298,14 @@
 				tabPanel // center region
 				/*,{
 					region: 'south',
-					title: 'Latest Info',
+					title: 'Logs',
 					split: true,
 					collapsible: true,
+                    animCollapse:false, 
 					closed: true,
-					height: 80,
+					height: 70,
 					maxSize: 200
-				}*/
+				} */
 			]
 		});
 	});
