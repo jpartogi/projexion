@@ -112,7 +112,7 @@
         width: 450,
 		store: store,
         flex:1,
-        
+
 		columns:[{
 			header: 'Code'
 		},{
@@ -152,7 +152,7 @@
 	});
 	
 	var projectListTab = new Ext.Panel({
-		layout: 'hbox',
+		layout: 'fit',
 		id: 'projectList',
 		title: 'Project List',
 		closable: true,
@@ -160,7 +160,6 @@
             padding:'5',
             align:'middle'
         },
-        defaults:{margins:'0 5 0 0'},
 		items: [ projectListGrid ]
 	});
 	
@@ -170,6 +169,7 @@
 		tabPosition: 'bottom',
 		activeTab: 0,
 		enableTabScroll: true,
+        autoDestroy: false,
 		border: false,
 		defaults: {autoScroll: true},
 		items: [ homeTab ]	  
