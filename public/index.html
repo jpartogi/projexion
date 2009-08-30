@@ -15,9 +15,7 @@
     
     Ext.state.Manager.setProvider(new Ext.state.SessionProvider({state: Ext.appState}));
 	Ext.BLANK_IMAGE_URL = 'images/default/s.gif';
-	
-
-		
+			
 	var homeSideTabPanel = new Ext.TabPanel({
 		border: false, // already wrapped so don't add another border
 		activeTab: 0, 
@@ -34,6 +32,7 @@
 		id: 'home',
         title: 'Home',
 		layout: 'border',
+        border: false,
 		items: [{
 			region: 'center'
 		},{
@@ -46,11 +45,38 @@
 			width: 210,
 			minSize: 175,
             maxSize: 400,
-			margins: '0 5 0 0',
 			layout: 'fit',
 			items: [homeSideTabPanel]
 		}]
 	});
+
+    var data = [ // temporary mock data
+		['Web','Website']
+	];
+
+    // temporary mock store, will be changed to JsonStore
+	var store = new Ext.data.ArrayStore({
+		// store configs
+		autoDestroy: true,
+		storeId: 'store',
+		// reader configs
+		idIndex: 0,
+		data: data,
+		fields: [
+		   'code',
+		   'name'
+		]
+	});
+
+    var productBacklogGrid = new Ext.grid.GridPanel({
+        store: store,
+        border: false,
+        columns:[{
+			header: 'Code'
+		},{
+			header: 'Name'
+		}]
+    });
 	
     var projectDashboardTab = new Ext.Panel({
         id: 'projectDashboard',
@@ -58,41 +84,27 @@
         layout: 'border',
         closable: true,
         items: [{
-            region: 'west',
-            width: 200,
-            collapsible: true,
-			split: true,
-			animCollapse:false,
-			collapseMode:'mini'
-        },{
-            region: 'center'
+            region: 'center',
+            layout: 'accordion',
+            border: false,
+            items: [{
+                title: 'Product Backlog',
+                layout: 'fit',
+                items: [productBacklogGrid]
+            },{
+                title: 'Sprint Backlog'
+            },{
+                title: 'Burndown Chart'
+            }]
         },{
             region: 'east',
-            width: 200,
+            width: 210,
             collapsible: true, 
 			split: true,
 			animCollapse:false,
 			collapseMode:'mini'
         }]
     });
-
-	var projects = [ // temporary mock data
-		['Web','Website']
-	];
-
-    // temporary mock store, will be changed to JsonStore    
-	var store = new Ext.data.ArrayStore({
-		// store configs
-		autoDestroy: true,
-		storeId: 'myStore',
-		// reader configs
-		idIndex: 0,
-		data: projects,
-		fields: [
-		   'company',
-		   'store'
-		]
-	});
 
     var projectFormWindow = new Ext.Window({
         title: 'Project',
@@ -108,10 +120,7 @@
         
 	var projectListGrid = new Ext.grid.GridPanel({
         title:'Project List',
-		height: 450,
-        width: 450,
 		store: store,
-        flex:1,
 
 		columns:[{
 			header: 'Code'
@@ -163,7 +172,7 @@
 		items: [ projectListGrid ]
 	});
 	
-	var tabPanel = new Ext.TabPanel({
+	var mainTabPanel = new Ext.TabPanel({
 		height: '100%',
 		region: 'center',
 		tabPosition: 'bottom',
@@ -177,10 +186,10 @@
 	
 	var addTabHandler = function( /** Component */ tabItem ){
 		var tabId = tabItem.getId();
-		if(tabPanel.getItem( tabId ) === undefined){								
-			tabPanel.add( tabItem ).show();
+		if(mainTabPanel.getItem( tabId ) === undefined){
+			mainTabPanel.add( tabItem ).show();
 		}else{
-			tabPanel.activate(tabItem);
+			mainTabPanel.activate(tabItem);
 		}	
 	}
 	
@@ -303,7 +312,7 @@
                     }
                 ]
             },
-            tabPanel // center region
+            mainTabPanel // center region
             /*,{
                 region: 'south',
                 title: 'Logs',
@@ -317,7 +326,7 @@
         ]
     });
         
-	}); // Ext.onReady closers
+	}); // Ext.onReady closer
 	
 	</script>
   </head>
