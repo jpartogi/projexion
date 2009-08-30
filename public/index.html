@@ -77,6 +77,19 @@
 			header: 'Name'
 		}]
     });
+
+    var projectInfoGrid = new Ext.grid.PropertyGrid({
+        title: 'Project Info',
+        border: false,
+        autoHeight: true,
+        source: {
+            "Name": "Project xxx",
+            "Created": new Date(Date.parse('10/15/2006')),
+            "Scrum master": 'jpartogi',
+            "Version": .01,
+            "Description": "Project desc"
+        }
+    });
 	
     var projectDashboardTab = new Ext.Panel({
         id: 'projectDashboard',
@@ -98,11 +111,13 @@
             }]
         },{
             region: 'east',
-            width: 210,
+            width: 250,
+            layout: 'fit',
             collapsible: true, 
 			split: true,
 			animCollapse:false,
-			collapseMode:'mini'
+			collapseMode:'mini',
+            items: [ projectInfoGrid ]
         }]
     });
 
@@ -119,7 +134,6 @@
     });
         
 	var projectListGrid = new Ext.grid.GridPanel({
-        title:'Project List',
 		store: store,
 
 		columns:[{
@@ -175,7 +189,6 @@
 	var mainTabPanel = new Ext.TabPanel({
 		height: '100%',
 		region: 'center',
-		tabPosition: 'bottom',
 		activeTab: 0,
 		enableTabScroll: true,
         autoDestroy: false,
@@ -305,7 +318,7 @@
                         xtype: 'panel',border: false,
                         width: '100%',
                         tbar: new Ext.Toolbar({
-                            items:['->', 'Not Logged In', ' ']
+                            items:['->', 'Logged in as: jpartogi', '-', '<a href="#">Logout</a>']
                         }),
 
                         bbar: menubar
