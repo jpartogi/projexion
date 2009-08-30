@@ -9,18 +9,14 @@
 	<script type="text/javascript" src="javascripts/ext-base.js"></script>
 	<script type="text/javascript" src="javascripts/ext-all.js"></script>
 	<script type="text/javascript" src="javascripts/ux/SearchField.js"></script>
-	<script type="text/javascript"> 
+    <script type="text/javascript" src="javascripts/ux/SessionProvider.js"></script>
+	<script type="text/javascript">
+	Ext.onReady(function() {
+    
+    Ext.state.Manager.setProvider(new Ext.state.SessionProvider({state: Ext.appState}));
 	Ext.BLANK_IMAGE_URL = 'images/default/s.gif';
 	
-	var projectFormWindow = new Ext.Window({
-		title: 'Project',
-		closable:true,
-		width:600,		
-		//border:false,		
-		//layout: 'border',
-		//items: [nav, tabs],
-		height:350
-	});
+
 		
 	var homeSideTabPanel = new Ext.TabPanel({
 		border: false, // already wrapped so don't add another border
@@ -80,10 +76,11 @@
         }]
     });
 
-	var projects = [
+	var projects = [ // temporary mock data
 		['Web','Website']
 	];
 
+    // temporary mock store, will be changed to JsonStore    
 	var store = new Ext.data.ArrayStore({
 		// store configs
 		autoDestroy: true,
@@ -97,6 +94,18 @@
 		]
 	});
 
+    var projectFormWindow = new Ext.Window({
+        title: 'Project',
+        closable:true,
+        plain:true,
+        width:600,
+        //border:false,
+        //layout: 'border',
+        //items: [nav, tabs],
+        height:350,
+        closeAction: 'hide'
+    });
+        
 	var projectListGrid = new Ext.grid.GridPanel({
         title:'Project List',
 		height: 450,
@@ -266,49 +275,49 @@
 			}
 		]
 	});
-	
-	
-	Ext.onReady(function() {		
-		new Ext.Viewport({
-			layout: 'border',			
-			renderTo: Ext.getBody(),
-			items: [
-				{
-					layout: 'vbox',
-					region: 'north',
-					height: 90,
-					items: [
-						{
-							xtype: 'box',
-							width: '100%',
-							height: 30,
-							applyTo: 'header'
-						},{
-							id: 'statusbar',
-							xtype: 'panel',border: false,
-							width: '100%',
-							tbar: new Ext.Toolbar({
-								items:['->', 'Not Logged In', ' ']
-							}),
-							
-							bbar: menubar
-						}
-					]
-				},
-				tabPanel // center region
-				/*,{
-					region: 'south',
-					title: 'Logs',
-					split: true,
-					collapsible: true,
-                    animCollapse:false, 
-					closed: true,
-					height: 70,
-					maxSize: 200
-				} */
-			]
-		});
-	});
+
+
+    new Ext.Viewport({
+        layout: 'border',
+        renderTo: Ext.getBody(),
+        items: [
+            {
+                layout: 'vbox',
+                region: 'north',
+                height: 90,
+                items: [
+                    {
+                        xtype: 'box',
+                        width: '100%',
+                        height: 30,
+                        applyTo: 'header'
+                    },{
+                        id: 'statusbar',
+                        xtype: 'panel',border: false,
+                        width: '100%',
+                        tbar: new Ext.Toolbar({
+                            items:['->', 'Not Logged In', ' ']
+                        }),
+
+                        bbar: menubar
+                    }
+                ]
+            },
+            tabPanel // center region
+            /*,{
+                region: 'south',
+                title: 'Logs',
+                split: true,
+                collapsible: true,
+                animCollapse:false,
+                closed: true,
+                height: 70,
+                maxSize: 200
+            } */
+        ]
+    });
+        
+	}); // Ext.onReady closers
 	
 	</script>
   </head>
