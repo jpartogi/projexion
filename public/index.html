@@ -68,20 +68,66 @@
 		]
 	});
 
+    var backlogDetailTab = new Ext.Panel({
+        id: 'backlogDetail',
+        title: 'Backlog xxx',
+        closable: true
+    });
+
+    var backlogFormWindow = new Ext.Window({
+        title: 'Backlog',
+        closable:true,
+        plain:true,
+        width:600,
+        //layout: 'border',
+        //items: [nav, tabs],
+        height:350,
+        closeAction: 'hide'
+    });
+
     var productBacklogGrid = new Ext.grid.GridPanel({
         store: store,
         border: false,
+
         columns:[{
 			header: 'Code'
 		},{
 			header: 'Name'
-		}]
+		}],
+
+        tbar: [
+            new Ext.Button({
+                text: 'Add New',
+                listeners: {
+                    click: function(button, event){
+                        backlogFormWindow.show();
+                    }
+                }
+            }),
+
+            new Ext.Button({
+                text: 'Delete'
+            }),
+
+            new Ext.Button({
+                text: 'Detail',
+                listeners: {
+                    click: function(button, event){
+                        addTabHandler(backlogDetailTab);
+                    }
+                }
+            })
+	    ]
     });
 
     var projectInfoGrid = new Ext.grid.PropertyGrid({
         title: 'Project Info',
+        width: '100%',
+        autoExpandColumn: true,
+        autoWidth: true,
         border: false,
-        autoHeight: true,
+        region: 'center',
+
         source: {
             "Name": "Project xxx",
             "Created": new Date(Date.parse('10/15/2006')),
@@ -90,13 +136,51 @@
             "Description": "Project desc"
         }
     });
+
+    var projectMemberGrid = new Ext.grid.GridPanel({
+        border: false,
+		store: store,
+        height: 300,
+		columns:[{
+			header: 'Name'
+		},{
+			header: 'Role'
+		}],
+
+        bbar: [
+            new Ext.Button({
+                text: 'Add New'
+            })
+        ]
+    });
+
+    var projectMemberSidePanel = new Ext.Panel({
+        title: 'Project Member',
+        border: false,
+        width: '100%',
+        region: 'south',
+        layout: 'fit',
+		split: true,
+        animCollapse:false,
+		collapseMode:'mini',
+        items: [projectMemberGrid]
+    });
 	
-    var projectDashboardTab = new Ext.Panel({
-        id: 'projectDashboard',
+    var projectDetailTab = new Ext.Panel({
+        id: 'projectDetail',
         title: 'Project xxx',
         layout: 'border',
         closable: true,
         items: [{
+            region: 'west',
+            width: 250,
+            layout: 'border',
+            collapsible: true,
+			split: true,
+			animCollapse:false,
+			collapseMode:'mini',
+            items: [ projectInfoGrid, projectMemberSidePanel ]
+        },{
             region: 'center',
             layout: 'accordion',
             border: false,
@@ -109,15 +193,6 @@
             },{
                 title: 'Burndown Chart'
             }]
-        },{
-            region: 'east',
-            width: 250,
-            layout: 'fit',
-            collapsible: true, 
-			split: true,
-			animCollapse:false,
-			collapseMode:'mini',
-            items: [ projectInfoGrid ]
         }]
     });
 
@@ -157,10 +232,10 @@
             }),
 
             new Ext.Button({
-                text: 'Dashboard',
+                text: 'Detail',
                 listeners: {
                     click: function(button, event){
-                        addTabHandler(projectDashboardTab);
+                        addTabHandler(projectDetailTab);
                     }
                 }
             })
@@ -193,7 +268,9 @@
 		enableTabScroll: true,
         autoDestroy: false,
 		border: false,
-		defaults: {autoScroll: true},
+		defaults: {
+            autoScroll: true
+        },
 		items: [ homeTab ]	  
 	});
 	
@@ -221,12 +298,17 @@
 		items: [{
 			text: 'Search Backlog',
 			listeners: {
-				click : function (button, event){
+				click: function(button, event){
 					addTabHandler(backlogSearchTab);
 				}
 			}
 		},{
-			text: 'Add New Backlog'
+			text: 'Add New Backlog',
+            listeners: {
+                click: function(button, event){
+                    backlogFormWindow.show();
+                }
+            }
 		}]
 	});
 	
