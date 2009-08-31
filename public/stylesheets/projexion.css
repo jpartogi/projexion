@@ -1,1 +1,3 @@
 #header { background: #7F99BE url(/images/header-bg.gif) repeat-x center; }
+
+#header h2{ font-family: Helvetica; font-style: italic; font-size: 15px;  color: white; padding: 5px ; letter-spacing: -1px; }

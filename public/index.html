@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>Ext</title>
+    <title>Projexion</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/ext-all.css">
 	<link rel="stylesheet" type="text/css" href="stylesheets/projexion.css">
 	<script type="text/javascript" src="javascripts/ext-base.js"></script>
@@ -51,7 +51,7 @@
 	});
 
     var data = [ // temporary mock data
-		['Web','Website']
+		['foo','bar']
 	];
 
     // temporary mock store, will be changed to JsonStore
@@ -113,7 +113,7 @@
                 text: 'Detail',
                 listeners: {
                     click: function(button, event){
-                        addTabHandler(backlogDetailTab);
+                        addTabHandler(projectDetailTabPanel, backlogDetailTab);
                     }
                 }
             })
@@ -199,7 +199,10 @@
 	});
 
 	var productBacklogTab = new Ext.Panel({
-		title: 'Product Backlog'
+		id: 'productBacklog',
+		title: 'Product Backlog',
+		layout: 'fit',
+		items: [ productBacklogGrid ]
 	});	
 	
 	var sprintBacklogTab = new Ext.Panel({
@@ -279,7 +282,7 @@
                 text: 'Detail',
                 listeners: {
                     click: function(button, event){
-                        addTabHandler(projectDetailTab);
+                        addTabHandler(mainTabPanel, projectDetailTab);
                     }
                 }
             })
@@ -318,12 +321,12 @@
 		items: [ homeTab ]	  
 	});
 	
-	var addTabHandler = function( /** Component */ tabItem ){
+	var addTabHandler = function(/** Component */ tabPanel, /** Component */ tabItem ){
 		var tabId = tabItem.getId();
-		if(mainTabPanel.getItem( tabId ) === undefined){
-			mainTabPanel.add( tabItem ).show();
+		if(tabPanel.getItem( tabId ) === undefined){
+			tabPanel.add( tabItem ).show();
 		}else{
-			mainTabPanel.activate(tabItem);
+			tabPanel.activate(tabItem);
 		}	
 	}
 	
@@ -332,7 +335,7 @@
 			text: 'Project List',
 			listeners: {
 				click : function (button, event){
-					addTabHandler(projectListTab);
+					addTabHandler(mainTabPanel, projectListTab);
 				}
 			}
 		}]
@@ -470,6 +473,6 @@
 	</script>
   </head>
   <body>
-	<div id="header"></div>
+	<div id="header"><span><h2>Projexion</h2></span></div>
   </body>
 </html>
