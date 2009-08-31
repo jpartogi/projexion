@@ -13,7 +13,7 @@
 	<script type="text/javascript">
 	Ext.onReady(function() {
     
-    Ext.state.Manager.setProvider(new Ext.state.SessionProvider({state: Ext.appState}));
+    //Ext.state.Manager.setProvider(new Ext.state.SessionProvider({state: Ext.appState}));
 	Ext.BLANK_IMAGE_URL = 'images/default/s.gif';
 			
 	var homeSideTabPanel = new Ext.TabPanel({
@@ -166,6 +166,26 @@
         items: [projectMemberGrid]
     });
 	
+	var productBacklogTab = new Ext.Panel({
+		title: 'Product Backlog'
+	});	
+	
+	var sprintBacklogTab = new Ext.Panel({
+		title: 'Sprint Backlog'
+	});	
+	
+	var burndownChartTab = new Ext.Panel({
+		title: 'Burndown Chart'
+	});	
+	
+	var projectDetailTabPanel = new Ext.TabPanel({
+		enableTabScroll: true,
+        autoDestroy: false,
+		border: false,		
+		activeTab: 0,
+		items: [ sprintBacklogTab, burndownChartTab, productBacklogTab ]
+	});
+	
     var projectDetailTab = new Ext.Panel({
         id: 'projectDetail',
         title: 'Project xxx',
@@ -182,17 +202,8 @@
             items: [ projectInfoGrid, projectMemberSidePanel ]
         },{
             region: 'center',
-            layout: 'accordion',
-            border: false,
-            items: [{
-                title: 'Product Backlog',
-                layout: 'fit',
-                items: [productBacklogGrid]
-            },{
-                title: 'Sprint Backlog'
-            },{
-                title: 'Burndown Chart'
-            }]
+            layout: 'fit',
+			items:[ projectDetailTabPanel ]
         }]
     });
 
