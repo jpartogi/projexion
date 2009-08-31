@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/ext-all.css">
 	<link rel="stylesheet" type="text/css" href="stylesheets/projexion.css">
 	<script type="text/javascript" src="javascripts/ext-base.js"></script>
-	<script type="text/javascript" src="javascripts/ext-all.js"></script>
+	<script type="text/javascript" src="javascripts/ext-all-debug.js"></script>
 	<script type="text/javascript" src="javascripts/ux/SearchField.js"></script>
     <script type="text/javascript" src="javascripts/ux/SessionProvider.js"></script>
 	<script type="text/javascript">
@@ -125,7 +125,6 @@
         width: '100%',
         autoExpandColumn: true,
         autoWidth: true,
-        border: false,
         region: 'center',
 
         source: {
@@ -135,37 +134,70 @@
             "Version": .01,
             "Description": "Project desc"
         }
-    });
+    });	
 
     var projectMemberGrid = new Ext.grid.GridPanel({
+		title: 'Project Member',
         border: false,
 		store: store,
-        height: 300,
 		columns:[{
 			header: 'Name'
 		},{
 			header: 'Role'
-		}],
-
-        bbar: [
-            new Ext.Button({
-                text: 'Add New'
-            })
-        ]
-    });
-
-    var projectMemberSidePanel = new Ext.Panel({
-        title: 'Project Member',
-        border: false,
-        width: '100%',
-        region: 'south',
-        layout: 'fit',
-		split: true,
-        animCollapse:false,
-		collapseMode:'mini',
-        items: [projectMemberGrid]
+		}]
     });
 	
+	var projectTreeMenu = new Ext.tree.TreePanel({
+		title: 'Project Menu',
+		border: false,
+		rootVisible: false,
+		root: new Ext.tree.AsyncTreeNode({
+            expanded: true,
+            children: [{
+				text: 'Backlog',
+				children: [{
+					text: 'Add New Backlog',
+					leaf: true
+				}]
+			}, {
+                text: 'Release',
+				children: [{
+					text: 'Add New Release',
+					leaf: true
+				},{
+					text: 'Search Release',
+					leaf: true
+				}]
+            }, {
+                text: 'Sprint',
+                children: [{
+					text: 'Add New Sprint',
+					leaf: true
+				},{
+					text: 'Search Sprint',
+					leaf: true
+				}]
+            }, {
+				text: 'Member',
+				children: [{
+					text: 'Add Member',
+					leaf: true
+				}]
+            }]
+        })	
+	});
+		
+	var projectSidePanel = new Ext.Panel({
+		region: 'south',
+		layout: 'accordion',
+        height: 300,
+		split: true,
+        animCollapse: false,
+		collapsible: true,
+		collapseMode:'mini',
+		items: [ projectTreeMenu, projectMemberGrid ]
+	});
+
 	var productBacklogTab = new Ext.Panel({
 		title: 'Product Backlog'
 	});	
@@ -198,8 +230,9 @@
             collapsible: true,
 			split: true,
 			animCollapse:false,
+			border: false,
 			collapseMode:'mini',
-            items: [ projectInfoGrid, projectMemberSidePanel ]
+            items: [ projectInfoGrid, projectSidePanel ]
         },{
             region: 'center',
             layout: 'fit',
