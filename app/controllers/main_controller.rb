@@ -1,4 +1,6 @@
 class MainController < ApplicationController
-	def index
+    respond_to :html, :json # class level
+
+    def index
 	end
 end

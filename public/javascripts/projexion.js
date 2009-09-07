@@ -194,18 +194,67 @@ Ext.onReady(function() {
 	
 	var sprintBacklogTab = new Ext.Panel({
 		title: 'Sprint Backlog'
-	});	
-	
-	var burndownChartTab = new Ext.Panel({
-		title: 'Burndown Chart'
-	});	
+	});
+
+    var burndownStore = new Ext.data.JsonStore({
+        fields:['tasks', 'days'],
+        data: [
+            {days: 1, tasks: 20},
+            {days: 2, tasks: 18},
+            {days: 3, tasks: 17},
+            {days: 4, tasks: 15},
+            {days: 5, tasks: 13},
+            {days: 6, tasks: 10},
+            {days: 7, tasks: 9},    
+        ]
+    });
+
+	var sprintBurndownChartTab = new Ext.Panel({
+		title: 'Sprint Burndown',
+        layout:'fit',
+
+        items: {
+            xtype: 'linechart',
+            store: burndownStore,
+            url: '../charts.swf',
+            xField: 'days',
+            yField: 'tasks',
+            tipRenderer : function(chart, record){
+                return record.data.tasks + ' tasks left on day ' + record.data.days;
+            }
+        }
+	});
+
+    var releaseBurndownChartTab = new Ext.Panel({
+		title: 'Release Burndown',
+        layout:'fit',
+
+        items: {
+            xtype: 'linechart',
+            store: burndownStore,
+            url: '../charts.swf',
+            xField: 'days',
+            yField: 'tasks',
+            tipRenderer : function(chart, record){
+                return record.data.tasks + ' tasks left on day ' + record.data.days;
+            }
+        }
+	});
+
+    var burndownChartTabPanel = new Ext.TabPanel({
+        title: 'Burndown Chart',
+        tabPosition: 'bottom',
+        activeTab: 0,
+        items: [sprintBurndownChartTab, releaseBurndownChartTab]
+    });
+
 	
 	var projectDetailTabPanel = new Ext.TabPanel({
 		enableTabScroll: true,
         autoDestroy: false,
 		border: false,		
 		activeTab: 0,
-		items: [ sprintBacklogTab, burndownChartTab, productBacklogTab ]
+		items: [ sprintBacklogTab, burndownChartTabPanel, productBacklogTab ]
 	});
 	
     var projectDetailTab = new Ext.Panel({

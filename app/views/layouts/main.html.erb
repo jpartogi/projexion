@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-	<title><%= controller.action_name %></title>
+	<title>Projexion</title>
 	<%= stylesheet_link_tag 'ext-all' %>
 	<%= stylesheet_link_tag 'projexion' %>
 	<%= javascript_include_tag 'ext-base' %>
@@ -14,9 +14,8 @@
 </head>
 <body>
 
-<p style="color: green"><%= flash[:notice] %></p>
-
 <%= yield %>
+
 <div id="header"><span><h2>Projexion</h2></span></div>
 </body>
 </html>
