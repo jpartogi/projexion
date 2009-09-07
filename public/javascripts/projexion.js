@@ -38,7 +38,8 @@ Ext.onReady(function() {
 	});
 
     var data = [ // temporary mock data
-		['foo','bar']
+		['foo','bar'],
+        ['spock', 'baz']    
 	];
 
     // temporary mock store, will be changed to JsonStore
@@ -191,9 +192,26 @@ Ext.onReady(function() {
 		layout: 'fit',
 		items: [ productBacklogGrid ]
 	});	
-	
+
+    var tpl = new Ext.XTemplate(
+		'<tpl for=".">',
+            '<div class="backlog-block" id="{code}">',
+		    '<div class="backlog">{code} {name}</div>',
+		    '</div>',
+        '</tpl>',
+        '<div class="x-clear"></div>'
+	);
+    
 	var sprintBacklogTab = new Ext.Panel({
-		title: 'Sprint Backlog'
+		title: 'Sprint Backlog',
+        layout: 'fit',
+        items: new Ext.DataView({
+            store: store,
+            tpl: tpl,
+            itemSelector:'div.backlog-block', // must have this
+            autoHeight:true,
+            multiSelect: true
+        })
 	});
 
     var burndownStore = new Ext.data.JsonStore({

@@ -1,3 +1,5 @@
 #header { background: #7F99BE url(/images/header-bg.gif) repeat-x center; }
 
 #header h2{ font-family: Helvetica; font-style: italic; font-size: 15px;  color: white; padding: 5px ; letter-spacing: -1px; }
+
+.backlog-block{ padding: 5px; border: 1px solid #eee; float: left; margin: 4px 0 4px 4px; }
