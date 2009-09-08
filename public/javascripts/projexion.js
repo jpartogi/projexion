@@ -144,9 +144,15 @@ Ext.onReady(function() {
             children: [{
 				text: 'Backlog',
 				children: [{
-					text: 'Add New Backlog',
+					text: 'Add New Product Backlog',
 					leaf: true
-				}]
+				},{
+                    text: 'Add New Sprint Backlog',
+                    leaf: true
+                },{
+                    text: 'Search Backlog',
+                    leaf: true
+                }]
 			}, {
                 text: 'Release',
 				children: [{
@@ -185,13 +191,6 @@ Ext.onReady(function() {
 		collapseMode:'mini',
 		items: [ projectTreeMenu, projectMemberGrid ]
 	});
-
-	var productBacklogTab = new Ext.Panel({
-		id: 'productBacklog',
-		title: 'Product Backlog',
-		layout: 'fit',
-		items: [ productBacklogGrid ]
-	});	
 
     var tpl = new Ext.XTemplate(
 		'<tpl for=".">',
@@ -243,6 +242,20 @@ Ext.onReady(function() {
         }
 	});
 
+    var sprintBacklogTabPanel = new Ext.TabPanel({
+        title: 'Sprint Backlog',
+        tabPosition: 'bottom',
+        activeTab: 0,
+        items: [sprintBacklogTab, sprintBurndownChartTab]
+    });
+
+    var productBacklogTab = new Ext.Panel({
+		id: 'productBacklog',
+		title: 'Product Backlog',
+		layout: 'fit',
+		items: [ productBacklogGrid ]
+	});
+
     var releaseBurndownChartTab = new Ext.Panel({
 		title: 'Release Burndown',
         layout:'fit',
@@ -259,20 +272,19 @@ Ext.onReady(function() {
         }
 	});
 
-    var burndownChartTabPanel = new Ext.TabPanel({
-        title: 'Burndown Chart',
+    var productBacklogTabPanel = new Ext.TabPanel({
+        title: 'Product Backlog',
         tabPosition: 'bottom',
         activeTab: 0,
-        items: [sprintBurndownChartTab, releaseBurndownChartTab]
+        items: [productBacklogTab, releaseBurndownChartTab]
     });
 
-	
-	var projectDetailTabPanel = new Ext.TabPanel({
+    var projectDetailTabPanel = new Ext.TabPanel({
 		enableTabScroll: true,
         autoDestroy: false,
 		border: false,		
 		activeTab: 0,
-		items: [ sprintBacklogTab, burndownChartTabPanel, productBacklogTab ]
+		items: [ sprintBacklogTabPanel, productBacklogTabPanel ]
 	});
 	
     var projectDetailTab = new Ext.Panel({
