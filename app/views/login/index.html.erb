@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<title>Projexion</title>
+	<%= stylesheet_link_tag 'ext-all' %>
+	<%= stylesheet_link_tag 'projexion' %>
+	<%= javascript_include_tag 'ext-base' %>
+	<%= javascript_include_tag 'ext-all-debug' %>
+    <script type="text/javascript">
+      Ext.onReady(function() {
+        new Ext.FormPanel({
+            title: 'Login',
+            width: 350,
+            frame: true,
+            bodyStyle:'padding:5px 5px 0',
+            renderTo: Ext.getBody(),
+
+            items: [{
+                    fieldLabel: 'Username',
+                    name: 'username',
+                    allowBlank:false,
+                    xtype: 'textfield'
+                },{
+                    fieldLabel: 'Password',
+                    name: 'password',
+                    allowBlank:false,
+                    xtype: 'textfield',
+                    inputType: 'password'
+                }
+            ],
+
+            buttons: [{
+                text: 'Login'
+            },{
+                text: 'Reset'
+            }]
+        })
+      });
+    </script>
+</head>
+<body>
+    <div id="header"><span><h2>Projexion</h2></span></div>
+</body>
+</html>
