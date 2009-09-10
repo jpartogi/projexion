@@ -203,13 +203,18 @@ Ext.onReady(function() {
     
 	var sprintBacklogTab = new Ext.Panel({
 		title: 'Sprint Backlog',
-        layout: 'fit',
-        items: new Ext.DataView({
+        layout: 'fit',     
+        items:  new Ext.DataView({
             store: store,
             tpl: tpl,
-            itemSelector:'div.backlog-block', // must have this
-            autoHeight:true,
+            itemSelector:'div.backlog-block', // make sure not to forget this
             multiSelect: true
+        }),
+        bbar: new Ext.PagingToolbar({
+            pageSize: 25,
+            displayInfo: true,
+            displayMsg: 'Displaying topics {0} - {1} of {2}',
+            emptyMsg: "No topics to display"
         })
 	});
 
@@ -513,7 +518,7 @@ Ext.onReady(function() {
                         xtype: 'panel',border: false,
                         width: '100%',
                         tbar: new Ext.Toolbar({
-                            items:['->', 'Logged in as: jpartogi', '-', '<a href="#">Logout</a>']
+                            items:['->', 'Logged in as: jpartogi', '-', '<a href="/login">Logout</a>']
                         }),
 
                         bbar: menubar
