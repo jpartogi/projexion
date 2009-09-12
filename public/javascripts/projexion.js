@@ -83,29 +83,37 @@ Ext.onReady(function() {
 			header: 'Name'
 		}],
 
-        tbar: [
-            new Ext.Button({
+        tbar: [{
+                xtype: 'button',
                 text: 'Add New',
+                iconCls: 'icon-add',
                 listeners: {
                     click: function(button, event){
                         backlogFormWindow.show();
                     }
                 }
-            }),
-
-            new Ext.Button({
-                text: 'Delete'
-            }),
-
-            new Ext.Button({
+            },{
+                xtype: 'button',
+                text: 'Delete',
+                iconCls: 'icon-delete'
+            },{
+                xtype: 'button',
                 text: 'Detail',
+                iconCls: 'icon-edit',
                 listeners: {
                     click: function(button, event){
                         addTabHandler(projectDetailTabPanel, backlogDetailTab);
                     }
                 }
-            })
-	    ]
+            }
+	    ],
+        
+        bbar: new Ext.PagingToolbar({
+            pageSize: 25,
+            displayInfo: true,
+            displayMsg: 'Displaying topics {0} - {1} of {2}',
+            emptyMsg: "No topics to display"
+        })
     });
 
     var projectInfoGrid = new Ext.grid.PropertyGrid({
@@ -210,6 +218,19 @@ Ext.onReady(function() {
             itemSelector:'div.backlog-block', // make sure not to forget this
             multiSelect: true
         }),
+        tbar: [{
+                text: 'Add New',
+                iconCls: 'icon-add'
+            },{
+                xtype: 'button',
+                text: 'Delete',
+                iconCls: 'icon-delete'
+            },{
+                xtype: 'button',
+                text: 'Detail',
+                iconCls: 'icon-edit'
+            }
+	    ],
         bbar: new Ext.PagingToolbar({
             pageSize: 25,
             displayInfo: true,
@@ -335,28 +356,28 @@ Ext.onReady(function() {
 			header: 'Name'
 		}],
 
-        tbar: [
-            new Ext.Button({
+        tbar: [{
                 text: 'Add New',
+                iconCls: 'icon-add',
                 listeners: {
                     click: function(button, event){
                         projectFormWindow.show();
                     }
                 }
-            }),
-
-            new Ext.Button({
-                text: 'Delete'
-            }),
-
-            new Ext.Button({
+            },{
+                xtype: 'button',
+                text: 'Delete',
+                iconCls: 'icon-delete'
+            },{
+                xtype: 'button',
                 text: 'Detail',
+                iconCls: 'icon-edit',
                 listeners: {
                     click: function(button, event){
                         addTabHandler(mainTabPanel, projectDetailTab);
                     }
                 }
-            })
+            }
 	    ],
 
 		bbar: new Ext.PagingToolbar({
