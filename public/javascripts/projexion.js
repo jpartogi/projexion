@@ -92,11 +92,11 @@ Ext.onReady(function() {
                         backlogFormWindow.show();
                     }
                 }
-            },{
+            },'-',{
                 xtype: 'button',
                 text: 'Delete',
                 iconCls: 'icon-delete'
-            },{
+            },'-',{
                 xtype: 'button',
                 text: 'Detail',
                 iconCls: 'icon-edit',
@@ -221,11 +221,11 @@ Ext.onReady(function() {
         tbar: [{
                 text: 'Add New',
                 iconCls: 'icon-add'
-            },{
+            },'-',{
                 xtype: 'button',
                 text: 'Delete',
                 iconCls: 'icon-delete'
-            },{
+            },'-',{
                 xtype: 'button',
                 text: 'Detail',
                 iconCls: 'icon-edit'
@@ -364,11 +364,11 @@ Ext.onReady(function() {
                         projectFormWindow.show();
                     }
                 }
-            },{
+            },'-',{
                 xtype: 'button',
                 text: 'Delete',
                 iconCls: 'icon-delete'
-            },{
+            },'-',{
                 xtype: 'button',
                 text: 'Detail',
                 iconCls: 'icon-edit',
