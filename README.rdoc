@@ -1,0 +1,3 @@
+== Welcome to Projexion
+
+*The Scrum based project management tool*
