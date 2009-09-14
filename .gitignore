@@ -2,4 +2,6 @@
 Thumbs.db
 log/
 tmp/
-vendor/rails/
+vendor/
+db/migrate
+
