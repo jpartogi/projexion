@@ -1,8 +1,13 @@
 #header { background: #7F99BE url('/images/header-bg.gif') repeat-x center; }
 
-#header h2{ font-family: Helvetica; font-style: italic; font-size: 15px;  color: white; padding: 5px ; letter-spacing: -1px; }
+#header h2 { font-family: Helvetica; font-style: italic; font-size: 15px;  color: white; padding: 5px ; letter-spacing: -1px; }
 
-.backlog-block{ padding: 5px; border: 1px solid #eee; float: left; margin: 4px 0 4px 4px; }
+#login { margin: 1em auto 0 auto; padding: 1em; border: 3px solid #eee; width: 30%; }
+#login label { font: bold 16px Helvetica; letter-spacing: -1px; }
+#login input[type='text'],
+#login input[type='password'] { width:100%; font: 1em Arial; border: 1px solid #eee; padding: 3px;  margin-bottom: 1em;  }
+
+.backlog-block { padding: 5px; border: 1px solid #eee; float: left; margin: 4px 0 4px 4px; }
 
 .icon-add { background-image: url('/images/icons/add.png') !important; }
 .icon-delete { background-image: url('/images/icons/delete.png') !important; }
