@@ -1,0 +1,24 @@
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+<%= f.label :login %><br />
+<%= f.text_field :login %><br />
+<br />
+<%= f.label :password, f.object.new_record? ? nil : "Change password" %><br />
+<%= f.password_field :password %><br />
+<br />
+<%= f.label :password_confirmation %><br />
+<%= f.password_field :password_confirmation %><br />
+
+<%= f.label :email %><br />
+<%= f.text_field :email %><br />
+<br />
+
+  <div class="actions">
+    <% if @user.new_record? %>
+      <%= f.submit 'Create' %>
+    <% else %>
+      <%= f.submit 'Update' %>
+    <% end %>
+  </div>
+<% end %>

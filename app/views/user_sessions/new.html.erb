@@ -13,7 +13,7 @@
 <body>
     <div id="header"><span><h2>Projexion</h2></span></div>
 
-    <% form_for @user_session, :url => user_session_path do |f|%>
+    <% form_for @user_session do |f|%>
       <%= f.error_messages %>
       <%= f.label :login %><br />
       <%= f.text_field :login %><br />
