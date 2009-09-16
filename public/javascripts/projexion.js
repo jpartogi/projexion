@@ -155,9 +155,6 @@ Ext.onReady(function() {
 					text: 'Add New Product Backlog',
 					leaf: true
 				},{
-                    text: 'Add New Sprint Backlog',
-                    leaf: true
-                },{
                     text: 'Search Backlog',
                     leaf: true
                 }]
@@ -209,33 +206,14 @@ Ext.onReady(function() {
         '<div class="x-clear"></div>'
 	);
     
-	var sprintBacklogTab = new Ext.Panel({
-		title: 'Sprint Backlog',
+	var sprintTaskboardTab = new Ext.Panel({
+		title: 'Sprint Taskboard',
         layout: 'fit',     
         items:  new Ext.DataView({
             store: store,
             tpl: tpl,
             itemSelector:'div.backlog-block', // make sure not to forget this
             multiSelect: true
-        }),
-        tbar: [{
-                text: 'Add New',
-                iconCls: 'icon-add'
-            },'-',{
-                xtype: 'button',
-                text: 'Delete',
-                iconCls: 'icon-delete'
-            },'-',{
-                xtype: 'button',
-                text: 'Detail',
-                iconCls: 'icon-edit'
-            }
-	    ],
-        bbar: new Ext.PagingToolbar({
-            pageSize: 25,
-            displayInfo: true,
-            displayMsg: 'Displaying topics {0} - {1} of {2}',
-            emptyMsg: "No topics to display"
         })
 	});
 
@@ -268,11 +246,11 @@ Ext.onReady(function() {
         }
 	});
 
-    var sprintBacklogTabPanel = new Ext.TabPanel({
-        title: 'Sprint Backlog',
+    var sprintTabPanel = new Ext.TabPanel({
+        title: 'Current Sprint',
         tabPosition: 'bottom',
         activeTab: 0,
-        items: [sprintBacklogTab, sprintBurndownChartTab]
+        items: [sprintTaskboardTab, sprintBurndownChartTab]
     });
 
     var productBacklogTab = new Ext.Panel({
@@ -310,7 +288,7 @@ Ext.onReady(function() {
         autoDestroy: false,
 		border: false,		
 		activeTab: 0,
-		items: [ sprintBacklogTabPanel, productBacklogTabPanel ]
+		items: [ sprintTabPanel, productBacklogTabPanel ]
 	});
 	
     var projectDetailTab = new Ext.Panel({
@@ -392,13 +370,19 @@ Ext.onReady(function() {
 		layout: 'fit',
 		id: 'projectList',
 		title: 'Project List',
-		closable: true,
 		layoutConfig: {
             padding:'5',
             align:'middle'
         },
 		items: [ projectListGrid ]
 	});
+
+    var userListTab = new Ext.Panel({
+        layout: 'fit',
+        id: 'userList',
+        title: 'User List',
+        closable: true
+    });
 	
 	var mainTabPanel = new Ext.TabPanel({
 		height: '100%',
@@ -410,7 +394,7 @@ Ext.onReady(function() {
 		defaults: {
             autoScroll: true
         },
-		items: [ homeTab ]	  
+		items: [ homeTab, projectListTab ]
 	});
 	
 	var addTabHandler = function(/** Component */ tabPanel, /** Component */ tabItem ){
@@ -422,51 +406,6 @@ Ext.onReady(function() {
 		}	
 	}
 	
-	var projectMenu = new Ext.menu.Menu({
-		items: [{
-			text: 'Project List',
-			listeners: {
-				click : function (button, event){
-					addTabHandler(mainTabPanel, projectListTab);
-				}
-			}
-		}]
-	});
-	
-	var backlogMenu = new Ext.menu.Menu({
-		items: [{
-			text: 'Search Backlog',
-			listeners: {
-				click: function(button, event){
-					addTabHandler(backlogSearchTab);
-				}
-			}
-		},{
-			text: 'Add New Backlog',
-            listeners: {
-                click: function(button, event){
-                    backlogFormWindow.show();
-                }
-            }
-		}]
-	});
-	
-	var clientMenu = new Ext.menu.Menu({
-		items: [{
-			text: 'Client List'
-		},{
-			text: 'Add New Client'
-		}]
-	});
-	
-	var userMenu = new Ext.menu.Menu({
-		items: [{
-			text: 'User List'
-		},{
-			text: 'Add New User'
-		}]
-	});
-	
 	var adminMenu = new Ext.menu.Menu({
 		items: [{
 			text: 'Add New Project',
@@ -477,8 +416,6 @@ Ext.onReady(function() {
 			}
 		},{
 			text: 'Add New User'
-		},{
-			text: 'Add New Client'
 		},{
 			text: 'Settings'
 		}]
@@ -492,17 +429,12 @@ Ext.onReady(function() {
 			width: 75
         },
 		items: [{
-				text: 'Project',
-				menu: projectMenu
-			},{
-				text: 'Backlog',
-				menu: backlogMenu
-			},{
-				text: 'Client'
-				//menu: clientMenu
-			},{
-				text: 'User'
-				//menu: userMenu
+				text: 'User',
+                listeners: {
+                    click: function (button, event){
+                        addTabHandler(mainTabPanel, userListTab);
+                    }
+                }
 			},{
 				text: 'Admin',
 				menu: adminMenu
@@ -536,7 +468,8 @@ Ext.onReady(function() {
                         applyTo: 'header'
                     },{
                         id: 'statusbar',
-                        xtype: 'panel',border: false,
+                        xtype: 'panel',
+                        border: false,
                         width: '100%',
                         tbar: new Ext.Toolbar({
                             items:['->', 'Logged in as: jpartogi', '-', '<a href="/login">Logout</a>']
@@ -547,16 +480,13 @@ Ext.onReady(function() {
                 ]
             },
             mainTabPanel // center region
-            /*,{
+            ,{
                 region: 'south',
-                title: 'Logs',
-                split: true,
-                collapsible: true,
-                animCollapse:false,
-                closed: true,
-                height: 70,
-                maxSize: 200
-            } */
+                layout: 'fit',
+                items: [{
+                    xtype: 'box'
+                }]
+            }
         ]
     });
         
