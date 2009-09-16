@@ -472,7 +472,7 @@ Ext.onReady(function() {
                         border: false,
                         width: '100%',
                         tbar: new Ext.Toolbar({
-                            items:['->', 'Logged in as: jpartogi', '-', '<a href="/login">Logout</a>']
+                            items:['->', 'Logged in as: jpartogi', '-', '<a href="/logout">Logout</a>']
                         }),
 
                         bbar: menubar

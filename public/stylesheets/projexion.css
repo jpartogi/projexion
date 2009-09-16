@@ -2,10 +2,13 @@
 
 #header h2 { font-family: Helvetica; font-style: italic; font-size: 15px;  color: white; padding: 5px ; letter-spacing: -1px; }
 
-#login { margin: 1em auto 0 auto; padding: 1em; border: 3px solid #eee; width: 30%; }
-#login label { font: bold 16px Helvetica; letter-spacing: -1px; }
+#login fieldset { margin: 1em auto 0 auto; padding: 1em; border: 1px solid #eee; width: 30%; }
+#login legend { font: bold 17px Helvetica,serif; color:#666; letter-spacing: -1px; border: 1px solid #eee; padding: 4px;
+    background: #f4f4f4; border-bottom-color: #999; border-right-color: #999; }
+#login label { font: bold 15px Helvetica; letter-spacing: -1px; color: #666; text-transform:capitalize; }
 #login input[type='text'],
-#login input[type='password'] { width:100%; font: 1em Arial; border: 1px solid #eee; padding: 3px;  margin-bottom: 1em;  }
+#login input[type='password'] { width:100%; font: bold 1em Arial; border: 1px solid #eee; padding: 3px;  margin-bottom: 1em;  }
+#login #errorExplanation { font: 12px Arial, sans-serif; color: red; margin-bottom: 1em; }
 
 .backlog-block { padding: 5px; border: 1px solid #eee; float: left; margin: 4px 0 4px 4px; }
 

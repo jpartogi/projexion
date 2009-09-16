@@ -14,21 +14,20 @@
     <div id="header"><span><h2>Projexion</h2></span></div>
 
     <div id="login">
-    <% form_for @user_session do |f|%>
-      <%= f.error_messages %>
+        <fieldset>
+        <legend>Login</legend>      
+        <% form_for @user_session do |f|%>
+          <%= f.error_messages %>
 
-      <p>
-          <%= f.label :login %><br />
-          <%= f.text_field :login %>
-      </p>
+          <%= f.label :login, 'username' %><br />
+          <%= f.text_field :login %><br />
 
-      <p>
           <%= f.label :password %><br />
-          <%= f.password_field :password %>
-      </p>
+          <%= f.password_field :password %><br />
 
-      <%= f.submit "Login" %>
-    <% end %>
+          <%= f.submit "Login" %>
+        <% end %>
+        </fieldset>
     </div>
 </body>
 </html>
