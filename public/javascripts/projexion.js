@@ -246,13 +246,6 @@ Ext.onReady(function() {
         }
 	});
 
-    var sprintTabPanel = new Ext.TabPanel({
-        title: 'Current Sprint',
-        tabPosition: 'bottom',
-        activeTab: 0,
-        items: [sprintTaskboardTab, sprintBurndownChartTab]
-    });
-
     var productBacklogTab = new Ext.Panel({
 		id: 'productBacklog',
 		title: 'Product Backlog',
@@ -263,7 +256,6 @@ Ext.onReady(function() {
     var releaseBurndownChartTab = new Ext.Panel({
 		title: 'Release Burndown',
         layout:'fit',
-
         items: {
             xtype: 'linechart',
             store: burndownStore,
@@ -276,11 +268,19 @@ Ext.onReady(function() {
         }
 	});
 
-    var productBacklogTabPanel = new Ext.TabPanel({
-        title: 'Product Backlog',
-        tabPosition: 'bottom',
-        activeTab: 0,
-        items: [productBacklogTab, releaseBurndownChartTab]
+    var velocityChartTab = new Ext.Panel({
+        title: 'Velocity Chart',
+        layout: 'fit',
+        items: {
+            xtype: 'linechart',
+            store: burndownStore,
+            url: '../charts.swf',
+            xField: 'days',
+            yField: 'tasks',
+            tipRenderer : function(chart, record){
+                return record.data.tasks + ' tasks left on day ' + record.data.days;
+            }
+        }
     });
 
     var projectDetailTabPanel = new Ext.TabPanel({
@@ -288,7 +288,7 @@ Ext.onReady(function() {
         autoDestroy: false,
 		border: false,		
 		activeTab: 0,
-		items: [ sprintTabPanel, productBacklogTabPanel ]
+		items: [ sprintTaskboardTab, sprintBurndownChartTab, productBacklogTab, releaseBurndownChartTab, velocityChartTab ]
 	});
 	
     var projectDetailTab = new Ext.Panel({
@@ -483,6 +483,7 @@ Ext.onReady(function() {
             ,{
                 region: 'south',
                 layout: 'fit',
+                border: false,
                 items: [{
                     xtype: 'box'
                 }]
