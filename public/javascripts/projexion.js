@@ -127,6 +127,7 @@ Ext.onReady(function() {
             "Name": "Project xxx",
             "Created": new Date(Date.parse('10/15/2006')),
             "Scrum master": 'jpartogi',
+            "Product owner": 'joe',
             "Version": .01,
             "Description": "Project desc"
         }
@@ -194,7 +195,7 @@ Ext.onReady(function() {
         animCollapse: false,
 		collapsible: true,
 		collapseMode:'mini',
-		items: [ projectTreeMenu, projectMemberGrid ]
+		items: [ projectMemberGrid, projectTreeMenu ]
 	});
 
     var tpl = new Ext.XTemplate(
@@ -314,7 +315,7 @@ Ext.onReady(function() {
     });
 
     var projectFormWindow = new Ext.Window({
-        title: 'Project',
+        title: 'Add New Project',
         closable:true,
         plain:true,
         width:600,
@@ -417,7 +418,7 @@ Ext.onReady(function() {
 		},{
 			text: 'Add New User'
 		},{
-			text: 'Settings'
+			text: 'Configurations'
 		}]
 	});
 	
