@@ -1,15 +1,17 @@
-    <div id="login">
+    <div id="users_form">
         <fieldset>
         <legend>Login</legend>      
         <% form_for @user_session do |f|%>
           <%= f.error_messages %>
 
           <%= f.label :login, 'username' %><br />
-          <%= f.text_field :login %><br />
+          <%= f.text_field :login %>
 
           <%= f.label :password %><br />
-          <%= f.password_field :password %><br />
+          <%= f.password_field :password %>
 
+          <div class="small">Not registered? Please <%= link_to 'register', new_user_path %> first.</div>
+          <br />    
           <%= f.submit "Login" %>
         <% end %>
         </fieldset>
