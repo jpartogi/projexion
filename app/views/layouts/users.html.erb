@@ -1,15 +1,64 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>Users: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<title>Projexion</title>
+	<%= stylesheet_link_tag 'ext-all' %>
+	<%= stylesheet_link_tag 'projexion' %>
+	<%= javascript_include_tag 'ext-base' %>
+	<%= javascript_include_tag 'ext-all-debug' %>
+    <script type="text/javascript">
+      Ext.onReady(function() {
+        new Ext.Viewport({
+            layout: 'border',
+            renderTo: Ext.getBody(),
+            items: [{
+                    layout: 'fit',
+                    region: 'north',
+                    height: 30,
+                    border: false,
+                    items: [{
+                        xtype: 'box',
+                        width: '100%',
+                        applyTo: 'header'
+                    }]
+                },{
+                    region: 'center',
+                    layout: 'fit',
+                    border: false,
+                    items: [{
+                        xtype: 'box',
+                        applyTo: 'middle'
+                    }]
+                },{
+                    region: 'south',
+                    layout: 'fit',
+                    border: false,
+                    height: 35,
+                    items: [{
+                        xtype: 'box',
+                        applyTo: 'footer'
+                    }]
+                }
+            ]
+        });
+      });
+    </script>
 </head>
 <body>
+    <div id="header"><span><h2>Projexion</h2></span></div>
 
-<p class="notice"><%= flash[:notice] %></p>
+    <p class="notice"><%= flash[:notice] %></p>
 
-<%= yield %>
-
+    <div id="middle">
+    <%= yield %>
+    </div>
+    
+    <div id="footer">
+      Projexion is a Free Software made by <a href="http://scrum8.com/">Scrum8</a> licensed under <a href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU GPL v3.0</a>. <br/>
+      <a href="http://scrum8.com/contact">Contact us</a> for more info on how we can help you with your project and licensing issues.
+    </div>
 </body>
 </html>

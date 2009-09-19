@@ -1,3 +1,7 @@
+a { font-weight: bold; }
+a:hover { text-decoration:none; color: #03366b; }
+a:visited { color: #365776; }
+
 #header { background: #7F99BE url('/images/header-bg.gif') repeat-x center; }
 
 #header h2 { font-family: Helvetica; font-style: italic; font-size: 15px;  color: white; padding: 5px ; letter-spacing: -1px; }
@@ -17,3 +21,7 @@
 .icon-add { background-image: url('/images/icons/add.png') !important; }
 .icon-delete { background-image: url('/images/icons/delete.png') !important; }
 .icon-edit { background-image: url('/images/icons/note_edit.png') !important; }
+
+#footer { background: #618db7 url('/images/footer-bg.png') repeat center; color: #fff; font: 10px verdana; padding: 2px 8px; }
+#footer a { font-weight: bold; color: #fff; }
+#footer a:hover { text-decoration:none;  }

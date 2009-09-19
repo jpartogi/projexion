@@ -486,8 +486,10 @@ Ext.onReady(function() {
                 region: 'south',
                 layout: 'fit',
                 border: false,
+                height: 35,
                 items: [{
-                    xtype: 'box'
+                    xtype: 'box',
+                    applyTo: 'footer'
                 }]
             }
         ]
