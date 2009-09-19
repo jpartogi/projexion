@@ -284,6 +284,7 @@ Ext.onReady(function() {
         }
     });
 
+    // TODO: This will tend to get really big. Separate into its own component 
     var projectDetailTabPanel = new Ext.TabPanel({
 		enableTabScroll: true,
         autoDestroy: false,
