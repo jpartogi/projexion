@@ -1,5 +1,4 @@
-Ext.onReady(function() {
-    
+
     //Ext.state.Manager.setProvider(new Ext.state.SessionProvider({state: Ext.appState}));
 	Ext.BLANK_IMAGE_URL = 'images/default/s.gif';
 			
@@ -452,47 +451,3 @@ Ext.onReady(function() {
 			}
 		]
 	});
-
-
-    new Ext.Viewport({
-        layout: 'border',
-        renderTo: Ext.getBody(),
-        items: [
-            {
-                layout: 'vbox',
-                region: 'north',
-                height: 90,
-                items: [
-                    {
-                        xtype: 'box',
-                        width: '100%',
-                        height: 30,
-                        applyTo: 'header'
-                    },{
-                        id: 'statusbar',
-                        xtype: 'panel',
-                        border: false,
-                        width: '100%',
-                        tbar: new Ext.Toolbar({
-                            items:['->', 'Logged in as: jpartogi', '-', '<a href="/logout">Logout</a>']
-                        }),
-
-                        bbar: menubar
-                    }
-                ]
-            },
-            mainTabPanel // center region
-            ,{
-                region: 'south',
-                layout: 'fit',
-                border: false,
-                height: 35,
-                items: [{
-                    xtype: 'box',
-                    applyTo: 'footer'
-                }]
-            }
-        ]
-    });
-        
-}); // Ext.onReady closer

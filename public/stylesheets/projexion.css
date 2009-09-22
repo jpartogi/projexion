@@ -1,10 +1,7 @@
-a { font-weight: bold; }
-a:hover { text-decoration:none; color: #03366b; }
-a:visited { color: #365776; }
+#header { background: #7F99BE url('/images/header-bg.gif') repeat-x center; width:100%; }
 
-#header { background: #7F99BE url('/images/header-bg.gif') repeat-x center; }
-
-#header h2 { font-family: Helvetica; font-style: italic; font-size: 15px;  color: white; padding: 5px ; letter-spacing: -1px; }
+#header #title { font: italic bold 15px Helvetica;  color: white; padding: 5px; letter-spacing: -1px; float:left; }
+#header #login { font: 11px Verdana; color: white; float:right; padding: 5px; } 
 
 #users_form fieldset { margin: 1em auto 0 auto; padding: 1em; border: 1px solid #eee; width: 30%; }
 #users_form legend { font: bold 17px Helvetica,serif; color:#666; letter-spacing: -1px; border: 1px solid #eee; padding: 4px;
@@ -25,5 +22,5 @@ a:visited { color: #365776; }
 .small { font: 11px verdana; }
 
 #footer { background: #618db7 url('/images/footer-bg.png') repeat center; color: #fff; font: 10px verdana; padding: 2px 8px; }
-#footer a { font-weight: bold; color: #fff; }
-#footer a:hover { text-decoration:none;  }
+#login a, #footer a { font-weight: bold; color: #fff; }
+#login a:hover, #footer a:hover { text-decoration:none;  }
