@@ -17,10 +17,24 @@
 
 // This is the entry point for the application layout. It's where everything starts.
 
-var Projexion = { version: '0.5.0' };
+
+var mainTabPanel = new Ext.TabPanel({
+    height: '100%',
+    region: 'center',
+    activeTab: 0,
+    enableTabScroll: true,
+    autoDestroy: false,
+    border: false,
+    defaults: {
+        autoScroll: true
+    },
+    items: [ homeTab, projectListTab ]
+});
+
+var menubar = new Projexion.menu.Menubar();
 
 Projexion.Main = function(){
-        new Ext.Viewport({
+    new Ext.Viewport({
         layout: 'border',
         renderTo: Ext.getBody(),
         items: [
@@ -35,16 +49,14 @@ Projexion.Main = function(){
                         height: 30,
                         applyTo: 'header'
                     },{
-                        id: 'statusbar',
+                        id: 'menubar',
                         xtype: 'panel',
                         border: false,
                         width: '100%',
                         tbar: menubar
                     }
                 ]
-            },
-            mainTabPanel // center region
-            ,{
+            }, mainTabPanel ,{
                 region: 'south',
                 layout: 'fit',
                 border: false,
