@@ -6,56 +6,21 @@
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	<title>Projexion</title>
 	<%= stylesheet_link_tag 'ext-all' %>
+    <%= stylesheet_link_tag 'reset' %>
 	<%= stylesheet_link_tag 'projexion' %>
 	<%= javascript_include_tag 'ext-base' %>
 	<%= javascript_include_tag 'ext-all-debug' %>
-    <script type="text/javascript">
-      Ext.onReady(function() {
-        new Ext.Viewport({
-            layout: 'border',
-            renderTo: Ext.getBody(),
-            items: [{
-                    layout: 'fit',
-                    region: 'north',
-                    height: 30,
-                    border: false,
-                    items: [{
-                        xtype: 'box',
-                        width: '100%',
-                        applyTo: 'header'
-                    }]
-                },{
-                    region: 'center',
-                    layout: 'fit',
-                    border: false,
-                    items: [{
-                        xtype: 'box',
-                        applyTo: 'middle'
-                    }]
-                },{
-                    region: 'south',
-                    layout: 'fit',
-                    border: false,
-                    height: 35,
-                    items: [{
-                        xtype: 'box',
-                        applyTo: 'footer'
-                    }]
-                }
-            ]
-        });
-      });
-    </script>
 </head>
 <body>
     <div id="header">
       <div id="title">Projexion</div>
+
+      <div style="clear:both"></div>
     </div>
-    
-    <p class="notice"><%= flash[:notice] %></p>
 
     <div id="middle">
-    <%= yield %>
+        <p class="notice"><%= flash[:notice] %></p>
+        <%= yield %>
     </div>
     
     <div id="footer">

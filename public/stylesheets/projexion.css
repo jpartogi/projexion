@@ -1,9 +1,23 @@
+a { font-weight: bold; color:#333; }
+a:hover { text-decoration:none; }
+
 #header { background: #7F99BE url('/images/header-bg.gif') repeat-x center; width:100%; }
 
 #header #title { font: italic bold 15px Helvetica;  color: white; padding: 5px; letter-spacing: -1px; float:left; }
-#header #login { font: 11px Verdana; color: white; float:right; padding: 5px; } 
+#header #login { font: 11px Verdana; color: white; float:right; padding: 5px; }
+#login a { color:inherit; }
 
-#users_form fieldset { margin: 1em auto 0 auto; padding: 1em; border: 1px solid #eee; width: 30%; }
+#middle {  min-height: 600px; width: 100%; }
+
+#sidebar { float:left; width: 250px; min-height: 600px; border-right: 1px solid #eee; background-color:#f4f4f4; }
+ul#sidemenu{ width: 100%; }
+#sidebar ul li{ width: 100%; padding: 5px; }
+#sidebar ul > li > a { padding: 5px; width:100%; font: bolder 1em Arial; text-decoration:none; color:#333;}
+#sidebar a:hover { background-color: #fff; }  
+#content {  float:left; }
+
+#users_form { width: 100%; padding-top: 1em;  }
+#users_form fieldset { margin: 0 auto 0 auto; padding: 1em; border: 1px solid #eee; width: 450px; }
 #users_form legend { font: bold 17px Helvetica,serif; color:#666; letter-spacing: -1px; border: 1px solid #eee; padding: 4px;
     background: #f4f4f4; border-bottom-color: #999; border-right-color: #999; }
 #users_form label { font: bold 15px Helvetica; letter-spacing: -1px; color: #666; text-transform:capitalize; }
@@ -13,6 +27,9 @@
 #errorExplanation { font: 11px verdana, sans-serif; color: red; margin-bottom: 1em; }
 #users_form .fieldWithErrors input{ border: 1px solid red; }
 
+#footer { color: #333; font: 10px verdana; padding: 2px 8px; border-top: 1px solid #eee; }
+#footer a { color:inherit;  }
+
 .backlog-block { padding: 5px; border: 1px solid #eee; float: left; margin: 4px 0 4px 4px; }
 
 .icon-add { background-image: url('/images/icons/add.png') !important; }
@@ -20,7 +37,3 @@
 .icon-edit { background-image: url('/images/icons/note_edit.png') !important; }
 
 .small { font: 11px verdana; }
-
-#footer { background: #618db7 url('/images/footer-bg.png') repeat center; color: #fff; font: 10px verdana; padding: 2px 8px; }
-#login a, #footer a { font-weight: bold; color: #fff; }
-#login a:hover, #footer a:hover { text-decoration:none;  }

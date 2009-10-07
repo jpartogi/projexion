@@ -5,19 +5,13 @@
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	<title>Projexion</title>
-    <%= stylesheet_link_tag 'reset' %>
 	<%= stylesheet_link_tag 'ext-all' %>
+    <%= stylesheet_link_tag 'reset' %>
 	<%= stylesheet_link_tag 'projexion' %>
 	<%= javascript_include_tag 'ext-base' %>
 	<%= javascript_include_tag 'ext-all-debug' %>
-	<%= javascript_include_tag 'ux/SearchField' %>
-    <%= javascript_include_tag 'projexion/common' %>
-    <%= javascript_include_tag 'projexion/menu' %>
-    <%= javascript_include_tag 'projexion/home' %>
-    <%= javascript_include_tag 'projexion/users' %>
-    <%= javascript_include_tag 'projexion/project_list' %>
-	<%= javascript_include_tag 'projexion/project_detail' %>
-    <%= javascript_include_tag 'projexion/main' %>
+    <%= javascript_include_tag 'ux/GroupTabPanel' %>
+    <%= javascript_include_tag 'ux/GroupTab' %>
 </head>
 <body>
     <div id="header">
@@ -25,6 +19,19 @@
       <div id="login">Logged in as: <%= @current_user.login %> |
         <%= link_to "Logout", :controller => 'user_sessions', :action => 'destroy' , :method => :delete, :confirm => "Are you sure you want to logout?" %>
       </div>
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="middle">
+        <div id="sidebar">
+          <ul id="sidemenu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Projects</a></li>
+          </ul>
+
+        </div>
+        <div id="content">Hello</div>
+        <div style="clear:both"></div>
     </div>
 
     <div id="footer">

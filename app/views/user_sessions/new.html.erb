@@ -1,6 +1,6 @@
     <div id="users_form">
         <fieldset>
-        <legend>Login</legend>      
+        <legend>Login</legend>
         <% form_for @user_session do |f|%>
           <%= f.error_messages %>
 
@@ -11,9 +11,9 @@
           <%= f.password_field :password %><br />
 
           <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %><br />    
+          <%= f.label :remember_me %><br />
           <div class="small">Not registered? Please <%= link_to 'register', new_user_path %> first.</div>
-          <br />    
+          <br />
           <%= f.submit "Login" %>
         <% end %>
         </fieldset>
