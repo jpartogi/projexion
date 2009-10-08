@@ -37,3 +37,4 @@ ul#sidemenu{ width: 100%; }
 .icon-edit { background-image: url('/images/icons/note_edit.png') !important; }
 
 .small { font: 11px verdana; }
+.notice { background: #e2f9e3; color: #080; font: bolder 11px verdana; width: 450px; margin: 0 auto 0 auto; /* border: 1px solid #9c9; */}
