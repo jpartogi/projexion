@@ -16,3 +16,19 @@ development:
   username:
   password:
   socket: /var/lib/mysql/mysql.sock
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: rails_test
+  pool: 5
+  username: rails
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: rails_production
+  pool: 5
+  username: rails
+  password:
