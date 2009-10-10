@@ -9,7 +9,61 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090914112417) do
+ActiveRecord::Schema.define(:version => 20091010181816) do
+
+  create_table "backlogs", :force => true do |t|
+    t.text     "user_story",                                     :null => false
+    t.text     "acceptance_test",                                :null => false
+    t.decimal  "business_value",  :precision => 10, :scale => 0
+    t.string   "estimate_size"
+    t.integer  "priority"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "sprint_id"
+    t.integer  "release_id"
+    t.integer  "project_id"
+  end
+
+  create_table "project_members", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.string   "project_role", :limit => 2, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name",       :limit => 25, :null => false
+    t.string   "code",       :limit => 10, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "vision"
+  end
+
+  create_table "releases", :force => true do |t|
+    t.string   "version_number", :limit => 10, :null => false
+    t.date     "estimate_date"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sprints", :force => true do |t|
+    t.date     "start_date",    :null => false
+    t.date     "end_date",      :null => false
+    t.text     "retrospective"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.text     "description",                    :null => false
+    t.string   "status",            :limit => 1, :null => false
+    t.integer  "backlog_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_member_id"
+  end
 
   create_table "user_sessions", :force => true do |t|
     t.datetime "created_at"
