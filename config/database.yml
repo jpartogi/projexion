@@ -18,17 +18,18 @@ development:
   socket: /var/lib/mysql/mysql.sock
 
 test:
-  adapter: postgresql
-  encoding: unicode
-  database: rails_test
+  adapter: mysql
+  encoding: utf8
+  database: test
   pool: 5
-  username: rails
+  username:
   password:
+  socket: /var/lib/mysql/mysql.sock
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: rails_production
+  database: projexion
   pool: 5
   username: rails
   password:

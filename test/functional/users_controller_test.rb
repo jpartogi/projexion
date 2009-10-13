@@ -1,5 +1,5 @@
 require 'test_helper'
-
+=begin
 class UsersControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
@@ -43,3 +43,4 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to users_path
   end
 end
+=end

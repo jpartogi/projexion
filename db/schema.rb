@@ -9,11 +9,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091010181816) do
+ActiveRecord::Schema.define(:version => 20091013000428) do
 
   create_table "backlogs", :force => true do |t|
     t.text     "user_story",                                     :null => false
-    t.text     "acceptance_test",                                :null => false
     t.decimal  "business_value",  :precision => 10, :scale => 0
     t.string   "estimate_size"
     t.integer  "priority"
@@ -22,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20091010181816) do
     t.integer  "sprint_id"
     t.integer  "release_id"
     t.integer  "project_id"
+    t.text     "accept_criteria",                                :null => false
   end
 
   create_table "project_members", :force => true do |t|
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20091010181816) do
   end
 
   create_table "tasks", :force => true do |t|
-    t.text     "description",                    :null => false
-    t.string   "status",            :limit => 1, :null => false
+    t.text     "description",                                     :null => false
+    t.string   "status",            :limit => 1, :default => "P", :null => false
     t.integer  "backlog_id"
     t.datetime "created_at"
     t.datetime "updated_at"
