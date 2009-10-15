@@ -2,6 +2,6 @@
 Thumbs.db
 log/
 tmp/
-vendor/
+vendor/plugins
 db/migrate/*
 
