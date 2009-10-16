@@ -28,3 +28,4 @@ config.action_mailer.delivery_method = :test
 
 config.gem 'cucumber', :lib => false, :source => 'http://gems.github.com'
 config.gem 'thoughtbot-shoulda', :lib => 'shoulda', :source => 'http://gems.github.com'
+config.gem 'webrat', :version => '>=0.5.1'

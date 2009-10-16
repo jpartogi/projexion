@@ -4,10 +4,6 @@ require 'rails/test_help'
 
 require 'webrat'
 
-Webrat.configure do |config|
-  config.mode = :rails
-end
-
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
   # in a transaction that's rolled back on completion.  This ensures that the
@@ -25,7 +21,7 @@ class ActiveSupport::TestCase
   # The only drawback to using transactional fixtures is when you actually 
   # need to test transactions.  Since your test is bracketed by a transaction,
   # any transactions started in your code will be automatically rolled back.
-  self.use_transactional_fixtures = true
+  self.use_transactional_fixtures = false
 
   # Instantiated fixtures are slow, but give you @david where otherwise you
   # would need people(:david).  If you don't want to migrate your existing
@@ -41,4 +37,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+end
+
+Webrat.configure do |config|
+  config.mode = :rails
 end
