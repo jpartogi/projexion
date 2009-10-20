@@ -7,3 +7,15 @@
 [submodule "vendor/plugins/shoulda"]
 	path = vendor/plugins/shoulda
 	url = git://github.com/thoughtbot/shoulda.git
+[submodule "vendor/rails"]
+	path = vendor/rails
+	url = git://github.com/rails/rails.git
+[submodule "vendor/plugins/authlogic"]
+	path = vendor/plugins/authlogic
+	url = git://github.com/binarylogic/authlogic.git
+[submodule "vendor/gems/environment/rails"]
+	path = vendor/gems/environment/rails
+	url = git://github.com/rails/rails.git
+[submodule "vendor/plugins/rack-mount"]
+	path = vendor/plugins/rack-mount
+	url = git://github.com/josh/rack-mount.git
