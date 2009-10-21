@@ -5,18 +5,13 @@
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	<title>Projexion</title>
-	<%= stylesheet_link_tag 'ext-all' %>
     <%= stylesheet_link_tag 'reset' %>
 	<%= stylesheet_link_tag 'projexion' %>
-	<%= javascript_include_tag 'ext-base' %>
-	<%= javascript_include_tag 'ext-all-debug' %>
-    <%= javascript_include_tag 'ux/GroupTabPanel' %>
-    <%= javascript_include_tag 'ux/GroupTab' %>
 </head>
 <body>
     <div id="header">
       <div id="title">Projexion</div>
-      <div id="login">Logged in as: <%= @current_user.login %> |
+      <div id="login">Logged in as: <%#= @current_user.login %> |
         <%= link_to "Logout", :controller => 'user_sessions', :action => 'destroy' , :method => :delete, :confirm => "Are you sure you want to logout?" %>
       </div>
       <div style="clear:both"></div>
@@ -36,7 +31,7 @@
 
     <div id="footer">
       <a href="http://github.com/scrum8/projexion">Projexion</a> is a Free Software made by <a href="http://scrum8.com/">Scrum8</a> licensed under <a href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU GPL v3.0</a>. <br/>
-      <a href="http://scrum8.com/contact">Contact us</a> for more info on how we can help you with your project and licensing issues.
+      <a href="http://scrum8.com/contact">Contact us</a> for more info on how we can help you with your project.
     </div>
 </body>
 </html>
