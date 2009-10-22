@@ -1,20 +1,24 @@
+
 a { font-weight: bold; color:#333; }
 a:hover { text-decoration:none; }
 
-#header { background: #7F99BE url('/images/header-bg.gif') repeat-x center; width:100%; }
+#header { background: #7F99BE url('/images/header-bg.gif') repeat-x center; width:100%;  }
 
-#header #title { font: italic bold 15px Helvetica;  color: white; padding: 5px; letter-spacing: -1px; float:left; }
-#header #login { font: 11px Verdana; color: white; float:right; padding: 5px; }
+#title { font: italic bold 15px Helvetica;  color: white; padding: 5px; letter-spacing: -1px; float:left; }
+#login { font: 11px Verdana; color: white; float:right; padding: 5px; }
 #login a { color:inherit; }
+
+#toolbar { height:26px; background-color: #6192b8;}
+#toolbar ul { padding: 5px 5px 0 5px; }
+#toolbar ul > li{ padding: 5px 5px 0 5px; float:left; vertical-align:bottom; }
+#toolbar a {  padding: 5px 5px 0 5px; width:100%; text-decoration:none; font:bolder 14px Arial; height:16px;
+    color:#333; vertical-align:bottom; text-transform:uppercase; letter-spacing:-0.8px; background-color: #fff; }
+#toolbar a:hover { background-color: #f4f4f4; }
 
 #middle {  min-height: 600px; width: 100%; }
 
-#sidebar { float:left; width: 250px; min-height: 600px; border-right: 1px solid #eee; background-color:#f4f4f4; }
-ul#sidemenu{ width: 100%; }
-#sidebar ul li{ width: 100%; padding: 5px; }
-#sidebar ul > li > a { padding: 5px; width:100%; font: bolder 1em Arial; text-decoration:none; color:#333;}
-#sidebar a:hover { background-color: #fff; }  
-#content {  float:left; }
+#content { float:left; }
+#sidebar { float:right; width: 250px; min-height: 600px; border-left: 1px solid #eee; background-color:#f4f4f4; }
 
 #users_form { width: 100%; padding-top: 1em;  }
 #users_form fieldset { margin: 0 auto 0 auto; padding: 1em; border: 1px solid #eee; width: 450px; }

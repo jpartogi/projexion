@@ -14,18 +14,26 @@
       <div id="login">Logged in as: <%#= @current_user.login %> |
         <%= link_to "Logout", :controller => 'user_sessions', :action => 'destroy' , :method => :delete, :confirm => "Are you sure you want to logout?" %>
       </div>
-      <div style="clear:both"></div>
+
+      <div style="clear:both"></div>  
     </div>
-
+    
+    <div id="toolbar">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Projects</a></li>
+        </ul>
+    </div>
+    <div style="clear:both;"></div>
     <div id="middle">
-        <div id="sidebar">
-          <ul id="sidemenu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Projects</a></li>
-          </ul>
 
+        <div id="content">
+        
         </div>
-        <div id="content">Hello</div>
+
+        <div id="sidebar">
+        </div>
+        
         <div style="clear:both"></div>
     </div>
 
