@@ -1,0 +1,18 @@
+<div id="content">
+    <% form_for(@project) do |f| %>
+        <%= f.error_messages %>
+
+        <%= f.label :name %><br />
+        <%= f.text_field :name %><br />
+
+        <%= f.label :code %><br />
+        <%= f.text_field :code %><br />
+
+        <div class="actions">
+            <%= f.submit 'Save' %>
+        </div>
+    <% end %>
+</div>
+
+<div id="sidebar">
+</div>

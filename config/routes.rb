@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :main, :singular => 'main'
+  map.resource :main, :singular => 'main'
   map.resources :users
 
   map.resources :user_sessions
@@ -29,6 +29,13 @@ ActionController::Routing::Routes.draw do |map|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
+  map.resources :projects, :except => :show  do |projects|
+    #projects.resources :backlogs do |backlogs|
+    #  backlogs.resources :tasks
+    #end
+  end
+  map.project 'projects/:code', :controller => 'projects', :action => 'show'
+
 
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|
@@ -44,6 +51,6 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
 end

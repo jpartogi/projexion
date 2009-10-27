@@ -1,0 +1,19 @@
+<div id="content">
+<table width="100%" class="list">
+    <tr>
+        <th>Code</th>
+        <th>Project Name</th>
+    </tr>
+   
+    <% for project in @projects %>
+        <tr>
+            <td><%= link_to project.code, project_path(project.code) %></td>
+            <td><%= h project.name %></td>
+        </tr>
+    <% end %>                                                 
+</table>
+</div>
+
+<div id="sidebar">
+    <%= link_to 'Create New Project', new_project_path %>
+</div>

@@ -1,3 +1,3 @@
-class UserSession #< Authlogic::Session::Base
+class UserSession < Authlogic::Session::Base
 
 end

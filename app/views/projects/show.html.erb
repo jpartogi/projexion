@@ -1,0 +1,8 @@
+<div id="content">
+  <%= h @project.name %>
+</div>
+
+<div id="sidebar">
+    <%= link_to 'Edit Project', edit_project_path(@project) %>
+    <%= link_to 'Delete Project', @project, :confirm => 'Are you sure?', :method => :delete %>
+</div>
