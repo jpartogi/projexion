@@ -15,7 +15,7 @@
     <table>
     <% for feature in @features %>
         <tr>
-            <td><%= link_to feature.id, feature_path(@project.code, feature.id) %></td>
+            <td><%= link_to feature.id, project_feature_path(@project.code, feature.id) %></td>
             <td><%= h feature.user_story %></td>
         </tr>
     <% end %>

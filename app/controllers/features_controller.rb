@@ -22,7 +22,7 @@ class FeaturesController < ApplicationController
   def new
     @feature = Feature.new
     @project = Project.find_by_code(params[:project_id])
-    #respond_with(@feature, @project)
+    respond_with(@feature, @project)
   end
 
   def show
@@ -48,11 +48,10 @@ class FeaturesController < ApplicationController
 
   def update
     @feature = Feature.find(params[:id])
-
     respond_with(@feature) do |format|
       if @feature.update_attributes(params[:feature])
         flash[:notice] = 'Feature was successfully updated.'
-        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:id]) }
+        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
