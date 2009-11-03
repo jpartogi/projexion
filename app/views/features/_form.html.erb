@@ -1,0 +1,26 @@
+<div id="content">
+  <% form_for @feature, :url => project_features_path(@project.code)  do |f| %>
+    <%= f.error_messages %>
+
+    <%= f.label :user_story %><br/>  
+    <%= f.text_area :user_story, :rows => 10 %><br/>
+
+    <%= f.label :business_value %><br/>
+    <%= f.text_field :business_value %><br/>
+
+    <%= f.label :estimate_size %><br/>
+    <%= f.text_field :estimate_size %><br/>
+
+    <%= f.label :priority %><br/>
+    <%= f.text_field :priority %><br/>  
+
+    <%= f.label :acceptance_test %><br/>
+    <%= f.text_area :acceptance_test, :rows => 10%><br/>  
+
+    <%= f.submit 'Save' %>  
+  <% end %>
+</div>
+
+<div id="sidebar">
+    <%= link_to 'Project Dashboard', project_path(@project.code) %>
+</div>
