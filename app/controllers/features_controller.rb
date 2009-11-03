@@ -22,7 +22,7 @@ class FeaturesController < ApplicationController
   def new
     @feature = Feature.new
     @project = Project.find_by_code(params[:project_id])
-    respond_with(@feature, @project)
+    #respond_with(@feature, @project)
   end
 
   def show

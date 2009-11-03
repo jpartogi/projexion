@@ -32,13 +32,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :projects, :except => :show  do |projects|
     projects.resources :features do |features|
       features.resources :tasks do |tasks|
-        tasks.resources 
+        tasks.resources  
       end
     end
   end
   map.project 'projects/:code', :controller => 'projects', :action => 'show'
   map.feature 'projects/:code/features/:id', :controller => 'features', :action => 'show'
-  #map.connect 'tasks/desc_update', :controller => :tasks, :action => :update_desc 
 
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|
