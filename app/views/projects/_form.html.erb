@@ -1,5 +1,5 @@
 <div id="content">
-    <% form_for(@project) do |f| %>
+    <% form_for @project do |f| %>
         <%= f.error_messages %>
 
         <%= f.label :name %><br />
@@ -11,9 +11,7 @@
         <%= f.label :vision %><br/>
         <%= f.text_field :vision %><br/>
 
-        <div class="actions">
-            <%= f.submit 'Save' %>
-        </div>
+        <%= f.submit 'Save' %>
     <% end %>
 </div>
 

@@ -1,0 +1,87 @@
+<div id="content">
+    <%= flash[:notice] %>
+    
+    <div id="feature">
+        <%= h @feature.user_story %><br/>
+    </div>
+
+    <div id="task">
+        <h2>Add New Task</h2>
+
+        <% form_for @task, :url => project_feature_tasks_path(@project.code, @feature.id) do |f| %>
+            <%= f.error_messages %>
+
+            <%= f.label :description %><br />
+            <%= f.text_field :description %><br />
+
+            <%= f.submit %>
+        <% end %>
+        
+    </div>  
+
+    <script type="text/javascript">
+
+        
+      $(document).ready(function(){
+        var update_desc = function(/** String */ id){
+              var desc = $('#desc_' + id).val();
+
+              $.post("<%= url_for :action => :update_desc, :controller => :tasks %>",
+                { "desc": desc, "id": id },
+                callback, "json");
+          };
+
+        $.update_desc = update_desc;
+
+        var click_desc = function () {
+            // Get the id of this record by the id of table row element
+            var id = $(this).parent('tr').attr('id');
+
+            var input_id = "desc_" + id;
+
+            var replacement = "<td class=\"desc\">"
+                   + "<input id=\""+input_id+"\" type=\"text\" value=\""+$(this).text()+"\">"
+                   + "<input type=\"submit\" value=\"Save\" onclick=\"$.update_desc('"+id+"');\"/></td>";
+
+            $(this).replaceWith(replacement);
+        };
+
+        $('#tasks .desc').click(click_desc);
+
+        $('#tasks').mousedown(function(){
+            console.log('hello');
+        });
+
+        var callback = function(data){
+            var task = data.task;
+            var replacement = "<td class=\"desc\">"+task.description+"</td>";
+
+            $('#' + task.id + " .desc").replaceWith(replacement);
+            
+            $('#tasks .desc').click(click_desc);
+          }
+
+      });
+    </script>
+    <div>
+    <h2>Tasks for this feature</h2>
+
+    <table id="tasks">
+    <% for task in @tasks %>
+        <tr id="<%= h task.id %>">
+            <td class="desc"><%= h task.description %></td>
+            <td><%= link_to 'Delete', project_feature_task_path(@project.code, @feature.id, task.id),
+                            :confirm => 'Are you sure?', :method => :delete %>
+            </td>
+        </tr>
+    <% end %>      
+    </table>
+    </div>
+</div>
+
+<div id="sidebar">
+    <%= link_to 'Project Dashboard', project_path(@project.code) %>
+    <%= link_to 'Edit Feature', edit_project_feature_path(@project.code, @feature.id) %>
+    <%= link_to 'Delete Feature', project_feature_path(@project.code, @feature.id),
+                :confirm => 'Are you sure?', :method => :delete %>
+</div>

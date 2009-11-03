@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
 
     respond_with(@project) do |format|
       if @project.save
-        flash[:notice] = 'Project was successfully created.' 
+        flash[:notice] = 'Project was successfully added.' 
         format.html { redirect_to :action => "show", :code => @project.code }
         format.xml  { render :xml => @project, :status => :created, :location => @project }
       else
@@ -29,7 +29,10 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find_by_code(params[:code])
-    respond_with(@project)
+    
+    @features = @project.features
+
+    respond_with(@project, @features)
   end
 
   def edit

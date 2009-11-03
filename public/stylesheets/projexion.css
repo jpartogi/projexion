@@ -31,7 +31,7 @@ a:hover { text-decoration:none; }
 #errorExplanation { font: 11px verdana, sans-serif; color: red; margin-bottom: 1em; }
 #users_form .fieldWithErrors input{ border: 1px solid red; }
 
-#footer { color: #333; font: 10px verdana; padding: 2px 8px; border-top: 1px solid #eee; background-color:#B4A28F; }
+#footer { color: #fff; font: 10px verdana; padding: 2px 8px; border-top: 1px solid #eee; background-color:#333; min-height:50px }
 #footer a { color:inherit;  }
 
 .backlog-block { padding: 5px; border: 1px solid #eee; float: left; margin: 4px 0 4px 4px; }

@@ -30,12 +30,15 @@ ActionController::Routing::Routes.draw do |map|
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
   map.resources :projects, :except => :show  do |projects|
-    #projects.resources :backlogs do |backlogs|
-    #  backlogs.resources :tasks
-    #end
+    projects.resources :features do |features|
+      features.resources :tasks do |tasks|
+        tasks.resources 
+      end
+    end
   end
   map.project 'projects/:code', :controller => 'projects', :action => 'show'
-
+  map.feature 'projects/:code/features/:id', :controller => 'features', :action => 'show'
+  #map.connect 'tasks/desc_update', :controller => :tasks, :action => :update_desc 
 
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|
@@ -51,6 +54,7 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
+  map.connect ':controller/:action'
   #map.connect ':controller/:action/:id'
   #map.connect ':controller/:action/:id.:format'
 end

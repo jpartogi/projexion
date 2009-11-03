@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
   STATUS = { :pooled => 'P', :inprogress => 'I', :done => 'D' }
 
-  belongs_to :backlog
+  belongs_to :feature
 
   validates_presence_of :description
   
