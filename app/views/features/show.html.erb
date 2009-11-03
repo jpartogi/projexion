@@ -2,7 +2,20 @@
     <%= flash[:notice] %>
     
     <div id="feature">
+        <%= label_tag (:business_value) %><br/>
+        <%= h @feature.business_value %><br/>
+
+        <%= label_tag (:estimate_size) %><br/>
+        <%= h @feature.estimate_size %><br/>
+
+        <%= label_tag (:priority) %><br/>
+        <%= h @feature.priority %><br/>
+
+        <%= label_tag (:user_story) %><br/>
         <%= h @feature.user_story %><br/>
+
+        <%= label_tag (:acceptance_test) %><br/>
+        <%= h @feature.acceptance_test %><br/>
     </div>
 
     <div id="task">
