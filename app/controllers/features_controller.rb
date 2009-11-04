@@ -37,7 +37,15 @@ class FeaturesController < ApplicationController
   end
 
   def index
-    @features = Feature.find(:all)
+    if params[:release_id]
+      @release  = Release.find(params[:release_id])
+      @features = @release.features
+      @project = @release.project
+    else
+      @features = Feature.find(:all)
+    end
+
+    respond_with(@features)
   end
 
   def edit

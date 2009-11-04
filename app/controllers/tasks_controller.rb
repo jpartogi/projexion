@@ -3,7 +3,6 @@ class TasksController < ApplicationController
   respond_to :json, :xml, :html 
 
   def create
-    puts params[:description]
     @task = Task.new(params[:task])
     @feature = Feature.find(params[:feature_id])
 
@@ -13,8 +12,6 @@ class TasksController < ApplicationController
       if @task.save
         flash[:notice] = 'Task was successfully added.'
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]) }
-        #format.xml  { render :xml => @task, :status => :created, :location => @task }
-        #format.json  { render :json => @task, :status => :created, :location => @task }
       else
         #format.html { render :action => "show" }
         #format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }

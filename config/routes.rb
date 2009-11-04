@@ -35,6 +35,10 @@ ActionController::Routing::Routes.draw do |map|
         tasks.resources  
       end
     end
+
+    projects.resources :releases do |releases|
+      releases.resources :features
+    end
   end
   map.project 'projects/:code', :controller => 'projects', :action => 'show'
   map.feature 'projects/:code/features/:id', :controller => 'features', :action => 'show'

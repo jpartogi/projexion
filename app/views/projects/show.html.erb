@@ -27,4 +27,5 @@
     <%= link_to 'Edit Project', edit_project_path(@project) %>
     <%= link_to 'Delete Project', @project, :confirm => 'Are you sure?', :method => :delete %>
     <%= link_to 'Add New Feature', new_project_feature_path(@project.code) %>
+    <%= link_to 'Project Releases', project_releases_path(@project.code) %>
 </div>

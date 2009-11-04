@@ -1,0 +1,39 @@
+<div id="content">
+  <%= flash[:notice] %>
+  
+  <div id="task">
+      <h2>Add New Release</h2>
+
+      <% form_for @release, :url => project_releases_path(@project.code) do |f| %>
+          <%= f.error_messages %>
+
+          <%= f.label :version_number %><br />
+          <%= f.text_field :version_number %><br />
+
+          <%= f.label :estimate_date %><br />
+          <%= f.text_field :estimate_date %><br />
+
+          <%= f.submit %>
+      <% end %>
+  </div>
+
+  <div>
+    <h2>Next releases in this project</h2>
+
+    <table id="releases">
+    <% for release in @releases %>
+        <tr id="<%= h release.id %>">
+            <td><%= h release.version_number %></td>
+            <td><%= h release.estimate_date %></td>
+            <td><%= link_to 'Features', project_release_features_path(@project.code, release.id) %></td>
+            <td><%= link_to 'Delete', project_release_path(@project.code, release.id),
+                            :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+    <% end %>
+    </table>
+  </div>
+</div>
+
+<div id="sidebar">
+  <%= link_to 'Project Dashboard', project_path(@project.code) %>
+</div>
