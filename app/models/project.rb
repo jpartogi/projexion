@@ -6,4 +6,5 @@ class Project < ActiveRecord::Base
   has_many :users, :through => :project_members
   has_many :features
   has_many :releases
+  has_many :sprints
 end

@@ -11,6 +11,12 @@
         <%= label_tag (:priority) %><br/>
         <%= h @feature.priority %><br/>
 
+        <%= label_tag (:release) %><br/>
+        <%= link_to @feature.release.version_number, project_release_features_path(@project.code, @feature.release.id) %><br/>
+
+        <%= label_tag (:sprint) %><br/>
+        <%= link_to @feature.sprint.span_date, project_sprint_features_path(@project.code, @feature.sprint.id) %><br/>
+
         <%= label_tag (:user_story) %><br/>
         <%= h @feature.user_story %><br/>
 

@@ -1,0 +1,42 @@
+<div id="content">
+  <%= flash[:notice] %>
+
+  <div id="sprint">
+    <h2>Add New Sprint</h2>
+
+    <% form_for @sprint, :url => project_sprints_path(@project.code) do |f| %>
+          <%= f.error_messages %>
+
+          <%= f.label :goal %><br />
+          <%= f.text_field :goal %><br />
+
+          <%= f.label :start_date %><br />
+          <%= f.text_field :start_date %><br />
+
+          <%= f.label :end_date %><br />
+          <%= f.text_field :end_date %><br />
+
+          <%= f.submit %>
+     <% end %>
+  </div>
+
+  <div>
+    <h2>Sprints in this project</h2>
+    <!-- TODO: Add cancel link, Cancelled date -->
+    <table id="sprints">
+    <% for sprint in @sprints %>
+      <tr id="<%= h sprint.id %>">
+        <td><%= h sprint.goal %></td>
+        <td><%= h sprint.start_date %></td>
+        <td><%= h sprint.end_date %></td>
+        <td><%= h sprint.retrospective %></td>
+        <td><%= link_to 'Features', project_sprint_features_path(@project.code, sprint.id) %></td>
+      </tr>
+    <% end %>      
+    </table>
+  </div>
+</div>
+
+<div id="sidebar">
+  <%= link_to 'Project Dashboard', project_path(@project.code) %>
+</div>

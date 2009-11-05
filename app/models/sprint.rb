@@ -1,5 +1,10 @@
 class Sprint < ActiveRecord::Base
-  has_many :backlogs
+  belongs_to :project
+  has_many :features
 
   validates_presence_of :start_date, :end_date
+
+  def span_date
+    self[:start_date].to_s + " - " + self[:end_date].to_s
+  end
 end

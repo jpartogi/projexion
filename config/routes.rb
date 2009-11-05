@@ -31,13 +31,15 @@ ActionController::Routing::Routes.draw do |map|
   #   end
   map.resources :projects, :except => :show  do |projects|
     projects.resources :features do |features|
-      features.resources :tasks do |tasks|
-        tasks.resources  
-      end
+      features.resources :tasks
     end
 
     projects.resources :releases do |releases|
       releases.resources :features
+    end
+
+    projects.resources :sprints do |sprints|
+      sprints.resources :features
     end
   end
   map.project 'projects/:code', :controller => 'projects', :action => 'show'

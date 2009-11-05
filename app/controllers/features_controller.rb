@@ -41,6 +41,10 @@ class FeaturesController < ApplicationController
       @release  = Release.find(params[:release_id])
       @features = @release.features
       @project = @release.project
+    elsif params[:sprint_id]
+      @sprint = Sprint.find(params[:sprint_id])
+      @features = @sprint.features
+      @project = @sprint.project
     else
       @features = Feature.find(:all)
     end
