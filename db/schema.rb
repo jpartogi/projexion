@@ -24,6 +24,19 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.text     "accept_criteria",                                :null => false
   end
 
+  create_table "features", :force => true do |t|
+    t.text     "user_story",                                     :null => false
+    t.decimal  "business_value",  :precision => 10, :scale => 0
+    t.string   "estimate_size"
+    t.integer  "priority"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "sprint_id"
+    t.integer  "release_id"
+    t.integer  "project_id"
+    t.text     "acceptance_test",                                :null => false
+  end
+
   create_table "project_members", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
@@ -49,17 +62,20 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "sprints", :force => true do |t|
-    t.date     "start_date",    :null => false
-    t.date     "end_date",      :null => false
+    t.date     "start_date",     :null => false
+    t.date     "end_date",       :null => false
     t.text     "retrospective"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "project_id",     :null => false
+    t.string   "goal",           :null => false
+    t.datetime "cancelled_date"
   end
 
   create_table "tasks", :force => true do |t|
     t.text     "description",                                     :null => false
     t.string   "status",            :limit => 1, :default => "P", :null => false
-    t.integer  "backlog_id"
+    t.integer  "feature_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_member_id"
