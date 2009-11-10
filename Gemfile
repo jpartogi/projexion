@@ -5,5 +5,7 @@
 # At least one dependency must be specified
 
 gem "webrat"
+gem "shoulda"
 
 source "http://gems.github.com"
+source "http://gemcutter.org"
