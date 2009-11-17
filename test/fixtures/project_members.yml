@@ -1,6 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-#joe:
-#   id: 9999
-#   login: joe
-#   email: joe@example.net
+# one:
+#   column: value
+#
+# two:
+#   column: value
