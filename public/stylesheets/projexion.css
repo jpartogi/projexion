@@ -10,15 +10,17 @@ a:hover { text-decoration:none; }
 
 #toolbar { height:26px; background-color: #6192b8;}
 #toolbar ul { padding: 5px 5px 0 5px; }
-#toolbar ul > li{ padding: 5px 5px 0 5px; float:left; vertical-align:bottom; }
-#toolbar a {  padding: 5px 5px 0 5px; width:100%; text-decoration:none; font:bolder 14px Arial; height:16px;
-    color:#333; vertical-align:bottom; text-transform:uppercase; letter-spacing:-0.8px; background-color: #fff; }
+#toolbar li{ padding: 5px 5px 0 5px; float:left; vertical-align:bottom; }
+#toolbar a { padding: 5px 5px 0 5px; text-decoration:none; font:bolder 14px Arial; height:16px;
+    color:#333; text-transform:uppercase; letter-spacing:-0.8px; background-color: #fff; }
 #toolbar a:hover { background-color: #f4f4f4; }
 
 #middle {  min-height: 600px; width: 100%; }
 
 #content { float:left; }
-#sidebar { float:right; width: 250px; min-height: 600px; border-left: 1px solid #eee; background-color:#E0EAF4; }
+#sidebar { float:right; width: 250px; min-height: 600px; background-color:#E0EAF4; }
+#sidebar a { text-decoration:none; display:block; padding: 0.8em; }
+#sidebar a:hover{ background:white; }
 
 #users_form { width: 100%; padding-top: 1em;  }
 #users_form fieldset { margin: 0 auto 0 auto; padding: 1em; border: 1px solid #eee; width: 450px; }
