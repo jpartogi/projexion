@@ -16,4 +16,11 @@
 </div>
 
 <div id="sidebar">
+  <ul>
+    <% if @project.code then %>
+    <li><%= link_to 'Project Dashboard', project_path(@project.code) %></li>
+    <% else %>
+    <li><%= link_to 'Project List', projects_path %></li>
+    <% end %>
+  </ul>
 </div>

@@ -24,9 +24,11 @@
 </div>
 
 <div id="sidebar">
-    <%= link_to 'Edit Project', edit_project_path(@project) %>
-    <%= link_to 'Delete Project', @project, :confirm => 'Are you sure?', :method => :delete %>
-    <%= link_to 'Add New Feature', new_project_feature_path(@project.code) %>
-    <%= link_to 'Project Releases', project_releases_path(@project.code) %>
-    <%= link_to 'Sprints', project_sprints_path(@project.code) %>
+  <ul>
+    <li><%= link_to 'Edit Project', edit_project_path(@project) %></li>
+    <li><%= link_to 'Delete Project', @project, :confirm => 'Are you sure?', :method => :delete %></li>
+    <li><%= link_to 'Add New Feature', new_project_feature_path(@project.code) %></li>
+    <li><%= link_to 'Project Releases', project_releases_path(@project.code) %></li>
+    <li><%= link_to 'Project Sprints', project_sprints_path(@project.code) %></li>
+  </ul>
 </div>

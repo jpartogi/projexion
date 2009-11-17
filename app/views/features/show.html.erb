@@ -99,8 +99,10 @@
 </div>
 
 <div id="sidebar">
-    <%= link_to 'Project Dashboard', project_path(@project.code) %>
-    <%= link_to 'Edit Feature', edit_project_feature_path(@project.code, @feature.id) %>
-    <%= link_to 'Delete Feature', project_feature_path(@project.code, @feature.id),
-                :confirm => 'Are you sure?', :method => :delete %>
+  <ul>
+    <li><%= link_to 'Project Dashboard', project_path(@project.code) %></li>
+    <li><%= link_to 'Edit Feature', edit_project_feature_path(@project.code, @feature.id) %></li>
+    <li><%= link_to 'Delete Feature', project_feature_path(@project.code, @feature.id),
+                :confirm => 'Are you sure?', :method => :delete %></li>
+  </ul>
 </div>

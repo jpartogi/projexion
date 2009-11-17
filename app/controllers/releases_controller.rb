@@ -42,7 +42,12 @@ class ReleasesController < ApplicationController
     @project = Project.find_by_code(params[:project_id])
 
     @release = Release.new # For the form
-    @releases = @project.releases
+
+    if @project.releases
+      @releases = @project.releases
+    else
+    end
+
   end
 
 end
