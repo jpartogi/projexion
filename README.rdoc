@@ -14,3 +14,7 @@ Native libraries dependencies:
 - libxml2-devel
 - libxslt-devel
 - mysql-devel
+
+Installation:
+- rake db:create
+- rake db:schema:load
