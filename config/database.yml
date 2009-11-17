@@ -13,18 +13,15 @@ development:
   encoding: utf8
   database: projexion
   pool: 5
-  username:
+  username: 
   password:
-  socket: /var/lib/mysql/mysql.sock
+  socket: /var/run/mysql/mysql.sock
 
 test:
-  adapter: mysql
+  adapter: sqlite3
   encoding: utf8
-  database: test
+  database: db/projexion
   pool: 5
-  username:
-  password:
-  socket: /var/lib/mysql/mysql.sock
 
 production:
   adapter: postgresql
