@@ -1,5 +1,5 @@
 == Welcome to Projexion
 
-*The Scrum based project management tool*
+*The Scrum based project management tool*::
 
 Currently still in development. Stay tuned.
