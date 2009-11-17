@@ -1,5 +1,16 @@
 == Welcome to Projexion
 
-*The Scrum based project management tool*::
+<b>The Scrum based project management tool</b>
 
-Currently still in development. Stay tuned.
+Currently still under development. Stay tuned.
+
+Dependencies:
+- bundler
+- rails3
+- rack
+
+Native libraries dependencies:
+- SQLite3
+- libxml2-devel
+- libxslt-devel
+- mysql-devel
