@@ -43,6 +43,7 @@ class ReleasesController < ApplicationController
 
     @release = Release.new # For the form
 
+
     @releases = @project.releases
 
     respond_with(@project, @release, @releases)
