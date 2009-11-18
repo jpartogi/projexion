@@ -31,7 +31,7 @@ class ReleasesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to project_releases_path(:code => params[:project_id]) }
-      format.xml  { head :ok }
+      format.json  { head :ok }
     end
   end
 
@@ -43,11 +43,9 @@ class ReleasesController < ApplicationController
 
     @release = Release.new # For the form
 
-    if @project.releases
-      @releases = @project.releases
-    else
-    end
+    @releases = @project.releases
 
+    respond_with(@project, @release, @releases)
   end
 
 end

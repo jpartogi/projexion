@@ -34,8 +34,11 @@ class SprintsController < ApplicationController
   def index
     @project = Project.find_by_code(params[:project_id])
 
-    @sprint = Sprint.new
+    @sprint = Sprint.new # For the form
+    
     @sprints = @project.sprints
+
+    respond_with(@project, @sprint, @sprints)
   end
 
 end
