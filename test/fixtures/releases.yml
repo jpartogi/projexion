@@ -1,7 +1,5 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
 one:
   id: 9999
-  version_number: 0.9.0
+  version_number: 1.0.0
   estimate_date: 2009-10-10
   project_id: 9999
