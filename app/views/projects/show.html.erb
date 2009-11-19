@@ -10,6 +10,7 @@
       <%= h @project.vision %><br/>
   </div>
 
+  <% if @features.length > 0 %>
   <div id="features">
     <h2>Product Features</h2>
     <table>
@@ -21,6 +22,7 @@
     <% end %>
     </table>    
   </div>
+  <% end %>    
 </div>
 
 <div id="sidebar">

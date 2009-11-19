@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
     @project = Project.find_by_code(params[:code])
     
     @features = @project.features
-
+    
     respond_with(@project, @features)
   end
 
