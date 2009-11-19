@@ -11,19 +11,6 @@
 
 ActiveRecord::Schema.define(:version => 20091013000428) do
 
-  create_table "backlogs", :force => true do |t|
-    t.text     "user_story",                                     :null => false
-    t.decimal  "business_value",  :precision => 10, :scale => 0
-    t.string   "estimate_size"
-    t.integer  "priority"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "sprint_id"
-    t.integer  "release_id"
-    t.integer  "project_id"
-    t.text     "accept_criteria",                                :null => false
-  end
-
   create_table "features", :force => true do |t|
     t.text     "user_story",                                     :null => false
     t.decimal  "business_value",  :precision => 10, :scale => 0
@@ -33,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at"
     t.integer  "sprint_id"
     t.integer  "release_id"
-    t.integer  "project_id"
+    t.integer  "project_id",                                     :null => false
     t.text     "acceptance_test",                                :null => false
   end
 
@@ -50,13 +37,13 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.string   "code",       :limit => 10, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "vision"
+    t.string   "vision",                   :null => false
   end
 
   create_table "releases", :force => true do |t|
     t.string   "version_number", :limit => 10, :null => false
     t.date     "estimate_date"
-    t.integer  "project_id"
+    t.integer  "project_id",                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,14 +55,14 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id",     :null => false
-    t.string   "goal",           :null => false
+    t.string   "goal"
     t.datetime "cancelled_date"
   end
 
   create_table "tasks", :force => true do |t|
     t.text     "description",                                     :null => false
     t.string   "status",            :limit => 1, :default => "P", :null => false
-    t.integer  "feature_id"
+    t.integer  "feature_id",                                      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_member_id"
