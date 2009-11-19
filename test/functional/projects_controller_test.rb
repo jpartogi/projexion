@@ -9,4 +9,10 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:projects) 
   end
 
+  def test_show
+    get(:show, {:code => 'PR'})
+    assert_response :success
+    assert_not_nil assigns(:project)
+  end
+
 end

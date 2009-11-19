@@ -1,6 +1,5 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
 pooled:
     id: 1
     status: P
     description: Make unit test
+    feature_id: 9999
