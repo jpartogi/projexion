@@ -1,13 +1,14 @@
 <div id="content">
   <div id="project">
-      <%= label_tag(:name) %><br />
-      <%= h @project.name %><br/>
+      <p>
+        <%= label_tag(:name) %><br/>
+        <%= h @project.name %> - <%= h @project.code %>
+      </p>
 
-      <%= label_tag(:code) %><br />
-      <%= h @project.code %><br />
-
-      <%= label_tag(:vision) %><br />
-      <%= h @project.vision %><br/>
+      <p>
+        <%= label_tag(:vision) %><br/>
+        <%= h @project.vision %>
+      </p>
   </div>
 
   <% if @features.length > 0 %>

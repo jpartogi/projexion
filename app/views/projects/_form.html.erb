@@ -1,17 +1,23 @@
 <div id="content">
     <% form_for @project do |f| %>
-        <%= f.error_messages %>
+      <%= f.error_messages %>
 
+      <p>
         <%= f.label :name %><br />
-        <%= f.text_field :name %><br />
+        <%= f.text_field :name %>
+      </p>
 
+      <p>
         <%= f.label :code %><br />
-        <%= f.text_field :code %><br />
+        <%= f.text_field :code, :size => 5, :maxlength => 10 %>
+      </p>
 
+      <p>
         <%= f.label :vision %><br/>
-        <%= f.text_field :vision %><br/>
+        <%= f.text_field :vision, :size => 45 %>
+      </p>
 
-        <%= f.submit 'Save' %>
+      <%= f.submit 'Save' %>
     <% end %>
 </div>
 
