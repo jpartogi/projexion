@@ -24,7 +24,7 @@ a:hover { text-decoration:none; }
 #middle {  min-height: 600px; width: 100%; }
 
 #content { float:left; padding: 1em; font: 12px Verdana; }
-#content label, #content h2 { font: bold 16px Helvetica; letter-spacing:-0.7px; margin-top:1em; }
+#content label, #content h2 { font: bold 16px Helvetica; letter-spacing:-0.7px; margin-bottom:1em; }
 #content input[type='text'],
 #content textarea{ padding:5px; border:1px solid #ccc; font:12px verdana;
     background: #fff url('/images/input-bg.gif') repeat-x top left; }

@@ -1,24 +1,6 @@
 <div id="content">
-  <%= flash[:notice] %>
-  
-  <div id="task">
-      <h2>Add New Release</h2>
-
-      <% form_for @release, :url => project_releases_path(@project.code) do |f| %>
-          <%= f.error_messages %>
-
-          <%= f.label :version_number %><br />
-          <%= f.text_field :version_number %><br />
-
-          <%= f.label :estimate_date %><br />
-          <%= f.text_field :estimate_date %><br />
-
-          <%= f.submit %>
-      <% end %>
-  </div>
-
   <div>
-    <h2>Releases in this project</h2>
+    <h2>Releases in <%= @project.name %></h2>
 
     <table id="releases">
     <% for release in @releases %>

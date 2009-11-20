@@ -16,6 +16,9 @@ class SprintsController < ApplicationController
   end
 
   def new
+    @project = Project.find_by_code(params[:project_id])
+    
+    @sprint = Sprint.new # For the form
   end
 
   def edit
@@ -33,12 +36,10 @@ class SprintsController < ApplicationController
 
   def index
     @project = Project.find_by_code(params[:project_id])
-
-    @sprint = Sprint.new # For the form
     
     @sprints = @project.sprints
 
-    respond_with(@project, @sprint, @sprints)
+    respond_with(@project, @sprints)
   end
 
 end

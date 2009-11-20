@@ -1,2 +1,31 @@
-<h1>Releases#new</h1>
-<p>Find me in app/views/releases/new.html.erb</p>
+<div id="content">
+  <%= flash[:notice] %>
+
+  <div id="task">
+      <h2>Add New Release</h2>
+
+      <% form_for @release, :url => project_releases_path(@project.code) do |f| %>
+        <%= f.error_messages %>
+        <p>
+          <%= f.label :version_number %><br />
+          <%= f.text_field :version_number %>
+        </p>
+
+        <p>
+          <%= f.label :estimate_date, 'Estimate release date' %><br />
+          <%= f.text_field :estimate_date %>
+        </p>
+
+        <p>
+          <%= f.submit %>
+        </p>
+      <% end %>
+  </div>
+  
+</div>
+
+<div id="sidebar">
+  <ul>
+    <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
+  </ul>
+</div>

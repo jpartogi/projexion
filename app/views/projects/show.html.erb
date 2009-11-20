@@ -31,6 +31,8 @@
     <li><%= link_to 'Edit Project', edit_project_path(@project), :class => 'edit' %></li>
     <li><%= link_to 'Delete Project', @project, :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <li><%= link_to 'Add New Feature', new_project_feature_path(@project.code), :class => 'add' %></li>
+    <li><%= link_to 'Add New Release', new_project_release_path(@project.code), :class => 'add' %></li>
+    <li><%= link_to 'Add New Sprint', new_project_sprint_path(@project.code), :class => 'add' %></li>
     <li><%= link_to 'Project Releases', project_releases_path(@project.code) %></li>
     <li><%= link_to 'Project Sprints', project_sprints_path(@project.code) %></li>
   </ul>

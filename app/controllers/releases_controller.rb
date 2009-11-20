@@ -16,6 +16,9 @@ class ReleasesController < ApplicationController
   end
 
   def new
+    @project = Project.find_by_code(params[:project_id])
+    
+    @release = Release.new # For the form    
   end
 
   def edit
@@ -41,11 +44,9 @@ class ReleasesController < ApplicationController
   def index
     @project = Project.find_by_code(params[:project_id])
 
-    @release = Release.new # For the form
-
     @releases = @project.releases
 
-    respond_with(@project, @release, @releases)
+    respond_with(@project, @releases)
   end
 
 end
