@@ -2,6 +2,12 @@
 a { font-weight: bold; color:#333; }
 a:hover { text-decoration:none; }
 
+.add { background: url('/images/icons/add.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
+.delete { background: url('/images/icons/delete.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
+.edit { background: url('/images/icons/page_edit.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
+.list { background: url('/images/icons/application_view_list.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
+.dashboard { background: url('/images/icons/application_cascade.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
+
 #header { background: #7F99BE url('/images/header-bg.gif') repeat-x center; width:100%;  }
 
 #title { font: italic bold 15px Helvetica;  color: white; padding: 5px; letter-spacing: -1px; float:left; }
@@ -11,8 +17,8 @@ a:hover { text-decoration:none; }
 #toolbar { height:26px; background-color: #6192b8;}
 #toolbar ul { padding: 5px 5px 0 5px; }
 #toolbar li{ padding: 5px 5px 0 5px; float:left; vertical-align:bottom; }
-#toolbar a { padding: 5px 5px 0 5px; text-decoration:none; font:bolder 14px Arial; height:16px;
-    color:#333; text-transform:uppercase; letter-spacing:-0.8px; background-color: #fff; }
+#toolbar a { padding: 5px 5px 0 5px; text-decoration:none; font:bolder 14px Arial; height:16px; color:#333; text-transform:uppercase;
+    letter-spacing:-0.8px; background-color: #fff; }
 #toolbar a:hover { background-color: #f4f4f4; }
 
 #middle {  min-height: 600px; width: 100%; }
@@ -23,11 +29,11 @@ a:hover { text-decoration:none; }
 #content textarea{ padding:5px; border:1px solid #ccc; font:12px verdana;
     background: #fff url('/images/input-bg.gif') repeat-x top left; }
 #content p { margin-bottom: 1em; }
-#content th { font: bold 16px Helvetica; padding: 0.3em; }
+#content th { font: bold 12px Verdana; padding: 0.3em; }
 #content td { padding: 0.2em; }
 
 #sidebar { float:right; width: 250px; min-height: 600px; height:100%; background-color:#E0EAF4; }
-#sidebar a { text-decoration:none; display:block; padding: 0.8em; }
+#sidebar a { text-decoration:none; display:block; padding: 0.5em 0.5em 0.5em 1.5em; }
 #sidebar a:hover{ background:white; }
 
 #users_form { width: 100%; padding-top: 1em;  }
@@ -46,9 +52,6 @@ a:hover { text-decoration:none; }
 
 .backlog-block { padding: 5px; border: 1px solid #eee; float: left; margin: 4px 0 4px 4px; }
 
-.icon-add { background-image: url('/images/icons/add.png') !important; }
-.icon-delete { background-image: url('/images/icons/delete.png') !important; }
-.icon-edit { background-image: url('/images/icons/note_edit.png') !important; }
 
 .small { font: 11px verdana; }
 .number_input { text-align:right; }

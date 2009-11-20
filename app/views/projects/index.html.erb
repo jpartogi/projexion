@@ -1,5 +1,5 @@
 <div id="content">
-    <table width="100%" class="list">
+    <table width="100%" id="projects">
         <tr>
             <th width="10%">Code</th>
             <th>Project Name</th>
@@ -16,6 +16,6 @@
 
 <div id="sidebar">
   <ul>
-    <li><%= link_to 'Add New Project', new_project_path %></li>
+    <li><%= link_to 'Add New Project', new_project_path, :class => 'add' %></li>
   </ul>
 </div>
