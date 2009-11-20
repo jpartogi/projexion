@@ -1,9 +1,6 @@
 <div id="content">
   <div id="project">
-      <p>
-        <%= label_tag(:name) %><br/>
-        <%= h @project.name %> - <%= h @project.code %>
-      </p>
+      <h1><%= h @project.name %> (Code: <%= h @project.code %>)</h1>
 
       <p>
         <%= label_tag(:vision) %><br/>
