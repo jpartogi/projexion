@@ -7,7 +7,6 @@ class ReleasesControllerTest < ActionController::TestCase
     get(:index, {:project_id => "PR"})
     assert_response :success
     assert_not_nil assigns(:project)
-    assert_not_nil assigns(:release)
     assert_not_nil assigns(:releases)
   end
   
