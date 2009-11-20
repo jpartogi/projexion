@@ -1,17 +1,17 @@
 <div id="content">
-<table width="100%" class="list">
-    <tr>
-        <th>Code</th>
-        <th>Project Name</th>
-    </tr>
-   
-    <% for project in @projects %>
+    <table width="100%" class="list">
         <tr>
-            <td><%= link_to project.code, project_path(project.code) %></td>
+            <th width="10%">Code</th>
+            <th>Project Name</th>
+        </tr>
+       
+        <% for project in @projects %>
+        <tr>
+            <td style="text-align:center;"><%= link_to project.code, project_path(project.code) %></td>
             <td><%= h project.name %></td>
         </tr>
-    <% end %>                                                 
-</table>
+        <% end %>
+    </table>
 </div>
 
 <div id="sidebar">
