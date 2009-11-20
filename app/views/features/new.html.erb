@@ -2,20 +2,31 @@
   <% form_for @feature, :url => project_features_path(@project.code)  do |f| %>
     <%= f.error_messages %>
 
-    <%= f.label :user_story %><br/>
-    <%= f.text_area :user_story, :rows => 10 %><br/>
+    <p>  
+        <%= f.label :user_story %><br/>
+        <%= f.text_area :user_story, :rows => 4 %><br/>
+    </p>
 
-    <%= f.label :business_value %><br/>
-    <%= f.text_field :business_value %><br/>
+    <p>
+        <%= f.label :business_value %><br/>
+        <%= f.text_field :business_value, :size => 6, :class => 'number_input' %><br/>
+    </p>
 
-    <%= f.label :estimate_size %><br/>
-    <%= f.text_field :estimate_size %><br/>
+    <p>
+        <%= f.label :estimate_size %><br/>
+        <%= f.text_field :estimate_size, :size => 6 %><br/>
+    </p>
 
-    <%= f.label :priority %><br/>
-    <%= f.text_field :priority %><br/>
+    <p>
+        <%= f.label :priority %><br/>
+        <%= f.text_field :priority, :size => 6 %><br/>
+    </p>
 
-    <%= f.label :acceptance_test %><br/>
-    <%= f.text_area :acceptance_test, :rows => 10 %><br/>
+    <p>
+        <%= f.label :acceptance_test %><br/>
+        <%= f.text_area :acceptance_test, :rows => 4 %><br/>
+    </p>
+
     <%= f.submit 'Save' %>
   <% end %>
 </div>
