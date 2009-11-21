@@ -1,14 +1,13 @@
 <div id="content">
-  <%= flash[:notice] %>
-
   <div id="task">
       <h2>Add New Release</h2>
 
+      <%= flash[:notice] %>
       <% form_for @release, :url => project_releases_path(@project.code) do |f| %>
         <%= f.error_messages %>
         <p>
           <%= f.label :version_number %><br />
-          <%= f.text_field :version_number %>
+          <%= f.text_field :version_number, :size => 10 %>
         </p>
 
         <p>
@@ -17,7 +16,8 @@
         </p>
 
         <p>
-          <%= f.submit %>
+          <%= f.submit 'Save' %>
+          <%= button_to 'Cancel', project_path(@project.code) %>
         </p>
       <% end %>
   </div>

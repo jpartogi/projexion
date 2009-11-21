@@ -15,4 +15,9 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:project)
   end
 
+  def test_create
+    post(:create, :project => {:name => 'Projexion', :code => 'PR', :vision => 'To be the best agile project management tool'})
+    assert_response :success
+    assert_not_nil assigns(:project)
+  end
 end

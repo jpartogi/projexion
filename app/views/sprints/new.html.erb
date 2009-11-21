@@ -1,11 +1,10 @@
-<div id="content">
-  <%= flash[:notice] %>
-
+<div id="content">  
   <div id="sprint">
     <h2>Add New Sprint</h2>
+    <%= flash[:notice] %>
 
     <% form_for @sprint, :url => project_sprints_path(@project.code) do |f| %>
-          <%= f.error_messages %>
+        <%= f.error_messages %>
 
         <p>
           <%= f.label :goal, 'Sprint goal' %><br />
@@ -22,7 +21,7 @@
           <%= f.text_field :end_date %>
 
         </p>
-          <%= f.submit %>
+          <%= f.submit 'Save' %>
         </p>
      <% end %>
   </div>  

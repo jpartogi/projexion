@@ -11,6 +11,8 @@ class ReleasesController < ApplicationController
       if @release.save
         flash[:notice] = 'Task was successfully added.'
         format.html { redirect_to project_releases_path(params[:project_id]) }
+      else
+        format.html { render :action => "new" }   
       end
     end
   end

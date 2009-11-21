@@ -11,6 +11,8 @@ class SprintsController < ApplicationController
       if @sprint.save
         flash[:notice] = 'Sprint was successfully added.'
         format.html { redirect_to project_sprints_path(params[:project_id]) }
+      else
+        format.html { render :action => "new" }
       end
     end
   end
