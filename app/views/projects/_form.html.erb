@@ -19,6 +19,11 @@
 
       <%= f.submit 'Save' %>
     <% end %>
+    <% if @project.code then %>
+        <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get %>
+    <% else %>
+        <%= button_to 'Cancel', projects_path, :confirm => "Are you sure?", :method => :get %>
+    <% end %>
 </div>
 
 <div id="sidebar">

@@ -27,8 +27,13 @@
         <%= f.text_area :acceptance_test, :rows => 4 %><br/>
     </p>
 
+    <p>
     <%= f.submit 'Save' %>
+    </p>  
   <% end %>
+
+  <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get %>
+
 </div>
 
 <div id="sidebar">

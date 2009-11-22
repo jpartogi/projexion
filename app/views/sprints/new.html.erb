@@ -24,6 +24,7 @@
           <%= f.submit 'Save' %>
         </p>
      <% end %>
+     <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get %>
   </div>  
 </div>
 

@@ -17,9 +17,10 @@
 
         <p>
           <%= f.submit 'Save' %>
-          <%= button_to 'Cancel', project_path(@project.code) %>
         </p>
       <% end %>
+
+      <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get %>  
   </div>
   
 </div>

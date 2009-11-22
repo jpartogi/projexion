@@ -9,6 +9,8 @@ h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
 .list { background: url('/images/icons/application_view_list.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 .dashboard { background: url('/images/icons/application_cascade.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 
+.cancel { float: left; }
+
 #header { background: #7F99BE url('/images/header-bg.gif') repeat-x center; width:100%;  }
 
 #title { font: italic bold 15px Helvetica;  color: white; padding: 5px; letter-spacing: -1px; float:left; }
@@ -29,6 +31,7 @@ h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
 #content input[type='text'],
 #content textarea{ padding:5px; border:1px solid #ccc; font:12px verdana;
     background: #fff url('/images/input-bg.gif') repeat-x top left; }
+#content input[type='submit']{ float: left; }
 #content p { margin-bottom: 1em; }
 #content th { font: bold 12px Verdana; padding: 0.3em; }
 #content td { padding: 0.2em; }
