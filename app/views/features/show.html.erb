@@ -1,27 +1,46 @@
 <div id="content">
-    <%= flash[:notice] %>
+    <p class="success"><span ><%= flash[:notice] %></span></p>
     
     <div id="feature">
+      <p>
         <%= label_tag (:business_value) %><br/>
-        <%= h @feature.business_value %><br/>
+        <%= h @feature.business_value %>
+      </p>
 
+      <p>
         <%= label_tag (:estimate_size) %><br/>
-        <%= h @feature.estimate_size %><br/>
+        <%= h @feature.estimate_size %>
+      </p>
 
+      <p>
         <%= label_tag (:priority) %><br/>
-        <%= h @feature.priority %><br/>
+        <%= h @feature.priority %>
+      </p>
+
+      <% if @feature.release %>
+      <p>
 
         <%= label_tag (:release) %><br/>
-        <%= link_to @feature.release.version_number, project_release_features_path(@project.code, @feature.release.id) %><br/>
+        <%= link_to @feature.release.version_number, project_release_features_path(@project.code, @feature.release.id) %>
+      </p>
+      <% end %>
 
+      <% if @feature.sprint %>
+      <p>
         <%= label_tag (:sprint) %><br/>
-        <%= link_to @feature.sprint.span_date, project_sprint_features_path(@project.code, @feature.sprint.id) %><br/>
+        <%= link_to @feature.sprint.span_date, project_sprint_features_path(@project.code, @feature.sprint.id) %>
+      </p>    
+      <% end %>
 
+      <p>
         <%= label_tag (:user_story) %><br/>
-        <%= h @feature.user_story %><br/>
+        <%= h @feature.user_story %>
+      </p>
 
+      <p>
         <%= label_tag (:acceptance_test) %><br/>
-        <%= h @feature.acceptance_test %><br/>
+        <%= h @feature.acceptance_test %>
+      </p>
     </div>
 
     <div id="task">
@@ -30,13 +49,19 @@
         <% form_for @task, :url => project_feature_tasks_path(@project.code, @feature.id) do |f| %>
             <%= f.error_messages %>
 
+          <p>
             <%= f.label :description %><br />
             <%= f.text_field :description %><br />
+          </p>
 
-            <%= f.submit %>
+          <div>
+            <%= f.submit 'Save' %>
+            
+          </div>
+
         <% end %>
-        
     </div>  
+
 
     <script type="text/javascript">
 
@@ -82,7 +107,8 @@
 
       });
     </script>
-    <div>
+
+    <div>  
     <h2>Tasks for this feature</h2>
 
     <table id="tasks">
@@ -100,9 +126,10 @@
 
 <div id="sidebar">
   <ul>
-    <li><%= link_to 'Project Dashboard', project_path(@project.code) %></li>
-    <li><%= link_to 'Edit Feature', edit_project_feature_path(@project.code, @feature.id) %></li>
+    <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
+    <li><%= link_to 'Edit Feature', edit_project_feature_path(@project.code, @feature.id), :class => 'edit' %></li>
     <li><%= link_to 'Delete Feature', project_feature_path(@project.code, @feature.id),
-                :confirm => 'Are you sure?', :method => :delete %></li>
+                :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
+    <%# TODO: Use popup for add task and show tasks %>
   </ul>
 </div>

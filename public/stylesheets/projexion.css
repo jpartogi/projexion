@@ -54,9 +54,8 @@ h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
 #footer { color: #fff; font: 10px verdana; padding: 2px 8px; border-top: 1px solid #eee; background-color:#333; min-height:50px }
 #footer a { color:inherit;  }
 
-.backlog-block { padding: 5px; border: 1px solid #eee; float: left; margin: 4px 0 4px 4px; }
-
-
+.success { background: #e2f9e3 url('/images/icons/accept.png') 6px 50% no-repeat; border-color: #9c9; color: #080; padding: 5px; display:none}
+.success span { margin-left: 10px; padding-left: 10px; }
 .small { font: 11px verdana; }
 .number_input { text-align:right; }
 .notice { background: #e2f9e3; color: #080; font: bolder 11px verdana; width: 450px; margin: 0 auto 0 auto; /* border: 1px solid #9c9; */}
