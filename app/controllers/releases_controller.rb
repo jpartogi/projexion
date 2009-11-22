@@ -9,7 +9,7 @@ class ReleasesController < ApplicationController
 
     respond_to do |format|
       if @release.save
-        flash[:notice] = 'Task was successfully added.'
+        flash[:notice] = 'Release was successfully added.'
         format.html { redirect_to project_releases_path(params[:project_id]) }
       else
         format.html { render :action => "new" }   

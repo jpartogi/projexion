@@ -78,6 +78,7 @@ class FeaturesController < ApplicationController
     @feature.destroy
 
     respond_to do |format|
+      flash[:notice] = 'Feature was successfully deleted.'
       format.html { redirect_to project_path(:code => params[:project_id]) }
       format.xml  { head :ok }
     end

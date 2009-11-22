@@ -27,7 +27,8 @@ h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
 #middle {  min-height: 600px; width: 100%; }
 
 #content { float:left; padding: 1em; font: 12px Verdana; }
-#content label { font: bold 16px Helvetica; letter-spacing:-0.7px; margin-bottom:1em; }
+#content h2, #content label { font: bold 16px Helvetica; letter-spacing:-0.7px; }
+#content label { margin-bottom:1em; }
 #content input[type='text'],
 #content textarea{ padding:5px; border:1px solid #ccc; font:12px verdana;
     background: #fff url('/images/input-bg.gif') repeat-x top left; }
@@ -35,10 +36,10 @@ h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
 #content p { margin-bottom: 1em; }
 #content th { font: bold 13px Verdana; padding: 0.5em; background: #f4f4f4; border:2px solid white; }
 #content td { padding: 0.2em; }
-#content td a { font-weight: normal; text-decoration:none; }
+#content td a { text-decoration:none; }
 #content td a:hover { background: black; color: white; }
 
-#sidebar { float:right; width: 250px; min-height: 600px; height:100%; background-color:#E0EAF4; }
+#sidebar { float:right; width: 20%; min-height: 600px; height:100%; background-color:#E0EAF4; }
 #sidebar a { text-decoration:none; display:block; padding: 0.5em 0.5em 0.5em 1.5em; }
 #sidebar a:hover{ background:white; }
 

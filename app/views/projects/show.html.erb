@@ -1,4 +1,6 @@
 <div id="content">
+  <p class="success"><span ><%= flash[:notice] %></span></p>
+  
   <div id="project">
       <h1><%= h @project.name %> (Code: <%= h @project.code %>)</h1>
 
@@ -14,7 +16,8 @@
     <table>
     <% for feature in @features %>
         <tr>
-            <td><%= link_to feature.user_story, project_feature_path(@project.code, feature.id) %></td>
+            <td><%= h feature.user_story %></td>
+            <td><%= link_to 'Detail', project_feature_path(@project.code, feature.id) %></td>
         </tr>
     <% end %>
     </table>    

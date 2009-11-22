@@ -1,9 +1,9 @@
 <div id="content">
-  <%= flash[:notice] %>
+  <p class="success"><span ><%= flash[:notice] %></span></p>
   
   <div>
-    <h2>Sprints in <%= @project.name %></h2>
-    <!-- TODO: Add cancel link, Cancelled date -->
+    <h1>Sprints in <%= @project.name %></h1>
+    <%# TODO: Add cancel link and Cancelled date %>
     <table id="sprints">
     <% for sprint in @sprints %>
       <tr id="<%= h sprint.id %>">

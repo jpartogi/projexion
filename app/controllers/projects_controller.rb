@@ -60,6 +60,7 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     respond_to do |format|
+      flash[:notice] = 'Project was successfully deleted.'
       format.html { redirect_to projects_path }
       format.xml  { head :ok }
     end

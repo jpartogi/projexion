@@ -1,8 +1,8 @@
 <div id="content">
-  <%= flash[:notice] %>
+  <p class="success"><span ><%= flash[:notice] %></span></p>
   
   <div>
-    <h2>Releases in <%= @project.name %></h2>
+    <h1>Releases in <%= @project.name %></h1>
 
     <table id="releases">
     <% for release in @releases %>
