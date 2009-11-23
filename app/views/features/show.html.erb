@@ -2,20 +2,22 @@
     <p class="success"><span ><%= flash[:notice] %></span></p>
     
     <div id="feature">
-      <p>
-        <%= label_tag (:business_value) %><br/>
-        <%= h @feature.business_value %>
-      </p>
+      <div class="card">
+        <div class="title"><strong>Business value</strong></div>
+        <h2><%= h @feature.business_value %></h2>
+      </div>
 
-      <p>
-        <%= label_tag (:estimate_size) %><br/>
-        <%= h @feature.estimate_size %>
-      </p>
+      <div class="card">
+        <div class="title"><strong>Estimate size</strong></div>
+        <h2 style="text-align:center"><%= h @feature.estimate_size %></h2>
+      </div>
 
-      <p>
-        <%= label_tag (:priority) %><br/>
-        <%= h @feature.priority %>
-      </p>
+      <div class="card">
+        <div class="title"><strong>Priority</strong></div>
+        <h2 style="text-align:center"><%= h @feature.priority %></h2>
+      </div>
+
+      <div style="clear:both; margin-bottom:1em;"></div>
 
       <% if @feature.release %>
       <p>
@@ -47,7 +49,7 @@
         <h2>Add New Task</h2>
 
         <% form_for @task, :url => project_feature_tasks_path(@project.code, @feature.id) do |f| %>
-            <%= f.error_messages %>
+          <%= f.error_messages %>
 
           <p>
             <%= f.label :description %><br />
@@ -55,8 +57,7 @@
           </p>
 
           <div>
-            <%= f.submit 'Save' %>
-            
+            <%= f.submit 'Save', :class => 'save_btn' %>            
           </div>
 
         <% end %>
@@ -108,7 +109,7 @@
       });
     </script>
 
-    <div>  
+    <div style="clear:left;">  
     <h2>Tasks for this feature</h2>
 
     <table id="tasks">
@@ -131,5 +132,6 @@
     <li><%= link_to 'Delete Feature', project_feature_path(@project.code, @feature.id),
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <%# TODO: Use popup for add task and show tasks %>
+    <li><%= link_to 'Add Task', new_project_feature_task_path(@project.code, @feature.id), :class => 'add' %></li>
   </ul>
 </div>

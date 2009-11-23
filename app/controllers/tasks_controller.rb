@@ -13,7 +13,7 @@ class TasksController < ApplicationController
         flash[:notice] = 'Task was successfully added.'
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]) }
       else
-        #format.html { render :action => "show" }
+        format.html { render :action => "show", :controller => "feature" }
         #format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
         format.json  { render :json => @task.errors, :status => :unprocessable_entity }
       end
