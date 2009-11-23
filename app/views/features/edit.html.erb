@@ -27,10 +27,10 @@
         <%= f.text_area :acceptance_test, :rows => 4 %><br/>
     </p>
 
-    <%= f.submit 'Save' %>
+    <%= f.submit 'Save', :class=> 'save_btn' %>
   <% end %>
   <%# TODO: if edit go back to feature detail %>
-  <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get %>
+  <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
 </div>
 
 <div id="sidebar">

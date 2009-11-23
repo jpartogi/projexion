@@ -1,5 +1,5 @@
 <div id="content">
-    <% form_for @project do |f| %>
+    <% form_for @project, :url => projects_path do |f| %>
       <%= f.error_messages %>
 
       <p>
@@ -17,18 +17,18 @@
         <%= f.text_field :vision, :size => 45 %>
       </p>
 
-      <%= f.submit 'Save' %>
+      <%= f.submit 'Save', :class=> 'save_btn' %>
     <% end %>
-    <% if @project.code then %>
-        <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get %>
+    <% if @project.code and @project.code != "" then %>
+        <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
     <% else %>
-        <%= button_to 'Cancel', projects_path, :confirm => "Are you sure?", :method => :get %>
+        <%= button_to 'Cancel', projects_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
     <% end %>
 </div>
 
 <div id="sidebar">
   <ul>
-    <% if @project.code then %>
+    <% if @project.code and @project.code != "" then %>
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
     <% else %>
     <li><%= link_to 'Project List', projects_path, :class => 'list' %></li>

@@ -21,10 +21,10 @@
           <%= f.text_field :end_date %>
 
         </p>
-          <%= f.submit 'Save' %>
+          <%= f.submit 'Save', :class=> 'save_btn' %>
         </p>
      <% end %>
-     <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get %>
+     <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
   </div>  
 </div>
 
