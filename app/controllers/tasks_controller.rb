@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
-  layout 'main'
-  respond_to :json, :xml, :html 
+  respond_to :html, :json
 
   def create
     @task = Task.new(params[:task])
@@ -14,15 +13,20 @@ class TasksController < ApplicationController
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]) }
       else
         format.html { render :action => "show", :controller => "feature" }
-        #format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
         format.json  { render :json => @task.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   def new
+    @feature = Feature.find(params[:feature_id])
+    @project = @feature.project
+    
     @task = Task.new
-    respond_with(@task)
+
+    respond_with(@task, @feature, @project) do |format|
+      format.json { render  }
+    end
   end
 
   def index
@@ -43,6 +47,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
+      flash[:notice] = 'Task was successfully deleted.'
       format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]) }
       format.xml  { head :ok }
     end

@@ -5,16 +5,19 @@
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	<title>Projexion</title>
-    <%= stylesheet_link_tag 'reset' %>
+    <%= stylesheet_link_tag 'reset' %> <%# This is loaded first to reset the browser default value %>
 	<%= stylesheet_link_tag 'projexion' %>
+    <%= stylesheet_link_tag 'facebox' %>
     <script src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("jquery", "1.3.2");
     </script>
+    <%= javascript_include_tag 'facebox' %>
     <script type="text/javascript">
       $(document).ready(function(){      
         $("#sidebar").height($("#content").height()); // Make the #sidebar height always the same as #content
-
+        $("a[rel*=facebox]").facebox();
+          
         <% if flash[:notice] %>
         $("p.success").css("display","block"); // Display the notice
         <% end %>  

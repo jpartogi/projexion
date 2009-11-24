@@ -43,7 +43,6 @@ ActionController::Routing::Routes.draw do |map|
     end
   end
   map.project 'projects/:code', :controller => 'projects', :action => 'show'
-  map.feature 'projects/:code/features/:id', :controller => 'features', :action => 'show'
 
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|

@@ -45,25 +45,6 @@
       </p>
     </div>
 
-    <div id="task">
-        <h2>Add New Task</h2>
-
-        <% form_for @task, :url => project_feature_tasks_path(@project.code, @feature.id) do |f| %>
-          <%= f.error_messages %>
-
-          <p>
-            <%= f.label :description %><br />
-            <%= f.text_field :description %><br />
-          </p>
-
-          <div>
-            <%= f.submit 'Save', :class => 'save_btn' %>            
-          </div>
-
-        <% end %>
-    </div>  
-
-
     <script type="text/javascript">
 
       // TODO: Generalize this  
@@ -109,7 +90,7 @@
       });
     </script>
 
-    <div style="clear:left;">  
+    <div style="clear:left;"><%# Clear the float from submit and cancel button %>  
     <h2>Tasks for this feature</h2>
 
     <table id="tasks">
@@ -131,7 +112,6 @@
     <li><%= link_to 'Edit Feature', edit_project_feature_path(@project.code, @feature.id), :class => 'edit' %></li>
     <li><%= link_to 'Delete Feature', project_feature_path(@project.code, @feature.id),
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
-    <%# TODO: Use popup for add task and show tasks %>
-    <li><%= link_to 'Add Task', new_project_feature_task_path(@project.code, @feature.id), :class => 'add' %></li>
+    <li><%= link_to 'Add Task', new_project_feature_task_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
   </ul>
 </div>

@@ -1,2 +1,21 @@
-<h1>Tasks#new</h1>
-<p>Find me in app/views/tasks/new.html.erb</p>
+<div id="content">
+    <div id="task">
+        <h1>Add New Task</h1>
+
+        <% form_for @task, :url => project_feature_tasks_path(@project.code, @feature.id) do |f| %>
+          <%= f.error_messages %>
+
+          <p>
+            <%= f.label :description %><br />
+            <%= f.text_field :description %><br />
+          </p>
+
+          <div>
+            <%= f.submit 'Save', :class => 'save_btn' %>
+          </div>
+
+        <% end %>
+    </div>
+</div>
+
+<div style="clear:both"></div>
