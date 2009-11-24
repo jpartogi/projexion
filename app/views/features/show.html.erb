@@ -13,7 +13,7 @@
       </div>
 
       <div class="card">
-        <div class="title"><strong>Priority</strong></div>
+        <div class="title"><strong>Priority value</strong></div>
         <h2 style="text-align:center"><%= h @feature.priority %></h2>
       </div>
 
@@ -47,7 +47,7 @@
 
     <script type="text/javascript">
 
-      // TODO: Generalize this  
+      <%# TODO: Generalize this and make a jQuery extension for it? %>  
       $(document).ready(function(){
         var update_desc = function(/** String */ id){
               var desc = $('#desc_' + id).val();
