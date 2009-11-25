@@ -18,12 +18,17 @@
       </div>
 
       <div style="clear:both; margin-bottom:1em;"></div>
-      <%# TODO: Add information if no sprint or release has been assigned to feature %>
+
       <% if @feature.release %>
       <p>
 
         <%= label_tag (:release) %><br/>
         <%= link_to @feature.release.version_number, project_release_features_path(@project.code, @feature.release.id) %>
+      </p>
+      <% else %>
+      <p class="info">
+        No release has been assigned to this feature.
+        <%# TODO: Add popup to assign release. %>
       </p>
       <% end %>
 
@@ -31,7 +36,12 @@
       <p>
         <%= label_tag (:sprint) %><br/>
         <%= link_to @feature.sprint.span_date, project_sprint_features_path(@project.code, @feature.sprint.id) %>
-      </p>    
+      </p>
+      <% else %>
+      <p class="info">
+        This feature is not in a sprint.
+        <%# TODO: Add popup to assign sprint. %>
+      </p>
       <% end %>
 
       <p>
