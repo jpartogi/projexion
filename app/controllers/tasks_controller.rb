@@ -1,20 +1,17 @@
 class TasksController < ApplicationController
-  respond_to :html, :json
-
+  
   def create
     @task = Task.new(params[:task])
     @feature = Feature.find(params[:feature_id])
 
     @task.feature = @feature
+    @project = @feature.project
+
+    flash[:notice] = 'Task was successfully added.' if @task.save
     
-    respond_to do |format|
-      if @task.save
-        flash[:notice] = 'Task was successfully added.'
-        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]) }
-      else
-        format.html { render :action => "show", :controller => "feature" }
-        format.json  { render :json => @task.errors, :status => :unprocessable_entity }
-      end
+    respond_with(@task) do |format|
+      format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]) }
+      format.json { head :ok }
     end
   end
 
@@ -25,7 +22,7 @@ class TasksController < ApplicationController
     @task = Task.new
 
     respond_with(@task, @feature, @project) do |format|
-      format.json { render  }
+      format.html { render }
     end
   end
 
@@ -49,7 +46,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       flash[:notice] = 'Task was successfully deleted.'
       format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]) }
-      format.xml  { head :ok }
+      format.json  { head :ok }
     end
   end
 

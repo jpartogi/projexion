@@ -28,7 +28,7 @@
       <% else %>
       <p class="info">
         No release has been assigned to this feature.
-        <%# TODO: Add popup to assign release. %>
+        <%# TODO: Add combo to assign release. Only future release %>
       </p>
       <% end %>
 
@@ -40,7 +40,7 @@
       <% else %>
       <p class="info">
         This feature is not in a sprint.
-        <%# TODO: Add popup to assign sprint. %>
+        <%# TODO: Add to next sprint button. %>
       </p>
       <% end %>
 
@@ -84,10 +84,6 @@
 
         $('#tasks .desc').click(click_desc);
 
-        $('#tasks').mousedown(function(){
-            console.log('hello');
-        });
-
         var callback = function(data){
             var task = data.task;
             var replacement = "<td class=\"desc\">"+task.description+"</td>";
@@ -98,6 +94,7 @@
           }
 
       });
+      
     </script>
 
     <div style="clear:left;"><%# Clear the float from submit and cancel button %>  
