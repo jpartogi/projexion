@@ -6,7 +6,7 @@ class Task < ActiveRecord::Base
   validates_presence_of :description
   
   before_create :default_status
-
+  #TODO: Add css_class property
   def default_status
     self[:status]= STATUS[:pooled] if self[:status].nil?
   end
