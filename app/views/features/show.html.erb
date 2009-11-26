@@ -1,7 +1,7 @@
 <div id="content">
     <p class="success"><span ><%= flash[:notice] %></span></p>
     
-    <div id="feature">
+    <div id="feature" style="float:left">
       <div class="card">
         <div class="title"><strong>Business value</strong></div>
         <h2><%= h @feature.business_value %></h2>
@@ -77,12 +77,12 @@
 
             var replacement = "<td class=\"desc\">"
                    + "<input id=\""+input_id+"\" type=\"text\" value=\""+$(this).text()+"\">"
-                   + "<input type=\"submit\" value=\"Save\" onclick=\"$.update_desc('"+id+"');\"/></td>";
+                   + "<input type=\"submit\" class=\"save_btn\" value=\"Save\" onclick=\"$.update_desc('"+id+"');\"/></td>";
 
             $(this).replaceWith(replacement);
         };
 
-        $('#tasks .desc').click(click_desc);
+        $('.desc').click(click_desc);
 
         var callback = function(data){
             var task = data.task;
@@ -90,21 +90,28 @@
 
             $('#' + task.id + " .desc").replaceWith(replacement);
             
-            $('#tasks .desc').click(click_desc);
+            $('.desc').click(click_desc);
           }
 
       });
       
     </script>
 
-    <div style="clear:left;"><%# Clear the float from submit and cancel button %>  
+    <div style="float:left; margin-left:1em;">  
     <h2>Tasks for this feature</h2>
 
-    <table id="tasks">
+    <table id="tasks" width="100%">
     <% for task in @tasks %>
         <tr id="<%= h task.id %>">
             <td class="desc"><%= h task.description %></td>
-            <td><%= link_to 'Delete', project_feature_task_path(@project.code, @feature.id, task.id),
+
+            <% case when task.status == 'P' %><td class="status pooled">Pooled</td>
+            <% when task.status == 'I' %><td class="status in-process">In-process</td>
+            <% when task.status == 'D' %><td class="status done">Done</td>  
+            <% end %>
+
+            <%# TODO: Change this to a delete button instead of text %>
+            <td><%= link_to 'X', project_feature_task_path(@project.code, @feature.id, task.id),
                             :confirm => 'Are you sure?', :method => :delete %>
             </td>
         </tr>
