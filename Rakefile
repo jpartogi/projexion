@@ -7,4 +7,4 @@ require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
 
-require 'rails/tasks'
+Rails3.load_tasks
