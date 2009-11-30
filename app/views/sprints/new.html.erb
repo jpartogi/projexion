@@ -7,11 +7,6 @@
         <%= f.error_messages %>
 
         <p>
-          <%= f.label :goal, 'Sprint goal' %><br /> <%# TODO: Enlarge sprint goal text field width %>
-          <%= f.text_field :goal %>
-        </p>
-
-        <p>
           <%= f.label :start_date %><br />
           <%= f.text_field :start_date %>
         </p>
@@ -19,8 +14,14 @@
         <p>
           <%= f.label :end_date %><br />
           <%= f.text_field :end_date %>
-
         </p>
+
+        <p>
+          <%= f.label :goal, 'Sprint goal' %><br />
+          <%= f.text_field :goal, :size => 45 %>
+        </p>
+
+        <p>
           <%= f.submit 'Save', :class=> 'save_btn' %>
         </p>
      <% end %>
