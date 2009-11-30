@@ -1,0 +1,34 @@
+<div id="content">
+    <h1>Add New Task Status</h1>
+    <%= flash[:notice] %>
+
+    <% form_for @task_status do |f| %>
+        <%= f.error_messages %>
+
+        <p>
+          <%= f.label :display_name %><br /> 
+          <%= f.text_field :display_name %>
+        </p>
+
+        <p>
+          <%= f.label :key %><br />
+          <%= f.text_field :key %>
+        </p>
+
+        <p>
+          <%= f.label :default_status %><br />
+          <%= f.check_box :default_status %>
+        </p>
+
+        <p>
+          <%= f.submit 'Save', :class=> 'save_btn' %>
+        </p>
+     <% end %>
+     <%= button_to 'Cancel', task_statuses_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+</div>
+
+<div id="sidebar">
+  <ul>
+    <li><%= link_to 'Task Status List', task_statuses_path, :class => 'list' %></li>
+  </ul>
+</div>
