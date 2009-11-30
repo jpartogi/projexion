@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "cancelled_date"
   end
 
+  create_table "task_statuses", :force => true do |t|
+    t.string   "display_name",   :limit => 100, :null => false
+    t.string   "slug",           :limit => 100, :null => false
+    t.integer  "next_status_id",                :null => false
+    t.boolean  "default_status",                :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
   create_table "tasks", :force => true do |t|
     t.text     "description",                                     :null => false
     t.string   "status",            :limit => 1, :default => "P", :null => false
@@ -66,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_member_id"
+    t.integer  "task_status_id",                                  :null => false
   end
 
   create_table "user_sessions", :force => true do |t|

@@ -29,6 +29,8 @@ ActionController::Routing::Routes.draw do |map|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
+  map.resources :task_statuses
+
   map.resources :projects, :except => :show  do |projects|
     projects.resources :features do |features|
       features.resources :tasks
