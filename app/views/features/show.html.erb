@@ -40,7 +40,7 @@
       <% else %>
       <p class="info">
         This feature is not in a sprint.
-        <%# TODO: Add to next sprint button. %>
+        <%# TODO: Add to next sprint button. Make sure next sprint has been created. %>
       </p>
       <% end %>
 
@@ -69,12 +69,13 @@
 
         $.update_desc = update_desc;
 
-        var click_desc = function () {
+        var click_desc = function(){
             // Get the id of this record by the id of table row element
             var id = $(this).parent('tr').attr('id');
 
             var input_id = "desc_" + id;
 
+            <%# TODO: Float is wrong %>
             var replacement = "<td class=\"desc\">"
                    + "<input id=\""+input_id+"\" type=\"text\" value=\""+$(this).text()+"\">"
                    + "<input type=\"submit\" class=\"save_btn\" value=\"Save\" onclick=\"$.update_desc('"+id+"');\"/></td>";
@@ -91,7 +92,14 @@
             $('#' + task.id + " .desc").replaceWith(replacement);
             
             $('.desc').click(click_desc);
-          }
+        }
+
+        var click_status = function(){
+            var id = $(this).parent('tr').attr('id');
+        };
+
+
+        $('.status').click(click_status);
 
       });
       

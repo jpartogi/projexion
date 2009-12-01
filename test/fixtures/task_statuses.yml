@@ -1,0 +1,17 @@
+queued:
+    id: 9999
+    key: queued
+    display_name: Queued
+    default_status: true
+    next_status_id: 10000
+
+inprogress:
+    id: 10000
+    key: in-progress
+    display_name: In Progress
+    next_status_id: 10001
+
+done:
+    id: 10001
+    key: done
+    display_name: Done    

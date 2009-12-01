@@ -1,15 +1,13 @@
 class Task < ActiveRecord::Base
-  STATUS = { :pooled => 'P', :inprogress => 'I', :done => 'D' }
-
   belongs_to :feature
-  has_many :task_statuses
+  belongs_to :task_status
 
   validates_presence_of :description
   
-  before_create :default_status
+  before_create :set_default_status
   
-  def default_status
-    self[:status]= STATUS[:pooled] if self[:status].nil?
+  def set_default_status
+    self.task_status = TaskStatus.find(:first, :conditions => {:default_status => true})
   end
 end
 
