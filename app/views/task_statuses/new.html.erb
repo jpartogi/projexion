@@ -16,8 +16,13 @@
         </p>
 
         <p>
-          <%= f.label :default_status %><br />
+          <%= f.label :default_status %>
           <%= f.check_box :default_status %>
+        </p>
+
+        <p>
+          <%= f.label :color, 'Background color' %><br />
+          #<%= f.text_field :color, :size => 6, :maxlength => 6 %>
         </p>
 
         <p>

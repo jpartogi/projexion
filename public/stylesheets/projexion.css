@@ -18,7 +18,7 @@ h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
 
 .status { color: white; text-align: center; font-weight: bold; }
 .queued { background: #002aa2; }
-.in-process { background: #cb0000; }
+.inprogress { background: #cb0000; }
 .done { background: #228200; }
 
 #header { background: #7F99BE url('/images/header-bg.gif') repeat-x center; width:100%;  }

@@ -4,14 +4,17 @@ queued:
     display_name: Queued
     default_status: true
     next_status_id: 10000
+    color: 002aa2
 
 inprogress:
     id: 10000
     key: in-progress
     display_name: In Progress
     next_status_id: 10001
+    color: cb0000
 
 done:
     id: 10001
     key: done
-    display_name: Done    
+    display_name: Done
+    color: 228200
