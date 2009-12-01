@@ -112,12 +112,7 @@
     <% for task in @tasks %>
         <tr id="<%= h task.id %>">
             <td class="desc"><%= h task.description %></td>
-
-            <% case when task.status == 'P' %><td class="status pooled">Pooled</td>
-            <% when task.status == 'I' %><td class="status in-process">In-process</td>
-            <% when task.status == 'D' %><td class="status done">Done</td>  
-            <% end %>
-
+            <td class="status <%= h task.task_status.key %>"><%= h task.task_status.display_name %></td>
             <%# TODO: Change this to a delete button instead of text %>
             <td><%= link_to 'X', project_feature_task_path(@project.code, @feature.id, task.id),
                             :confirm => 'Are you sure?', :method => :delete %>

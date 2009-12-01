@@ -17,7 +17,7 @@ h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
     padding:0; border: 0; margin: 1px; }
 
 .status { color: white; text-align: center; font-weight: bold; }
-.pooled { background: #002aa2; }
+.queued { background: #002aa2; }
 .in-process { background: #cb0000; }
 .done { background: #228200; }
 
