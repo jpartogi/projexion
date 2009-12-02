@@ -21,7 +21,7 @@ h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
 .inprogress { background: #cb0000; }
 .done { background: #228200; }
 
-.inline { background: white; border: 1px solid #ccc; font: 12px Verdana; }
+.inline { background: white; border: 1px solid #ccc; font: 12px Verdana;  }
 
 #header { background: #7F99BE url('/images/header-bg.gif') repeat-x center; width:100%;  }
 

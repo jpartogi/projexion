@@ -57,6 +57,15 @@
 
     <script type="text/javascript">
 
+        var update_status = function(/** int */ id){
+              var status_id = $('#task_' + id + " .status select").val();
+              console.log(status);
+
+              $.post("<%= url_for :action => :update_status, :controller => :tasks %>",
+                { "status_id": status_id, "id": id },
+                null, "json");
+          };
+        
       <%# TODO: Generalize this and make a jQuery extension for it? %>  
       $(document).ready(function(){
         var update_desc = function(/** String */ id){
@@ -75,8 +84,8 @@
 
             var input_id = "desc_" + id;
 
-            <%# TODO: Save on enter instead of using button %>
-            var replacement = "<input id=\""+input_id+"\" class=\"inline\" type=\"text\" value=\""+$(this).text()+"\">"
+            <%# TODO: Save on enter key pressed instead of using button %>
+            var replacement = "<input id=\""+input_id+"\" class=\"inline\" type=\"text\" value=\""+$(this).text()+"\" />"
                    + "<input type=\"submit\" class=\"save_btn\" value=\"Save\" onclick=\"$.update_desc('"+id+"');\"/>";
 
             var clone = $(this).clone();
@@ -101,9 +110,15 @@
         var click_status = function(){
             var tid = $(this).parent('tr').attr('tid');
 
-            console.log("task id = " +tid);
-            console.log($(this).html());
-            var replacement = "";
+            var replacement = "<select>" +
+            <% for task_status in @task_statuses %>
+                "<option value=\"<%= h task_status.id %>\" onclick=\"update_status("+tid+");\"><%= h task_status.display_name %></option>" +
+            <% end %>
+            "</select>";
+
+            var clone = $(this).clone();
+            clone = clone.empty().append(replacement);
+            $(this).replaceWith(clone);
         };
 
 
@@ -120,10 +135,10 @@
     <% for task in @tasks %>
         <tr id="task_<%= h task.id %>" tid="<%= h task.id %>">
             <td class="desc"><%= h task.description %></td>
-            <td width="30%" style="background-color:#<%= h task.task_status.color %>" class="status <%= h task.task_status.key %>" >
-              <%= h task.task_status.display_name %>
+            <td width="30%" class="status <%= h task.task_status.key %>" style="background-color:#<%= h task.task_status.color %>">
+              <span><%= h task.task_status.display_name %></span>     
             </td>
-            <td>
+            <td><%# TODO: link image background should not be black %> 
                 <% link_to project_feature_task_path(@project.code, @feature.id, task.id),
                             :confirm => 'Are you sure?', :method => :delete do %>
                     <img src="/images/icons/delete.png">

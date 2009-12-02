@@ -32,8 +32,9 @@ class FeaturesController < ApplicationController
     @tasks = @feature.tasks
 
     @project = @feature.project
+    @task_statuses = TaskStatus.find(:all)
 
-    respond_with(@project, @feature, @tasks)
+    respond_with(@project, @feature, @tasks, @task_statuses)
   end
 
   def index
