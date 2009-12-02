@@ -71,16 +71,17 @@
 
         var click_desc = function(){
             // Get the id of this record by the id of table row element
-            var id = $(this).parent('tr').attr('id');
+            var id = $(this).parent('tr').attr('tid');
 
             var input_id = "desc_" + id;
 
-            <%# TODO: Float is wrong %>
-            var replacement = "<td class=\"desc\">"
-                   + "<input id=\""+input_id+"\" type=\"text\" value=\""+$(this).text()+"\">"
-                   + "<input type=\"submit\" class=\"save_btn\" value=\"Save\" onclick=\"$.update_desc('"+id+"');\"/></td>";
+            <%# TODO: Save on enter instead of using button %>
+            var replacement = "<input id=\""+input_id+"\" class=\"inline\" type=\"text\" value=\""+$(this).text()+"\">"
+                   + "<input type=\"submit\" class=\"save_btn\" value=\"Save\" onclick=\"$.update_desc('"+id+"');\"/>";
 
-            $(this).replaceWith(replacement);
+            var clone = $(this).clone();
+            clone = clone.empty().append(replacement);
+            $(this).replaceWith(clone);
         };
 
         $('.desc').click(click_desc);
@@ -89,13 +90,20 @@
             var task = data.task;
             var replacement = "<td class=\"desc\">"+task.description+"</td>";
 
-            $('#' + task.id + " .desc").replaceWith(replacement);
+            var original = $('#task_' + task.id + " .desc");
+            var clone = original.clone();
+            clone = clone.empty().append(task.description);
+            original.replaceWith(clone);
             
             $('.desc').click(click_desc);
         }
 
         var click_status = function(){
-            var id = $(this).parent('tr').attr('id');
+            var tid = $(this).parent('tr').attr('tid');
+
+            console.log("task id = " +tid);
+            console.log($(this).html());
+            var replacement = "";
         };
 
 
@@ -110,14 +118,16 @@
 
     <table id="tasks" width="100%">
     <% for task in @tasks %>
-        <tr id="<%= h task.id %>">
+        <tr id="task_<%= h task.id %>" tid="<%= h task.id %>">
             <td class="desc"><%= h task.description %></td>
             <td width="30%" style="background-color:#<%= h task.task_status.color %>" class="status <%= h task.task_status.key %>" >
               <%= h task.task_status.display_name %>
             </td>
-            <%# TODO: Change this to a delete button instead of text %>
-            <td><%= link_to 'X', project_feature_task_path(@project.code, @feature.id, task.id),
-                            :confirm => 'Are you sure?', :method => :delete %>
+            <td>
+                <% link_to project_feature_task_path(@project.code, @feature.id, task.id),
+                            :confirm => 'Are you sure?', :method => :delete do %>
+                    <img src="/images/icons/delete.png">
+                <% end %>
             </td>
         </tr>
     <% end %>      
