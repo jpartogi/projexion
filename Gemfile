@@ -10,10 +10,10 @@ clear_sources
 source "http://gemcutter.org"
 #source "http://gems.github.com"
 
-gem "rails", "3.0.pre"
+#gem "rails", "3.0.pre"
 
 ## Bundle edge rails:
-# gem "rails", :git => "git://github.com/rails/rails.git"
+gem "rails", "3.0.pre", :git => "git://github.com/rails/rails.git"
 
 ## Bundle the gems you use:
 # gem "bj"
@@ -27,12 +27,13 @@ gem "rails", "3.0.pre"
 #   gem "webrat"
 # end 
  
-gem "webrat"
-gem "shoulda"
-gem "sqlite3-ruby"
+gem "webrat", :only => :test
+gem "shoulda", :only => :test
+gem "sqlite3-ruby", :only => :test
 gem "rack-test"
 gem "cucumber"
+gem "mysql"
  
 gem "rack", "1.0.1", :git => "git://github.com/rails/rack.git"
-gem "rack-mount", "0.0.1", :git => "git://github.com/rails/rack-mount.git"
+#gem "rack-mount", "0.0.1", :git => "git://github.com/rails/rack-mount.git"
 gem "arel", "0.2.pre", :git => "git://github.com/rails/arel.git", :path => "arel"

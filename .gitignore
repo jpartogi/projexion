@@ -1,8 +1,10 @@
 .idea/
 Thumbs.db
+bin/
 log/
 tmp/
 vendor/plugins
+vendor/gems
 db/migrate/*
 db/projexion
 

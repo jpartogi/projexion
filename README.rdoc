@@ -5,14 +5,17 @@
 Currently still under development. Stay tuned.
 
 Dependencies:
-- bundler
-- rails3
-- rack
+
+Gems:
+- Checkout bundler : http://github.com/wycats/bundler
+Run `rake install` from bundler top directory to install bundler
+The rest of the gems dependencies is picked up using `gem bundle` command from bundler
 
 Native libraries dependencies:
-- SQLite3
-- libxml2-devel
-- libxslt-devel
+- sqlite3
+- sqlite3-devel
+- libxml2-devel #For nokogiri
+- libxslt-devel #For nokogiri
 - mysql-devel
 
 Installation:
