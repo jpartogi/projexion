@@ -16,7 +16,7 @@ h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
 .save_btn { text-indent: -1000em; width:75px; height: 25px; background: transparent url('/images/save.png') no-repeat center top;
     padding:0; border: 0; margin: 1px; }
 
-.status { color: white; text-align: center; font-weight: bold; }
+.status { color: white; text-align: center; font-weight: bold; vertical-align: middle; }
 .queued { background: #002aa2; }
 .inprogress { background: #cb0000; }
 .done { background: #228200; }

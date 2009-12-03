@@ -16,6 +16,11 @@
           <%= label_tag :default_status %><br />
           <%= h @task_status.default_status %>
         </p>
+
+        <p>
+          <%= label_tag :color, 'Background color' %><br />
+          <span style="background-color:<%= @task_status.color %>" class="status <%= h @task_status.key %>"><%= h @task_status.color %></span>
+        </p>
     </div>
 </div>
 

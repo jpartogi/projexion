@@ -121,7 +121,7 @@
             "</select>";
 
             var clone = $(this).clone();
-            clone = clone.empty().css('background-color','').append(replacement);
+            clone = clone.empty().css('background-color','#fff').append(replacement);
             $(this).replaceWith(clone);
         };
 
@@ -134,7 +134,7 @@
             var original = $('#task_' + task.id + " .status");
             var clone = original.clone();
             clone = clone.empty().append(task_status.display_name);
-            clone.css('background-color', '#'+task_status.color);
+            clone.css('background-color', task_status.color);
             original.replaceWith(clone);
 
             $('.status').click(click_status);
@@ -144,17 +144,17 @@
       
     </script>
 
-    <div style="float:left; margin-left:1em;">  
+    <div style="float:left; margin-left:1em; width:500px">  
     <h2>Tasks for this feature</h2>
 
     <table id="tasks" width="100%">
     <% for task in @tasks %>
         <tr id="task_<%= h task.id %>" tid="<%= h task.id %>">
-            <td class="desc"><%= h task.description %></td>
-            <td width="30%" class="status <%= h task.task_status.key %>" style="background-color:#<%= h task.task_status.color %>">
+            <td width="60%" class="desc"><%= h task.description %></td>
+            <td width="20%" class="status <%= h task.task_status.key %>" style="background-color:<%= h task.task_status.color %>">
               <span><%= h task.task_status.display_name %></span>     
             </td>
-            <td><%# TODO: link image background should not be black %> 
+            <td width="10%" style="text-align:center;"><%# TODO: link image background should not be black %>
                 <% link_to project_feature_task_path(@project.code, @feature.id, task.id),
                             :confirm => 'Are you sure?', :method => :delete do %>
                     <img src="/images/icons/delete.png">

@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.string   "key",            :limit => 100, :null => false
     t.integer  "next_status_id"
     t.boolean  "default_status"
-    t.string   "color",          :limit => 6,   :null => false
+    t.string   "color",          :limit => 7,   :null => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end
