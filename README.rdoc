@@ -21,3 +21,4 @@ Native libraries dependencies:
 Installation:
 - rake db:create
 - rake db:schema:load
+- rake db:seed #Optional
