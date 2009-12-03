@@ -1,7 +1,7 @@
 <div id="content">
     <p class="success"><span ><%= flash[:notice] %></span></p>
     
-    <div id="feature" style="float:left">
+    <div id="feature" style="float:left; width:45%;">
       <div class="card">
         <div class="title"><strong>Business value</strong></div>
         <h2><%= h @feature.business_value %></h2>
@@ -76,7 +76,7 @@
             var input_id = "desc_" + id;
 
             <%# TODO: Save on enter key pressed instead of using button %>
-            var replacement = "<input id=\""+input_id+"\" class=\"inline\" type=\"text\" value=\""+$(this).text()+"\" />"
+            var replacement = "<input id=\""+input_id+"\" class=\"inline\" type=\"text\" width=\"100%\" value=\""+$(this).text()+"\" />"
                    + "<input type=\"submit\" class=\"save_btn\" value=\"Save\" onclick=\"$.update_desc('"+id+"');\"/>";
 
             var clone = $(this).clone();
@@ -144,7 +144,7 @@
       
     </script>
 
-    <div style="float:left; margin-left:1em; width:500px">  
+    <div style="float:left; margin-left:1em; width:45%">  
     <h2>Tasks for this feature</h2>
 
     <table id="tasks" width="100%">

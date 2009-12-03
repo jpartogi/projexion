@@ -38,7 +38,7 @@ h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
 
 #middle {  min-height: 600px; width: 100%; }
 
-#content { float:left; padding: 1em; font: 12px Verdana; }
+#content { float:left; padding: 1em; font: 12px Verdana; width: 78%; }
 #content h2, #content label { font: bold 16px Helvetica; letter-spacing:-0.7px; }
 #content label { margin-bottom:1em; }
 #content form input[type='text'],
