@@ -23,6 +23,16 @@ task_status = TaskStatus.create(:display_name => 'Pooled',
                                 :default_status => true,
                                 :color => '002aa2')
 
+TaskStatus.create(:display_name => 'In Progress',
+                                :key => 'in-progress',
+                                :default_status => false,
+                                :color => 'cb0000')
+
+TaskStatus.create(:display_name => 'Done',
+                                :key => 'done',
+                                :default_status => false,
+                                :color => '228200')
+
 task = Task.create(:description => 'Create scaffolding for feature',
                    :feature => feature,
                    :task_status => task_status)
