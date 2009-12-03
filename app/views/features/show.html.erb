@@ -113,7 +113,7 @@
             $.post("<%= url_for :action => :get_statuses, :controller => :tasks %>", function(data){
                 console.log(data);
             });
-
+            <%# TODO: Have javascript display this instead of Ruby %>
             var replacement = "<select>" +
             <% for task_status in @task_statuses %>
                 "<option value=\"<%= h task_status.id %>\" onclick=\"$.update_status("+tid+");\"><%= h task_status.display_name %></option>" +
@@ -121,7 +121,7 @@
             "</select>";
 
             var clone = $(this).clone();
-            clone = clone.empty().append(replacement);
+            clone = clone.empty().css('background-color','').append(replacement);
             $(this).replaceWith(clone);
         };
 
