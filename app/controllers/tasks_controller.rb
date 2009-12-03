@@ -71,12 +71,20 @@ class TasksController < ApplicationController
 
     @task.task_status = @task_status
 
-    respond_with(@task) do |format|
+    respond_with(@task, @task_status) do |format|
       if @task.save
-        format.json { render :json => @task }
+        format.json { render :json => {:task => @task, :task_status => @task_status} }
       else
-        format.json  { render :json => @task.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @task_status.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+  
+  def get_statuses
+    @task_statuses = TaskStatus.find(:all)
+
+    respond_with(@task_statuses) do |format|
+      format.json { render :json => @task_statuses }
     end
   end
 end

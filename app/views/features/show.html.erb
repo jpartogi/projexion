@@ -56,15 +56,6 @@
     </div>
 
     <script type="text/javascript">
-
-        var update_status = function(/** int */ id){
-              var status_id = $('#task_' + id + " .status select").val();
-              console.log(status);
-
-              $.post("<%= url_for :action => :update_status, :controller => :tasks %>",
-                { "status_id": status_id, "id": id },
-                null, "json");
-          };
         
       <%# TODO: Generalize this and make a jQuery extension for it? %>  
       $(document).ready(function(){
@@ -97,7 +88,6 @@
 
         var callback = function(data){
             var task = data.task;
-            var replacement = "<td class=\"desc\">"+task.description+"</td>";
 
             var original = $('#task_' + task.id + " .desc");
             var clone = original.clone();
@@ -107,12 +97,26 @@
             $('.desc').click(click_desc);
         }
 
+        var update_status = function(/** int */ id){
+              var status_id = $('#task_' + id + " .status select").val();
+
+              $.post("<%= url_for :action => :update_status, :controller => :tasks %>",
+                { "status_id": status_id, "id": id },
+                callback_status, "json");
+          };
+
+        $.update_status = update_status;
+
         var click_status = function(){
             var tid = $(this).parent('tr').attr('tid');
 
+            $.post("<%= url_for :action => :get_statuses, :controller => :tasks %>", function(data){
+                console.log(data);
+            });
+
             var replacement = "<select>" +
             <% for task_status in @task_statuses %>
-                "<option value=\"<%= h task_status.id %>\" onclick=\"update_status("+tid+");\"><%= h task_status.display_name %></option>" +
+                "<option value=\"<%= h task_status.id %>\" onclick=\"$.update_status("+tid+");\"><%= h task_status.display_name %></option>" +
             <% end %>
             "</select>";
 
@@ -121,8 +125,20 @@
             $(this).replaceWith(clone);
         };
 
-
         $('.status').click(click_status);
+
+        var callback_status = function(data){
+            var task_status = data.task_status.task_status;
+            var task = data.task.task;
+            
+            var original = $('#task_' + task.id + " .status");
+            var clone = original.clone();
+            clone = clone.empty().append(task_status.display_name);
+            clone.css('background-color', '#'+task_status.color);
+            original.replaceWith(clone);
+
+            $('.status').click(click_status);
+        }
 
       });
       
