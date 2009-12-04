@@ -12,7 +12,7 @@
 ActiveRecord::Schema.define(:version => 20091013000428) do
 
   create_table "features", :force => true do |t|
-    t.text     "user_story",                                     :null => false
+    t.text     "user_story",                                                        :null => false
     t.decimal  "business_value",  :precision => 10, :scale => 0
     t.string   "estimate_size"
     t.integer  "priority"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at"
     t.integer  "sprint_id"
     t.integer  "release_id"
-    t.integer  "project_id",                                     :null => false
-    t.text     "acceptance_test",                                :null => false
+    t.integer  "project_id",                                                        :null => false
+    t.boolean  "accepted",                                       :default => false, :null => false
+    t.text     "acceptance_test",                                                   :null => false
   end
 
   create_table "project_members", :force => true do |t|
@@ -41,9 +42,10 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "releases", :force => true do |t|
-    t.string   "version_number", :limit => 20, :null => false
+    t.string   "version_number", :limit => 20,                    :null => false
     t.date     "estimate_date"
-    t.integer  "project_id",                   :null => false
+    t.integer  "project_id",                                      :null => false
+    t.boolean  "released",                     :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
