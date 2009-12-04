@@ -31,6 +31,8 @@ ActionController::Routing::Routes.draw do |map|
   #   end
   map.resources :task_statuses
 
+  map.taskboard 'projects/:code/sprints/taskboard', :controller => 'sprints', :action => 'taskboard'
+
   map.resources :projects, :except => :show  do |projects|
     projects.resources :features do |features|
       features.resources :tasks
@@ -44,6 +46,7 @@ ActionController::Routing::Routes.draw do |map|
       sprints.resources :features
     end
   end
+  
   map.project 'projects/:code', :controller => 'projects', :action => 'show'
 
   # Sample resource route within a namespace:

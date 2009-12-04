@@ -44,4 +44,7 @@ class SprintsController < ApplicationController
     respond_with(@project, @sprints)
   end
 
+  def taskboard
+    @project = Project.find_by_code(params[:code]) 
+  end
 end

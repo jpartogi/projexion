@@ -8,6 +8,7 @@ h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
 .edit { background: url('/images/icons/page_edit.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 .list { background: url('/images/icons/application_view_list.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 .dashboard { background: url('/images/icons/application_cascade.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
+.taskboard { background: url('/images/icons/table.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 
 .submit_btn { text-indent: -1000em; width:75px; height: 27px; background: transparent url('/images/submit.png') no-repeat center top;
     padding:0; border: 0; margin: 1px; }
