@@ -3,7 +3,7 @@
   
   <div>
     <h1>Sprints in <%= @project.name %></h1>
-    <%# TODO: Add cancel link and Cancelled date %>
+    <%# TODO: Add cancel sprint link and cancelled date for cancelled sprint %>
     <table id="sprints">
     <% for sprint in @sprints %>
       <tr id="<%= h sprint.id %>">

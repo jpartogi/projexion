@@ -45,6 +45,17 @@ class SprintsController < ApplicationController
   end
 
   def taskboard
-    @project = Project.find_by_code(params[:code]) 
+    @project = Project.find_by_code(params[:code])
+
+    @sprints = @project.sprints
+
+    @task_statuses = TaskStatus.find(:all)
+
+    if params[:sprint]
+      @sprint = Sprint.find(params[:sprint][:id])
+    else
+      @sprint = Sprint.new
+    end
+
   end
 end
