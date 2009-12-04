@@ -59,34 +59,33 @@
         
       <%# TODO: Generalize this and make a jQuery extension for it? %>  
       $(document).ready(function(){
-        var update_desc = function(/** String */ id){
-              var desc = $('#desc_' + id).val();
-
-              $.post("<%= url_for :action => :update_desc, :controller => :tasks %>",
-                { "desc": desc, "id": id },
-                callback, "json");
-          };
-
-        $.update_desc = update_desc;
 
         var click_desc = function(){
-            // Get the id of this record by the id of table row element
-            var id = $(this).parent('tr').attr('tid');
 
-            var input_id = "desc_" + id;
-
-            <%# TODO: Save on enter key pressed instead of using button %>
-            var replacement = "<input id=\""+input_id+"\" class=\"inline\" type=\"text\" width=\"100%\" value=\""+$(this).text()+"\" />"
-                   + "<input type=\"submit\" class=\"save_btn\" value=\"Save\" onclick=\"$.update_desc('"+id+"');\"/>";
+            var replacement = "<input class='inline' type='text' width='100%' value='"+$(this).text()+"' />";
 
             var clone = $(this).clone();
             clone = clone.empty().append(replacement);
             $(this).replaceWith(clone);
+
+            $(".desc .inline").keypress(function (e) {
+
+                var desc = $(this).focus().val();
+
+                // Get the id of this record by the id of table row element
+                var id = $(this).focus().parent('td').parent('tr').attr('tid');
+                
+                if(e.which === 13){
+                    $.post("<%= url_for :action => :update_desc, :controller => :tasks %>",
+                    { "desc": desc, "id": id },
+                    callback_desc, "json");
+                }  
+            });
         };
 
         $('.desc').click(click_desc);
 
-        var callback = function(data){
+        var callback_desc = function(data){
             var task = data.task;
 
             var original = $('#task_' + task.id + " .desc");
@@ -97,32 +96,32 @@
             $('.desc').click(click_desc);
         }
 
-        var update_status = function(/** int */ id){
-              var status_id = $('#task_' + id + " .status select").val();
-
-              $.post("<%= url_for :action => :update_status, :controller => :tasks %>",
-                { "status_id": status_id, "id": id },
-                callback_status, "json");
-          };
-
-        $.update_status = update_status;
-
         var click_status = function(){
             var tid = $(this).parent('tr').attr('tid');
-
-            $.post("<%= url_for :action => :get_statuses, :controller => :tasks %>", function(data){
-                console.log(data);
-            });
-            <%# TODO: Have javascript display this instead of Ruby %>
-            var replacement = "<select>" +
-            <% for task_status in @task_statuses %>
-                "<option value=\"<%= h task_status.id %>\" onclick=\"$.update_status("+tid+");\"><%= h task_status.display_name %></option>" +
-            <% end %>
-            "</select>";
-
+            var tsid = $(this).find("input[type='hidden']").val();
+            
             var clone = $(this).clone();
-            clone = clone.empty().css('background-color','#fff').append(replacement);
-            $(this).replaceWith(clone);
+            var current = $(this);
+            
+            $.getJSON("<%= url_for :action => :get_statuses, :controller => :tasks %>", function(data){
+                var replacement = "<select>";
+                $.each(data, function(i, value) {
+                    replacement = replacement.concat("<option value="+value.task_status.id +">");
+                    replacement = replacement.concat(value.task_status.display_name + "</option>");
+                });
+                replacement = replacement.concat("</select>");
+
+                clone = clone.empty().css('background-color','white').append(replacement);
+                current.replaceWith(clone);
+
+                $(".status option").click(function () {
+                    var status_id = $(this).val();
+
+                    $.post("<%= url_for :action => :update_status, :controller => :tasks %>",
+                        {"status_id": status_id, "id": tid },
+                        callback_status, "json");
+                });
+            });
         };
 
         $('.status').click(click_status);
@@ -152,7 +151,8 @@
         <tr id="task_<%= h task.id %>" tid="<%= h task.id %>">
             <td width="60%" class="desc"><%= h task.description %></td>
             <td width="20%" class="status <%= h task.task_status.key %>" style="background-color:<%= h task.task_status.color %>">
-              <span><%= h task.task_status.display_name %></span>     
+              <input type="hidden" class="tsid" name="task_status_id" value="<%= h task.task_status.id %>" />
+              <span><%= h task.task_status.display_name %></span>
             </td>
             <td width="10%" style="text-align:center;"><%# TODO: link image background should not be black %>
                 <% link_to project_feature_task_path(@project.code, @feature.id, task.id),
