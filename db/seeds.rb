@@ -10,13 +10,16 @@ project = Project.create(:name => 'Projexion', :code => 'PR', :vision => 'To be 
 
 release = Release.create(:version_number => '0.9.0', :estimate_date => '2010-03-01', :project => project)
 
+sprint = Sprint.create(:start_date => "2009-12-14", :end_date => "2009-12-27", :goal => "Create demonstrable product", :project => project)
+
 feature = Feature.create(:user_story => 'As a team member I want to be able create new feature',
                :business_value => 1000,
                :estimate_size => 'XL',
                :priority => 1,
                :acceptance_test => 'Team member should be able to insert new feature',
                :project => project,
-               :release => release)
+               :release => release,
+               :sprint => sprint)
 
 task_status = TaskStatus.create(:display_name => 'Pooled',
                                 :key => 'pooled',
