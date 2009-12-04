@@ -54,7 +54,7 @@ class TasksController < ApplicationController
   def update_desc
     @task = Task.find(params[:id])
 
-    @task.description = params[:desc]
+    @task.description = params[:value]
     
     respond_with(@task) do |format|
       if @task.save
