@@ -91,9 +91,8 @@
             var original = $('#task_' + task.id + " .desc");
             var clone = original.clone();
             clone = clone.empty().append(task.description);
+            clone.click(click_desc);
             original.replaceWith(clone);
-            
-            $('.desc').click(click_desc);
         }
 
         var click_status = function(){
@@ -134,9 +133,8 @@
             var clone = original.clone();
             clone = clone.empty().append(task_status.display_name);
             clone.css('background-color', task_status.color);
+            clone.click(click_status);
             original.replaceWith(clone);
-
-            $('.status').click(click_status);
         }
 
       });
