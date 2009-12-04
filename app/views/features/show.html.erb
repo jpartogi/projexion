@@ -24,6 +24,7 @@
 
         <%= label_tag (:release) %><br/>
         <%= link_to @feature.release.version_number, project_release_features_path(@project.code, @feature.release.id) %>
+        <%# TODO: Edit release. Only future release. %>
       </p>
       <% else %>
       <p class="info">
@@ -36,6 +37,7 @@
       <p>
         <%= label_tag (:sprint) %><br/>
         <%= link_to @feature.sprint.span_date, project_sprint_features_path(@project.code, @feature.sprint.id) %>
+        <%# TODO: Edit sprint. Only future sprint. %>
       </p>
       <% else %>
       <p class="info">
@@ -56,14 +58,14 @@
     </div>
 
     <script type="text/javascript">
-        
-      <%# TODO: Generalize this and make a jQuery extension for it? %>  
+
       $(document).ready(function(){
 
         $('.desc').inlineEdit({
             'url': "<%= url_for :action => :update_desc, :controller => :tasks %>"
         });
 
+        <%# TODO: Generalize this and make a jQuery extension for it? %>
         var click_status = function(){
             var tid = $(this).parent('tr').attr('value');
             
