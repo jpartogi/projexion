@@ -10,7 +10,7 @@
     <div>
         <% for task_status in @task_statuses %>
          <div style="float:left;width:250px;margin:1pt;">
-            <h2 style="background:<%= task_status.color %>; color:white; padding:1px"><%= task_status.display_name %></h2>
+            <h3 style="background:<%= task_status.color %>; color:white; padding:1px; text-align:center;"><%= task_status.display_name %></h3>
             <% for feature in @features %>
                <% for task in feature.tasks %>
                 <% if task_status == task.task_status %> 

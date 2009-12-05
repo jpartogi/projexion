@@ -3,6 +3,7 @@ a { font-weight: bold; color:#333; }
 a:hover { text-decoration:none; }
 h1 { font: bold 17px Helvetica; letter-spacing:-0.75px; margin-bottom:1em; }
 h2 { letter-spacing:-0.7px; }
+h3 { font: bold 15px Helvetica; }
 
 .add { background: url('/images/icons/add.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 .delete { background: url('/images/icons/delete.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
