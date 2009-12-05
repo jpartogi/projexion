@@ -1,9 +1,29 @@
 <div id="content">
-    <%= @sprint.id %>
+    <script type="text/javascript">
+     $(document).ready(function(){
+         $('.desc').tooltip().click(function(){
+             window.location = $(this).attr('link');
+         });
+     });  
+    </script>
 
-    <% for task_status in @task_statuses %>
-       <%= task_status.display_name %> 
-    <% end %>
+    <div>
+        <% for task_status in @task_statuses %>
+         <div style="float:left;width:250px;margin:1pt;">
+            <h2 style="background:<%= task_status.color %>; color:white; padding:1px"><%= task_status.display_name %></h2>
+            <% for feature in @features %>
+               <% for task in feature.tasks %>
+                <% if task_status == task.task_status %> 
+                    <div class="desc" style="border:1px solid #ccc; margin:1px 0 1px 0; padding:1px" title="<%= feature.user_story %>"
+                        link="<%= project_feature_path(@project.code, feature.id) %>">
+                      <%= task.description %>
+                    </div>
+                <% end %>
+               <% end %>
+            <% end %>
+         </div>
+        <% end %>
+    </div>     
 </div>
 
 <div id="sidebar">
@@ -11,10 +31,12 @@
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
   </ul>
 
-  <h2>Sprint</h2>
-    <% form_for :sprint, :url => { :action => :taskboard } do |f| %>
-    <%= f.collection_select(:id, @sprints, :id, :span_date) %>
+  <div class="block">
+      <h2>Sprint</h2>
+      <% form_for :sprint, :url => { :action => :taskboard } do |f| %>
+        <%= f.collection_select(:id, @sprints, :id, :span_date) %>
 
-    <%= f.submit 'Show' %>        
-  <% end %>    
+        <%= f.submit 'Show' %>
+      <% end %>
+  </div>
 </div>

@@ -47,7 +47,7 @@ class SprintsController < ApplicationController
   def taskboard
     @project = Project.find_by_code(params[:code])
 
-    @sprints = @project.sprints
+    @sprints = @project.sprints # For the sprint dropdown selector
 
     @task_statuses = TaskStatus.find(:all)
 
@@ -57,5 +57,6 @@ class SprintsController < ApplicationController
       @sprint = Sprint.new
     end
 
+    @features = @sprint.features
   end
 end

@@ -24,6 +24,7 @@
 
         <%= label_tag (:release) %><br/>
         <%= link_to @feature.release.version_number, project_release_features_path(@project.code, @feature.release.id) %>
+        <%# TODO: Add image button next to text instead %>
         <%# TODO: Edit release. Only future release. %>
       </p>
       <% else %>
@@ -37,6 +38,7 @@
       <p>
         <%= label_tag (:sprint) %><br/>
         <%= link_to @feature.sprint.span_date, project_sprint_features_path(@project.code, @feature.sprint.id) %>
+        <%# TODO: Add image button next to text instead %>
         <%# TODO: Edit sprint. Only future sprint. %>
       </p>
       <% else %>
@@ -111,26 +113,30 @@
       
     </script>
 
-    <div style="float:left; margin-left:1em; width:45%">  
-    <h2>Tasks for this feature</h2>
-
-    <table id="tasks" width="100%">
-    <% for task in @tasks %>
-        <tr id="task_<%= h task.id %>" class="id" value="<%= h task.id %>">
-            <td width="60%" class="desc"><%= h task.description %></td>
-            <td width="20%" class="status <%= h task.task_status.key %>" style="background-color:<%= h task.task_status.color %>">
-              <input type="hidden" class="tsid" name="task_status_id" value="<%= h task.task_status.id %>" />
-              <span><%= h task.task_status.display_name %></span>
-            </td>
-            <td width="10%" style="text-align:center;"><%# TODO: link image background should not be black %>
-                <% link_to project_feature_task_path(@project.code, @feature.id, task.id),
-                            :confirm => 'Are you sure?', :method => :delete do %>
-                    <img src="/images/icons/delete.png">
-                <% end %>
-            </td>
-        </tr>
-    <% end %>      
-    </table>
+    <div style="float:left; margin-left:1em; width:45%">
+    <% if @tasks.length > 0 %>
+        <h2>Tasks for this feature</h2>
+    
+        <table id="tasks" width="100%">
+        <% for task in @tasks %>
+            <tr id="task_<%= h task.id %>" class="id" value="<%= h task.id %>">
+                <td width="60%" class="desc"><%= h task.description %></td>
+                <td width="20%" class="status <%= h task.task_status.key %>" style="background-color:<%= h task.task_status.color %>">
+                  <input type="hidden" class="tsid" name="task_status_id" value="<%= h task.task_status.id %>" />
+                  <span><%= h task.task_status.display_name %></span>
+                </td>
+                <td width="10%" style="text-align:center;"><%# TODO: link image background should not be black %>
+                    <% link_to project_feature_task_path(@project.code, @feature.id, task.id),
+                                :confirm => 'Are you sure?', :method => :delete do %>
+                        <img src="/images/icons/delete.png">
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+        </table>
+    <% else %>
+        <div>No tasks for this feature.</div>      
+    <% end %>
     </div>
 </div>
 
@@ -141,5 +147,6 @@
     <li><%= link_to 'Delete Feature', project_feature_path(@project.code, @feature.id),
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <li><%= link_to 'Add Task', new_project_feature_task_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
+    <li><%= link_to 'Sprint Taskboard', taskboard_path(@project.code), :class => 'taskboard' %></li>
   </ul>
 </div>
