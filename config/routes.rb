@@ -29,6 +29,7 @@ ActionController::Routing::Routes.draw do |map|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
+  map.settings 'settings', :controller => 'settings'
   map.resources :task_statuses
 
   map.taskboard 'projects/:code/sprints/taskboard', :controller => 'sprints', :action => 'taskboard'
