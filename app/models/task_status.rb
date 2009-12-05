@@ -20,8 +20,10 @@ class TaskStatus < ActiveRecord::Base
     self.position = status.position
     status.position = position
 
-    self.save
-    status.save
+    TaskStatus.transaction do
+      self.save
+      status.save
+    end
 
     return self
   end
