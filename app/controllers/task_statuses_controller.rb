@@ -3,7 +3,7 @@ class TaskStatusesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @task_statuses = TaskStatus.find(:all)
+    @task_statuses = TaskStatus.find(:all, :order => "position")
   end
 
   def show
