@@ -40,4 +40,32 @@ class TaskStatusesController < ApplicationController
 
     respond_with(@task_status)
   end
+
+  def update_position
+    direction = params[:direction]
+    id = params[:id]
+    
+    @task_status = TaskStatus.find(id)
+    
+    #TODO: Refactor this to model
+    position = @task_status.position
+
+    if direction == 'up'
+      status = TaskStatus.find_by_position(position.to_i - 1)
+    else
+      status = TaskStatus.find_by_position(position.to_i + 1)
+    end
+
+    @task_status.position = status.position
+    status.position = position
+
+    status.save
+    @task_status.save
+    
+    respond_with(@task_status) do |format|
+      if @task_status.save
+        format.json { render :json => {:task_status => @task_status} }
+      end
+    end
+  end
 end
