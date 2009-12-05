@@ -68,6 +68,7 @@
         });
 
         <%# TODO: Generalize this and make a jQuery extension for it? %>
+        <%# TODO: Refactor this with partial update instead %>  
         var click_status = function(){
             var tid = $(this).parent('tr').attr('value');
             
@@ -147,6 +148,7 @@
     <li><%= link_to 'Delete Feature', project_feature_path(@project.code, @feature.id),
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <li><%= link_to 'Add Task', new_project_feature_task_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
+    <%# TODO: Taskboard link should autopopulate with the current assigned sprint %>
     <li><%= link_to 'Sprint Taskboard', taskboard_path(@project.code), :class => 'taskboard' %></li>
   </ul>
 </div>
