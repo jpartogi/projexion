@@ -1,52 +1,39 @@
 <div id="content">
     <script type="text/javascript">
       $(document).ready(function(){
-        $('.up').click(function(e){
-            var id = $(this).parent().parent().prev().val();
-            <%# TODO: Create a function for this %>
+        var update_position = function(id, direction){
             $.post('<%= url_for :action => :update_position, :controller => :task_statuses %>',
-                    {"id": id, "direction": 'up' }, null, 'json');
+                    {"id": id, "direction": direction }, callback, 'html');
+        }
 
-        });
-
-        $('.down').click(function(){
+        var click_up = function(){
             var id = $(this).parent().parent().prev().val();
 
-            $.post('<%= url_for :action => :update_position, :controller => :task_statuses %>',
-                    {"id": id, "direction": 'down' }, null, 'json');
-        });  
+            update_position(id, 'up');
+        }
+
+        var click_down = function(){
+            var id = $(this).parent().parent().prev().val();
+
+            update_position(id, 'down');
+        }
+
+        var callback = function(response){
+            $('#projects').replaceWith(response);
+
+            $('.up').bind('click', click_up);
+
+            $('.down').bind('click', click_down);
+        };
+
+        $('.up').bind('click', click_up);
+
+        $('.down').bind('click', click_down);
       });
     </script>
 
-    <table width="100%" id="projects">
-        <tr>
-            <th>Key</th>
-            <th>Display Name</th>
-            <th width="5%">Default</th>
-            <th width="5%"></th>
-        </tr>
-         
-        <% for task_status in @task_statuses %>
-        <input type="hidden" name="id" value="<%= task_status.id %>" />
-        <tr>
-            <td><%= link_to task_status.key, task_status_path(task_status.id) %></td>
-            <td><%= h task_status.display_name %></td>
-            <td style="text-align:center;"><% if task_status.default_status %><img src="/images/icons/accept.png"/><% end %></td>
-            <td style="text-align:center;">
-              <% if task_status !=  @task_statuses.first %>
-              <a href="#" class="up">
-                <img src="/images/icons/arrow_up.png">
-              </a>
-              <% end %>
-              <% if task_status != @task_statuses.last %>
-              <a href="#" class="down">
-                <img src="/images/icons/arrow_down.png">
-              </a>
-              <% end %>    
-            </td>
-        </tr>
-        <% end %>
-    </table>
+    <%= render :partial => "list" %> 
+
 </div>
 
 <div id="sidebar">

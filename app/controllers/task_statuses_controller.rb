@@ -1,6 +1,6 @@
 class TaskStatusesController < ApplicationController
   layout 'main'
-  respond_to :html, :json
+  respond_to :html
 
   def index
     @task_statuses = TaskStatus.find(:all, :order => "position")
@@ -46,11 +46,14 @@ class TaskStatusesController < ApplicationController
     direction = params[:direction]
     
     @task_status = TaskStatus.find(id)
+
+    @task_status.update_position(direction)
+
+    @task_statuses = TaskStatus.find(:all, :order => "position")
     
-    respond_with(@task_status) do |format|
-      if @task_status.update_position(direction)
-        format.json { render :json => {:task_status => @task_status} }
-      end
+    respond_with(@task_statuses) do |format|
+      format.html { render :partial => 'list' }      
     end
   end
+
 end
