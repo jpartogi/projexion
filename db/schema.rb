@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   create_table "task_statuses", :force => true do |t|
     t.string   "display_name",   :limit => 100, :null => false
     t.string   "key",            :limit => 100, :null => false
-    t.integer  "next_status_id"
+    t.integer  "position"
     t.boolean  "default_status"
     t.string   "color",          :limit => 7,   :null => false
     t.datetime "created_at",                    :null => false
