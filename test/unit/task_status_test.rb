@@ -14,5 +14,12 @@ class TaskStatusTest < ActiveSupport::TestCase
       assert task_status.save
       assert_equal task_status.position, 4
     end
+
+    should "update the position" do
+      task_status = TaskStatus.find(9999)
+      
+      assert task_status.update_position('down')
+      assert_equal task_status.position, 2
+    end
   end
 end
