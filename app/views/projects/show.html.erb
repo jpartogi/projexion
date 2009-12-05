@@ -18,8 +18,12 @@
     <% for feature in @features %>
         <tr>
             <td><%= h feature.user_story %></td>
-            <%# TODO: Add image button link instead %>
-            <td><%= link_to 'Detail', project_feature_path(@project.code, feature.id) %></td>
+            <%# TODO: link image background should not be black %>
+            <td>
+              <% link_to project_feature_path(@project.code, feature.id) do %>
+                <img src="/images/icons/application_view_detail.png">
+              <% end %>    
+            </td>
         </tr>
     <% end %>
     </table>    
