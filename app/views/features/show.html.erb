@@ -53,10 +53,10 @@
         <%= h @feature.user_story %>
       </p>
 
-      <p>
-        <%= label_tag (:acceptance_test) %><br/>
-        <%= h @feature.acceptance_test %>
-      </p>
+      <h2>Acceptance Tests</h2>
+      <% for acceptance in @acceptances %>
+        <%= acceptance.description %>
+      <% end %>
     </div>
 
     <script type="text/javascript">
@@ -132,6 +132,7 @@
     <% else %>
         <div>No tasks for this feature.</div>      
     <% end %>
+
     </div>
 </div>
 
