@@ -64,7 +64,8 @@
       $(document).ready(function(){
 
         $('.desc').inlineEdit({
-            'url': "<%= url_for :action => :update_desc, :controller => :tasks %>"
+            'url': "<%= url_for :action => :update_desc, :controller => :tasks %>",
+            'name': 'task-id'
         });
 
         var click_status = function(){

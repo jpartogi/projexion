@@ -27,11 +27,11 @@
     function onKeyPress(e){
         var newValue = jQuery(this).focus().val();
         
-        var id = jQuery(this).focus().closest(".id").attr('value');
-
         var options = jQuery.fn.inlineEdit.prototype.options;
         var name = options.name;
         var url =  options.url;
+        
+        var id = $(this).focus().parent().parent().find("input[name='"+name+"']").val();
 
         if(e.which === 13){
             jQuery.ajax({
