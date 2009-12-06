@@ -50,7 +50,7 @@ class TasksController < ApplicationController
     end
   end
 
-  # Ajax update of task description
+  # Ajax actions
   def update_desc
     @task = Task.find(params[:id])
 

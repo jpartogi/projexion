@@ -53,10 +53,26 @@
         <%= h @feature.user_story %>
       </p>
 
+      <script type="text/javascript">
+        $(document).ready(function(){
+            $('input:checkbox[name=acceptances]').click(function(){
+                var acceptance_id = $(this).val();
+
+                $.post('<%= url_for :action => :update_acceptance, :controller => :acceptance %>',
+                       {"acceptance_id" : acceptance_id}, null, 'json');
+            });   
+        });
+      </script>
+
       <h2>Acceptance Tests</h2>
+      <table>
       <% for acceptance in @acceptances %>
-        <%= acceptance.description %>
+      <tr>
+        <td><%= check_box_tag :acceptances, acceptance.id, acceptance.accepted, :id => 'acceptance_' + acceptance.id.to_s %></td>
+        <td><%= acceptance.description %></td>
+      </tr>
       <% end %>
+      </table>    
     </div>
 
     <script type="text/javascript">
