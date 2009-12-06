@@ -67,33 +67,25 @@
             'url': "<%= url_for :action => :update_desc, :controller => :tasks %>"
         });
 
-        <%# TODO: Generalize this and make a jQuery extension for it? %>
-        <%# TODO: Refactor this with partial update instead %>  
         var click_status = function(){
-            var tid = $(this).parent('tr').attr('value');
-            
+            var task_id = $(this).parent().find(".task-id").val();
+
             var clone = $(this).clone();
             var current = $(this);
-            
-            $.getJSON("<%= url_for :action => :get_statuses, :controller => :tasks %>", function(data){
-                var replacement = "<select>";
-                $.each(data, function(i, value) {
-                    replacement = replacement.concat("<option value="+value.task_status.id +">");
-                    replacement = replacement.concat(value.task_status.display_name + "</option>");
-                });
-                replacement = replacement.concat("</select>");
 
-                clone = clone.empty().css('background-color','white').append(replacement);
-                current.replaceWith(clone);
+            $.post("<%= url_for :action => :get_options, :controller => :task_statuses %>", {task_id: task_id}, function(response){
+                current.replaceWith(response);
 
                 $(".status option").click(function () {
                     var status_id = $(this).val();
 
                     $.post("<%= url_for :action => :update_status, :controller => :tasks %>",
-                        {"status_id": status_id, "id": tid },
+                        {"status_id": status_id, "id": task_id },
                         callback_status, "json");
                 });
-            });
+
+            }, 'html');
+
         };
 
         $('.status').click(click_status);
@@ -120,7 +112,8 @@
     
         <table id="tasks" width="100%">
         <% for task in @tasks %>
-            <tr id="task_<%= h task.id %>" class="id" value="<%= h task.id %>">
+            <tr id="task_<%= h task.id %>">
+                <input type="hidden" class="task-id" name="task-id" value="<%= h task.id %>"/>
                 <td width="60%" class="desc"><%= h task.description %></td>
                 <td width="20%" class="status <%= h task.task_status.key %>" style="background-color:<%= h task.task_status.color %>">
                   <input type="hidden" class="tsid" name="task_status_id" value="<%= h task.task_status.id %>" />

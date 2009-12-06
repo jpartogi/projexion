@@ -79,12 +79,4 @@ class TasksController < ApplicationController
       end
     end
   end
-  
-  def get_statuses
-    @task_statuses = TaskStatus.find(:all)
-
-    respond_with(@task_statuses) do |format|
-      format.json { render :json => @task_statuses }
-    end
-  end
 end
