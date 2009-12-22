@@ -2,7 +2,7 @@
   <p class="success"><span ><%= flash[:notice] %></span></p>
   
   <div id="project">
-      <h1><%= h @project.name %> (Code: <%= h @project.code %>)</h1>
+      <h1><%= h @project.name %>&nbsp;(Code: <%= h @project.code %>)</h1>
 
       <p>
         <%= label_tag(:vision) %><br/>
@@ -11,7 +11,7 @@
       <%# TODO: Add next release, current sprint %>
   </div>
 
-  <% if @features.length > 0 %>
+  <% unless @features.empty? %>
   <div id="features">
     <h2>Product Features</h2>
     <table>
@@ -29,7 +29,6 @@
     </table>    
   </div>
   <% end %>
-
   <%# TODO: Add product releases and sprints list %>
 </div>
 

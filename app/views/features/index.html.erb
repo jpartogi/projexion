@@ -5,16 +5,23 @@
     <table>
     <% for feature in @features %>
         <tr>
-            <td><%= link_to feature.id, project_feature_path(@project.code, feature.id) %></td>
-            <td><%= h feature.user_story %></td>
+          <td><%= h feature.user_story %></td>
+          <td>
+              <% link_to project_feature_path(@project.code, feature.id) do %>
+                <img src="/images/icons/application_view_detail.png">
+              <% end %>
+          </td>
         </tr>
     <% end %>
     </table>
+    <%# TODO: Paginate list %>
     <%# TODO: Show no features text if there are no features yet %>
   </div>
 </div>
 
 <div id="sidebar">
-  <%# TODO: Add project dashboard link %>
+  <ul>
+    <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
+  </ul>  
   <%# TODO: Add back link to release list or sprint list depending on where it came from %>
 </div>

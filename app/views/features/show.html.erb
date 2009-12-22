@@ -21,10 +21,11 @@
 
       <% if @feature.release %>
       <p>
-
         <%= label_tag (:release) %><br/>
-        <%= link_to @feature.release.version_number, project_release_features_path(@project.code, @feature.release.id) %>
-        <%# TODO: Add image button next to text instead %>
+        <%= @feature.release.version_number %>
+        <% link_to project_release_features_path(@project.code, @feature.release.id) do %>
+          <img src="/images/icons/application_view_detail.png">
+        <% end %>
         <%# TODO: Edit release. Only future release. %>
       </p>
       <% else %>
@@ -37,8 +38,10 @@
       <% if @feature.sprint %>
       <p>
         <%= label_tag (:sprint) %><br/>
-        <%= link_to @feature.sprint.span_date, project_sprint_features_path(@project.code, @feature.sprint.id) %>
-        <%# TODO: Add image button next to text instead %>
+        <%= @feature.sprint.span_date %>
+        <% link_to project_sprint_features_path(@project.code, @feature.sprint.id) do %>
+          <img src="/images/icons/application_view_detail.png">
+        <% end %>
         <%# TODO: Edit sprint. Only future sprint. %>
       </p>
       <% else %>
@@ -152,7 +155,7 @@
         <% end %>
         </table>
     <% else %>
-        <div>No tasks for this feature.</div>      
+        <p class="info">No tasks for this feature.</p>      
     <% end %>
 
     </div>
