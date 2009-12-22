@@ -58,11 +58,25 @@ class FeaturesController < ApplicationController
   def edit
     @feature = Feature.find(params[:id])
     @project = Project.find_by_code(params[:project_id])
-    respond_with(@feature, @project)
+
+    @sprints = @project.sprints.reject do |sprint|
+      sprint.end_date < Date.today
+    end
+
+    @releases = @project.releases.reject do |release|
+      release.released == true  
+    end
+    
+    respond_with(@feature, @project, @sprints, @releases)
   end
 
   def update
     @feature = Feature.find(params[:id])
+
+    # Let's get the object
+    params[:feature][:sprint] = Sprint.find(params[:feature][:sprint]) 
+    params[:feature][:release] = Release.find(params[:feature][:release])
+
     respond_with(@feature) do |format|
       if @feature.update_attributes(params[:feature])
         flash[:notice] = 'Feature was successfully updated.'

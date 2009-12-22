@@ -26,12 +26,10 @@
         <% link_to project_release_features_path(@project.code, @feature.release.id) do %>
           <img src="/images/icons/application_view_detail.png">
         <% end %>
-        <%# TODO: Edit release. Only future release. %>
       </p>
       <% else %>
       <p class="info">
-        No release has been assigned to this feature.
-        <%# TODO: Add combo to assign release. Only future release %>
+        No release has been assigned to this feature. Assign it from <%= link_to 'here', edit_project_feature_path(@project.code, @feature.id) %>.
       </p>
       <% end %>
 
@@ -42,12 +40,10 @@
         <% link_to project_sprint_features_path(@project.code, @feature.sprint.id) do %>
           <img src="/images/icons/application_view_detail.png">
         <% end %>
-        <%# TODO: Edit sprint. Only future sprint. %>
       </p>
       <% else %>
       <p class="info">
-        This feature is not in a sprint.
-        <%# TODO: Add to next sprint button. Make sure next sprint has been created. %>
+        No sprint has been assigned to this feature. Assign it from <%= link_to 'here', edit_project_feature_path(@project.code, @feature.id) %>.
       </p>
       <% end %>
 
