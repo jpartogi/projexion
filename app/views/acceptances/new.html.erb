@@ -1,0 +1,21 @@
+<div id="content">
+    <div id="acceptance">
+        <h1>Add New Acceptance Test</h1>
+
+        <% form_for @acceptance, :url => project_feature_acceptances_path(@project.code, @feature.id) do |f| %>
+          <%= f.error_messages %>
+
+          <p>
+            <%= f.label :description %><br />
+            <%= f.text_field :description %><br />
+          </p>
+
+          <div>
+            <%= f.submit 'Save', :class => 'save_btn' %>
+          </div>
+
+        <% end %>
+    </div>
+</div>
+
+<div style="clear:both"></div>

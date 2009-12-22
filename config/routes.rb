@@ -31,13 +31,13 @@ ActionController::Routing::Routes.draw do |map|
   #   end
   map.settings 'settings', :controller => 'settings'
   map.resources :task_statuses
-  map.resources :acceptances
 
   map.taskboard 'projects/:code/sprints/taskboard', :controller => 'sprints', :action => 'taskboard'
 
   map.resources :projects, :except => :show  do |projects|
     projects.resources :features do |features|
       features.resources :tasks
+      features.resources :acceptances
     end
 
     projects.resources :releases do |releases|

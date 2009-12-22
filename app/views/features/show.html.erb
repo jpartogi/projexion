@@ -58,7 +58,7 @@
             $('input:checkbox[name=acceptances]').click(function(){
                 var acceptance_id = $(this).val();
 
-                $.post('<%= url_for :action => :update_acceptance, :controller => :acceptance %>',
+                $.post('<%= url_for :action => :update_acceptance, :controller => :acceptances %>',
                        {"acceptance_id" : acceptance_id}, null, 'json');
             });   
         });
@@ -70,6 +70,12 @@
       <tr>
         <td><%= check_box_tag :acceptances, acceptance.id, acceptance.accepted, :id => 'acceptance_' + acceptance.id.to_s %></td>
         <td><%= acceptance.description %></td>
+        <td width="10%" style="text-align:center;"><%# TODO: link image background should not be black %>
+            <% link_to project_feature_acceptance_path(@project.code, @feature.id, acceptance.id),
+                        :confirm => 'Are you sure?', :method => :delete do %>
+                <img src="/images/icons/delete.png">
+            <% end %>
+        </td>
       </tr>
       <% end %>
       </table>    
@@ -124,7 +130,7 @@
     </script>
 
     <div style="float:left; margin-left:1em; width:45%">
-    <% if @tasks.length > 0 %>
+    <% unless @tasks.empty? %>
         <h2>Tasks for this feature</h2>
     
         <table id="tasks" width="100%">
@@ -159,6 +165,7 @@
     <li><%= link_to 'Delete Feature', project_feature_path(@project.code, @feature.id),
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <li><%= link_to 'Add Task', new_project_feature_task_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
+    <li><%= link_to 'Add Acceptance Test', new_project_feature_acceptance_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
     <%# TODO: Taskboard link should autopopulate with the current assigned sprint %>
     <li><%= link_to 'Sprint Taskboard', taskboard_path(@project.code), :class => 'taskboard' %></li>
   </ul>

@@ -4,7 +4,7 @@ class Acceptance < ActiveRecord::Base
   # Class method
   class << self
     def to_a(acceptances)
-      acceptances.strip.split("-").reject{ |x| x == '' }
+      acceptances.strip.split("-").reject{ |x| x.empty? }
     end
   end
 end
