@@ -2,6 +2,11 @@
     <h1>Add New Task Status</h1>
     <%= flash[:notice] %>
 
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#task_status_display_name').slugify({ target: 'task_status_key' });          
+      });
+    </script>
     <% form_for @task_status do |f| %>
         <%= f.error_messages %>
 
