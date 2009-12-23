@@ -35,7 +35,11 @@
     <%= f.submit 'Save', :class=> 'save_btn' %>
   <% end %>
   <%# TODO: if edit go back to feature detail %>
-  <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+  <% unless @feature.id == nil %>
+    <%= button_to 'Cancel', project_feature_path(@project.code, @feature.id), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+  <% else %>     
+    <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+  <% end %>
 </div>
 
 <div id="sidebar">
