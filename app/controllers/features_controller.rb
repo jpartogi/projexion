@@ -10,12 +10,10 @@ class FeaturesController < ApplicationController
     
     respond_with(@feature) do |format|
       if @feature.save_all
-        flash[:notice] = 'Feature was successfully added.'
-        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id) }
-        format.xml  { render :xml => @feature, :status => :created, :location => @feature }
+        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id),
+                                  :notice => 'Feature was successfully added.' }
       else
         format.html { render :action => "show" }
-        format.xml  { render :xml => @feature.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -74,17 +72,24 @@ class FeaturesController < ApplicationController
     @feature = Feature.find(params[:id])
 
     # Let's get the object
-    params[:feature][:sprint] = Sprint.find(params[:feature][:sprint]) 
-    params[:feature][:release] = Release.find(params[:feature][:release])
+    unless params[:feature][:sprint].empty?
+      params[:feature][:sprint] = Sprint.find(params[:feature][:sprint])
+    else
+      params[:feature][:sprint] = nil
+    end
+
+    unless params[:feature][:release].empty?
+      params[:feature][:release] = Release.find(params[:feature][:release])
+    else
+      params[:feature][:release] = nil
+    end
 
     respond_with(@feature) do |format|
       if @feature.update_attributes(params[:feature])
-        flash[:notice] = 'Feature was successfully updated.'
-        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id) }
-        format.xml  { head :ok }
+        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id),
+                                  :notice => 'Feature was successfully updated.' }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @feature.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -97,7 +102,6 @@ class FeaturesController < ApplicationController
     respond_to do |format|
       flash[:notice] = 'Feature was successfully deleted.'
       format.html { redirect_to project_path(:code => params[:project_id]) }
-      format.xml  { head :ok }
     end
   end
 
