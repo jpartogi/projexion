@@ -6,12 +6,12 @@ class TasksController < ApplicationController
 
     @task.feature = @feature
     @project = @feature.project
-
-    flash[:notice] = 'Task was successfully added.' if @task.save
     
     respond_with(@task) do |format|
-      format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]) }
-      format.json { head :ok }
+      if @task.save
+        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
+                                  :notice => 'Task was successfully added.' }
+      end
     end
   end
 
@@ -44,9 +44,8 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      flash[:notice] = 'Task was successfully deleted.'
-      format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]) }
-      format.json  { head :ok }
+      format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
+                                :notice => 'Task was successfully deleted.' }
     end
   end
 

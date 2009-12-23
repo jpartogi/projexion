@@ -18,10 +18,11 @@ class AcceptancesController < ApplicationController
     @acceptance.feature = @feature
     @project = @feature.project
 
-    flash[:notice] = 'Acceptance test was successfully added.' if @acceptance.save
-
     respond_with(@acceptance) do |format|
-      format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]) }
+      if @acceptance.save
+        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
+                                  :notice => 'Acceptance test was successfully added.' }
+      end
     end
   end
 
@@ -31,8 +32,8 @@ class AcceptancesController < ApplicationController
     @acceptance.destroy
 
     respond_to do |format|
-      flash[:notice] = 'Acceptance test was successfully deleted.'
-      format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]) }
+      format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
+                                :notice => 'Acceptance test was successfully deleted.' }
     end
   end
 
