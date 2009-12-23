@@ -1,21 +1,32 @@
 <div id="content">
   <div id="features">
-    <%# TODO: Add sprint or release information depending on where it came from %>
-    <h1>Product Features</h1>
-    <table>
-    <% for feature in @features %>
-        <tr>
-          <td><%= h feature.user_story %></td>
-          <td>
-              <% link_to project_feature_path(@project.code, feature.id) do %>
-                <img src="/images/icons/application_view_detail.png">
-              <% end %>
-          </td>
-        </tr>
-    <% end %>
-    </table>
+    <h1>
+      Product Features in
+      <% if @release %>
+        Release <%= @release.version_number %>
+      <% elsif @sprint %>
+        Sprint <%= @sprint.span_date %>  
+      <% end %>
+    </h1>
+    <% unless @features.empty? %>
+        <table>
+        <% for feature in @features %>
+            <tr>
+              <td><%= h feature.user_story %></td>
+              <td>
+                  <% link_to project_feature_path(@project.code, feature.id) do %>
+                    <img src="/images/icons/application_view_detail.png">
+                  <% end %>
+              </td>
+            </tr>
+        <% end %>
+        </table>
+     <% else %>
+        <p class="info">
+        There are no features yet.
+        </p>
+     <% end %>   
     <%# TODO: Paginate list %>
-    <%# TODO: Show no features text if there are no features yet %>
   </div>
 </div>
 
