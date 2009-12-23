@@ -34,6 +34,9 @@ class SprintsController < ApplicationController
   end
 
   def show
+    @sprint = Sprint.find(params[:id])
+
+    @project = @sprint.project
   end
 
   def index

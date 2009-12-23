@@ -12,7 +12,7 @@
   </div>
 
   <% unless @features.empty? %>
-  <div id="features">
+  <div id="features" style="float:left">
     <h2>Product Features</h2>
     <table>
     <% for feature in @features %>
@@ -29,7 +29,47 @@
     </table>    
   </div>
   <% end %>
-  <%# TODO: Add product releases and sprints list %>
+
+  <% unless @releases.empty? %>
+  <div style="float:left; margin-left:1em;">
+    <h2>Releases</h2>
+
+    <table>
+    <% for release in @releases %>
+        <tr>
+          <td><%= release.version_number %></td>
+          <td>
+            <% link_to project_release_features_path(@project.code, release.id) do %>
+                <img src="/images/icons/application_view_detail.png">
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </table>
+  </div>
+  <% end %>
+
+  <% unless @sprints.empty? %>
+  <div style="float:left; margin-left:1em;">
+    <h2>Sprints</h2>
+
+    <table>
+    <% for sprint in @sprints %>
+        <tr>
+          <td><%= sprint.span_date %></td>
+          <td>
+            <% link_to project_sprint_features_path(@project.code, sprint.id) do %>
+                <img src="/images/icons/application_view_detail.png">
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </table>
+  </div>
+  <% end %>
+
+  <div style="clear:both"></div>
+
 </div>
 
 <div id="sidebar">

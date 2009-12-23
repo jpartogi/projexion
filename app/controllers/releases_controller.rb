@@ -41,6 +41,9 @@ class ReleasesController < ApplicationController
   end
 
   def show
+    @release = Release.find(params[:id])
+
+    @project = @release.project
   end
 
   def index

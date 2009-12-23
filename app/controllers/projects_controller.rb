@@ -32,7 +32,11 @@ class ProjectsController < ApplicationController
 
     # TODO: Only show not accepted features
     @features = @project.features
-    
+
+    @releases = @project.releases
+
+    @sprints = @project.sprints
+
     respond_with(@project, @features)
   end
 
