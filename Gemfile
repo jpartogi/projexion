@@ -34,6 +34,6 @@ gem "rack-test"
 gem "cucumber"
 gem "mysql"
  
-gem "rack", "1.0.1", :git => "git://github.com/rails/rack.git"
+gem "rack", "1.1.0", :git => "git://github.com/rails/rack.git"
 #gem "rack-mount", "0.0.1", :git => "git://github.com/rails/rack-mount.git"
 gem "arel", "0.2.pre", :git => "git://github.com/rails/arel.git", :path => "arel"

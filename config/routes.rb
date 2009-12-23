@@ -1,4 +1,4 @@
-ActionController::Routing::Routes.draw do |map|
+Projexion::Application.routes.draw do |map|
   map.resource :main, :singular => 'main'
   map.resources :users
 
