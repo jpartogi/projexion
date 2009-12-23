@@ -6,9 +6,10 @@ class FeaturesController < ApplicationController
     @feature = Feature.new(params[:feature])
     @project = Project.find_by_code(params[:project_id])
     @feature.project = @project
+    @feature.acceptances = Acceptance.to_a(params[:acceptance_test])
     
     respond_with(@feature) do |format|
-      if @feature.save
+      if @feature.save_all
         flash[:notice] = 'Feature was successfully added.'
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id) }
         format.xml  { render :xml => @feature, :status => :created, :location => @feature }
@@ -32,9 +33,10 @@ class FeaturesController < ApplicationController
     @tasks = @feature.tasks
 
     @project = @feature.project
+    @acceptances = @feature.acceptances
     @task_statuses = TaskStatus.find(:all)
 
-    respond_with(@project, @feature, @tasks, @task_statuses)
+    respond_with(@project, @feature, @tasks, @task_statuses, @acceptances)
   end
 
   def index
@@ -56,11 +58,25 @@ class FeaturesController < ApplicationController
   def edit
     @feature = Feature.find(params[:id])
     @project = Project.find_by_code(params[:project_id])
-    respond_with(@feature, @project)
+
+    @sprints = @project.sprints.reject do |sprint|
+      sprint.end_date < Date.today
+    end
+
+    @releases = @project.releases.reject do |release|
+      release.released == true  
+    end
+    
+    respond_with(@feature, @project, @sprints, @releases)
   end
 
   def update
     @feature = Feature.find(params[:id])
+
+    # Let's get the object
+    params[:feature][:sprint] = Sprint.find(params[:feature][:sprint]) 
+    params[:feature][:release] = Release.find(params[:feature][:release])
+
     respond_with(@feature) do |format|
       if @feature.update_attributes(params[:feature])
         flash[:notice] = 'Feature was successfully updated.'

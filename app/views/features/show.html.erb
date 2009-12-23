@@ -21,30 +21,29 @@
 
       <% if @feature.release %>
       <p>
-
         <%= label_tag (:release) %><br/>
-        <%= link_to @feature.release.version_number, project_release_features_path(@project.code, @feature.release.id) %>
-        <%# TODO: Add image button next to text instead %>
-        <%# TODO: Edit release. Only future release. %>
+        <%= @feature.release.version_number %>
+        <% link_to project_release_features_path(@project.code, @feature.release.id) do %>
+          <img src="/images/icons/application_view_detail.png">
+        <% end %>
       </p>
       <% else %>
       <p class="info">
-        No release has been assigned to this feature.
-        <%# TODO: Add combo to assign release. Only future release %>
+        No release has been assigned to this feature. Assign it from <%= link_to 'here', edit_project_feature_path(@project.code, @feature.id) %>.
       </p>
       <% end %>
 
       <% if @feature.sprint %>
       <p>
         <%= label_tag (:sprint) %><br/>
-        <%= link_to @feature.sprint.span_date, project_sprint_features_path(@project.code, @feature.sprint.id) %>
-        <%# TODO: Add image button next to text instead %>
-        <%# TODO: Edit sprint. Only future sprint. %>
+        <%= @feature.sprint.span_date %>
+        <% link_to project_sprint_features_path(@project.code, @feature.sprint.id) do %>
+          <img src="/images/icons/application_view_detail.png">
+        <% end %>
       </p>
       <% else %>
       <p class="info">
-        This feature is not in a sprint.
-        <%# TODO: Add to next sprint button. Make sure next sprint has been created. %>
+        No sprint has been assigned to this feature. Assign it from <%= link_to 'here', edit_project_feature_path(@project.code, @feature.id) %>.
       </p>
       <% end %>
 
@@ -53,10 +52,32 @@
         <%= h @feature.user_story %>
       </p>
 
-      <p>
-        <%= label_tag (:acceptance_test) %><br/>
-        <%= h @feature.acceptance_test %>
-      </p>
+      <script type="text/javascript">
+        $(document).ready(function(){
+            $('input:checkbox[name=acceptances]').click(function(){
+                var acceptance_id = $(this).val();
+
+                $.post('<%= url_for :action => :update_acceptance, :controller => :acceptances %>',
+                       {"acceptance_id" : acceptance_id}, null, 'json');
+            });   
+        });
+      </script>
+
+      <h2>Acceptance Tests</h2>
+      <table>
+      <% for acceptance in @acceptances %>
+      <tr>
+        <td><%= check_box_tag :acceptances, acceptance.id, acceptance.accepted, :id => 'acceptance_' + acceptance.id.to_s %></td>
+        <td><%= acceptance.description %></td>
+        <td width="10%" style="text-align:center;"><%# TODO: link image background should not be black %>
+            <% link_to project_feature_acceptance_path(@project.code, @feature.id, acceptance.id),
+                        :confirm => 'Are you sure?', :method => :delete do %>
+                <img src="/images/icons/delete.png">
+            <% end %>
+        </td>
+      </tr>
+      <% end %>
+      </table>    
     </div>
 
     <script type="text/javascript">
@@ -64,7 +85,8 @@
       $(document).ready(function(){
 
         $('.desc').inlineEdit({
-            'url': "<%= url_for :action => :update_desc, :controller => :tasks %>"
+            'url': "<%= url_for :action => :update_desc, :controller => :tasks %>",
+            'name': 'task-id'
         });
 
         var click_status = function(){
@@ -107,7 +129,7 @@
     </script>
 
     <div style="float:left; margin-left:1em; width:45%">
-    <% if @tasks.length > 0 %>
+    <% unless @tasks.empty? %>
         <h2>Tasks for this feature</h2>
     
         <table id="tasks" width="100%">
@@ -129,8 +151,9 @@
         <% end %>
         </table>
     <% else %>
-        <div>No tasks for this feature.</div>      
+        <p class="info">No tasks for this feature.</p>      
     <% end %>
+
     </div>
 </div>
 
@@ -141,6 +164,7 @@
     <li><%= link_to 'Delete Feature', project_feature_path(@project.code, @feature.id),
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <li><%= link_to 'Add Task', new_project_feature_task_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
+    <li><%= link_to 'Add Acceptance Test', new_project_feature_acceptance_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
     <%# TODO: Taskboard link should autopopulate with the current assigned sprint %>
     <li><%= link_to 'Sprint Taskboard', taskboard_path(@project.code), :class => 'taskboard' %></li>
   </ul>

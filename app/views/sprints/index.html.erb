@@ -4,6 +4,7 @@
   <div>
     <h1>Sprints in <%= @project.name %></h1>
     <%# TODO: Add cancel sprint link and cancelled date for cancelled sprint %>
+    <%# TODO: Add retrospective link %>
     <table id="sprints">
     <% for sprint in @sprints %>
       <tr id="<%= h sprint.id %>">

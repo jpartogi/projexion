@@ -29,7 +29,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find_by_code(params[:code])
-    
+
+    # TODO: Only show not accepted features
     @features = @project.features
     
     respond_with(@project, @features)

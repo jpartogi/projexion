@@ -11,18 +11,25 @@
 
 ActiveRecord::Schema.define(:version => 20091013000428) do
 
+  create_table "acceptances", :force => true do |t|
+    t.string   "description",                    :null => false
+    t.boolean  "accepted",    :default => false, :null => false
+    t.integer  "feature_id",                     :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
   create_table "features", :force => true do |t|
-    t.text     "user_story",                                                        :null => false
-    t.decimal  "business_value",  :precision => 10, :scale => 0
+    t.text     "user_story",                                                       :null => false
+    t.decimal  "business_value", :precision => 10, :scale => 0
     t.string   "estimate_size"
     t.integer  "priority"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sprint_id"
     t.integer  "release_id"
-    t.integer  "project_id",                                                        :null => false
-    t.boolean  "accepted",                                       :default => false, :null => false
-    t.text     "acceptance_test",                                                   :null => false
+    t.integer  "project_id",                                                       :null => false
+    t.boolean  "accepted",                                      :default => false, :null => false
   end
 
   create_table "project_members", :force => true do |t|

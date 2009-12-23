@@ -12,7 +12,7 @@
 
         <p>
           <%= f.label :estimate_date, 'Estimate release date' %><br />
-          <%= f.text_field :estimate_date %>
+          <%= f.date_select :estimate_date, :order => [:day, :month, :year] %>
         </p>
 
         <p>

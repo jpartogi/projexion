@@ -37,6 +37,7 @@ Projexion::Application.routes.draw do |map|
   map.resources :projects, :except => :show  do |projects|
     projects.resources :features do |features|
       features.resources :tasks
+      features.resources :acceptances
     end
 
     projects.resources :releases do |releases|

@@ -1,7 +1,6 @@
 one:
   id: 9999
   user_story: As a team member I want to add product feature
-  acceptance_test: Feature should be inserted into the database
   business_value: 9.99
   estimate_size: XL
   priority: 1
