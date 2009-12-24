@@ -82,7 +82,7 @@ h3 { font: bold 15px Helvetica; }
 
 .success { background: #e2f9e3 url('/images/icons/accept.png') 6px 50% no-repeat; border-color: #9c9; color: #080; padding: 5px; display:none}
 .success span { margin-left: 10px; padding-left: 10px; }
-.info { background: #dedfff url('/images/icons/information.png') 6px 50% no-repeat; border: 1px solid #9bb8d9; color: #406299; padding: 5px; text-indent: 20px; }
+.info { background: url('/images/icons/information.png') 6px 50% no-repeat; color: #406299; padding: 5px; text-indent: 20px; }
 .small { font: 11px verdana; }
 .number_input { text-align:right; }
 .notice { background: #e2f9e3; color: #080; font: bolder 11px verdana; width: 450px; margin: 0 auto 0 auto; /* border: 1px solid #9c9; */}
