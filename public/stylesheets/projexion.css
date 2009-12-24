@@ -59,6 +59,8 @@ h3 { font: bold 15px Helvetica; }
 #feature .card .title { padding:3px; border-bottom: 1px solid #9bb8d9; }
 #feature .card h2 { font-size:3em }
 
+#info-box { border: 1px solid #9bb8d9; color: #406299; padding: 5px; background-color: #dedfff; }
+
 #sidebar { float:right; width: 20%; min-height: 600px; height:100%; background-color:#E0EAF4; }
 #sidebar a { text-decoration:none; display:block; padding: 0.5em 0.5em 0.5em 1.5em; }
 #sidebar a:hover { background:white; }

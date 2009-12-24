@@ -1,12 +1,7 @@
 <div id="content">
-  <div id="features">
+  <div id="features" style="float:left">
     <h1>
-      Product Features for <%= @project.name %> in
-      <% if @release %>
-        Release <%= @release.version_number %>
-      <% elsif @sprint %>
-        Sprint <%= @sprint.span_date %>  
-      <% end %>
+      Product Features for <%= @project.name %> 
     </h1>
     <% unless @features.empty? %>
         <table>
@@ -28,6 +23,18 @@
      <% end %>   
     <%# TODO: Paginate list %>
   </div>
+
+  <div id="info-box" style="float:right">
+    <% if @release %>
+        <strong>Release:</strong> <%= @release.version_number %><br/>
+        <strong>Estimate release date:</strong> <%= @release.estimate_date %>
+    <% elsif @sprint %>
+        <strong>Sprint:</strong> <%= @sprint.span_date %><br/>
+        <strong>Goal:</strong> <%= @sprint.goal %>
+      <% end %>    
+  </div>
+
+  <div style="clear:both"></div>
 </div>
 
 <div id="sidebar">
@@ -35,4 +42,5 @@
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
   </ul>  
   <%# TODO: Add back link to release list or sprint list depending on where it came from %>
+  <%# TODO:
 </div>
