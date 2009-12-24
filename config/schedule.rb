@@ -19,8 +19,8 @@
 
 set :environment, Rails.env
 
-every 2.minutes do
-  command "/usr/bin/python"
+every 1.day do
+  rake "projexion:tasks:daily"
 end
 
 

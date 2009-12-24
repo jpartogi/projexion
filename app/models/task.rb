@@ -11,7 +11,7 @@ class Task < ActiveRecord::Base
     self.task_status = TaskStatus.find(:first, :conditions => {:default_status => true})
   end
 
-  def burndown
+  def remaining
     sql = 'select count(t.id) as tasks, date(t.updated_at) updated_at
         from tasks t inner join task_statuses ts on t.task_status_id = ts.id
         where t.task_status_id <> (select max(ts.position) from task_statuses ts)
