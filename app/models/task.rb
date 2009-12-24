@@ -5,10 +5,17 @@ class Task < ActiveRecord::Base
   validates_presence_of :description
   
   before_create :set_default_status
-  #TODO after_create and after_update update task_history accordingly
+  after_update :update_task_history  
 
   def set_default_status
     self.task_status = TaskStatus.find(:first, :conditions => {:default_status => true})
+  end
+
+  def update_task_history
+    history = TaskHistory.new
+    history.action = 'updated'
+    history.task = self
+    history.save
   end
 
   def remaining
