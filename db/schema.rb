@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.boolean  "accepted",                                      :default => false, :null => false
   end
 
+  create_table "histories", :force => true do |t|
+    t.string   "action",                    :null => false
+    t.string   "model",      :limit => 100, :null => false
+    t.integer  "model_id",                  :null => false
+    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                :null => false
+  end
+
   create_table "project_members", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
@@ -72,13 +80,6 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.integer  "total_tasks", :null => false
     t.datetime "updated_at",  :null => false
     t.datetime "created_at",  :null => false
-  end
-
-  create_table "task_histories", :force => true do |t|
-    t.string   "action",     :null => false
-    t.integer  "task_id",    :null => false
-    t.datetime "updated_at", :null => false
-    t.datetime "created_at", :null => false
   end
 
   create_table "task_statuses", :force => true do |t|
