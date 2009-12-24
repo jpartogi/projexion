@@ -11,11 +11,19 @@ class TaskStatusesController < ApplicationController
   end
 
   def edit
-    
+    @task_status = TaskStatus.find(params[:id])
   end
 
   def update
+    @task_status = TaskStatus.find(params[:id])
 
+    respond_with(@task_status) do |format|
+      if @task_status.update_attributes(params[:task_status])
+        format.html { redirect_to task_status_path(@task_status), :notice => 'Task status was successfully updated.' }
+      else
+        format.html { render :action => "edit" }
+      end
+    end
   end
 
   def destroy
@@ -24,8 +32,7 @@ class TaskStatusesController < ApplicationController
     @task_status.destroy
 
     respond_to do |format|
-      flash[:notice] = 'Project was successfully deleted.'
-      format.html { redirect_to task_statuses_path }
+      format.html { redirect_to task_statuses_path, :notice => 'Task status was successfully deleted.' }
     end
   end
 
