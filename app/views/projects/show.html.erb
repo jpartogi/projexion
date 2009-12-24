@@ -1,9 +1,9 @@
 <div id="content">
   <p class="success"><span ><%= flash[:notice] %></span></p>
-  
-  <div id="project">
-      <h1><%= h @project.name %>&nbsp;(Code: <%= h @project.code %>)</h1>
 
+  <h1><%= h @project.name %>&nbsp;(Code: <%= h @project.code %>)</h1>
+
+  <div id="project" style="float:left; margin-right:2em;">
       <p>
         <%= label_tag(:vision) %><br/>
         <%= h @project.vision %>
@@ -11,25 +11,7 @@
       <%# TODO: Add next release, current sprint %>
   </div>
 
-  <% unless @features.empty? %>
-  <div id="features" style="float:left; margin-right:2em;">
-    <h2>Product Features</h2>
-    <table>
-    <% for feature in @features %>
-        <tr>
-            <td><%= h feature.user_story %></td>
-            <%# TODO: link image background should not be black %>
-            <td>
-              <% link_to project_feature_path(@project.code, feature.id) do %>
-                <img src="/images/icons/application_view_detail.png">
-              <% end %>    
-            </td>
-        </tr>
-    <% end %>
-    </table>    
-  </div>
-  <% end %>
-
+  <div style="float:right;">
   <% unless @releases.empty? %>
   <div style="float:left; margin-right:2em;">
     <h2>Releases</h2>
@@ -67,9 +49,40 @@
     </table>
   </div>
   <% end %>
+  </div>
 
   <div style="clear:both"></div>
 
+  <% unless @features.empty? %>
+  <div id="features">
+    <h2>Product Features</h2>
+    <table>
+    <tr>
+      <th>User Story</th>
+      <th>Est. size</th>
+      <th>B. value</th>
+      <th>Priority</th>
+      <th>&nbsp;</th>
+    </tr>
+
+    <% for feature in @features %>
+    <tr>
+        <td><%= h feature.user_story %></td>
+        <td style="text-align:center;"><%= h feature.estimate_size %></td>
+        <td style="text-align:center;"><%= h feature.business_value %></td>
+        <td style="text-align:center;"><%= h feature.priority %></td>
+        <td></td>
+        <%# TODO: link image background should not be black %>
+        <td>
+          <% link_to project_feature_path(@project.code, feature.id) do %>
+            <img src="/images/icons/application_view_detail.png">
+          <% end %>
+        </td>
+    </tr>
+    <% end %>
+    </table>
+  </div>
+  <% end %>
 </div>
 
 <div id="sidebar">
