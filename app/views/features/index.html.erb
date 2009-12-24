@@ -25,11 +25,12 @@
   </div>
 
   <div id="info-box" style="float:right">
+    <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
     <% if @release %>
-        <strong>Release:</strong> <%= @release.version_number %><br/>
+        <strong>Release:</strong>&nbsp;<%= @release.version_number %><br/>
         <strong>Estimate release date:</strong> <%= @release.estimate_date %>
     <% elsif @sprint %>
-        <strong>Sprint:</strong> <%= @sprint.span_date %><br/>
+        <strong>Sprint:</strong>&nbsp;<%= @sprint.span_date %><br/>
         <strong>Goal:</strong> <%= @sprint.goal %>
       <% end %>    
   </div>
@@ -42,5 +43,5 @@
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
   </ul>  
   <%# TODO: Add back link to release list or sprint list depending on where it came from %>
-  <%# TODO:
+  <%# TODO: Add meeting link %>
 </div>
