@@ -10,10 +10,9 @@ clear_sources
 source "http://gemcutter.org"
 #source "http://gems.github.com"
 
-#gem "rails", "3.0.pre"
-
 ## Bundle edge rails:
 gem "rails", "3.0.pre", :git => "git://github.com/rails/rails.git"
+#gem "rails", "3.0.pre"
 
 ## Bundle the gems you use:
 # gem "bj"
@@ -26,13 +25,22 @@ gem "rails", "3.0.pre", :git => "git://github.com/rails/rails.git"
 # only :test do
 #   gem "webrat"
 # end 
- 
-gem "webrat", :only => :test
-gem "shoulda", :only => :test
-gem "sqlite3-ruby", :only => :test
-gem "rack-test"
-gem "cucumber"
+
+# For testing
+only :test do
+  gem "webrat", :only => :test
+  gem "shoulda", :only => :test
+  gem "cucumber"
+end
+
+# Database drivers
 gem "mysql"
- 
+gem "sqlite3-ruby", :only => :test
+
+
+gem "rack-test"
 gem "rack", "1.1.0", :git => "git://github.com/rails/rack.git"
 gem "arel", "0.2.pre", :git => "git://github.com/rails/arel.git", :path => "arel"
+
+# For cron jobs
+gem "whenever", "0.4.1", :git => "git://github.com/javan/whenever.git"
