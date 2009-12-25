@@ -69,7 +69,7 @@
       <tr>
         <td><%= check_box_tag :acceptances, acceptance.id, acceptance.accepted, :id => 'acceptance_' + acceptance.id.to_s %></td>
         <td><%= acceptance.description %></td>
-        <td width="10%" style="text-align:center;"><%# TODO: link image background should not be black %>
+        <td width="10%" style="text-align:center;">
             <% link_to project_feature_acceptance_path(@project.code, @feature.id, acceptance.id),
                         :confirm => 'Are you sure?', :method => :delete do %>
                 <img src="/images/icons/delete.png">
@@ -141,7 +141,7 @@
                   <input type="hidden" class="tsid" name="task_status_id" value="<%= h task.task_status.id %>" />
                   <span><%= h task.task_status.display_name %></span>
                 </td>
-                <td width="10%" style="text-align:center;"><%# TODO: link image background should not be black %>
+                <td width="10%" style="text-align:center;">
                     <% link_to project_feature_task_path(@project.code, @feature.id, task.id),
                                 :confirm => 'Are you sure?', :method => :delete do %>
                         <img src="/images/icons/delete.png">

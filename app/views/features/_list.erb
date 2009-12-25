@@ -16,7 +16,6 @@
         <td style="text-align:center;"><%= h feature.story_points %></td>
         <td style="text-align:center;"><%= h feature.business_value %></td>
         <td style="text-align:center;"><%= h feature.priority %></td>
-        <%# TODO: link image background should not be black %>
         <td>
           <% link_to project_feature_path(@project.code, feature.id) do %>
             <img src="/images/icons/application_view_detail.png">
