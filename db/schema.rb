@@ -57,23 +57,24 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "releases", :force => true do |t|
-    t.string   "version_number", :limit => 20,                    :null => false
+    t.string   "version_number", :limit => 20, :null => false
     t.date     "estimate_date"
-    t.integer  "project_id",                                      :null => false
-    t.boolean  "released",                     :default => false, :null => false
+    t.integer  "project_id",                   :null => false
+    t.datetime "cancelled_at"
+    t.datetime "released_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "sprints", :force => true do |t|
-    t.date     "start_date",     :null => false
-    t.date     "end_date",       :null => false
+    t.date     "start_date",    :null => false
+    t.date     "end_date",      :null => false
     t.text     "retrospective"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "project_id",     :null => false
+    t.integer  "project_id",    :null => false
     t.string   "goal"
-    t.datetime "cancelled_date"
+    t.datetime "cancelled_at"
   end
 
   create_table "task_dailies", :force => true do |t|
