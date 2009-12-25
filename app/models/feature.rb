@@ -7,14 +7,14 @@ class Feature < ActiveRecord::Base
   
   validates_presence_of :user_story
 
-  after_update :update_history
+  after_update :add_event
   
   def acceptances=(acceptances)
     @acceptances = acceptances 
   end
 
-  def update_history
-    History.update_history 'modified', self.class.to_s, self.id
+  def add_event
+    Event.add 'modified', self.class.to_s, self.id
   end
   
   def save_all

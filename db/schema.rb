@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",                     :null => false
   end
 
+  create_table "events", :force => true do |t|
+    t.string   "action",                    :null => false
+    t.string   "model",      :limit => 100, :null => false
+    t.integer  "model_id",                  :null => false
+    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                :null => false
+  end
+
   create_table "features", :force => true do |t|
     t.text     "user_story",                                                       :null => false
     t.decimal  "business_value", :precision => 10, :scale => 0
@@ -30,14 +38,6 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.integer  "release_id"
     t.integer  "project_id",                                                       :null => false
     t.boolean  "accepted",                                      :default => false, :null => false
-  end
-
-  create_table "histories", :force => true do |t|
-    t.string   "action",                    :null => false
-    t.string   "model",      :limit => 100, :null => false
-    t.integer  "model_id",                  :null => false
-    t.datetime "updated_at",                :null => false
-    t.datetime "created_at",                :null => false
   end
 
   create_table "project_members", :force => true do |t|
