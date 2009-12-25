@@ -65,5 +65,14 @@ class SprintsController < ApplicationController
     @project = Project.find_by_code(params[:code])
 
     @task_dailies = TaskDaily.all(:conditions => { :project_id => @project.id } )
+
+    @plots = Hash.new
+    @task_dailies.each do |t|
+      @plots[t.tstamp.to_time.to_i * 1000] = t.total_tasks
+    end
+
+    respond_to do |format|
+      format.json { render :json => @plots }      
+    end
   end
 end
