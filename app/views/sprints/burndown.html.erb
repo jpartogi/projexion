@@ -1,0 +1,30 @@
+<div id="content">
+    <script id="source" language="javascript" type="text/javascript">
+    $(function () {
+        var d1 = [
+            <% for task_daily in @task_dailies %>
+                [ <%= task_daily.last_update.to_time.to_i * 1000 %>, <%= task_daily.total_tasks %> ],    
+            <% end %>
+        ];
+
+        $.plot($("#placeholder"), [ d1 ], {
+            xaxis: {
+                mode: "time",
+                timeformat: "%d/%m"
+            },
+            series: {
+              lines: { show: true },
+              points: { show: true }
+            }
+        });
+    });
+    </script>
+    <div id="placeholder" style="width:900px;height:500px;"></div>
+</div>
+
+<div id="sidebar">
+  <ul>
+    <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
+  </ul>
+
+</div>

@@ -90,6 +90,7 @@
     <li><%= link_to 'Add New Release', new_project_release_path(@project.code), :class => 'add' %></li>
     <li><%= link_to 'Add New Sprint', new_project_sprint_path(@project.code), :class => 'add' %></li>
     <li><%= link_to 'Sprint Taskboard', taskboard_path(@project.code), :class => 'taskboard' %></li>
+    <li><%= link_to 'Burndown Chart', burndown_path(@project.code), :class => 'chart' %></li>
     <%# TODO: Burndown chart %>
   </ul>
 </div>

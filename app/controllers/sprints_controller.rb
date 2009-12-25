@@ -43,8 +43,6 @@ class SprintsController < ApplicationController
     @project = Project.find_by_code(params[:project_id])
     
     @sprints = @project.sprints
-
-    respond_with(@project, @sprints)
   end
 
   def taskboard
@@ -61,5 +59,11 @@ class SprintsController < ApplicationController
     end
 
     @features = @sprint.features
+  end
+
+  def burndown
+    @project = Project.find_by_code(params[:code])
+
+    @task_dailies = TaskDaily.all(:conditions => { :project_id => @project.id } )
   end
 end

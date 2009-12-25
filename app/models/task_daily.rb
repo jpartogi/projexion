@@ -36,7 +36,7 @@ class TaskDaily < ActiveRecord::Base
     private
       def today_sum
         today = Date.today
-
+        #TODO: Check this with timestamp instead
         TaskDaily.first(:conditions => { :last_update => today })
       end
   end  

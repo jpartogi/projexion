@@ -3,10 +3,11 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
     @feature = Feature.find(params[:feature_id])
+    @project = @feature.project
 
     @task.feature = @feature
-    @project = @feature.project
-    
+    @task.project = @project
+
     respond_with(@task) do |format|
       if @task.save
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
