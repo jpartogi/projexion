@@ -8,17 +8,12 @@
     <%= stylesheet_link_tag 'reset' %> <%# This is loaded first to reset the browser default value %>
 	<%= stylesheet_link_tag 'projexion' %>
     <%= stylesheet_link_tag 'facebox' %>
-    <%#
-    <script src="http://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("jquery", "1.3.2");
-    </script>
-    %>
     <%= javascript_include_tag 'jquery-1.3.2.min' %>
     <%= javascript_include_tag 'jquery.inlineEdit' %>
     <%= javascript_include_tag 'jquery.slugify' %>
     <%= javascript_include_tag 'jquery.tooltip.min' %>
     <%= javascript_include_tag 'jquery.flot.min' %>
+    <%= javascript_include_tag 'jquery.corner' %>
     <%= javascript_include_tag 'facebox' %>
     <script type="text/javascript">
       $(document).ready(function(){ 
@@ -27,7 +22,9 @@
           
         <% if flash[:notice] %>
         $("p.success").css("display","block"); // Display the notice
-        <% end %>  
+        <% end %>
+
+        $('#toolbar li a').corner("top");  
       });
     </script>
 

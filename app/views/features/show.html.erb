@@ -2,6 +2,12 @@
     <p class="success"><span ><%= flash[:notice] %></span></p>
     
     <div id="feature" style="float:left; width:45%;">
+      <script type="text/javascript">
+        $(document).ready(function(){
+            $('.card').corner();
+        });
+      </script>
+
       <div class="card">
         <div class="title"><strong>Business value</strong></div>
         <h2><%= h @feature.business_value %></h2>

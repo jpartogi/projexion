@@ -39,9 +39,10 @@ Projexion::Application.routes.draw do |map|
   match 'projects/:code/sprints/burndown' => 'sprints#burndown', :as => :burndown
 
   resources :projects do
+    
+
     resources :features do
-      resources :tasks
-      resources :acceptances
+      resources :tasks,:acceptances
     end
 
     resources :releases do

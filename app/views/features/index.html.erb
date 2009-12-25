@@ -7,6 +7,11 @@
     <%# TODO: Paginate list %>
   </div>
 
+  <script type="text/javascript">
+        $(document).ready(function(){
+            $('#info-box').corner();
+        });
+      </script>
   <div id="info-box" style="float:right">
     <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
     <% if @release %>
