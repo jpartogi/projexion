@@ -2,7 +2,7 @@ one:
   id: 9999
   user_story: As a team member I want to add product feature
   business_value: 9.99
-  estimate_size: 5
+  story_points: 5
   priority: 1
   sprint_id: 9999
   release_id: 9999

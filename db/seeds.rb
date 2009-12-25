@@ -14,7 +14,7 @@ sprint = Sprint.create(:start_date => "2009-12-14", :end_date => "2009-12-27", :
 
 feature = Feature.create(:user_story => 'As a team member I want to be able create new feature',
                :business_value => 1000,
-               :estimate_size => 5,
+               :story_points => 5,
                :priority => 1,
                :acceptance_test => 'Team member should be able to insert new feature',
                :project => project,
