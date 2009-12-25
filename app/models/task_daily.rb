@@ -14,8 +14,10 @@ class TaskDaily < ActiveRecord::Base
     end
 
     def sum_daily_task(project)
-      # TODO: Make sure project is an instance of Project
-      
+      unless project.is_a? Project
+        raise TypeError, "A Project instance is expected"
+      end
+
       task_statuses = TaskStatus.last(:order => "position")
     
       tasks = Task.all(:conditions => [ "task_status_id NOT IN (?) AND project_id = ?", task_statuses, project.id ])
