@@ -1,26 +1,32 @@
-<table id="features">
-<tr>
-  <th>&nbsp;</th>
-  <th>User Story</th>
-  <th>Est. size</th>
-  <th>B. value</th>
-  <th>Priority</th>
-  <th>&nbsp;</th>
-</tr>
+<% unless @features.empty? %>
+    <table id="features">
+    <tr>
+      <th>&nbsp;</th>
+      <th>User Story</th>
+      <th>Story points</th>
+      <th>B. value</th>
+      <th>Priority</th>
+      <th>&nbsp;</th>
+    </tr>
 
-<% for feature in @features %>
-<tr>
-    <td><%= check_box_tag :acceptances, feature.id, feature.accepted, :id => 'feature_' + feature.id.to_s %></td>
-    <td><%= h feature.user_story %></td>
-    <td style="text-align:center;"><%= h feature.estimate_size %></td>
-    <td style="text-align:center;"><%= h feature.business_value %></td>
-    <td style="text-align:center;"><%= h feature.priority %></td>
-    <%# TODO: link image background should not be black %>
-    <td>
-      <% link_to project_feature_path(@project.code, feature.id) do %>
-        <img src="/images/icons/application_view_detail.png">
-      <% end %>
-    </td>
-</tr>
+    <% for feature in @features %>
+    <tr>
+        <td><%= check_box_tag :acceptances, feature.id, feature.accepted, :id => 'feature_' + feature.id.to_s %></td>
+        <td><%= h feature.user_story %></td>
+        <td style="text-align:center;"><%= h feature.story_points %></td>
+        <td style="text-align:center;"><%= h feature.business_value %></td>
+        <td style="text-align:center;"><%= h feature.priority %></td>
+        <%# TODO: link image background should not be black %>
+        <td>
+          <% link_to project_feature_path(@project.code, feature.id) do %>
+            <img src="/images/icons/application_view_detail.png">
+          <% end %>
+        </td>
+    </tr>
+    <% end %>
+    </table>
+<% else %>
+    <p class="info">
+    There are no features yet.
+    </p>
 <% end %>
-</table>

@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   create_table "features", :force => true do |t|
     t.text     "user_story",                                                       :null => false
     t.decimal  "business_value", :precision => 10, :scale => 0
-    t.integer  "estimate_size"
+    t.integer  "story_points"
     t.integer  "priority"
     t.datetime "created_at"
     t.datetime "updated_at"

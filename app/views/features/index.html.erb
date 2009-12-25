@@ -3,24 +3,7 @@
     <h1>
       Product Features for <%= @project.name %> 
     </h1>
-    <% unless @features.empty? %>
-        <table>
-        <% for feature in @features %>
-            <tr>
-              <td><%= h feature.user_story %></td>
-              <td>
-                  <% link_to project_feature_path(@project.code, feature.id) do %>
-                    <img src="/images/icons/application_view_detail.png">
-                  <% end %>
-              </td>
-            </tr>
-        <% end %>
-        </table>
-     <% else %>
-        <p class="info">
-        There are no features yet.
-        </p>
-     <% end %>   
+    <%= render :partial => "features/list" %>
     <%# TODO: Paginate list %>
   </div>
 

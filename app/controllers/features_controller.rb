@@ -21,7 +21,6 @@ class FeaturesController < ApplicationController
   def new
     @feature = Feature.new
     @project = Project.find_by_code(params[:project_id])
-    respond_with(@feature, @project)
   end
 
   def show
@@ -33,8 +32,6 @@ class FeaturesController < ApplicationController
     @project = @feature.project
     @acceptances = @feature.acceptances
     @task_statuses = TaskStatus.find(:all)
-
-    respond_with(@project, @feature, @tasks, @task_statuses, @acceptances)
   end
 
   def index
@@ -49,8 +46,6 @@ class FeaturesController < ApplicationController
     else
       @features = Feature.find(:all)
     end
-
-    respond_with(@features)
   end
 
   def edit
@@ -64,8 +59,6 @@ class FeaturesController < ApplicationController
     @releases = @project.releases.reject do |release|
       release.released == true  
     end
-    
-    respond_with(@feature, @project, @sprints, @releases)
   end
 
   def update
