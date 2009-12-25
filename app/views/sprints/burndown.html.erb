@@ -3,14 +3,15 @@
     $(function () {
         var d1 = [
             <% for task_daily in @task_dailies %>
-                [ <%= task_daily.last_update.to_time.to_i * 1000 %>, <%= task_daily.total_tasks %> ],    
+                [ <%= task_daily.tstamp.to_time.to_i * 1000 %>, <%= task_daily.total_tasks %> ],    
             <% end %>
         ];
 
         $.plot($("#placeholder"), [ d1 ], {
             xaxis: {
                 mode: "time",
-                timeformat: "%d/%m"
+                minTickSize: [1, "day"],
+                timeformat: "%d/%m/%y"
             },
             series: {
               lines: { show: true },

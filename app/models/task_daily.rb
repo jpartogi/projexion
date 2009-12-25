@@ -29,6 +29,7 @@ class TaskDaily < ActiveRecord::Base
 
       task_daily.total_tasks = tasks.length
       task_daily.last_update = Date.today
+      task_daily.tstamp = Date.today
       task_daily.project = project
       task_daily.save
     end
