@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  respond_to :html, :json
   
   def create
     @task = Task.new(params[:task])
