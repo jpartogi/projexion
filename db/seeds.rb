@@ -37,5 +37,6 @@ TaskStatus.create(:display_name => 'Done',
                                 :color => '228200')
 
 task = Task.create(:description => 'Create scaffolding for feature',
+                   :project => project,
                    :feature => feature,
                    :task_status => task_status)

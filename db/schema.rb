@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "task_dailies", :force => true do |t|
+    t.integer  "project_id",  :null => false
     t.integer  "total_tasks", :null => false
     t.date     "last_update", :null => false
     t.datetime "updated_at",  :null => false
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
 
   create_table "tasks", :force => true do |t|
     t.text     "description",       :null => false
+    t.integer  "project_id",        :null => false
     t.integer  "feature_id",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"

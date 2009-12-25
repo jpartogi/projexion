@@ -1,4 +1,5 @@
 class Task < ActiveRecord::Base
+  belongs_to :project
   belongs_to :feature
   belongs_to :task_status
 

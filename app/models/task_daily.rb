@@ -1,37 +1,41 @@
 class TaskDaily < ActiveRecord::Base
+  belongs_to :project
+
   # Class methods
   class << self
     def sum_daily_tasks
-      sql = "select count(*)
-          from tasks t inner join task_statuses ts on t.task_status_id = ts.id
-          where t.task_status_id <> (select max(ts.position) from task_statuses ts)
-          group by date(t.updated_at)"
 
-      tasks = Task.count_by_sql(sql)
+      projects = Project.all
 
-      if today_sum_empty?
-        task_daily = self.new
-      else
-        task_daily = today_sum
+      for project in projects
+        sum_daily_task(project)
       end
 
-      task_daily.total_tasks = tasks
+    end
+
+    def sum_daily_task(project)
+      # TODO: Make sure project is an instance of Project
+      
+      task_statuses = TaskStatus.last(:order => "position")
+    
+      tasks = Task.all(:conditions => [ "task_status_id NOT IN (?) AND project_id = ?", task_statuses, project.id ])
+
+      task_daily = today_sum
+      if task_daily.nil?
+        task_daily = self.new
+      end
+
+      task_daily.total_tasks = tasks.length
       task_daily.last_update = Date.today
+      task_daily.project = project
       task_daily.save
     end
 
-    def today_sum_empty?
-      if self.today_sum != nil
-        return false
-      else
-        return true
+    private
+      def today_sum
+        today = Date.today
+
+        TaskDaily.first(:conditions => { :last_update => today })
       end
-    end
-
-    def today_sum
-      today = Date.today
-
-      TaskDaily.first(:conditions => { :last_update => today })
-    end
   end  
 end

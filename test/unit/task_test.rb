@@ -8,7 +8,8 @@ class TaskTest < ActiveSupport::TestCase
     should "assign default status when it is created" do
       task = Task.new
       task.description = 'tes'
-      task.feature_id = 1 
+      task.feature_id = 1
+      task.project_id = 1
 
       assert task.save
 
@@ -24,8 +25,12 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   context "Task daily instance" do
-    should "update existing daily sum" do
-      TaskDaily.today_sum_empty?
+    should "update daily sum" do
+      assert TaskDaily.sum_daily_tasks
+
+      task_daily = TaskDaily.first(:conditions => {:last_update => Date.today})
+
+      assert task_daily.total_tasks, 2
     end
 
   end
