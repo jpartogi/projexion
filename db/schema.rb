@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
 
   create_table "task_dailies", :force => true do |t|
     t.integer  "total_tasks", :null => false
+    t.date     "last_update", :null => false
     t.datetime "updated_at",  :null => false
     t.datetime "created_at",  :null => false
   end

@@ -23,4 +23,10 @@ class TaskTest < ActiveSupport::TestCase
     end
   end
 
+  context "Task daily instance" do
+    should "update existing daily sum" do
+      TaskDaily.today_sum_empty?
+    end
+
+  end
 end
