@@ -50,7 +50,7 @@ h3 { font: bold 15px Helvetica; }
 #content input[type='submit']{ float:left; }
 #content p { margin-bottom: 1em; }
 #content th { font: bold 13px Verdana; padding: 0.5em; background: #f4f4f4; border:2px solid white; }
-#content td { padding: 0.2em; }
+#content td { padding: 0.2em; border-bottom: 1px solid #f4f4f4; }
 #content td a { text-decoration:none; }
 #content td a:hover img { background: white; padding:0; margin:0; }
 #content td a:hover { background: black; color: white; }
