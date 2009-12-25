@@ -24,7 +24,7 @@ class Feature < ActiveRecord::Base
       @acceptances.each do |a|
         acceptance = Acceptance.new
         acceptance.description = a
-        acceptance.feature = Feature.find(self.id)
+        acceptance.feature = self
         acceptance.save
       end
     end
