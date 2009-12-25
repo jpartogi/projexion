@@ -1,8 +1,8 @@
 Projexion::Application.routes.draw do |map|
-  map.resource :main, :singular => 'main'
-  map.resources :users
+  resource :main
 
-  map.resources :user_sessions
+  resources :users
+  resources :user_sessions
   #map.login  '/login',  :controller => "user_sessions", :action => "new"
   #map.logout '/logout', :controller => 'user_sessions', :action => 'destroy'
   # The priority is based upon order of creation: first created -> highest priority.
@@ -29,27 +29,29 @@ Projexion::Application.routes.draw do |map|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
-  map.settings 'settings', :controller => 'settings'
-  map.resources :task_statuses
+  #map.settings 'settings', :controller => 'settings'
+  
+  resources :settings
+  resources :task_statuses
 
-  map.taskboard 'projects/:code/sprints/taskboard', :controller => 'sprints', :action => 'taskboard'
+  match 'projects/:code' => 'projects#show'
+  match 'projects/:code/sprints/taskboard' => 'sprints#taskboard', :as => :taskboard
+  match 'projects/:code/sprints/burndown' => 'sprints#burndown', :as => :burndown
 
-  map.resources :projects, :except => :show  do |projects|
-    projects.resources :features do |features|
-      features.resources :tasks
-      features.resources :acceptances
+  resources :projects do
+    resources :features do
+      resources :tasks
+      resources :acceptances
     end
 
-    projects.resources :releases do |releases|
-      releases.resources :features
+    resources :releases do
+      resources :features
     end
 
-    projects.resources :sprints do |sprints|
-      sprints.resources :features
+    resources :sprints do
+      resources :features
     end
   end
-  
-  map.project 'projects/:code', :controller => 'projects', :action => 'show'
 
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|
@@ -58,14 +60,16 @@ Projexion::Application.routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.root :controller => "main"
+  #map.root :controller => "main"
+  root :to => "main#index"
 
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action'
+  match ':controller(/:action(/:id(.:format)))'
+  #map.connect ':controller/:action'
   #map.connect ':controller/:action/:id'
   #map.connect ':controller/:action/:id.:format'
 end
