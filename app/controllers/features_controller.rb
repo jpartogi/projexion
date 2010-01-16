@@ -52,13 +52,9 @@ class FeaturesController < ApplicationController
     @feature = Feature.find(params[:id])
     @project = @feature.project
 
-    @sprints = @project.sprints.reject do |sprint|
-      sprint.end_date < Date.today
-    end
+    @sprints = @project.active_sprints
 
-    @releases = @project.releases.reject do |release|
-      release.released_at != nil
-    end
+    @releases = @project.active_releases
   end
 
   def update
@@ -103,6 +99,7 @@ class FeaturesController < ApplicationController
 
     @project = Project.find(params[:project_id])
 
+    #TODO: Fix this
     conditions = {:project_id => @project.id}
     if params[:accepted]
       accepted = params[:accepted]
