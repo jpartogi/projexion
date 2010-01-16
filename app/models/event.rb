@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  #TODO: Add project_code
     # Class methods
   class << self
     def add(action, model_class, model_id)

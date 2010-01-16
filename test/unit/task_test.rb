@@ -9,7 +9,7 @@ class TaskTest < ActiveSupport::TestCase
       task = Task.new
       task.description = 'tes'
       task.feature_id = 1
-      task.project_id = 1
+      task.project_code = 'PR'
 
       assert task.save
 

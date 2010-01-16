@@ -1,5 +1,5 @@
 class Sprint < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :project, :primary_key => :code, :foreign_key => :project_code
   has_many :features
 
   #TODO: Extract retrospective to meetings model

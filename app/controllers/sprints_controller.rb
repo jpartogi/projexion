@@ -63,10 +63,11 @@ class SprintsController < ApplicationController
   end
 
   def burndown
-    @project = Project.find_by_code(params[:code])
+    @project = Project.find_by_code(params[:project_id])
 
     @task_dailies = TaskDaily.all(:conditions => { :project_id => @project.id } )
 
+    #TODO: Move to task_daily model
     @plots = Hash.new
     @task_dailies.each do |t|
       @plots[t.tstamp.to_time.to_i * 1000] = t.total_tasks

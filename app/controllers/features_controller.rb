@@ -50,14 +50,14 @@ class FeaturesController < ApplicationController
 
   def edit
     @feature = Feature.find(params[:id])
-    @project = Project.find_by_code(params[:project_id])
+    @project = @feature.project
 
     @sprints = @project.sprints.reject do |sprint|
       sprint.end_date < Date.today
     end
 
     @releases = @project.releases.reject do |release|
-      release.released == true  
+      release.released_at != nil
     end
   end
 

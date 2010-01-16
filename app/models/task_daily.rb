@@ -1,5 +1,5 @@
 class TaskDaily < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :project, :primary_key => :code, :foreign_key => :project_code
 
   # Class methods
   class << self
@@ -20,7 +20,7 @@ class TaskDaily < ActiveRecord::Base
 
       task_statuses = TaskStatus.last(:order => "position")
     
-      tasks = Task.all(:conditions => [ "task_status_id NOT IN (?) AND project_id = ?", task_statuses, project.id ])
+      tasks = Task.all(:conditions => [ "task_status_id NOT IN (?) AND project_code = ?", task_statuses, project.code ])
 
       task_daily = today_sum
       if task_daily.nil?

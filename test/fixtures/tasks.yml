@@ -2,12 +2,12 @@ queued:
     id: 9999
     description: Make unit test
     feature_id: 9999
-    project_id: 9999
+    project_code: PR
     task_status_id: 9999
 
 in-progress:
     id: 10000
     description: Make database schema
     feature_id: 9999
-    project_id: 9999
+    project_code: PR
     task_status_id: 10000

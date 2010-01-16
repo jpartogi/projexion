@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find_by_code(params[:code])
+    @project = Project.find_by_code(params[:id])
 
     # TODO: Only show not accepted features
     @features = @project.features
@@ -36,11 +36,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+    @project = Project.find_by_code(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
+    @project = Project.find_by_code(params[:id])
 
     respond_with(@project) do |format|
       if @project.update_attributes(params[:project])
@@ -52,8 +52,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
-    @project.destroy
+    Project.delete_all(["code = ?", params[:id]])
 
     respond_to do |format|
       format.html { redirect_to projects_path, :notice => 'Project was successfully deleted.' }

@@ -1,1 +1,37 @@
-<%= render 'form' %>
+<div id="content">
+    <% form_for @project do |f| %>
+      <%= f.error_messages %>
+
+      <p>
+        <%= f.label :name %><br />
+        <%= f.text_field :name %>
+      </p>
+
+      <p>
+        <%= f.label :code %><br />
+        <%= f.text_field :code, :size => 5, :maxlength => 10 %>
+      </p>
+
+      <p>
+        <%= f.label :vision %><br/>
+        <%= f.text_field :vision, :size => 45 %>
+      </p>
+
+      <%= f.submit 'Save', :class=> 'save_btn' %>
+    <% end %>
+    <% if @project.id then %>
+        <%= button_to 'Cancel', project_path(@project), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+    <% else %>
+        <%= button_to 'Cancel', projects_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+    <% end %>
+</div>
+
+<div id="sidebar">
+  <ul>
+    <% if @project.id then %>
+    <li><%= link_to 'Project Dashboard', project_path(@project), :class => 'dashboard' %></li>
+    <% else %>
+    <li><%= link_to 'Project List', projects_path, :class => 'list' %></li>
+    <% end %>
+  </ul>
+</div>
