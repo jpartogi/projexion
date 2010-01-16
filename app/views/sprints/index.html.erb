@@ -3,8 +3,6 @@
   
   <div>
     <h1>Sprints in <%= @project.name %></h1>
-    <%# TODO: Add cancel sprint link and cancelled date for cancelled sprint %>
-    <%# TODO: Add retrospective link %>
     <table id="sprints">
     <% for sprint in @sprints %>
       <tr id="<%= h sprint.id %>">
@@ -12,7 +10,7 @@
         <td><%= h sprint.start_date %></td>
         <td><%= h sprint.end_date %></td>
         <td><%= h sprint.retrospective %></td>
-        <td><%= link_to 'Features', project_sprint_features_path(@project.code, sprint.id) %></td>
+        <td><%= link_to 'Features', project_sprint_path(@project.code, sprint.id) %></td>
       </tr>
     <% end %>      
     </table>

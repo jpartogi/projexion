@@ -13,7 +13,7 @@
         <tr>
             <td style="text-align:center;"><%= h release.version_number %></td>
             <td style="text-align:center;"><%= h release.estimate_date %></td>
-            <td><%= link_to 'Features', project_release_features_path(@project.code, release.id) %></td>
+            <td><%= link_to 'Features', project_releases_path(@project.code, release.id) %></td>
             <td>
                 <% link_to project_release_path(@project.code, release.id),
                                 :confirm => 'Are you sure?', :method => :delete do %>
