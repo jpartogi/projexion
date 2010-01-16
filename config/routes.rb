@@ -35,8 +35,12 @@ Projexion::Application.routes.draw do |map|
   resources :task_statuses
 
   match 'projects/:code' => 'projects#show'
+  
   match 'projects/:code/sprints/taskboard' => 'sprints#taskboard', :as => :taskboard
+  match 'projects/:code/sprints/:id/taskboard' => 'sprints#taskboard', :as => :taskboard
+
   match 'projects/:code/sprints/burndown' => 'sprints#burndown', :as => :burndown
+  match 'projects/:code/sprints/:id/burndown' => 'sprints#burndown', :as => :burndown
 
   resources :projects do
     resources :features do
