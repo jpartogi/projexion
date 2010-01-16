@@ -36,7 +36,7 @@ Projexion::Application.routes.draw do |map|
 
   match 'projects/:code/sprints/taskboard' => 'sprints#taskboard', :as => :taskboard
 
-  match 'projects/:project_id/sprints/burndown' => 'sprints#burndown', :as => :burndown
+  match 'projects/:code/sprints/burndown' => 'sprints#burndown', :as => :burndown
 
   resources :projects do
     resources :features do
