@@ -19,6 +19,7 @@
 
         <p>
           <%= label_tag :color, 'Background color' %><br />
+          <%# TODO: Make this label wider and higher with no corner %>
           <span style="background-color:<%= @task_status.color %>" class="status <%= h @task_status.key %>"><%= h @task_status.color %></span>
         </p>
     </div>
