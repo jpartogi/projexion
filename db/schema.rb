@@ -20,11 +20,12 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "events", :force => true do |t|
-    t.string   "action",                    :null => false
-    t.string   "model",      :limit => 100, :null => false
-    t.integer  "model_id",                  :null => false
-    t.datetime "updated_at",                :null => false
-    t.datetime "created_at",                :null => false
+    t.string   "action",                      :null => false
+    t.string   "model",        :limit => 100, :null => false
+    t.integer  "model_id",                    :null => false
+    t.string   "project_code", :limit => 3,   :null => false
+    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                  :null => false
   end
 
   create_table "features", :force => true do |t|

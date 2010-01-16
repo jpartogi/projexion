@@ -14,7 +14,7 @@ class Feature < ActiveRecord::Base
   end
 
   def add_event
-    Event.add 'modified', self.class.to_s, self.id
+    Event.add 'modified', self.class.to_s, self.id, self.project
   end
   
   def save_all

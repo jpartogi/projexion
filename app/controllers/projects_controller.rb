@@ -25,7 +25,6 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find_by_code(params[:id])
 
-    # TODO: Only show not accepted features
     @features = @project.features
 
     @releases = @project.releases
