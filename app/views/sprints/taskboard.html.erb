@@ -1,6 +1,9 @@
 <div id="content">
     <script type="text/javascript">
      $(document).ready(function(){
+         $('.desc').corner();
+         $('h3').corner();
+         
          $('.desc').tooltip().click(function(){
              window.location = $(this).attr('link');
          });
@@ -14,7 +17,7 @@
             <% for feature in @features %>
                <% for task in feature.tasks %>
                 <% if task_status == task.task_status %> 
-                    <div class="desc" style="border:1px solid #ccc; margin:1px 0 1px 0; padding:1px" title="<%= feature.user_story %>"
+                    <div class="desc" style="border:1px solid #ccc; margin:1px 0 1px 0; padding:3px" title="<%= feature.user_story %>"
                         link="<%= project_feature_path(@project.code, feature.id) %>">
                       <%= task.description %>
                     </div>
