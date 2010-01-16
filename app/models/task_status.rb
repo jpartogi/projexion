@@ -13,7 +13,7 @@ class TaskStatus < ActiveRecord::Base
     default = TaskStatus.default_status
 
     unless default.nil?
-      if self.default_status
+      if self.default_status and not @update_position
         # Change the current default status to make sure there's only one default status
         default.default_status = false
         default.save
@@ -24,7 +24,7 @@ class TaskStatus < ActiveRecord::Base
   def update_position(direction)
     position = self.position
 
-    if direction == 'up'
+    if direction.eql? 'up'
       status = TaskStatus.find_by_position(position.to_i - 1)
     else
       status = TaskStatus.find_by_position(position.to_i + 1)
@@ -34,6 +34,7 @@ class TaskStatus < ActiveRecord::Base
     status.position = position
 
     TaskStatus.transaction do
+      @update_position = true
       self.save
       status.save
     end
