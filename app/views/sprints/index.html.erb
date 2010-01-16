@@ -8,6 +8,7 @@
       <th>Sprint goal</th>
       <th>Start date</th>
       <th>End date</th>
+      <th>Velocities</th>
       <th>&nbsp;</th>
     </tr>
     <% for sprint in @sprints %>
@@ -15,6 +16,7 @@
         <td><%= h sprint.goal %></td>
         <td style="text-align:center;"><%= h sprint.start_date %></td>
         <td style="text-align:center;"><%= h sprint.end_date %></td>
+        <td style="text-align:center;"><%= h sprint.velocities %></td>
         <td>
           <% link_to project_sprint_path(@project.code, sprint.id) do %>
             <img src="/images/icons/application_view_detail.png">

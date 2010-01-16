@@ -1,7 +1,9 @@
 class SprintsController < ApplicationController
   layout 'main'
   respond_to :html, :json
-  
+
+  after_filter :generate_velocities, :only => :show
+
   def create
     @sprint = Sprint.new(params[:sprint])
     @project = Project.find_by_code(params[:project_id])
@@ -44,6 +46,12 @@ class SprintsController < ApplicationController
     @project = Project.find_by_code(params[:project_id])
     
     @sprints = @project.sprints
+  end
+
+  def generate_velocities
+    if Date.today > @sprint.end_date 
+      @sprint.generate_velocities
+    end
   end
 
   def taskboard

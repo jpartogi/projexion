@@ -7,3 +7,14 @@ one:
   sprint_id: 9999
   release_id: 9999
   project_code: PR
+
+two:
+  id: 10000
+  user_story: As a team member I want to modify product feature
+  business_value: 9.99
+  story_points: 5
+  priority: 1
+  sprint_id: 9999
+  release_id: 9999
+  project_code: PR
+  accepted: true
