@@ -40,6 +40,27 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.boolean  "accepted",                                      :default => false, :null => false
   end
 
+  create_table "meeting_types", :id => false, :force => true do |t|
+    t.integer  "id",                        :null => false
+    t.string   "name",        :limit => 50, :null => false
+    t.text     "description",               :null => false
+    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                :null => false
+  end
+
+  create_table "meetings", :id => false, :force => true do |t|
+    t.integer  "id",              :null => false
+    t.text     "notes",           :null => false
+    t.binary   "attachment"
+    t.datetime "start_time",      :null => false
+    t.datetime "end_time",        :null => false
+    t.integer  "meeting_type_id", :null => false
+    t.integer  "project_id",      :null => false
+    t.integer  "sprint_id",       :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "project_members", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
