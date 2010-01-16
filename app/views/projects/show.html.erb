@@ -59,21 +59,18 @@
       $(document).ready(function(){
         var update_list = function(){
             var accepted = $('#accepted-filter').val();
-
-            $.post('<%= url_for :action => :update_list, :controller => :features %>',
-                    {"accepted": accepted, "project_id": <%= @project.id %> }, callback, 'html');
+            $.post('<%= list_project_feature_path(@project.code)  %>', {"accepted": accepted}, function(response){
+                $('#features').replaceWith(response);
+            }, 'html');
         };  
 
         $('#filter-button').click(update_list);
-
-        var callback = function(response){
-            $('#features').replaceWith(response);
-        }
       });
     </script>
 
     <div>
         <select id="accepted-filter" name="accepted">
+          <option value="all">All</option>
           <option value="true">Accepted</option>
           <option value="false">Not Accepted</option>
         </select>

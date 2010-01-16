@@ -95,24 +95,22 @@ class FeaturesController < ApplicationController
   end
 
   #Ajax actions
-  def update_list
+  def list
 
-    @project = Project.find(params[:project_id])
+    @project = Project.find_by_code(params[:project_id])
 
-    #TODO: Fix this
-    conditions = {:project_id => @project.id}
+    conditions = {:project_code => @project.code}
     if params[:accepted]
       accepted = params[:accepted]
 
       if accepted.eql?('true') then conditions[:accepted] = true
       elsif accepted.eql?('false') then conditions[:accepted] = false
-      else conditions[:accepted] = nil
       end
     end
 
     @features = Feature.find(:all, :conditions => conditions)
 
-    respond_with(@features, @project) do |format|
+    respond_with(@features) do |format|
       format.html { render :partial => 'list' }      
     end
   end

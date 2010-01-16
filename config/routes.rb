@@ -41,6 +41,10 @@ Projexion::Application.routes.draw do |map|
   resources :projects do
     resources :features do
       resources :tasks, :acceptances
+
+      member do
+        post :list
+      end
     end
 
     resources :releases
