@@ -24,7 +24,9 @@
 <div id="sidebar">
   <ul>
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
+    <li><%= link_to 'Release List', project_releases_path(@project.code), :class => 'list' %></li> 
   </ul>
   <%# TODO: Add meeting link %>
   <%# TODO: Add released link %>
+  <%# TODO: Delete and edit release %>
 </div>

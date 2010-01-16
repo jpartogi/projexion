@@ -34,6 +34,18 @@ class TaskDaily < ActiveRecord::Base
       task_daily.save
     end
 
+    def plots(*args)
+      task_dailies = TaskDaily.all(*args)
+
+      plots = Hash.new
+
+      task_dailies.each do |t|
+        plots[t.tstamp.to_time.to_i * 1000] = t.total_tasks
+      end
+
+      plots
+    end
+
     private
       def today_sum
         today = Date.today

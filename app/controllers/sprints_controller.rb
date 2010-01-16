@@ -47,7 +47,7 @@ class SprintsController < ApplicationController
   end
 
   def taskboard
-    @project = Project.find_by_code(params[:code])
+    @project = Project.find_by_code(params[:project_id])
 
     @sprints = @project.sprints # For the sprint dropdown selector
 
@@ -65,13 +65,7 @@ class SprintsController < ApplicationController
   def burndown
     @project = Project.find_by_code(params[:project_id])
 
-    @task_dailies = TaskDaily.all(:conditions => { :project_code => @project.code } )
-
-    #TODO: Move to task_daily model
-    @plots = Hash.new
-    @task_dailies.each do |t|
-      @plots[t.tstamp.to_time.to_i * 1000] = t.total_tasks
-    end
+    @plots = TaskDaily.plots(:conditions => { :project_code => params[:project_id] })
 
     respond_with(@plots) do |format|
       format.html

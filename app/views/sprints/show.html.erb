@@ -25,8 +25,10 @@
 <div id="sidebar">
   <ul>
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
+    <li><%= link_to 'Sprint List', project_sprints_path(@project.code), :class => 'list' %></li> 
   </ul>
   <%# TODO: Add meeting link %>
   <%# TODO: Add cancel sprint link %>
+  <%# TODO: Delete and edit sprint %>
   <%# TODO: Move burndown chart and taskboard link here %>
 </div>
