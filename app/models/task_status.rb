@@ -13,7 +13,7 @@ class TaskStatus < ActiveRecord::Base
     default = TaskStatus.default_status
 
     unless default.nil?
-      if self.default_status and not @update_position
+      if self.default_status and not @bypass
         # Change the current default status to make sure there's only one default status
         default.default_status = false
         default.save
@@ -34,7 +34,7 @@ class TaskStatus < ActiveRecord::Base
     status.position = position
 
     TaskStatus.transaction do
-      @update_position = true
+      @bypass = true
       self.save
       status.save
     end
