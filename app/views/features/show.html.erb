@@ -29,7 +29,7 @@
       <p>
         <%= label_tag (:release) %><br/>
         <%= @feature.release.version_number %>
-        <% link_to project_release_features_path(@project.code, @feature.release.id) do %>
+        <% link_to project_release_path(@project.code, @feature.release.id) do %>
           <img src="/images/icons/application_view_detail.png">
         <% end %>
       </p>
@@ -43,7 +43,7 @@
       <p>
         <%= label_tag (:sprint) %><br/>
         <%= @feature.sprint.span_date %>
-        <% link_to project_sprint_features_path(@project.code, @feature.sprint.id) do %>
+        <% link_to project_sprint_path(@project.code, @feature.sprint.id) do %>
           <img src="/images/icons/application_view_detail.png">
         <% end %>
       </p>

@@ -44,6 +44,7 @@ class ReleasesController < ApplicationController
     @release = Release.find(params[:id])
 
     @project = @release.project
+    @features = @release.features
   end
 
   def index

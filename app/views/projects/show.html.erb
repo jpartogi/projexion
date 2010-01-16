@@ -20,7 +20,7 @@
     <% for release in @releases %>
       <li>
         <%= release.version_number %>
-        <% link_to project_release_features_path(@project.code, release.id) do %>
+        <% link_to project_release_path(@project.code, release.id) do %>
             <img src="/images/icons/application_view_detail.png">
         <% end %>
       </li>
@@ -37,7 +37,7 @@
     <% for sprint in @sprints %>
         <li>
           <%= sprint.span_date %>
-            <% link_to project_sprint_features_path(@project.code, sprint.id) do %>
+            <% link_to project_sprint_path(@project.code, sprint.id) do %>
                 <img src="/images/icons/application_view_detail.png">
             <% end %>
         </li>

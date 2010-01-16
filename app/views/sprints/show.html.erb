@@ -1,8 +1,30 @@
 <div id="content">
+  <div id="features" style="float:left">
+    <h1>
+      Product Features for <%= @project.name %>
+    </h1>
+    <%= render :partial => "features/list" %>
+    <%# TODO: Paginate list %>
+  </div>
+
+  <script type="text/javascript">
+        $(document).ready(function(){
+            $('#info-box').corner();
+        });
+  </script>
+
+  <div id="info-box" style="float:right">
+    <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
+    <strong>Sprint:</strong>&nbsp;<%= @sprint.span_date %><br/>
+    <strong>Goal:</strong> <%= @sprint.goal %>
+  </div>
+
+  <div style="clear:both"></div>
 </div>
 
 <div id="sidebar">
   <ul>
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
   </ul>
+  <%# TODO: Add meeting link %>
 </div>
