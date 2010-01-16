@@ -72,8 +72,9 @@ class SprintsController < ApplicationController
       @plots[t.tstamp.to_time.to_i * 1000] = t.total_tasks
     end
 
-    respond_to do |format|
-      format.json { render :json => @plots }      
+    respond_with(@plots) do |format|
+      format.html
+      format.json { render :json => @plots }
     end
   end
 end

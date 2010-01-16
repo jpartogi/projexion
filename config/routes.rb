@@ -39,19 +39,11 @@ Projexion::Application.routes.draw do |map|
   match 'projects/:code/sprints/burndown' => 'sprints#burndown', :as => :burndown
 
   resources :projects do
-    
-
     resources :features do
-      resources :tasks,:acceptances
+      resources :tasks, :acceptances
     end
 
-    resources :releases do
-      resources :features
-    end
-
-    resources :sprints do
-      resources :features
-    end
+    resources :releases, :sprints
   end
 
   # Sample resource route within a namespace:
