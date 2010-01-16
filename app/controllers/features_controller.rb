@@ -94,7 +94,7 @@ class FeaturesController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = 'Feature was successfully deleted.'
-      format.html { redirect_to project_path(:code => params[:project_id]) }
+      format.html { redirect_to project_path(params[:project_id]) }
     end
   end
 
