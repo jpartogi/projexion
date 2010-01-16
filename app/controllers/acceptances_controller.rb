@@ -1,5 +1,6 @@
 class AcceptancesController < ApplicationController
-
+  respond_to :html, :json
+  
   def new
     @feature = Feature.find(params[:feature_id])
     @project = @feature.project

@@ -38,6 +38,7 @@
                 type: "get",
                 url: url,
                 data: ({value: newValue, id : id}),
+                dataType: 'json',
                 success: callback
             });
         }

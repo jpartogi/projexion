@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :project, :primary_key => :code, :foreign_key => :project_code
   belongs_to :feature
   belongs_to :task_status
 
