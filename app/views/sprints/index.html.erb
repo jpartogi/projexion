@@ -3,14 +3,23 @@
   
   <div>
     <h1>Sprints in <%= @project.name %></h1>
-    <table id="sprints">
+    <table width="100%" id="sprints">
+    <tr>
+      <th>Sprint goal</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>&nbsp;</th>
+    </tr>
     <% for sprint in @sprints %>
       <tr id="<%= h sprint.id %>">
         <td><%= h sprint.goal %></td>
-        <td><%= h sprint.start_date %></td>
-        <td><%= h sprint.end_date %></td>
-        <td><%= h sprint.retrospective %></td>
-        <td><%= link_to 'Features', project_sprint_path(@project.code, sprint.id) %></td>
+        <td style="text-align:center;"><%= h sprint.start_date %></td>
+        <td style="text-align:center;"><%= h sprint.end_date %></td>
+        <td>
+          <% link_to project_sprint_path(@project.code, sprint.id) do %>
+            <img src="/images/icons/application_view_detail.png">
+          <% end %>
+        </td>
       </tr>
     <% end %>      
     </table>
