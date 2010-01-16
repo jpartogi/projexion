@@ -28,12 +28,16 @@
         });  
 
     </script>
+
+    <%# TODO: By default display chart from current sprint %>
     <div id="placeholder" style="width:1000px;height:550px;"></div>
 </div>
 
 <div id="sidebar">
   <ul>
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
+    <%# TODO: Add sprint selector %>
+    <%# TODO: Add date selector %>
   </ul>
 
 </div>
