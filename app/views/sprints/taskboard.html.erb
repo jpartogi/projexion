@@ -11,6 +11,7 @@
     </script>
   
     <%# TODO: By default display tasks from current sprint %>
+    <%# TODO: Use Hash for this to have features and tasks %>
     <div>
         <% for task_status in @task_statuses %>
          <div style="float:left;width:250px;margin:1pt;">
@@ -38,7 +39,7 @@
 
   <div class="block">
       <h2>Sprint</h2>
-      <% form_for :sprint, :url => { :action => :taskboard } do |f| %>
+      <% form_for @sprint, :url => { :action => :taskboard } do |f| %>
         <%= f.collection_select(:id, @sprints, :id, :span_date) %>
 
         <%= f.submit 'Show' %>

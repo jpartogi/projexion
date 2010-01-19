@@ -171,7 +171,9 @@
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <li><%= link_to 'Add Task', new_project_feature_task_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
     <li><%= link_to 'Add Acceptance Test', new_project_feature_acceptance_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
-    <%# TODO: Taskboard link should autopopulate with the current assigned sprint %>
-    <li><%= link_to 'Sprint Taskboard', taskboard_path(@project.code), :class => 'taskboard' %></li>
+
+    <% if @feature.sprint %>
+    <li><%= link_to 'Sprint Taskboard', taskboard_project_sprint_path(@project.code, @feature.sprint.id), :class => 'taskboard' %></li>
+    <% end %>
   </ul>
 </div>

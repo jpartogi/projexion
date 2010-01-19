@@ -63,6 +63,8 @@ class SprintsController < ApplicationController
 
     if params[:sprint]
       @sprint = Sprint.find(params[:sprint][:id])
+    elsif params[:id]
+      @sprint = Sprint.find(params[:id])
     else
       @sprint = Sprint.new
     end
