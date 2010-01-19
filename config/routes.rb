@@ -30,9 +30,6 @@ Projexion::Application.routes.draw do |map|
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
   #map.settings 'settings', :controller => 'settings'
-  
-  resources :settings
-  resources :task_statuses
 
   match 'projects/:project_id/sprints/taskboard' => 'sprints#taskboard', :as => :taskboard
 
@@ -56,6 +53,11 @@ Projexion::Application.routes.draw do |map|
       end
     end
 
+  end
+
+  namespace :admin do    
+    resources :task_statuses
+    resources :meeting_types  
   end
 
   # Sample resource route within a namespace:

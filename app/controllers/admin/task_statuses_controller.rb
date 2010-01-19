@@ -1,4 +1,4 @@
-class TaskStatusesController < ApplicationController
+class Admin::TaskStatusesController < ApplicationController
   layout 'main'
   respond_to :html
 
@@ -19,7 +19,7 @@ class TaskStatusesController < ApplicationController
 
     respond_with(@task_status) do |format|
       if @task_status.update_attributes(params[:task_status])
-        format.html { redirect_to task_status_path(@task_status), :notice => 'Task status was successfully updated.' }
+        format.html { redirect_to admin_task_status_path(@task_status), :notice => 'Task status was successfully updated.' }
       else
         format.html { render :action => "edit" }
       end
@@ -32,7 +32,7 @@ class TaskStatusesController < ApplicationController
     @task_status.destroy
 
     respond_to do |format|
-      format.html { redirect_to task_statuses_path, :notice => 'Task status was successfully deleted.' }
+      format.html { redirect_to admin_task_statuses_path, :notice => 'Task status was successfully deleted.' }
     end
   end
 
@@ -43,9 +43,13 @@ class TaskStatusesController < ApplicationController
   def create
     @task_status = TaskStatus.new(params[:task_status])
 
-    flash[:notice] = 'Task status was successfully added.' if @task_status.save
-
-    respond_with(@task_status)
+    respond_with(@task_status) do |format|
+      if @task_status.save
+        format.html { redirect_to admin_task_status_path(@task_status), :notice => 'Task status was successfully added.' }
+      else
+        format.html { render :action => :new }
+      end
+    end
   end
 
   # Ajax actions

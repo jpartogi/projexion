@@ -6,7 +6,7 @@
         $('#task_status_display_name').slugify({ target: 'task_status_key' });
       });
     </script>
-    <% form_for @task_status do |f| %>
+    <% form_for ([:admin, @task_status]) do |f| %>
         <%= f.error_messages %>
 
         <p>
@@ -32,11 +32,11 @@
           <%= f.submit 'Save', :class=> 'save_btn' %>
         </p>
      <% end %>
-     <%= button_to 'Cancel', task_statuses_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+     <%= button_to 'Cancel', admin_task_statuses_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
 </div>
 
 <div id="sidebar">
   <ul>
-    <li><%= link_to 'Task Status List', task_statuses_path, :class => 'list' %></li>
+    <li><%= link_to 'Task Status List', admin_task_statuses_path, :class => 'list' %></li>
   </ul>    
 </div>
