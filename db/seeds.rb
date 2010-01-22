@@ -36,6 +36,12 @@ TaskStatus.create(:display_name => 'Done',
                                 :default_status => false,
                                 :color => '228200')
 
+MeetingType.create(:name => 'Sprint Retrospective',
+                    :description => 'Retrospective')
+
+MeetingType.create(:name => 'Sprint Planning',
+                    :description => 'Planning')
+
 task = Task.create(:description => 'Create scaffolding for feature',
                    :project => project,
                    :feature => feature,

@@ -1,5 +1,5 @@
 <div id="content">
-    <%= flash[:notice] %>
+    <p class="success"><span ><%= flash[:notice] %></span></p>
 
     <script type="text/javascript">
       $(document).ready(function(){
@@ -37,6 +37,6 @@
 
 <div id="sidebar">
   <ul>
-    <li><%= link_to 'Task Status List', admin_task_statuses_path, :class => 'list' %></li>
+    <li><%= link_to 'Task Statuses', admin_task_statuses_path, :class => 'list' %></li>
   </ul>    
 </div>

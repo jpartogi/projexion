@@ -1,4 +1,4 @@
-<table width="100%" id="projects">
+<table width="100%" id="task-statuses">
     <tr>
         <th>Key</th>
         <th>Display Name</th>
@@ -9,7 +9,7 @@
     <% for task_status in @task_statuses %>
     <input type="hidden" name="id" value="<%= task_status.id %>" />
     <tr>
-        <td><%= link_to task_status.key, admin_task_status_path(task_status.id) %></td>
+        <td><%= link_to task_status.key, admin_task_status_path(task_status) %></td>
         <td><%= h task_status.display_name %></td>
         <td style="text-align:center;"><% if task_status.default_status %><img src="/images/icons/accept.png"/><% end %></td>
         <td style="text-align:center;">
