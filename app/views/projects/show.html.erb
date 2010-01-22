@@ -8,14 +8,14 @@
         <%= label_tag(:vision) %><br/>
         <%= h @project.vision %>
       </p>
-      <%# TODO: Add next release, current sprint %>
   </div>
 
   <div style="float:right;">
-  <% unless @releases.empty? %>
+
   <div style="float:left; margin-right:2em;">
     <h2>Releases</h2>
 
+    <% unless @releases.empty? %>
     <ul>
     <% for release in @releases %>
       <li>
@@ -27,13 +27,17 @@
     <% end %>
     </ul>
     <%= link_to 'Show all', project_releases_path(@project.code) %>
+    <% else %>
+      <p class="info">
+        No active releases.
+      </p>
+    <% end %>
   </div>
-  <% end %>
 
-  <% unless @sprints.empty? %>
   <div style="float:left; margin-right:2em;">
     <h2>Sprints</h2>
 
+    <% unless @sprints.empty? %>
     <ul>
     <% for sprint in @sprints %>
         <li>
@@ -45,8 +49,12 @@
     <% end %>
     </ul>
     <%= link_to 'Show all', project_sprints_path(@project.code) %>
+    <% else %>
+      <p class="info">
+        No active sprints.
+      </p>
+    <% end %>
   </div>
-  <% end %>
   </div>
 
   <div style="clear:both"></div>

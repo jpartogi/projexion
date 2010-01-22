@@ -9,14 +9,14 @@ class Project < ActiveRecord::Base
   has_many :sprints, :primary_key => :code, :foreign_key => :project_code
 
   def active_sprints
-    self.sprints.reject do |sprint|
-      sprint.end_date < Date.today
+    self.sprints.reject! do |sprint|
+      Date.today > sprint.end_date or not sprint.cancelled_at.nil?
     end
   end
 
   def active_releases
     self.releases.reject do |release|
-      release.released_at != nil
+      not release.released_at.nil?
     end
   end
 end

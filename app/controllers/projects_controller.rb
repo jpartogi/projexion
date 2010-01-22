@@ -27,9 +27,9 @@ class ProjectsController < ApplicationController
 
     @features = @project.features
 
-    @releases = @project.releases
+    @releases = @project.active_releases
 
-    @sprints = @project.sprints
+    @sprints = @project.active_sprints
 
     respond_with(@project, @features)
   end
