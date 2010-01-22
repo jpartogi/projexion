@@ -10,6 +10,7 @@ h3 { font: bold 15px Helvetica; }
 .delete { background: url('/images/icons/delete.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 .edit { background: url('/images/icons/page_edit.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 .list { background: url('/images/icons/application_view_list.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
+.accept { background: url('/images/icons/accept.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 .dashboard { background: url('/images/icons/application_cascade.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 .taskboard { background: url('/images/icons/table.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 .chart { background: url('/images/icons/chart_line.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
