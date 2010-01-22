@@ -1,4 +1,12 @@
-<div id="content">
+<div id="content">  
+  <p class="success"><span ><%= flash[:notice] %></span></p>
+
+  <% unless @sprint.cancelled_at.nil? %>
+  <p class="info">
+    This sprint was cancelled at <%= @sprint.cancelled_at %>.
+  </p>
+  <% end %>    
+
   <div id="features" style="float:left">
     <h1>
       Product Features for <%= @project.name %>
@@ -26,12 +34,13 @@
   <ul>
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
     <li><%= link_to 'Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
+    <% if @sprint.cancelled_at.nil? %>
     <li><%= link_to 'Edit Sprint', edit_project_sprint_path(@project.code, @sprint), :class => 'edit' %></li>
+    <li><%= link_to 'Cancel Sprint', project_sprint_path(@project.code, @sprint), :class => 'delete',
+                    :method => :delete, :confirm => "Are you sure?" %></li>
+    <% end %>    
     <li><%= link_to 'Sprint Taskboard', taskboard_project_sprint_path(@project.code, @sprint), :class => 'taskboard' %></li>
     <li><%= link_to 'Sprint Burndown', burndown_project_sprint_path(@project.code, @sprint), :class => 'chart' %></li>
   </ul>
   <%# TODO: Add meeting link %>
-  <%# TODO: Add cancel sprint link %>
-  <%# TODO: Delete and edit sprint %>
-  <%# TODO: Move burndown chart and taskboard link here %>
 </div>

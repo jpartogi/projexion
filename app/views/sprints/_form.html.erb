@@ -1,6 +1,6 @@
 <div id="content">
   <div id="sprint">
-    <% form_for @sprint, :url => project_sprints_path(@project.code) do |f| %>
+    <% form_for @sprint, :url => project_sprint_path(@project.code, @sprint) do |f| %>
         <%= f.error_messages %>
 
         <p>
@@ -23,7 +23,7 @@
         </p>
      <% end %>
      <%= button_to 'Cancel', project_sprints_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
-  </div>  
+  </div>
 </div>
 
 <div id="sidebar">

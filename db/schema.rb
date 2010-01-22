@@ -86,12 +86,12 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "sprints", :force => true do |t|
-    t.date      "start_date",                :null => false
-    t.date      "end_date",                  :null => false
-    t.integer   "velocities",   :limit => 3, :null => false
-    t.timestamp "created_at",                :null => false
-    t.timestamp "updated_at",                :null => false
-    t.string    "project_code", :limit => 3, :null => false
+    t.date      "start_date",                               :null => false
+    t.date      "end_date",                                 :null => false
+    t.integer   "velocities",   :limit => 3, :default => 0
+    t.timestamp "created_at",                               :null => false
+    t.timestamp "updated_at",                               :null => false
+    t.string    "project_code", :limit => 3,                :null => false
     t.string    "goal"
     t.datetime  "cancelled_at"
   end
