@@ -48,10 +48,13 @@ class SprintsController < ApplicationController
 
   # Sprint is soft deleted a.k.a cancelled
   def destroy
+  end
+
+  def cancel
     @sprint = Sprint.find(params[:id])
 
     @project = @sprint.project
-    
+
     @sprint.cancelled_at = Date.today
 
     respond_with(@sprint) do |format|

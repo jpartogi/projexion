@@ -36,8 +36,8 @@
     <li><%= link_to 'Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
     <% if @sprint.cancelled_at.nil? %>
     <li><%= link_to 'Edit Sprint', edit_project_sprint_path(@project.code, @sprint), :class => 'edit' %></li>
-    <li><%= link_to 'Cancel Sprint', project_sprint_path(@project.code, @sprint), :class => 'delete',
-                    :method => :delete, :confirm => "Are you sure?" %></li>
+    <li><%= link_to 'Cancel Sprint', cancel_project_sprint_path(@project.code, @sprint), :class => 'delete',
+                    :method => :put, :confirm => "Are you sure?" %></li>
     <% end %>    
     <li><%= link_to 'Sprint Taskboard', taskboard_project_sprint_path(@project.code, @sprint), :class => 'taskboard' %></li>
     <li><%= link_to 'Sprint Burndown', burndown_project_sprint_path(@project.code, @sprint), :class => 'chart' %></li>
