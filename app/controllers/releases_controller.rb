@@ -24,19 +24,40 @@ class ReleasesController < ApplicationController
   end
 
   def edit
+    @release = Release.find(params[:id])
+
+    @project = @release.project
   end
 
   def update
-  end
-
-  def destroy
     @release = Release.find(params[:id])
 
-    @release.destroy
+    @project = @release.project
 
-    respond_to do |format|
-      format.html { redirect_to project_releases_path(:code => params[:project_id]) }
-      format.json  { head :ok }
+    respond_with(@release) do |format|
+      if @release.update_attributes(params[:release])
+        format.html { redirect_to project_release_path(@project.code, @release),
+                                  :notice => 'Release was successfully updated.' }
+      else
+        format.html { render :action => :edit }
+      end
+    end
+  end
+
+  #Release is soft deleted a.k.a released
+  def destroy
+  end
+
+  def release
+    @release = Release.find(params[:id])
+    @project = @release.project
+    @release.released_at = Date.today
+
+    respond_with(@release) do |format|
+      if @release.save
+        format.html { redirect_to project_release_path(@project.code, @release),
+                                :notice => 'Release was successfully updated.' }
+      end
     end
   end
 

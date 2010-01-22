@@ -1,4 +1,12 @@
 <div id="content">
+  <p class="success"><span ><%= flash[:notice] %></span></p>
+
+  <% unless @release.released_at.nil? %>
+  <p class="info">
+    This release was released at <%= @release.released_at %>.
+  </p>
+  <% end %>
+
   <div id="features" style="float:left">
     <h1>
       Product Features for <%= @project.name %>
@@ -8,10 +16,10 @@
   </div>
 
   <script type="text/javascript">
-        $(document).ready(function(){
-            $('#info-box').corner();
-        });
-      </script>
+    $(document).ready(function(){
+        $('#info-box').corner();
+    });
+  </script>
   <div id="info-box" style="float:right">
     <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
     <strong>Release:</strong>&nbsp;<%= @release.version_number %><br/>
@@ -25,9 +33,11 @@
   <ul>
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
     <li><%= link_to 'Releases', project_releases_path(@project.code), :class => 'list' %></li>
+    <% if @release.released_at.nil? %>
     <li><%= link_to 'Edit Release', edit_project_release_path(@project.code, @release), :class => 'edit' %></li>
+    <li><%= link_to 'Released', release_project_release_path(@project.code, @release), :class => 'accept', :method => :put, 
+                    :confirm => "Are you sure?" %></li>
+    <% end %>    
   </ul>
   <%# TODO: Add meeting link %>
-  <%# TODO: Add released link %>
-  <%# TODO: Delete and edit release %>
 </div>

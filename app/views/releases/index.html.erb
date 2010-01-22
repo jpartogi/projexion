@@ -8,22 +8,17 @@
       <tr>
         <th>Version</th>
         <th>Estimate release date</th>
-        <th>&nbsp;</th>
+        <th>Released date</th>
         <th>&nbsp;</th>
       </tr>
     <% for release in @releases %>
         <tr>
             <td style="text-align:center;"><%= h release.version_number %></td>
             <td style="text-align:center;"><%= h release.estimate_date %></td>
+            <td style="text-align:center;"><%= h release.released_at %></td>
             <td>
                 <% link_to project_release_path(@project.code, release.id) do %>
                     <img src="/images/icons/application_view_detail.png">
-                <% end %>
-            </td>
-            <td>
-                <% link_to project_release_path(@project.code, release.id),
-                                :confirm => 'Are you sure?', :method => :delete do %>
-                    <img src="/images/icons/delete.png">
                 <% end %>
             </td>
         </tr>
