@@ -44,12 +44,17 @@ Projexion::Application.routes.draw do |map|
       end
     end
 
-    resources :releases
+    resources :releases do
+      member do
+        put :release
+      end
+    end
 
     resources :sprints do
       member do
         get :burndown
         get :taskboard
+        put :cancel
       end
     end
 
