@@ -24,12 +24,12 @@
 
     <p>
         <%= f.label :sprints %><br/>
-        <%= f.collection_select(:sprint, @sprints, :id, :span_date, {:include_blank => true, :selected => @feature.sprint ? @feature.sprint.id : @feature.sprint}) %>
+        <%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}) %>
     </p>
 
     <p>
         <%= f.label :releases %><br/>
-        <%= f.collection_select(:release, @releases, :id, :version_number, {:include_blank => true, :selected => @feature.release ? @feature.release.id : @feature.release}) %>
+        <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %>
     </p>
 
     <%= f.submit 'Save', :class=> 'save_btn' %>

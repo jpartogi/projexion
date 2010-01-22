@@ -60,19 +60,6 @@ class FeaturesController < ApplicationController
   def update
     @feature = Feature.find(params[:id])
 
-    # Let's get the object
-    unless params[:feature][:sprint].empty?
-      params[:feature][:sprint] = Sprint.find(params[:feature][:sprint])
-    else
-      params[:feature][:sprint] = nil
-    end
-
-    unless params[:feature][:release].empty?
-      params[:feature][:release] = Release.find(params[:feature][:release])
-    else
-      params[:feature][:release] = nil
-    end
-
     respond_with(@feature) do |format|
       if @feature.update_attributes(params[:feature])
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id),
