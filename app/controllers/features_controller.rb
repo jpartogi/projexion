@@ -114,4 +114,16 @@ class FeaturesController < ApplicationController
       format.html { render :partial => 'list' }      
     end
   end
+
+  def accept
+    @feature = Feature.find(params[:id])
+
+    @feature.accepted = !@feature.accepted
+
+    respond_with(@feature) do |format|
+      if @feature.save
+        format.json { render :json => @feature }
+      end
+    end
+  end
 end
