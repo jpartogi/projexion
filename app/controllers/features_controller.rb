@@ -35,17 +35,8 @@ class FeaturesController < ApplicationController
   end
 
   def index
-    if params[:release_id]
-      @release  = Release.find(params[:release_id])
-      @features = @release.features
-      @project = @release.project
-    elsif params[:sprint_id]
-      @sprint = Sprint.find(params[:sprint_id])
-      @features = @sprint.features
-      @project = @sprint.project
-    else
-      @features = Feature.find(:all)
-    end
+    @project = Project.find_by_code(params[:project_id])
+    @features = @project.features
   end
 
   def edit
@@ -76,8 +67,8 @@ class FeaturesController < ApplicationController
     @feature.destroy
 
     respond_to do |format|
-      flash[:notice] = 'Feature was successfully deleted.'
-      format.html { redirect_to project_path(params[:project_id]) }
+      format.html { redirect_to project_path(params[:project_id]),
+                                :notice => 'Feature was successfully deleted.' }
     end
   end
 
@@ -86,7 +77,8 @@ class FeaturesController < ApplicationController
 
     @project = Project.find_by_code(params[:project_id])
 
-    conditions = {:project_code => @project.code}
+    conditions = Hash.new
+    conditions[:project_code] = @project.code
     if params[:accepted]
       accepted = params[:accepted]
 
