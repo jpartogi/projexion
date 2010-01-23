@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.text     "description",                    :null => false
     t.string   "project_code",      :limit => 3, :null => false
     t.integer  "feature_id",                     :null => false
+    t.integer  "sprint_id",                      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "task_status_id",                 :null => false

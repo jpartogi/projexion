@@ -5,10 +5,10 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
     @feature = Feature.find(params[:feature_id])
-    @project = @feature.project
-
+    
     @task.feature = @feature
-    @task.project = @project
+    @task.project = @feature.project
+    @task.sprint = @feature.sprint
 
     respond_with(@task) do |format|
       if @task.save
