@@ -85,7 +85,7 @@
             var clone = $(this).clone();
             var current = $(this);
 
-            $.post("<%= url_for :action => :get_options, :controller => :task_statuses %>", {task_id: task_id}, function(response){
+            $.post("<%= url_for :action => :get_options, :controller => 'admin/task_statuses' %>", {task_id: task_id}, function(response){
                 current.replaceWith(response);
 
                 $(".status option").click(function () {
