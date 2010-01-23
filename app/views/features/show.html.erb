@@ -68,22 +68,6 @@
             });   
         });
       </script>
-
-      <h2>Acceptance Tests</h2>
-      <table>
-      <% for acceptance in @acceptances %>
-      <tr>
-        <td><%= check_box_tag :acceptances, acceptance.id, acceptance.accepted, :id => 'acceptance_' + acceptance.id.to_s %></td>
-        <td><%= acceptance.description %></td>
-        <td width="10%" style="text-align:center;">
-            <% link_to project_feature_acceptance_path(@project.code, @feature.id, acceptance.id),
-                        :confirm => 'Are you sure?', :method => :delete do %>
-                <img src="/images/icons/delete.png">
-            <% end %>
-        </td>
-      </tr>
-      <% end %>
-      </table>    
     </div>
 
     <script type="text/javascript">
@@ -135,31 +119,56 @@
     </script>
 
     <div style="float:left; margin-left:1em; width:45%">
-    <% unless @tasks.empty? %>
-        <h2>Tasks for this feature</h2>
-    
-        <table id="tasks" width="100%">
-        <% for task in @tasks %>
-            <tr id="task_<%= h task.id %>">
-                <input type="hidden" class="task-id" name="task-id" value="<%= h task.id %>"/>
-                <td width="60%" class="desc"><%= h task.description %></td>
-                <td width="20%" class="status <%= h task.task_status.key %>" style="background-color:<%= h task.task_status.color %>">
-                  <input type="hidden" class="tsid" name="task_status_id" value="<%= h task.task_status.id %>" />
-                  <span><%= h task.task_status.display_name %></span>
-                </td>
+
+        <div style="margin-bottom:1em;">
+            <% unless @acceptances.empty? %>
+              <h2>Acceptance Tests</h2>
+              <table>
+              <% for acceptance in @acceptances %>
+              <tr>
+                <td><%= check_box_tag :acceptances, acceptance.id, acceptance.accepted, :id => 'acceptance_' + acceptance.id.to_s %></td>
+                <td><%= acceptance.description %></td>
                 <td width="10%" style="text-align:center;">
-                    <% link_to project_feature_task_path(@project.code, @feature.id, task.id),
+                    <% link_to project_feature_acceptance_path(@project.code, @feature.id, acceptance.id),
                                 :confirm => 'Are you sure?', :method => :delete do %>
                         <img src="/images/icons/delete.png">
                     <% end %>
                 </td>
-            </tr>
-        <% end %>
-        </table>
-    <% else %>
-        <p class="info">No tasks for this feature.</p>      
-    <% end %>
+              </tr>
+              <% end %>
+              </table>
+            <% else %>
+              <p class="info">There are no acceptance tests for this feature yet.</p>
+            <% end  %>
+        </div>
 
+        <div>
+            <% unless @tasks.empty? %>
+                <h2>Tasks for this feature</h2>
+
+                <table id="tasks" width="100%">
+                <% for task in @tasks %>
+                    <tr id="task_<%= h task.id %>">
+                        <input type="hidden" class="task-id" name="task-id" value="<%= h task.id %>"/>
+                        <td width="60%" class="desc"><%= h task.description %></td>
+                        <td width="20%" class="status <%= h task.task_status.key %>" style="background-color:<%= h task.task_status.color %>">
+                          <input type="hidden" class="tsid" name="task_status_id" value="<%= h task.task_status.id %>" />
+                          <span><%= h task.task_status.display_name %></span>
+                        </td>
+                        <td width="10%" style="text-align:center;">
+                            <% link_to project_feature_task_path(@project.code, @feature.id, task.id),
+                                        :confirm => 'Are you sure?', :method => :delete do %>
+                                <img src="/images/icons/delete.png">
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+                </table>
+            <% else %>
+                <p class="info">There are no tasks for this feature yet.</p>
+            <% end %>
+        </div>
+      
     </div>
 </div>
 
@@ -171,9 +180,5 @@
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <li><%= link_to 'Add Task', new_project_feature_task_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
     <li><%= link_to 'Add Acceptance Test', new_project_feature_acceptance_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
-
-    <% if @feature.sprint %>
-    <li><%= link_to 'Sprint Taskboard', taskboard_project_sprint_path(@project.code, @feature.sprint.id), :class => 'taskboard' %></li>
-    <% end %>
   </ul>
 </div>
