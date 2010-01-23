@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-    respond_to :html, :json # class level
+    respond_to :html, :json
     #before_filter :require_user, :only => :index
 
     def index
