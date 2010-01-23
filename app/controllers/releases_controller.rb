@@ -1,6 +1,7 @@
 class ReleasesController < ApplicationController
   layout 'main'
   respond_to :html, :json
+  before_filter :require_user
   
   def create
     @release = Release.new(params[:release])

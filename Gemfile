@@ -43,7 +43,7 @@ gem "rack", "1.1.0", :git => "git://github.com/rails/rack.git"
 gem "arel", "0.2.pre", :git => "git://github.com/rails/arel.git", :path => "arel"
 
 # For security
-gem "authlogic", "2.1.3", :git => "git://github.com/binarylogic/authlogic.git"
+gem "authlogic", :git => 'git://github.com/binarylogic/authlogic.git'
 
 # For cron jobs
 gem "whenever", "0.4.1", :git => "git://github.com/javan/whenever.git"

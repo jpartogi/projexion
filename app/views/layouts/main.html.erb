@@ -16,8 +16,9 @@
     <%= javascript_include_tag 'jquery.corner' %>
     <%= javascript_include_tag 'facebox' %>
     <script type="text/javascript">
-      $(document).ready(function(){ 
-        $("#sidebar").height($("#content").height()); // Make the #sidebar height always the same as #content
+      $(document).ready(function(){
+        <%# TODO: This doesn't work. The height of content and sidebar is not equal %>  
+        $("#sidebar").height($("#content").height()); //  Make the #sidebar height always the same as #content
         $("a[rel*=facebox]").facebox();
           
         <% if flash[:notice] %>
@@ -32,8 +33,8 @@
 <body>
     <div id="header">
       <div id="title">Projexion</div>
-      <div id="login">Logged in as: <%#= @current_user.login %> |
-        <%#= link_to "Logout", :controller => 'user_sessions', :action => 'destroy' , :method => :delete, :confirm => "Are you sure you want to logout?" %>
+      <div id="login">Logged in as: <%= @current_user.login %> |
+        <%= link_to "Logout", logout_path , :method => :delete, :confirm => "Are you sure you want to logout?" %>
       </div>
 
       <div style="clear:both"></div>  

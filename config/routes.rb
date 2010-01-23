@@ -3,8 +3,8 @@ Projexion::Application.routes.draw do |map|
 
   resources :users
   resources :user_sessions
-  #map.login  '/login',  :controller => "user_sessions", :action => "new"
-  #map.logout '/logout', :controller => 'user_sessions', :action => 'destroy'
+  map.login  '/login',  :controller => "user_sessions", :action => "new"
+  map.logout '/logout', :controller => 'user_sessions', :action => 'destroy'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

@@ -1,6 +1,7 @@
 class FeaturesController < ApplicationController
   layout 'main'
   respond_to :html, :json
+  before_filter :require_user
   
   def create
     @feature = Feature.new(params[:feature])

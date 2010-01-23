@@ -1,7 +1,7 @@
 class SprintsController < ApplicationController
   layout 'main'
   respond_to :html, :json
-
+  before_filter :require_user
   after_filter :generate_velocities, :only => :show
 
   def create

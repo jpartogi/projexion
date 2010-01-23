@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   layout 'main'
   respond_to :html, :json
+  before_filter :require_user
   
   def index
     @projects = Project.find(:all)

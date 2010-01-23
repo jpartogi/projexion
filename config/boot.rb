@@ -14,6 +14,8 @@ else
 end
 
 require 'rails/all'
+require 'authlogic'
+
 # To pick the frameworks you want, remove 'require "rails/all"'
 # and list the framework railties that you want:
 #

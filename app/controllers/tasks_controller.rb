@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   respond_to :html, :json
+  before_filter :require_user
   
   def create
     @task = Task.new(params[:task])
