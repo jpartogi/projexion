@@ -1,10 +1,11 @@
 class Task < ActiveRecord::Base
   belongs_to :project, :primary_key => :code, :foreign_key => :project_code
   belongs_to :feature
+  belongs_to :sprint
   belongs_to :task_status
 
   validates_presence_of :description
-  
+
   before_create :set_default_status
   after_update :add_event
 
@@ -23,5 +24,28 @@ class Task < ActiveRecord::Base
         group by date(t.updated_at)
         order by t.updated_at'
   end
-end
 
+  class << self
+    def board(*args)
+      features = Feature.all(*args)
+      task_statuses = TaskStatus.all(:order => 'position')
+
+      features_map = Hash.new
+
+      features.each do |feature|
+
+        statuses_map = Hash.new
+
+        task_statuses.each do |task_status|
+          
+          tasks = Task.all(:conditions => { :feature_id => feature.id, :task_status_id => task_status.id})
+          statuses_map.store task_status, tasks
+        end
+
+        features_map.store feature, statuses_map
+      end
+
+      features_map
+    end
+  end
+end

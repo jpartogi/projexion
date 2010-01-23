@@ -91,15 +91,11 @@ class SprintsController < ApplicationController
 
     @task_statuses = TaskStatus.find(:all)
 
-    if params[:sprint]
-      @sprint = Sprint.find(params[:sprint][:id])
-    elsif params[:id]
-      @sprint = Sprint.find(params[:id])
-    else
-      @sprint = Sprint.new
-    end
+    id = params[:id] || params[:sprint][:id]
+    @sprint = Sprint.find(id) || Sprint.new
 
-    @features = @sprint.features
+    @task_board = Task.board(:conditions => { :sprint_id => @sprint.id })
+    @column_width = (100/(@task_statuses.length + 1)).to_s.concat('%')
   end
 
   def burndown

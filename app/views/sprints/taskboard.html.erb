@@ -1,7 +1,7 @@
 <div id="content">
     <script type="text/javascript">
      $(document).ready(function(){
-         $('.desc').corner();
+         $('.task').corner();
          $('h3').corner();
          
          $('.desc').tooltip().click(function(){
@@ -11,22 +11,35 @@
     </script>
   
     <%# TODO: By default display tasks from current sprint %>
-    <%# TODO: Use Hash for this to have features and tasks %>
     <div>
+
+        <div style="float:left; width:<%= @column_width %>;"><h3>Features</h3></div>
         <% for task_status in @task_statuses %>
-         <div style="float:left;width:250px;margin:1pt;">
-            <h3 style="background:<%= task_status.color %>; color:white; padding:1px; text-align:center;"><%= task_status.display_name %></h3>
-            <% for feature in @features %>
-               <% for task in feature.tasks %>
-                <% if task_status == task.task_status %> 
-                    <div class="desc" style="border:1px solid #ccc; margin:1px 0 1px 0; padding:3px" title="<%= feature.user_story %>"
-                        link="<%= project_feature_path(@project.code, feature.id) %>">
-                      <%= task.description %>
-                    </div>
+            <div style="float:left; width:<%= @column_width %>;">
+                <h3 style="background-color: <%= task_status.color %>; text-align:center; color:#fff;">
+                  <%= task_status.display_name %>
+                </h3>
+            </div>
+        <% end %>
+        <div style="clear:both"></div>
+        <% @task_board.each do |feature, statuses| %>
+          <div style="margin-bottom:1em; border-bottom: 1px dashed #ccc">
+            <div style="float:left; width:<%= @column_width %>;">
+              <%= feature.user_story %>
+              <% link_to project_feature_path(@project.code, feature.id) do %>
+                <img src="/images/icons/application_view_detail.png">
+              <% end %>
+            </div>
+
+            <% statuses.each do |status, tasks| %>
+              <div style="float:left; width:<%= @column_width %>;">
+                <% for task in tasks %>
+                    <div class="task" style="border: 1px solid #ccc; margin: 1pt; padding: 3px"><%= task.description %></div>
                 <% end %>
-               <% end %>
+              </div>
             <% end %>
-         </div>
+            <div style="clear:both"></div>
+          </div>
         <% end %>
     </div>     
 </div>
