@@ -43,19 +43,21 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
 
   create_table "meeting_types", :force => true do |t|
     t.string   "name",        :limit => 50, :null => false
+    t.text     "occurrence"
     t.text     "description",               :null => false
     t.datetime "updated_at",                :null => false
     t.datetime "created_at",                :null => false
   end
 
   create_table "meetings", :force => true do |t|
-    t.text     "notes",                        :null => false
+    t.text     "minutes",                      :null => false
     t.binary   "attachment"
     t.datetime "start_time",                   :null => false
     t.datetime "end_time",                     :null => false
     t.integer  "meeting_type_id",              :null => false
     t.string   "project_code",    :limit => 3, :null => false
-    t.integer  "sprint_id",                    :null => false
+    t.integer  "sprint_id"
+    t.datetime "cancelled_at"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
   end

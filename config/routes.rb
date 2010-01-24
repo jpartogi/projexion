@@ -58,6 +58,11 @@ Projexion::Application.routes.draw do |map|
       end
     end
 
+    resources :meetings do
+      member do
+        delete :cancel
+      end
+    end
   end
 
   namespace :admin do    
