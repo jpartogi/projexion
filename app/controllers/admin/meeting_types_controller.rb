@@ -1,7 +1,8 @@
 class Admin::MeetingTypesController < ApplicationController
   layout 'main'
   respond_to :html
-
+  before_filter :require_user
+  
   def index
     @meeting_types = MeetingType.all
   end
