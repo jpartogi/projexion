@@ -10,10 +10,15 @@
         </p>
 
         <p>
+          <%= f.label :occurrence %><br/>
+          <%= f.text_field :occurrence %>
+        </p>
+
+        <p>
             <%= f.label :description %><br/>
             <%= f.text_area :description, :size => "25x4" %>
         </p>
-      
+
         <p>
           <%= f.submit 'Save', :class=> 'save_btn' %>
         </p>

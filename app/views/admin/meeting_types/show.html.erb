@@ -7,6 +7,13 @@
           <%= h @meeting_type.name %>
         </p>
 
+        <% unless @meeting_type.nil? %>
+        <p>
+          <%= label_tag :occurrence %><br />
+          <%= h @meeting_type.occurrence %>
+        </p>
+        <% end %>
+      
         <p>
           <%= label_tag :description %><br />
           <%= h @meeting_type.description %>
