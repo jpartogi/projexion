@@ -13,7 +13,7 @@
   <div style="float:right;">
 
   <div style="float:left; margin-right:2em;">
-    <h2>Releases</h2>
+    <h2>Upcoming Releases</h2>
 
     <% unless @releases.empty? %>
     <ul>
@@ -94,6 +94,7 @@
     <li><%= link_to 'Edit Project', edit_project_path(@project.code), :class => 'edit' %></li>
     <li><%= link_to 'Delete Project', project_path(@project.code), :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <li><%= link_to 'Add New Feature', new_project_feature_path(@project.code), :class => 'add' %></li>
+    <li><%= link_to 'Book a meeting', new_project_meeting_path(@project.code), :class => 'add' %></li>
     <li><%= link_to 'Releases', project_releases_path(@project.code), :class => 'list' %></li>
     <li><%= link_to 'Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
     <%# TODO: Burndown chart %>
