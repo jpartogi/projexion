@@ -32,7 +32,5 @@
   <ul>
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
     <li><%= link_to 'Add New Sprint', new_project_sprint_path(@project.code), :class => 'add' %></li>
-    <li><%= link_to 'Sprint Taskboard', taskboard_path(@project.code), :class => 'taskboard' %></li>
-    <li><%= link_to 'Burndown Chart', burndown_path(@project.code), :class => 'chart' %></li>
   </ul>
 </div>

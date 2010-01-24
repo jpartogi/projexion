@@ -100,7 +100,7 @@ class SprintsController < ApplicationController
 
   def burndown
     @project = Project.find_by_code(params[:project_id])
-    @sprint = Sprint.find(params[:id])
+    @sprint = Sprint.find(params[:id]) || Sprint.new
     
     @plots = TaskDaily.plots(:conditions => { :project_code => params[:project_id] })
 
