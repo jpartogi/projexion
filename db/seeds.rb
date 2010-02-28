@@ -46,3 +46,13 @@ task = Task.create(:description => 'Create scaffolding for feature',
                    :project => project,
                    :feature => feature,
                    :task_status => task_status)
+                   
+User.create(:login => 'admin',
+			:email => 'admin@example.com',
+			:password_salt => '0-eVRdMdVnIb358gcyL3',
+			:single_access_token => 'byw3v4tgeBZ5BqNSLmWY',
+			:perishable_token => 'byw3v4tgeBZ5BqNSLmWY',
+			:crypted_password => 'b9941856357d7040f3daa71bda942a3eccb44c5373c84f21d420a749bc2d25414440c81178f93afc9d223767f8fc3c24cc6dd740db9965caeb8fccdc1922f790',
+			:persistence_token => 'c7eb1851954f54a476cab522ece7b04087aefe7ca778fa1cd2f42fa57bbc60ec5bced0a4635cb61a43c5ceb165449801f0b919555dbe773a56983829d3ff1fca'
+			)
+			                   
