@@ -6,19 +6,43 @@ Currently still under development. Stay tuned.
 
 Dependencies:
 
+Required 3rd party tools
+- Git (http://git-scm.org)
+- MariaDB (http://mariadb.org)
+- RubyGems (http://rubygems.org)
+
 Gems:
-- Checkout bundler : http://github.com/carlhuda/bundler
-Run `rake install` from bundler top directory to install bundler
+- Install Rspec using `gem install rspec`. RSpec is required for bundler.
+- Checkout bundler from http://github.com/carlhuda/bundler
+- Run `rake gemspec` from bundler top directory to install bundler
+- Once the gemspec is created, run `gem install bundler.gemspec` 
+
 The rest of the gems dependencies is picked up using `bundle install vendor` command from bundler
 
-Native libraries dependencies:
-- sqlite3
-- sqlite3-devel
-- libxml2-devel #For nokogiri
-- libxslt-devel #For nokogiri
-- mysql-devel
+Install these native libraries dependencies:
+- sqlite3		# Database for unit testing
+- sqlite3-devel # Database for unit testing
+- libxml2-devel # For nokogiri
+- libxslt-devel # For nokogiri
+- mysql-devel	# For the ruby mysql driver
 
 Installation:
+
+Configuration
+- Change the database configuration values at config/database.yml
+
+
+Database
 - rake db:create 	# If database has not been created yet
 - rake db:schema:load
-- rake db:seed 		#Optional. To load sample data.
+- rake db:seed 		# Optional. To populate sample data.
+
+Run the application
+$ script/rails server
+
+Play around with the application from your web browser at http://localhost:3000
+
+If you ran the `rake db:seed` command, a default user should have been created for you.
+You can login to the application using this user account:
+username: admin
+password: admin
