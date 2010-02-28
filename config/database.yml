@@ -15,7 +15,7 @@ development:
   pool: 5
   username: 
   password:
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 test:
   adapter: sqlite3
