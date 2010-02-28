@@ -7,9 +7,9 @@ Currently still under development. Stay tuned.
 Dependencies:
 
 Gems:
-- Checkout bundler : http://github.com/wycats/bundler
+- Checkout bundler : http://github.com/carlhuda/bundler
 Run `rake install` from bundler top directory to install bundler
-The rest of the gems dependencies is picked up using `gem bundle` command from bundler
+The rest of the gems dependencies is picked up using `bundle install vendor` command from bundler
 
 Native libraries dependencies:
 - sqlite3
@@ -19,6 +19,6 @@ Native libraries dependencies:
 - mysql-devel
 
 Installation:
-- rake db:create
+- rake db:create 	# If database has not been created yet
 - rake db:schema:load
-- rake db:seed #Optional
+- rake db:seed 		#Optional. To load sample data.
