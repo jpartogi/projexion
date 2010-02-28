@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :json
-  before_filter :require_user, :except => :new
+  before_filter :require_user, :except => [:new, :create]
   
   def index
     @users = User.all
