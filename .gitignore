@@ -3,8 +3,8 @@ Thumbs.db
 bin/
 log/
 tmp/
-vendor/plugins
-vendor/gems
+.bundle/
+vendor/
 db/migrate/*
 db/projexion
 
