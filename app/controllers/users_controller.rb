@@ -4,10 +4,12 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    render :layout => "main" 
   end
 
   def show
     @user = User.find(params[:id])
+    render :layout => "main" 
   end
 
   def new
@@ -15,7 +17,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+  	#TODO: Check if it is current user, otherwise redirect
     @user = User.find(params[:id])
+    render :layout => "main" 
   end
 
   def create
@@ -39,7 +43,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
-        format.html { redirect_to(@user) }
+        format.html { redirect_to edit_user_path(@user) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -48,6 +52,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_password
+    @user = User.find(params[:id])
+    render :layout => "main"
+  end
+
+  #TODO: Only admin are allowed to do this
   def destroy
     @user = User.find(params[:id])
     @user.destroy

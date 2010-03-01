@@ -1,7 +1,12 @@
 Projexion::Application.routes.draw do |map|
   resource :main
 
-  resources :users
+  resources :users, :except => [:index, :destroy] do
+  	member do
+  	  get :change_password
+  	end
+  end
+  
   resources :user_sessions
   map.login  '/login',  :controller => "user_sessions", :action => "new"
   map.logout '/logout', :controller => 'user_sessions', :action => 'destroy'

@@ -48,7 +48,8 @@ h3 { font: bold 15px Helvetica; }
 #content h2, #content label { font: bold 16px Helvetica; letter-spacing:-0.7px; }
 #content label { margin-bottom:1em; }
 #content form input[type='text'],
-#content form textarea{ padding:5px; border:1px solid #ccc; font:12px verdana;
+  #content form input[type='password'],
+  #content form textarea{ padding:5px; border:1px solid #ccc; font:12px verdana;
     background: #fff url('/images/input-bg.gif') repeat-x top left; }
 #content input[type='submit']{ float:left; }
 #content p { margin-bottom: 1em; }
