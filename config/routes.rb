@@ -70,7 +70,8 @@ Projexion::Application.routes.draw do |map|
     end
   end
 
-  namespace :admin do    
+  namespace :admin do  
+  	resources :users  
     resources :task_statuses
     resources :meeting_types  
   end

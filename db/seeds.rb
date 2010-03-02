@@ -6,7 +6,7 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-project = Project.create(:name => 'Projexion', :code => 'PR', :vision => 'To be the best Scrum project management tool')
+project = Project.create(:code => 'PR', :name => 'Projexion', :vision => 'To be the best Scrum project management tool')
 
 release = Release.create(:version_number => '0.9.0', :estimate_date => '2010-03-01', :project => project)
 
@@ -16,10 +16,12 @@ feature = Feature.create(:user_story => 'As a team member I want to be able crea
                :business_value => 1000,
                :story_points => 5,
                :priority => 1,
-               :acceptance_test => 'Team member should be able to insert new feature',
                :project => project,
                :release => release,
                :sprint => sprint)
+
+Acceptance.create(:feature => feature,
+					:description => 'Team member should be able to insert new feature')
 
 task_status = TaskStatus.create(:display_name => 'Pooled',
                                 :key => 'pooled',
@@ -45,6 +47,7 @@ MeetingType.create(:name => 'Sprint Planning',
 task = Task.create(:description => 'Create scaffolding for feature',
                    :project => project,
                    :feature => feature,
+                   :sprint => sprint,
                    :task_status => task_status)
                    
 User.create(:login => 'admin',
@@ -56,3 +59,4 @@ User.create(:login => 'admin',
 			:persistence_token => 'c7eb1851954f54a476cab522ece7b04087aefe7ca778fa1cd2f42fa57bbc60ec5bced0a4635cb61a43c5ceb165449801f0b919555dbe773a56983829d3ff1fca'
 			)
 			                   
+#TODO: Meeting and event

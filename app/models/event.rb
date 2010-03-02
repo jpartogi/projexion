@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  belongs_to :project, :primary_key => :code, :foreign_key => :project_code
+  belongs_to :project
 
   # Class methods
   class << self

@@ -20,25 +20,25 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "events", :force => true do |t|
-    t.string   "action",                      :null => false
-    t.string   "model",        :limit => 100, :null => false
-    t.integer  "model_id",                    :null => false
-    t.string   "project_code", :limit => 3,   :null => false
-    t.datetime "updated_at",                  :null => false
-    t.datetime "created_at",                  :null => false
+    t.string   "action",                    :null => false
+    t.string   "model",      :limit => 100, :null => false
+    t.integer  "model_id",                  :null => false
+    t.integer  "project_id",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                :null => false
   end
 
   create_table "features", :force => true do |t|
-    t.text     "user_story",                                                                    :null => false
-    t.decimal  "business_value",              :precision => 10, :scale => 0
+    t.text     "user_story",                                                       :null => false
+    t.decimal  "business_value", :precision => 10, :scale => 0
     t.integer  "story_points"
     t.integer  "priority"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sprint_id"
     t.integer  "release_id"
-    t.string   "project_code",   :limit => 3,                                                   :null => false
-    t.boolean  "accepted",                                                   :default => false, :null => false
+    t.integer  "project_id",                                                       :null => false
+    t.boolean  "accepted",                                      :default => false, :null => false
   end
 
   create_table "meeting_types", :force => true do |t|
@@ -50,16 +50,16 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "meetings", :force => true do |t|
-    t.text     "minutes",                      :null => false
+    t.text     "minutes",         :null => false
     t.binary   "attachment"
-    t.datetime "start_time",                   :null => false
-    t.datetime "end_time",                     :null => false
-    t.integer  "meeting_type_id",              :null => false
-    t.string   "project_code",    :limit => 3, :null => false
+    t.datetime "start_time",      :null => false
+    t.datetime "end_time",        :null => false
+    t.integer  "meeting_type_id", :null => false
+    t.integer  "project_id",      :null => false
     t.integer  "sprint_id"
     t.datetime "cancelled_at"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "project_members", :force => true do |t|
@@ -70,7 +70,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at"
   end
 
-  create_table "projects", :primary_key => "code", :force => true do |t|
+  create_table "projects", :force => true do |t|
+    t.string   "code",       :limit => 3,  :null => false
     t.string   "name",       :limit => 25, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -80,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   create_table "releases", :force => true do |t|
     t.string   "version_number", :limit => 20, :null => false
     t.date     "estimate_date"
-    t.string   "project_code",   :limit => 3,  :null => false
+    t.integer  "project_id",                   :null => false
     t.datetime "cancelled_at"
     t.datetime "released_at"
     t.datetime "created_at"
@@ -88,43 +89,43 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "sprints", :force => true do |t|
-    t.date      "start_date",                               :null => false
-    t.date      "end_date",                                 :null => false
-    t.integer   "velocities",   :limit => 3, :default => 0
-    t.timestamp "created_at",                               :null => false
-    t.timestamp "updated_at",                               :null => false
-    t.string    "project_code", :limit => 3,                :null => false
-    t.string    "goal"
-    t.datetime  "cancelled_at"
+    t.date     "start_date",                               :null => false
+    t.date     "end_date",                                 :null => false
+    t.integer  "velocities",   :limit => 3, :default => 0
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "project_id",                               :null => false
+    t.string   "goal"
+    t.datetime "cancelled_at"
   end
 
   create_table "task_dailies", :force => true do |t|
-    t.string    "project_code", :limit => 3, :null => false
-    t.integer   "total_tasks",               :null => false
-    t.date      "last_update",               :null => false
-    t.timestamp "tstamp",                    :null => false
-    t.datetime  "updated_at",                :null => false
-    t.datetime  "created_at",                :null => false
+    t.string   "project_code", :limit => 3, :null => false
+    t.integer  "total_tasks",               :null => false
+    t.date     "last_update",               :null => false
+    t.datetime "tstamp",                    :null => false
+    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                :null => false
   end
 
   create_table "task_statuses", :force => true do |t|
-    t.string   "display_name",   :limit => 100, :null => false
-    t.string   "key",            :limit => 100, :null => false
-    t.integer  "position"
+    t.string   "display_name",   :limit => 100,                :null => false
+    t.string   "key",            :limit => 100,                :null => false
+    t.integer  "position",                      :default => 1
     t.boolean  "default_status"
-    t.string   "color",          :limit => 7,   :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.string   "color",          :limit => 7,                  :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "tasks", :force => true do |t|
-    t.text     "description",                    :null => false
-    t.string   "project_code",      :limit => 3, :null => false
-    t.integer  "feature_id",                     :null => false
-    t.integer  "sprint_id",                      :null => false
+    t.text     "description",       :null => false
+    t.integer  "project_id",        :null => false
+    t.integer  "feature_id",        :null => false
+    t.integer  "sprint_id",         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "task_status_id",                 :null => false
+    t.integer  "task_status_id",    :null => false
     t.integer  "project_member_id"
   end
 

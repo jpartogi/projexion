@@ -1,7 +1,7 @@
 class Feature < ActiveRecord::Base
   belongs_to :sprint
   belongs_to :release
-  belongs_to :project, :primary_key => :code, :foreign_key => :project_code
+  belongs_to :project
   has_many :tasks
   has_many :acceptances
   

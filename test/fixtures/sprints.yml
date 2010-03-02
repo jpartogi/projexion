@@ -2,5 +2,5 @@ one:
   id: 9999
   start_date: 2009-10-10
   end_date: 2009-10-10
-  project_code: PR
+  project_id: 9999
   goal: Create a usable product

@@ -4,9 +4,9 @@ class Project < ActiveRecord::Base
 
   has_many :project_members
   has_many :users, :through => :project_members
-  has_many :features, :primary_key => :code, :foreign_key => :project_code
-  has_many :releases, :primary_key => :code, :foreign_key => :project_code
-  has_many :sprints, :primary_key => :code, :foreign_key => :project_code
+  has_many :features
+  has_many :releases
+  has_many :sprints
 
   def active_sprints
     self.sprints.reject do |sprint|

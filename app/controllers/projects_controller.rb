@@ -40,6 +40,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    #TODO: This will not work if we are updating the project code
     @project = Project.find_by_code(params[:id])
 
     respond_with(@project) do |format|
