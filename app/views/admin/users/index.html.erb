@@ -1,0 +1,23 @@
+<div id="content">
+<table width="100%">
+  <tr>
+    <th>Login</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+  	<td><%= user.login %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div> 
+
+<div id="sidebar">
+  <ul>
+    <li><%= link_to 'Add New User', new_admin_user_path, :class => 'add' %></li>
+  </ul>
+</div> 
