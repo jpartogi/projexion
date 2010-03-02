@@ -178,7 +178,9 @@
     <li><%= link_to 'Edit Feature', edit_project_feature_path(@project.code, @feature.id), :class => 'edit' %></li>
     <li><%= link_to 'Delete Feature', project_feature_path(@project.code, @feature.id),
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
+    <% if @feature.sprint %>            
     <li><%= link_to 'Add Task', new_project_feature_task_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
+    <% end %>
     <li><%= link_to 'Add Acceptance Test', new_project_feature_acceptance_path(@project.code, @feature.id), :class => 'add', :rel => 'facebox' %></li>
   </ul>
 </div>
