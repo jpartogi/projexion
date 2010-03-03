@@ -19,16 +19,18 @@
         <tr>
           <th>Project Name</th>
           <th>Project Role</th>
-          <th>&nbsp;</th>
+          <th>Status</th>
         </tr>
         <% @project_members.each do |project_member| %>
         <tr>
           <td><%= project_member.project.name %></td>
-          <td><%= project_member.project_role %></td>
-          <td>
-            <% link_to deactivate_admin_user_path(project_member.user) do %>
-                <img src="/images/icons/delete.png">
-            <% end %>
+          <td><%= project_member.project_role.name %></td>
+          <td style="text-align:center">
+          	<% if project_member.status.eql? 'A' %>
+          		<img src="/images/icons/accept.png">
+          	<% else %>
+          		<img src="/images/icons/delete.png">
+          	<% end %>
           </td>
         </tr>
         <% end %>
