@@ -2,12 +2,14 @@
 <table width="100%">
   <tr>
     <th>Login</th>
+    <th>E-mail</th>
     <th>&nbsp;</th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
   	<td><%= user.login %></td>
+    <td><%= user.email %></td>
     <td width="10%" style="text-align:center;">
      <% link_to admin_user_path(user) do %>                                        
         <img src="/images/icons/application_view_detail.png">

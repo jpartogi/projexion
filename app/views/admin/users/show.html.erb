@@ -14,24 +14,31 @@
     </div>
     
     <div>
-    	<table width="100%">
-    		<tr>
-    			<th>Project Name</th>
-    			<th>Project Role</th>
-    		</tr>
-    		<% @project_members.each do |project_member| %>
-    		<tr>
-    			<td><%= project_member.project.name %></td>
-    			<td><%= project_member.project_role %></td>
-    		</tr>
-    		<% end %>
-    	</table>
+      <h2>Assigned Projects</h2>
+      <table width="100%">
+        <tr>
+          <th>Project Name</th>
+          <th>Project Role</th>
+          <th>&nbsp;</th>
+        </tr>
+        <% @project_members.each do |project_member| %>
+        <tr>
+          <td><%= project_member.project.name %></td>
+          <td><%= project_member.project_role %></td>
+          <td>
+            <% link_to deactivate_admin_user_path(project_member.user) do %>
+                <img src="/images/icons/delete.png">
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
     </div>
 </div>
 
 <div id="sidebar">
   <ul>
-  	<li><%= link_to 'Users', admin_user_path, :class => 'list' %></li>
+  	<li><%= link_to 'Users', admin_users_path, :class => 'list' %></li>
     <li><%= link_to 'Edit User', edit_admin_user_path(@user), :class => 'edit'  %></li>
     <li><%= link_to 'Delete User', admin_user_path(@user),
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
