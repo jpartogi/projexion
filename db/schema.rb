@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.decimal  "business_value", :precision => 10, :scale => 0
     t.integer  "story_points"
     t.integer  "priority"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
     t.integer  "sprint_id"
     t.integer  "release_id"
     t.integer  "project_id",                                                       :null => false
@@ -63,18 +63,25 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "project_members", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
+    t.integer  "project_id",                :null => false
+    t.integer  "user_id",                   :null => false
     t.string   "project_role", :limit => 2, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "project_roles", :force => true do |t|
+    t.string   "name",       :limit => 45,                    :null => false
+    t.boolean  "manager",                  :default => false, :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "projects", :force => true do |t|
     t.string   "code",       :limit => 3,  :null => false
     t.string   "name",       :limit => 25, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.string   "vision",                   :null => false
   end
 
@@ -84,8 +91,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.integer  "project_id",                   :null => false
     t.datetime "cancelled_at"
     t.datetime "released_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "sprints", :force => true do |t|
@@ -123,15 +130,15 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.integer  "project_id",        :null => false
     t.integer  "feature_id",        :null => false
     t.integer  "sprint_id",         :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "task_status_id",    :null => false
     t.integer  "project_member_id"
   end
 
   create_table "user_sessions", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -149,8 +156,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
 end
