@@ -63,15 +63,17 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "project_members", :force => true do |t|
-    t.integer  "project_id",                :null => false
-    t.integer  "user_id",                   :null => false
-    t.string   "project_role", :limit => 2, :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.integer  "project_id",                                    :null => false
+    t.integer  "user_id",                                       :null => false
+    t.integer  "project_role_id",                               :null => false
+    t.string   "status",          :limit => 1, :default => "A", :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
   create_table "project_roles", :force => true do |t|
     t.string   "name",       :limit => 45,                    :null => false
+    t.text     "role"
     t.boolean  "manager",                  :default => false, :null => false
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
