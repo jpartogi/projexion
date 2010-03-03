@@ -3,14 +3,16 @@
   <tr>
     <th>Login</th>
     <th>&nbsp;</th>
-    <th>&nbsp;</th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
   	<td><%= user.login %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td width="10%" style="text-align:center;">
+     <% link_to admin_user_path(user) do %>                                        
+        <img src="/images/icons/application_view_detail.png">
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
