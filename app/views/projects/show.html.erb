@@ -13,6 +13,22 @@
   <div style="float:right;">
 
   <div style="float:left; margin-right:2em;">
+  	<h2>Project Members</h2>
+  	
+  	<% unless @project.users.empty? %>
+  	<ul>
+  	<% @project.users.each do |user| %>
+  		<li><%= user.login %></li>
+  	<% end %>
+  	</ul>
+  	<% else %>
+  	  <p class="info">
+        No members.
+      </p>	
+  	<% end %>
+  </div>
+  
+  <div style="float:left; margin-right:2em;">
     <h2>Upcoming Releases</h2>
 
     <% unless @releases.empty? %>
