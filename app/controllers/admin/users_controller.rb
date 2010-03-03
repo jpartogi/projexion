@@ -54,4 +54,8 @@ class Admin::UsersController < ApplicationController
       format.html { redirect_to admin_user_path, :notice => 'User status was successfully deleted.' }
     end	
   end
+
+  def deactivate
+    @user = User.find(params[:id])
+  end
 end 
