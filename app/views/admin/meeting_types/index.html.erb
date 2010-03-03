@@ -5,11 +5,17 @@
         <tr>
           <th>Type</th>
           <th>Description</th>
+          <th>&nbsp;</th>
         </tr>
         <% for meeting_type in @meeting_types %>
         <tr>
-            <td><%= link_to meeting_type.name, admin_meeting_type_path(meeting_type) %></td>
+            <td><%= meeting_type.name %></td>
             <td><%= meeting_type.description %></td>
+            <td>
+            <% link_to admin_meeting_type_path(meeting_type) do %>                                        
+        	  <img src="/images/icons/application_view_detail.png">
+      		<% end %>
+      		</td>
         </tr>
         <% end %>  
     </table>
