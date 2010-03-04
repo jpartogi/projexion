@@ -3,6 +3,7 @@ class MainController < ApplicationController
     before_filter :require_user, :only => :index
 
     def index
+      @projects = current_user.projects 
     end
 
     def show
