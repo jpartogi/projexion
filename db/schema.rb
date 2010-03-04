@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",                     :null => false
   end
 
+  add_index "acceptances", ["id", "feature_id"], :name => "acceptances_idx"
+
   create_table "events", :force => true do |t|
     t.string   "action",                    :null => false
     t.string   "model",      :limit => 100, :null => false
@@ -27,6 +29,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",                :null => false
     t.datetime "created_at",                :null => false
   end
+
+  add_index "events", ["id", "project_id"], :name => "events_idx"
 
   create_table "features", :force => true do |t|
     t.text     "user_story",                                                       :null => false
@@ -40,6 +44,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.integer  "project_id",                                                       :null => false
     t.boolean  "accepted",                                      :default => false, :null => false
   end
+
+  add_index "features", ["id", "sprint_id", "release_id", "project_id"], :name => "features_idx"
 
   create_table "meeting_types", :force => true do |t|
     t.string   "name",        :limit => 50, :null => false
@@ -61,6 +67,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  add_index "meetings", ["id", "meeting_type_id", "project_id", "sprint_id"], :name => "meetings_idx"
 
   create_table "project_members", :force => true do |t|
     t.integer  "project_id",                                    :null => false
@@ -97,6 +105,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",                   :null => false
   end
 
+  add_index "releases", ["id", "project_id"], :name => "releases_idx"
+
   create_table "sprints", :force => true do |t|
     t.date     "start_date",                               :null => false
     t.date     "end_date",                                 :null => false
@@ -107,6 +117,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.string   "goal"
     t.datetime "cancelled_at"
   end
+
+  add_index "sprints", ["id", "project_id"], :name => "sprints_idx"
 
   create_table "task_dailies", :force => true do |t|
     t.string   "project_code", :limit => 3, :null => false
@@ -137,6 +149,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.integer  "task_status_id",    :null => false
     t.integer  "project_member_id"
   end
+
+  add_index "tasks", ["id", "project_id", "feature_id", "sprint_id", "task_status_id", "project_member_id"], :name => "tasks_idx"
 
   create_table "user_sessions", :force => true do |t|
     t.datetime "created_at", :null => false
