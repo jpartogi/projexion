@@ -1,13 +1,18 @@
 <div id="content">
   <p class="success"><span ><%= flash[:notice] %></span></p>
 
-  <h1><%= h @project.name %>&nbsp;(Code: <%= h @project.code %>)</h1>
+  <h1><%= @project.name %>&nbsp;(Code: <%= @project.code %>)</h1>
 
   <div id="project" style="float:left; margin-right:2em;">
-      <p>
-        <%= label_tag(:vision) %><br/>
-        <%= h @project.vision %>
-      </p>
+    <p>
+      <%= label_tag(:vision) %><br/>
+      <%= @project.vision %>
+    </p>
+
+    <p>
+      <%= label_tag(:manager) %><br/>
+      <%= @manager.login %>
+    </p>
   </div>
 
   <div style="float:right;">

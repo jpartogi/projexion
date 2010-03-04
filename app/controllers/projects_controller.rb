@@ -28,6 +28,8 @@ class ProjectsController < ApplicationController
 
     @features = @project.features
 
+    @manager = @project.manager
+
     @releases = @project.active_releases
 
     @sprints = @project.active_sprints
@@ -40,7 +42,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    #TODO: This will not work if we are updating the project code
     @project = Project.find_by_code(params[:id])
 
     respond_with(@project) do |format|
@@ -53,7 +54,9 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    Project.delete_all(["code = ?", params[:id]])
+    @project = Project.find(params[:id])
+
+    @project.destroy
 
     respond_to do |format|
       format.html { redirect_to projects_path, :notice => 'Project was successfully deleted.' }

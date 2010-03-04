@@ -19,4 +19,12 @@ class Project < ActiveRecord::Base
       not release.released_at.nil?
     end
   end
+
+  def manager
+    self.project_members.each do |project_member|
+      if project_member.project_role.eql? ProjectRole.manager
+        return project_member.user
+      end
+    end
+  end
 end

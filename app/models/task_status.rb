@@ -49,7 +49,7 @@ class TaskStatus < ActiveRecord::Base
   class << self
 
     def default_status
-      TaskStatus.find(:first, :conditions => [ "default_status = ?", true ] )
+      TaskStatus.first(:conditions => {:default_status => true})
     end
 
   end
