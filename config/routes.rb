@@ -48,12 +48,14 @@ Projexion::Application.routes.draw do |map|
   namespace :admin do  
   	resources :users do
       member do
+        get :project
       	put	:activate
         delete :deactivate
       end
     end
 
-    resources :project_roles  
+    resources :project_roles
+    resources :project_members
     resources :task_statuses
     resources :meeting_types  
   end

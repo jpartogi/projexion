@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",                                    :null => false
   end
 
+  add_index "project_members", ["project_id", "user_id"], :name => "project_members_uq", :unique => true
+
   create_table "project_roles", :force => true do |t|
     t.string   "name",       :limit => 45,                    :null => false
     t.text     "role"
