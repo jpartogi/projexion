@@ -24,16 +24,21 @@
       <%= f.text_field :email %><br />
     </p>
 
-        <% if @user.new_record? %>
-          <%= f.submit 'Save' %>
-        <% else %>
-          <%= f.submit 'Update' %>
-        <% end %>
+    <%= f.submit 'Save', :class=> 'save_btn' %>
+    <% end %>
+    <% if @user.new_record? then %>
+        <%= button_to 'Cancel', admin_user_path(@user), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+    <% else %>
+        <%= button_to 'Cancel', admin_users_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
     <% end %>
 </div>
 
 <div id="sidebar">
     <ul>
+      <% if @user.new_record? %>
       <li><%= link_to 'Users', admin_users_path, :class => 'list' %></li>
+      <% else %>
+      <li><%= link_to 'User Details', admin_user_path(@user), :class => 'list' %></li>
+      <% end %>    
     </ul>
 </div> 
