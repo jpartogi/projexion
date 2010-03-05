@@ -14,6 +14,7 @@ h3 { font: bold 15px Helvetica; }
 .dashboard { background: url('/images/icons/application_cascade.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 .taskboard { background: url('/images/icons/table.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 .chart { background: url('/images/icons/chart_line.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
+.detail { background: url('/images/icons/application_view_detail.png') no-repeat center left !important; margin-left: 5px; vertical-align:middle; }
 
 .submit_btn { text-indent: -1000em; width:75px; height: 27px; background: transparent url('/images/submit.png') no-repeat center top;
     padding:0; border: 0; margin: 1px; }

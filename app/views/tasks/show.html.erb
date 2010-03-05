@@ -1,2 +1,20 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<div id="content">
+  <h1>Task Description</h1>
+
+  <p>
+    <%= label_tag(:project) %><br/>
+    <%= @task.project.name %>
+  </p>
+
+  <p>
+    <%= label_tag(:user_story) %><br/>
+    <%= @task.feature.user_story %>
+  </p>
+
+  <p>
+    <%= label_tag(:task) %><br/>
+    <%= @task.description %>
+  </p>
+</div>
+
+<div style="clear:both"></div>

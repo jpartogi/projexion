@@ -1,46 +1,29 @@
 <div id="content">
 	<p class="success"><span ><%= flash[:notice] %></span></p>
-	
-    <h2>My Projects</h2>
-    <table width="100%">
-        <tr>
-            <th width="10%">Code</th>
-            <th>Project Name</th>
-            <th>&nbsp;</th>
-        </tr>
 
-        <% @projects.each do |project| %>
-        <tr>
-            <td style="text-align:center;"><%= link_to project.code, project_path(project.code) %></td>
-            <td><%= h project.name %></td>
-            <td>
-              <% link_to project_path(project.code) do %>
-                <img src="/images/icons/application_view_detail.png">
-              <% end %>
-            </td>
-        </tr>
-        <% end %>
-    </table>
-
-	<h2>Latest events</h2>
-    <table width="100%">
-        <tr>
-          <th>Project Name</th>
-          <th>Event Name</th>
-          <th>User</th>
-        </tr>
-        <% @events.each do |event| %>
-        <tr>
-          <td><%= event.project.name %></td>
-          <td>
+    <h1>Latest events</h1>
+    <div>
+        <ul>
+          <% @events.each do |event| %>
+          <li>
+            <% if event.model.eql? 'Task' %>
+              <%= link_to event.model + " " + event.action, {:controller => event.model.downcase + 's', :action => :show, :id => event.model_id},
+                   :rel => 'facebox' %>
+            <% else %>
               <%= link_to event.model + " " + event.action, {:controller => event.model.downcase + 's', :action => :show, :id => event.model_id} %>
-          </td>
-          <td><%= event.user.login %></td>
-        </tr>
-        <% end %>
-    </table>
+            <% end %>
+            in <%= link_to event.project.name, project_path(event.project.code) %> by <%= event.user.login %>
+          </li>
+          <% end %>
+        </ul>
+    </div>
 </div>
 
 <div id="sidebar">
-
+    <h2>My Projects</h2>
+    <ul>
+      <% @projects.each do |project| %>
+      <li><%= link_to project.name, project_path(project.code), :class => 'detail' %></li>
+      <% end %>    
+    </ul>
 </div>
