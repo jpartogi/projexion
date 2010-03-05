@@ -2,7 +2,7 @@
 	<p class="success"><span ><%= flash[:notice] %></span></p>
 	
     <h2>My Projects</h2>
-    <table width="100%" id="projects">
+    <table width="100%">
         <tr>
             <th width="10%">Code</th>
             <th>Project Name</th>
@@ -22,7 +22,23 @@
         <% end %>
     </table>
 
-	<%# TODO: Latest event related to current user %>
+	<h2>Latest events</h2>
+    <table width="100%">
+        <tr>
+          <th>Project Name</th>
+          <th>Event Name</th>
+          <th>User</th>
+        </tr>
+        <% @events.each do |event| %>
+        <tr>
+          <td><%= event.project.name %></td>
+          <td>
+              <%= link_to event.model + " " + event.action, {:controller => event.model.downcase + 's', :action => :show, :id => event.model_id} %>
+          </td>
+          <td><%= event.user.login %></td>
+        </tr>
+        <% end %>
+    </table>
 </div>
 
 <div id="sidebar">
