@@ -7,14 +7,20 @@ class Feature < ActiveRecord::Base
   
   validates_presence_of :user_story
 
-  after_update :add_event
+  after_save :add_event
   
   def acceptances=(acceptances)
     @acceptances = acceptances 
   end
 
   def add_event
-    Event.add 'modified', self.class.to_s, self.id, self.project
+    if self.new_record?
+      event = 'created'
+    else
+      event = 'modified'
+    end
+
+    Event.add event, self.class.to_s, self.id, self.project
   end
 
   def save_all

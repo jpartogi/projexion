@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :project
+  belongs_to :user
 
   # Class methods
   class << self
@@ -9,6 +10,7 @@ class Event < ActiveRecord::Base
       event.model = model_class
       event.model_id = model_id
       event.project = project
+      event.user = UserSession.current_user
       event.save
     end   
   end

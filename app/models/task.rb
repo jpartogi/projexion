@@ -7,14 +7,20 @@ class Task < ActiveRecord::Base
   validates_presence_of :description
 
   before_create :set_default_status
-  after_update :add_event
+  after_save :add_event
 
   def set_default_status
     self.task_status = TaskStatus.find(:first, :conditions => {:default_status => true})
   end
 
   def add_event
-    Event.add 'modified', self.class.to_s, self.id, self.project
+    if self.new_record?
+      event = 'created'
+    else
+      event = 'modified'
+    end
+
+    Event.add event, self.class.to_s, self.id, self.project
   end
 
   def remaining
