@@ -70,7 +70,7 @@ h3 { font: bold 15px Helvetica; }
 #sidebar a { text-decoration:none; display:block; padding: 0.5em 0.5em 0.5em 1.5em; }
 #sidebar a:hover { background:white; }
 #sidebar .block { margin: 2em 0 0 .5em; }
-#sidebar h2 { margin-bottom: .5em; }
+#sidebar h2 { margin: .5em 0 1em .25em; }
 
 #users_form { width: 100%; padding-top: 1em;  }
 #users_form fieldset { margin: 0 auto 0 auto; padding: 1em; border: 1px solid #eee; width: 450px; }
