@@ -35,7 +35,7 @@
     <li><%= link_to 'Releases', project_releases_path(@project.code), :class => 'list' %></li>
     <% if @release.released_at.nil? %>
     <li><%= link_to 'Edit Release', edit_project_release_path(@project.code, @release), :class => 'edit' %></li>
-    <li><%= link_to 'Released', release_project_release_path(@project.code, @release), :class => 'accept', :method => :put, 
+    <li><%= link_to 'Release Project', release_project_release_path(@project.code, @release), :class => 'accept', :method => :put, 
                     :confirm => "Are you sure?" %></li>
     <% end %>    
   </ul>
