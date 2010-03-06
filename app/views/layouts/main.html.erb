@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-	<title>Projexion</title>
+    <%= yield :title %> 
+	<title><% unless @project.nil? %><%= @project.name %><% end %>&nbsp;<%= controller.action_name.capitalize %>&nbsp;<%= controller.controller_name.capitalize %>&nbsp;-&nbsp;Projexion</title>
     <%= stylesheet_link_tag 'reset' %> <%# This is loaded first to reset the browser default value %>
 	<%= stylesheet_link_tag 'projexion' %>
     <%= stylesheet_link_tag 'facebox' %>

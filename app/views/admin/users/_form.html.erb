@@ -27,9 +27,9 @@
     <%= f.submit 'Save', :class=> 'save_btn' %>
     <% end %>
     <% if @user.new_record? then %>
-        <%= button_to 'Cancel', admin_user_path(@user), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
-    <% else %>
         <%= button_to 'Cancel', admin_users_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+    <% else %>
+        <%= button_to 'Cancel', admin_user_path(@user), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
     <% end %>
 </div>
 

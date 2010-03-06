@@ -1,7 +1,9 @@
+<% content_for :title do %><title><%= @project.name %> Search <%= controller.controller_name.capitalize %> - Projexion</title><% end %> 
 <div id="content">
   <h1>
       Product Features for <%= @project.name %>
   </h1>
+  <%# TODO: Add search functionality %>
   <%= render :partial => "features/list" %>
   <%# TODO: Paginate list %>
 

@@ -1,3 +1,4 @@
+<% content_for :title do %><title><%= @project.name %> Dashboard - Projexion</title><% end %> 
 <div id="content">
   <p class="success"><span ><%= flash[:notice] %></span></p>
 
@@ -110,8 +111,9 @@
           <option value="false">Not Accepted</option>
         </select>
         <button id="filter-button">Show</button>
-    </div>   
+    </div>
     <%= render :partial => "features/list" %>
+    <%= link_to 'Search features', project_features_path(@project.code) %>
   </div>
   <% end %>
 </div>
