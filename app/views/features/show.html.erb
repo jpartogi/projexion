@@ -156,7 +156,7 @@
                     <tr id="task_<%= h task.id %>">
                         <input type="hidden" class="task-id" name="task-id" value="<%= h task.id %>"/>
                         <td width="60%" class="desc"><%= h task.description %></td>
-                        <td width="20%" class="status <%= h task.task_status.key %>" style="background-color:<%= h task.task_status.color %>">
+                        <td width="20%" class="status <%= h task.task_status.key %>" style="background-color:<%= '#' + task.task_status.color %>">
                           <input type="hidden" class="tsid" name="task_status_id" value="<%= h task.task_status.id %>" />
                           <span><%= h task.task_status.display_name %></span>
                         </td>
