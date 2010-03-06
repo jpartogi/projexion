@@ -5,10 +5,6 @@ class MainController < ApplicationController
     def index
       @projects = current_user.projects
 
-      @events = Event.find(:all, :conditions => { :project_id => @projects })
-    end
-
-    def show
-      
+      @events = Event.find(:all, :conditions => { :project_id => @projects },  :order => "created_at DESC")
     end
 end
