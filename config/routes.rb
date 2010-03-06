@@ -1,5 +1,5 @@
 Projexion::Application.routes.draw do |map|
-  resource :main
+  resource :main, :admin
 
   resources :users, :except => [:index, :destroy] do
   	member do
@@ -54,6 +54,7 @@ Projexion::Application.routes.draw do |map|
       end
     end
 
+    resources :projects  
     resources :project_roles
     resources :project_members
     resources :task_statuses

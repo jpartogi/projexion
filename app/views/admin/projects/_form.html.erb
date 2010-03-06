@@ -1,5 +1,5 @@
 <div id="content">
-    <% form_for @project, :url => project_path do |f| %>
+    <% form_for ([:admin, @project]), :url => admin_project_path do |f| %>
       <%= f.error_messages %>
 
       <p>
@@ -21,7 +21,7 @@
     <% end %>
     
     <% if @project.new_record? then %>
-      <%= button_to 'Cancel', projects_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+      <%= button_to 'Cancel', admin_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
     <% else %>
       <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
     <% end %>

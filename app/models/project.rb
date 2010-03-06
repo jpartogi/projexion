@@ -26,5 +26,7 @@ class Project < ActiveRecord::Base
         return project_member.user
       end
     end
+
+    return nil
   end
 end
