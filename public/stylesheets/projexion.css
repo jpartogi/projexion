@@ -46,6 +46,7 @@ h3 { font: bold 15px Helvetica; }
 #middle {  min-height: 600px; width: 100%; }
 
 #content { float:left; padding: 1em; font: 12px Verdana; width: 78%; }
+#content li { line-height: 2em; }
 #content h2, #content label { font: bold 16px Helvetica; letter-spacing:-0.7px; }
 #content label { margin-bottom:1em; }
 #content form input[type='text'],
