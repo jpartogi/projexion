@@ -15,24 +15,39 @@
     <tr>
       <th>&nbsp;</th>
       <th>User Story</th>
+      <th>Sprint</th>
+      <th>Release</th>
       <th>Story points</th>
       <th>Biz value</th>
       <th>Priority</th>
-      <th>&nbsp;</th>
     </tr>
 
     <% for feature in @features %>
     <tr>
         <td><%= check_box_tag :features, feature.id, feature.accepted %></td>
-        <td><%= h feature.user_story %></td>
-        <td style="text-align:center;"><%= h feature.story_points %></td>
-        <td style="text-align:center;"><%= h feature.business_value %></td>
-        <td style="text-align:center;"><%= h feature.priority %></td>
         <td>
-          <% link_to project_feature_path(@project.code, feature.id) do %>
+          <%= feature.user_story %>
+          <% link_to project_feature_path(@project.code, feature) do %>
             <img src="/images/icons/application_view_detail.png">
           <% end %>
         </td>
+        <td>
+          <%= feature.sprint.span_date %>
+          <% link_to project_sprint_path(@project.code, feature.sprint) do %>
+            <img src="/images/icons/application_view_detail.png">
+          <% end %>
+          <%# TODO: Add combobox ajax update if null/empty %>
+        </td>
+        <td>
+          <%= feature.release.version_number %>
+          <% link_to project_release_path(@project.code, feature.release) do %>
+            <img src="/images/icons/application_view_detail.png">
+          <% end %>
+          <%# TODO: Add combobox ajax update if null/empty %>
+        </td>
+        <td style="text-align:center;"><%= feature.story_points %></td>
+        <td style="text-align:center;"><%= feature.business_value %></td>
+        <td style="text-align:center;"><%= feature.priority %></td>
     </tr>
     <% end %>
     </table>
