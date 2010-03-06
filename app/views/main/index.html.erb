@@ -2,9 +2,9 @@
 <div id="content">
 	<p class="success"><span ><%= flash[:notice] %></span></p>
 
-    <h1>Latest events</h1>
-    <div>
-        <ul>
+    <div style="float:left">
+      <h1>Latest events</h1>
+      <ul>
           <% @events.each do |event| %>
           <li>
             <% if event.model.eql? 'Task' %>
@@ -16,7 +16,24 @@
             in <%= link_to event.project.name, project_path(event.project.code) %> by <%= event.user.login %> at <%= event.created_at %>
           </li>
           <% end %>
-        </ul>
+      </ul>
+    </div>
+
+    <div style="float:left; margin-left:2em">
+      <h1>Next Meetings</h1>
+      <% unless @meetings.empty? %>
+       <ul>
+        <% @meetings.each do |meeting| %>
+        <li>
+          <%= meeting.start_time %>
+        </li>
+        <% end %>
+       </ul>
+      <% else %>
+  	   <p class="info">
+        No scheduled meetings.
+       </p>
+      <% end %>    
     </div>
 </div>
 
