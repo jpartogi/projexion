@@ -14,11 +14,7 @@
       <%= f.text_field :email %><br />
     </p>
 
-        <% if @user.new_record? %>
-          <%= f.submit 'Register' %>
-        <% else %>
-          <%= f.submit 'Update' %>
-        <% end %>
+    <%= f.submit 'Save', :class=> 'save_btn' %>
     <% end %>
 
 </div>

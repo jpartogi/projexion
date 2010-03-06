@@ -27,6 +27,12 @@ class Project < ActiveRecord::Base
       end
     end
 
-    return nil
+    nil
+  end
+
+  def members
+    self.project_members.reject do |project_member|
+      project_member.project_role.eql? ProjectRole.manager
+    end
   end
 end

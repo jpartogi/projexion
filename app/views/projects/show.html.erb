@@ -27,10 +27,10 @@
   <div style="float:left; margin-right:2em;">
   	<h2>Project Members</h2>
   	
-  	<% unless @project.users.empty? %>
+  	<% unless @project.members.empty? %>
   	<ul>
-  	<% @project.users.each do |user| %>
-  		<li><%= user.login %></li>
+  	<% @project.members.each do |member| %>
+  		<li><%= member.user.login %>&nbsp;(<%= member.project_role.name%>)</li>
   	<% end %>
   	</ul>
   	<% else %>
