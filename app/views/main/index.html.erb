@@ -18,23 +18,6 @@
           <% end %>
       </ul>
     </div>
-
-    <div style="float:left; margin-left:2em">
-      <h1>Next Meetings</h1>
-      <% unless @meetings.empty? %>
-       <ul>
-        <% @meetings.each do |meeting| %>
-        <li>
-          <%= meeting.start_time %>
-        </li>
-        <% end %>
-       </ul>
-      <% else %>
-  	   <p class="info">
-        No scheduled meetings.
-       </p>
-      <% end %>    
-    </div>
 </div>
 
 <div id="sidebar">
@@ -45,5 +28,18 @@
       <% end %>    
     </ul>
 
-    <%# Show next meeting here %>
+    <h2 style="margin-top:2em;">Next Meetings</h2>
+    <% unless @meetings.empty? %>
+       <ul>
+        <% @meetings.each do |meeting| %>
+        <li>
+          <%= link_to meeting.start_time, project_meeting_path(meeting.project.code, meeting), :class => 'detail' %>
+        </li>
+        <% end %>
+       </ul>
+    <% else %>
+       <p class="info">
+        No scheduled meetings.
+       </p>
+    <% end %>
 </div>
