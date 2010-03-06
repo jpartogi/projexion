@@ -12,7 +12,7 @@
             <% else %>
               <%= link_to event.model + " " + event.action, {:controller => event.model.downcase + 's', :action => :show, :id => event.model_id} %>
             <% end %>
-            in <%= link_to event.project.name, project_path(event.project.code) %> by <%= event.user.login %>
+            in <%= link_to event.project.name, project_path(event.project.code) %> by <%= event.user.login %> at <%= event.created_at %>
           </li>
           <% end %>
         </ul>
@@ -26,4 +26,6 @@
       <li><%= link_to project.name, project_path(project.code), :class => 'detail' %></li>
       <% end %>    
     </ul>
+
+    <%# Show next meeting here %>
 </div>
