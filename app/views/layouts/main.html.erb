@@ -43,7 +43,7 @@
     
     <div id="toolbar">
         <ul style="float:left">
-          <li><%= link_to 'My Dashboard', root_url %></li>
+          <li><%= link_to 'Dashboard', root_url %></li>
           <li><%= link_to 'Admin', :controller => :admin %></li>
 
           <% if @project != nil and controller_name != 'projects' %><li><%= link_to @project.name, project_path(@project.code) %></li><% end %>
