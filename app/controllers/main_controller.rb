@@ -7,6 +7,6 @@ class MainController < ApplicationController
 
       @events = Event.find(:all, :conditions => { :project_id => @projects },  :order => "created_at DESC")
 
-      @meetings = Meeting.find(:all, :conditions => ["start_time > ? and project_id in (?)", Time.now, @projects])
+      @meetings = Meeting.find(:all, :conditions => ["start_time > ? and project_id in (?)", Time.now, @projects], :order => 'start_time')
     end
 end
