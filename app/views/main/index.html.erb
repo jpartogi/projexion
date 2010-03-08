@@ -8,12 +8,16 @@
           <% @events.each do |event| %>
           <li class="info-list">
             <% if event.model.eql? 'Task' %>
-              <%= link_to event.model + " " + event.action, {:controller => event.model.downcase + 's', :action => :show, :id => event.model_id},
-                   :rel => 'facebox' %>
+              <% link_to ({:controller => event.model.downcase + 's', :action => :show, :id => event.model_id}),:rel => 'facebox' do%> 
+                <%= event.model %>&nbsp;<%= event.action %>
+              <% end %>
             <% else %>
-              <%= link_to event.model + " " + event.action, {:controller => event.model.downcase + 's', :action => :show, :id => event.model_id} %>
+              <% link_to ({:controller => event.model.downcase + 's', :action => :show, :id => event.model_id}) do%> 
+                <%= event.model %>&nbsp;<%= event.action %>
+              <% end %>
             <% end %>
-            in&nbsp;<%= link_to event.project.name, project_path(event.project.code) %>&nbsp;by&nbsp;<%= event.user.login %>
+            in&nbsp;<%= link_to event.project.name, project_path(event.project.code) %>&nbsp;
+            by&nbsp;<%= link_to event.user.login, user_path(event.user.login) %>
             &nbsp;<%= time_ago_in_words(event.created_at) %>&nbsp;ago.
           </li>
           <% end %>
@@ -25,7 +29,9 @@
         <ul>
           <% @projects.each do |project| %>
           <li class="info-list" style="min-width:200px">
-            <%= link_to project.name + ' (' + project.code + ')', project_path(project.code) %>
+            <% link_to project_path(project.code) do %>
+                <%= project.name %>&nbsp;(<%= project.code %>)
+            <% end %>
           </li>
           <% end %>
         </ul>
