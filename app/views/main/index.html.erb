@@ -1,4 +1,9 @@
-<% content_for :title do %><title>Your Dashboard - Projexion</title><% end %> 
+<% content_for :title do %><title>Your Dashboard - Projexion</title><% end %>
+<script type="text/javascript">
+    $(document).ready(function(){
+       $('.info-list').corner();
+    });
+  </script>
 <div id="content">
 	<p class="success"><span ><%= flash[:notice] %></span></p>
 
@@ -25,7 +30,7 @@
     </div>
 
     <div style="float:left;margin-left:5em;">
-        <h1>My Projects</h1>
+        <h1>Your Projects</h1>
         <ul>
           <% @projects.each do |project| %>
           <li class="info-list" style="min-width:200px">
@@ -39,14 +44,16 @@
     </div>
 
     <div style="float:left;margin-left:5em;">
-        <h1>Next Meetings</h1>
+        <h1>Next Planned Meetings</h1>
         <% unless @meetings.empty? %>
          <ul>
             <% @meetings.each do |meeting| %>
-            <li>
+            <li class="info-list">
               <% link_to project_meeting_path(meeting.project.code, meeting) do %>
-                <%= meeting.start_time %>  (in another <%= distance_of_time_in_words_to_now(meeting.start_time) %>)<br/>                
+                <%= meeting.start_time %>  (in <%= distance_of_time_in_words_to_now(meeting.start_time) %>)<br/>                
               <% end %>
+              <strong>Location</strong>:&nbsp;<%= meeting.location %><br/>
+              <strong>Booked by</strong>:&nbsp;<%= link_to meeting.created_by, user_path(meeting.created_by) %><br/>
             </li>
             <% end %>
          </ul>

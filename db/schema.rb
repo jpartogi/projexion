@@ -26,11 +26,12 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.string   "model",      :limit => 100, :null => false
     t.integer  "model_id",                  :null => false
     t.integer  "project_id",                :null => false
+    t.integer  "user_id",                   :null => false
     t.datetime "updated_at",                :null => false
     t.datetime "created_at",                :null => false
   end
 
-  add_index "events", ["id", "project_id"], :name => "events_idx"
+  add_index "events", ["id", "project_id", "user_id"], :name => "events_idx"
 
   create_table "features", :force => true do |t|
     t.text     "user_story",                                                       :null => false
@@ -61,9 +62,11 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "start_time",      :null => false
     t.datetime "end_time",        :null => false
     t.integer  "meeting_type_id", :null => false
+    t.text     "location"
     t.integer  "project_id",      :null => false
     t.integer  "sprint_id"
     t.datetime "cancelled_at"
+    t.text     "created_by",      :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
