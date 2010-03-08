@@ -31,7 +31,8 @@
           <li class="info-list" style="min-width:200px">
             <% link_to project_path(project.code) do %>
                 <%= project.name %>&nbsp;(<%= project.code %>)
-            <% end %>
+            <% end %><br/>
+            <%= project.vision %>
           </li>
           <% end %>
         </ul>
