@@ -76,10 +76,10 @@ class FeaturesController < ApplicationController
   #Ajax actions
   def list
 
-    @project = Project.find_by_code(params[:project_id])
+    @project = Project.find_by_code(params[:id])
 
     conditions = Hash.new
-    conditions[:project_code] = @project.code
+    conditions[:project_id] = @project
     if params[:accepted]
       accepted = params[:accepted]
 

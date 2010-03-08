@@ -1,17 +1,15 @@
-<% unless @features.empty? %>
-    <%# TODO: Accept features from here %>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('input:checkbox[name=features]').click(function(){
-                var feature_id = $(this).val();
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('input:checkbox[name=features]').click(function(){
+            var feature_id = $(this).val();
 
-                $.post('<%= url_for :action => :accept, :controller => :features %>',
-                       {"id" : feature_id}, 'json');
-            });
+            $.post('<%= url_for :action => :accept, :controller => :features %>',
+                   {"id" : feature_id}, 'json');
         });
-    </script>
+    });
+</script>
 
-    <table width="100%" id="features">
+<table width="100%" id="features">
     <tr>
       <th>&nbsp;</th>
       <th>User Story</th>
@@ -21,7 +19,8 @@
       <th>Biz value</th>
       <th>Priority</th>
     </tr>
-
+      
+    <% unless @features.empty? %>
     <% for feature in @features %>
     <tr>
         <td><%= check_box_tag :features, feature.id, feature.accepted %></td>
@@ -50,9 +49,5 @@
         <td style="text-align:center;"><%= feature.priority %></td>
     </tr>
     <% end %>
-    </table>
-<% else %>
-    <p class="info">
-    There are no features yet.
-    </p>
-<% end %>
+    <% end %>      
+</table>
