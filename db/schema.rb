@@ -145,17 +145,17 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "tasks", :force => true do |t|
-    t.text     "description",       :null => false
-    t.integer  "project_id",        :null => false
-    t.integer  "feature_id",        :null => false
-    t.integer  "sprint_id",         :null => false
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.integer  "task_status_id",    :null => false
-    t.integer  "project_member_id"
+    t.text     "description",    :null => false
+    t.integer  "project_id",     :null => false
+    t.integer  "feature_id",     :null => false
+    t.integer  "sprint_id",      :null => false
+    t.integer  "user_id",        :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "task_status_id", :null => false
   end
 
-  add_index "tasks", ["id", "project_id", "feature_id", "sprint_id", "task_status_id", "project_member_id"], :name => "tasks_idx"
+  add_index "tasks", ["id", "project_id", "feature_id", "sprint_id", "task_status_id"], :name => "tasks_idx"
 
   create_table "user_sessions", :force => true do |t|
     t.datetime "created_at", :null => false

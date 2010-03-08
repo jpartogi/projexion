@@ -3,14 +3,20 @@ class Task < ActiveRecord::Base
   belongs_to :feature
   belongs_to :sprint
   belongs_to :task_status
+  belongs_to :user
 
   validates_presence_of :description
 
   before_create :set_default_status
+  before_save :set_user
   after_save :add_event
 
   def set_default_status
     self.task_status = TaskStatus.find(:first, :conditions => {:default_status => true})
+  end
+
+  def set_user
+    self.user = UserSession.current_user  
   end
 
   def add_event

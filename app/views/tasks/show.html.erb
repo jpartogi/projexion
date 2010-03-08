@@ -15,6 +15,11 @@
     <%= label_tag(:task) %><br/>
     <%= @task.description %>
   </p>
+
+  <p>
+    <%= label_tag(:task_owner) %><br/>
+    <%= link_to @task.user.login, user_path(@task.user.login) %>
+  </p>
 </div>
 
 <div style="clear:both"></div>
