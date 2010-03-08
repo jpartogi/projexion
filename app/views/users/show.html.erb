@@ -6,7 +6,14 @@
 
     <p>
       <%= label_tag(:email) %><br />
-      <%= @user.email %><br />
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <%= label_tag(:last_login) %><br />
+      <% unless @user.last_login_at.nil? %>
+          <%= @user.last_login_at %>&nbsp;(<%= time_ago_in_words(@user.last_login_at) %> ago)
+      <% end %>
     </p>
 </div>
 

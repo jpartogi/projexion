@@ -5,6 +5,7 @@
   <tr>
     <th>Login</th>
     <th>E-mail</th>
+    <th>Last login</th>
     <th>&nbsp;</th>
   </tr>
 
@@ -12,6 +13,11 @@
   <tr>
   	<td><%= user.login %></td>
     <td><%= user.email %></td>
+    <td>
+      <% unless user.last_login_at.nil? %>
+          <%= user.last_login_at %>&nbsp;(<%= time_ago_in_words(user.last_login_at) %> ago)
+      <% end %>
+    </td>
     <td width="10%" style="text-align:center;">
      <% link_to admin_user_path(user) do %>                                        
         <img src="/images/icons/application_view_detail.png">
