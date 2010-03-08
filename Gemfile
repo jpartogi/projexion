@@ -27,7 +27,7 @@ gem "authlogic", :git => 'git://github.com/binarylogic/authlogic.git'
 # For testing
 group :test do
   gem "webrat"
-  gem "shoulda"
+  gem "shoulda", :git => 'git://github.com/thoughtbot/shoulda.git', :require => nil
   gem "cucumber"
   gem "sqlite3-ruby"
   gem "rack-test"

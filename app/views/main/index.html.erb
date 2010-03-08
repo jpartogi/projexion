@@ -6,40 +6,47 @@
       <h1>Latest events</h1>
       <ul>
           <% @events.each do |event| %>
-          <li>
+          <li class="info-list">
             <% if event.model.eql? 'Task' %>
               <%= link_to event.model + " " + event.action, {:controller => event.model.downcase + 's', :action => :show, :id => event.model_id},
                    :rel => 'facebox' %>
             <% else %>
               <%= link_to event.model + " " + event.action, {:controller => event.model.downcase + 's', :action => :show, :id => event.model_id} %>
             <% end %>
-            in <%= link_to event.project.name, project_path(event.project.code) %> by <%= event.user.login %> at <%= event.created_at %>
+            in&nbsp;<%= link_to event.project.name, project_path(event.project.code) %>&nbsp;by&nbsp;<%= event.user.login %>
+            &nbsp;<%= time_ago_in_words(event.created_at) %>&nbsp;ago.
           </li>
           <% end %>
       </ul>
     </div>
-</div>
 
-<div id="sidebar">
-    <h2>My Projects</h2>
-    <ul>
-      <% @projects.each do |project| %>
-      <li><%= link_to project.name, project_path(project.code), :class => 'detail' %></li>
-      <% end %>    
-    </ul>
+    <div style="float:left;margin-left:5em;">
+        <h1>My Projects</h1>
+        <ul>
+          <% @projects.each do |project| %>
+          <li class="info-list" style="min-width:200px">
+            <%= link_to project.name + ' (' + project.code + ')', project_path(project.code) %>
+          </li>
+          <% end %>
+        </ul>
+    </div>
 
-    <h2 style="margin-top:2em;">Next Meetings</h2>
-    <% unless @meetings.empty? %>
-       <ul>
-        <% @meetings.each do |meeting| %>
-        <li>
-          <%= link_to meeting.start_time, project_meeting_path(meeting.project.code, meeting), :class => 'detail' %>
-        </li>
+    <div style="float:left;margin-left:5em;">
+        <h1>Next Meetings</h1>
+        <% unless @meetings.empty? %>
+         <ul>
+            <% @meetings.each do |meeting| %>
+            <li>
+              <% link_to project_meeting_path(meeting.project.code, meeting) do %>
+                <%= meeting.start_time %>  (in another <%= distance_of_time_in_words_to_now(meeting.start_time) %>)<br/>                
+              <% end %>
+            </li>
+            <% end %>
+         </ul>
+        <% else %>
+         <p class="info">
+            No scheduled meetings.
+         </p>
         <% end %>
-       </ul>
-    <% else %>
-       <p class="info">
-        No scheduled meetings.
-       </p>
-    <% end %>
+    </div>  
 </div>
