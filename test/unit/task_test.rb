@@ -3,13 +3,18 @@ require 'shoulda'
 
 class TaskTest < ActiveSupport::TestCase
   fixtures :all
+  setup :activate_authlogic
   
   context "A Task instance" do
     should "assign default status when it is created" do
+      UserSession.create(users(:admin))
+
       task = Task.new
       task.description = 'tes'
-      task.feature_id = 1
-      task.project_code = 'PR'
+      task.feature = features(:one)
+      task.project = projects(:projexion)
+      task.sprint = sprints(:one)
+      task.user = users(:admin)
 
       assert task.save
 

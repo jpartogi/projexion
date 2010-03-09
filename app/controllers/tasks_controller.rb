@@ -5,7 +5,8 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
     @feature = Feature.find(params[:feature_id])
-    
+
+    @task.user = current_user
     @task.feature = @feature
     @task.project = @feature.project
     @task.sprint = @feature.sprint

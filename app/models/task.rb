@@ -8,15 +8,10 @@ class Task < ActiveRecord::Base
   validates_presence_of :description
 
   before_create :set_default_status
-  before_save :set_user
   after_save :add_event
 
   def set_default_status
     self.task_status = TaskStatus.find(:first, :conditions => {:default_status => true})
-  end
-
-  def set_user
-    self.user = UserSession.current_user  
   end
 
   def add_event
@@ -27,14 +22,6 @@ class Task < ActiveRecord::Base
     end
 
     Event.add event, self.class.to_s, self.id, self.project
-  end
-
-  def remaining
-    sql = 'select count(t.id) as tasks, date(t.updated_at) updated_at
-        from tasks t inner join task_statuses ts on t.task_status_id = ts.id
-        where t.task_status_id <> (select max(ts.position) from task_statuses ts)
-        group by date(t.updated_at)
-        order by t.updated_at'
   end
 
   class << self
