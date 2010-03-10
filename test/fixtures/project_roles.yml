@@ -1,0 +1,6 @@
+scrum-master:
+  id: 9999
+  name: Scrum Master
+  role: To enforce the Scrum process is running
+  manager: true
+  

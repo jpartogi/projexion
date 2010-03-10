@@ -35,7 +35,8 @@ Configuration
 Database
 - rake db:create 	# If database has not been created yet
 - rake db:schema:load
-- rake db:seed 		# Optional. To populate sample data.
+- rake db:fixtures:load (rake db:seed) 		# Optional. To populate sample data.
+
 
 Run the application
 $ script/rails server
