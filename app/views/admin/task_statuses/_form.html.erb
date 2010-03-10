@@ -1,26 +1,27 @@
 <div id="content">
     <p class="success"><span ><%= flash[:notice] %></span></p>
 
-    <%= javascript_include_tag 'colorpicker' %>
     <%= stylesheet_link_tag 'colorpicker' %>
     <script type="text/javascript">
       $(document).ready(function(){
         $('#task_status_display_name').slugify({ target: 'task_status_key' });
 
-        $('#task_status_color').ColorPicker({
-            onSubmit: function(hsb, hex, rgb, el) {
-                $(el).val(hex);
-                $(el).ColorPickerHide();
-            },
-            onHide: function (colpkr) {
-                $(colpkr).fadeOut(500);
-                return false;
-            },
-            onBeforeShow: function () {
+        $.getScript("<%= javascript_path 'colorpicker' %>", function(){
+            $('#task_status_color').ColorPicker({
+                onSubmit: function(hsb, hex, rgb, el) {
+                    $(el).val(hex);
+                    $(el).ColorPickerHide();
+                },
+                onHide: function (colpkr) {
+                    $(colpkr).fadeOut(500);
+                    return false;
+                },
+                onBeforeShow: function () {
+                    $(this).ColorPickerSetColor(this.value);
+                }
+            }).bind('keyup', function(){
                 $(this).ColorPickerSetColor(this.value);
-            }
-        }).bind('keyup', function(){
-            $(this).ColorPickerSetColor(this.value);
+            });
         });
 
       });
