@@ -1,0 +1,31 @@
+<table width="100%" id="task-statuses">
+    <tr>
+        <th>Key</th>
+        <th>Display Name</th>
+        <th width="5%">Default</th>
+        <th width="5%"></th>
+    </tr>
+
+    <% for task_status in @task_statuses %>
+    <input type="hidden" name="id" value="<%= task_status.id %>" />
+    <tr>
+        <td><%= link_to task_status.key, admin_task_status_path(task_status) %></td>
+        <td><%= h task_status.display_name %></td>
+        <td style="text-align:center;"><% if task_status.default_status %><img src="/images/icons/accept.png"/><% end %></td>
+        <td style="text-align:center;">
+
+          <% if not task_status.eql? @task_statuses.first %>
+          <a href="#" class="up">
+            <img src="/images/icons/arrow_up.png">
+          </a>
+          <% end %>
+          <% if not task_status.eql? @task_statuses.last %>
+          <a href="#" class="down">
+            <img src="/images/icons/arrow_down.png">
+          </a>
+          <% end %>
+
+        </td>
+    </tr>
+    <% end %>
+</table>

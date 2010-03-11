@@ -1,0 +1,9 @@
+<td width="20%" class="status">
+    <select>
+        <% for task_status in @task_statuses %>
+        <option <% if @task.task_status.id == task_status.id %>selected="selected"<% end %> value="<%= task_status.id %>">
+          <%= task_status.display_name %>
+        </option>
+        <% end %>
+    </select>
+</td>

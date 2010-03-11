@@ -33,17 +33,28 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
 
   add_index "events", ["id", "project_id", "user_id"], :name => "events_idx"
 
+  create_table "feature_statuses", :force => true do |t|
+    t.string   "display_name",   :limit => 45,                :null => false
+    t.string   "key",            :limit => 45,                :null => false
+    t.integer  "position",       :limit => 3,  :default => 1, :null => false
+    t.string   "color",          :limit => 6,                 :null => false
+    t.boolean  "default_status",                              :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
   create_table "features", :force => true do |t|
-    t.text     "user_story",                                                       :null => false
-    t.decimal  "business_value", :precision => 10, :scale => 0
+    t.text     "user_story",                                                          :null => false
+    t.decimal  "business_value",    :precision => 10, :scale => 0
     t.integer  "story_points"
     t.integer  "priority"
-    t.datetime "created_at",                                                       :null => false
-    t.datetime "updated_at",                                                       :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
     t.integer  "sprint_id"
     t.integer  "release_id"
-    t.integer  "project_id",                                                       :null => false
-    t.boolean  "accepted",                                      :default => false, :null => false
+    t.integer  "project_id",                                                          :null => false
+    t.boolean  "accepted",                                         :default => false, :null => false
+    t.integer  "feature_status_id",                                                   :null => false
   end
 
   add_index "features", ["id", "sprint_id", "release_id", "project_id"], :name => "features_idx"

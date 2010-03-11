@@ -57,6 +57,7 @@ Projexion::Application.routes.draw do |map|
     resources :projects  
     resources :project_roles
     resources :project_members
+    resources :feature_statuses  
     resources :task_statuses
     resources :meeting_types  
   end

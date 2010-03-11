@@ -1,0 +1,44 @@
+<div id="content">
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var update_position = function(id, direction){
+            $.post('<%= url_for :action => :update_position, :controller => :task_statuses %>',
+                    {"id": id, "direction": direction }, callback, 'html');
+        }
+
+        var click_up = function(){
+            var id = $(this).parent().parent().prev().val();
+
+            update_position(id, 'up');
+        }
+
+        var click_down = function(){
+            var id = $(this).parent().parent().prev().val();
+
+            update_position(id, 'down');
+        }
+
+        var callback = function(response){
+            $('#task-statuses').replaceWith(response);
+
+            $('.up').bind('click', click_up);
+
+            $('.down').bind('click', click_down);
+        };
+
+        $('.up').bind('click', click_up);
+
+        $('.down').bind('click', click_down);
+      });
+    </script>
+
+    <p class="success"><span><%= flash[:notice] %></span></p>
+    <%= render :partial => "list" %> 
+
+</div>
+
+<div id="sidebar">
+  <ul>
+    <li><%= link_to 'Add New Task Status', new_admin_task_status_path, :class => 'add' %></li>
+  </ul>
+</div>
