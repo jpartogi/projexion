@@ -113,7 +113,8 @@
         <button id="filter-button">Show</button>
     </div>
     <%= render :partial => "features/list" %>
-    <%= link_to 'Search features', project_features_path(@project.code) %>
+    <span style="float:right"><%= link_to 'More', project_features_path(@project.code) %></span>
+    <div style="clear:both"></div>
   </div>
   <% end %>
 </div>
@@ -128,6 +129,5 @@
     <li><%= link_to 'Releases', project_releases_path(@project.code), :class => 'list' %></li>
     <li><%= link_to 'Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
     <li><%= link_to 'Meetings', project_meetings_path(@project.code), :class => 'list' %></li>
-    <%# TODO: Burndown chart %>
   </ul>
 </div>

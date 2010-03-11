@@ -6,20 +6,19 @@
 # At least one dependency must be specified
 
 source 'http://gemcutter.org'
-#source "http://gems.github.com"
-
-# For webserver
-# gem "rack", "1.1.0", :git => "git://github.com/rails/rack.git"
+source "http://gems.github.com"
 
 ## Bundle edge rails:
 gem "rails", "3.0.0.beta"
-#gem "rails", "3.0.pre"
 
 # Database drivers
 gem "mysql"
 
 # For security
 gem "authlogic", :git => 'git://github.com/binarylogic/authlogic.git'
+
+#gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git'
+gem 'will_paginate','3.0.pre'
 
 # For cron jobs
 # gem "whenever", "0.4.1", :git => "git://github.com/javan/whenever.git"

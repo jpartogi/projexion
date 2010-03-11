@@ -35,9 +35,34 @@ class FeaturesController < ApplicationController
     @task_statuses = TaskStatus.find(:all)
   end
 
+  #TODO: Functional test
   def index
+    @feature = Feature.new(params[:feature]) || Feature.new # for search
+
     @project = Project.find_by_code(params[:project_id])
-    @features = @project.features
+    @sprints = Sprint.find_all_by_project_id(@project, :order => 'start_date desc')
+    @releases = Release.find_all_by_project_id(@project)
+    
+    conditions = Hash.new
+    conditions[:project_id] = @project
+    #@features = @project.features
+    @features = Feature.paginate(:page => params[:page], :order => 'id DESC', :per_page =>1, :conditions => conditions)
+
+    if params[:feature]
+      conditions = params[:feature]
+      conditions[:project_id] = @project
+      
+      #@features = @features.where(['user_story like ?', '%'+conditions[:user_story]+'%'])
+      @features = Feature.paginate(:page => params[:page], :order => 'id DESC', :per_page =>1,
+                                  :conditions => ["user_story like :user_story and project_id = :project_id and
+                                                   sprint_id = :sprint_id and release_id = :release_id",
+                                                  {:user_story => '%'+conditions[:user_story]+'%',
+                                                   :project_id => conditions[:project_id],
+                                                   :sprint_id => conditions[:sprint_id],
+                                                   :release_id => conditions[:release_id]}])
+    end
+
+
   end
 
   def edit
