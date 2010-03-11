@@ -5,18 +5,18 @@
     <h1>Sprints in <%= @project.name %></h1>
     <table width="100%" id="sprints">
     <tr>
-      <th>Sprint goal</th>
       <th>Start date</th>
       <th>End date</th>
       <th>Velocities</th>
+      <th>Sprint goal</th>
       <th>&nbsp;</th>
     </tr>
     <% for sprint in @sprints %>
-      <tr id="<%= h sprint.id %>">
-        <td><%= h sprint.goal %></td>
+      <tr id="<%= sprint.id %>">
         <td style="text-align:center;"><%= h sprint.start_date %></td>
         <td style="text-align:center;"><%= h sprint.end_date %></td>
         <td style="text-align:center;"><%= h sprint.velocities %></td>
+        <td><%= sprint.goal %></td>
         <td>
           <% link_to project_sprint_path(@project.code, sprint.id) do %>
             <img src="/images/icons/application_view_detail.png">
