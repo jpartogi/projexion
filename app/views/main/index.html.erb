@@ -27,6 +27,7 @@
             &nbsp;<%= time_ago_in_words(event.created_at) %>&nbsp;ago.
           </li>
           <% end %>
+         <%# TODO: Only fetch 10, the rest fetch using ajax %>   
       </ul>
       <% else %>
         <p class="info">
