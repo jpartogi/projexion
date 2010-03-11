@@ -9,6 +9,7 @@
 
     <div style="float:left">
       <h1>Latest events</h1>
+      <% unless @events.empty? %>
       <ul>
           <% @events.each do |event| %>
           <li class="info-list">
@@ -27,10 +28,16 @@
           </li>
           <% end %>
       </ul>
+      <% else %>
+        <p class="info">
+            No events so far.
+         </p>
+      <% end %>
     </div>
 
     <div style="float:left;margin-left:5em;">
         <h1>Your Projects</h1>
+        <% unless @projects.empty? %>
         <ul>
           <% @projects.each do |project| %>
           <li class="info-list" style="min-width:200px">
@@ -41,10 +48,15 @@
           </li>
           <% end %>
         </ul>
+        <% else %>
+          <p class="info">
+            You're not in a project yet.
+         </p>
+        <% end %>
     </div>
 
     <div style="float:left;margin-left:5em;">
-        <h1>Next Planned Meetings</h1>
+        <h1>Next Scheduled Meetings</h1>
         <% unless @meetings.empty? %>
          <ul>
             <% @meetings.each do |meeting| %>
