@@ -12,7 +12,6 @@
       Product Features for <%= @project.name %>
     </h1>
     <%= render :partial => "features/list" %>
-    <%# TODO: Paginate list %>
   </div>
 
   <script type="text/javascript">
@@ -24,7 +23,7 @@
   <div id="info-box" style="float:right">
     <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
     <strong>Sprint:</strong>&nbsp;<%= @sprint.span_date %><br/>
-    <strong>Goal:</strong> <%= @sprint.goal %>
+    <% unless @sprint.goal %><strong>Goal:</strong> <%= @sprint.goal %><% end %>
   </div>
 
   <div style="clear:both"></div>
