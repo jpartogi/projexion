@@ -2,6 +2,7 @@ class Feature < ActiveRecord::Base
   belongs_to :sprint
   belongs_to :release
   belongs_to :project
+  belongs_to :feature_status
   has_many :tasks
   has_many :acceptances
   

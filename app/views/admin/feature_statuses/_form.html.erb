@@ -4,10 +4,10 @@
     <%= stylesheet_link_tag 'colorpicker' %>
     <script type="text/javascript">
       $(document).ready(function(){
-        $('#task_status_display_name').slugify({ target: 'task_status_key' });
+        $('#feature_status_display_name').slugify({ target: 'feature_status_key' });
 
         $.getScript("<%= javascript_path 'colorpicker' %>", function(){
-            $('#task_status_color').ColorPicker({
+            $('#feature_status_color').ColorPicker({
                 onSubmit: function(hsb, hex, rgb, el) {
                     $(el).val(hex);
                     $(el).ColorPickerHide();
@@ -26,7 +26,7 @@
 
       });
     </script>
-    <% form_for ([:admin, @task_status]) do |f| %>
+    <% form_for ([:admin, @feature_status]) do |f| %>
         <%= f.error_messages %>
 
         <p>
@@ -46,18 +46,17 @@
         <p>
           <%= f.label :color, 'Background color' %><br />
           <%= f.text_field :color, :size => 7, :maxlength => 7 %>
-          <%# TODO: Add color picker here %>
         </p>
 
         <p>
           <%= f.submit 'Save', :class=> 'save_btn' %>
         </p>
      <% end %>
-     <%= button_to 'Cancel', admin_task_statuses_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+     <%= button_to 'Cancel', admin_feature_statuses_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
 </div>
 
 <div id="sidebar">
   <ul>
-    <li><%= link_to 'Task Statuses', admin_task_statuses_path, :class => 'list' %></li>
+    <li><%= link_to 'Feature Statuses', admin_feature_statuses_path, :class => 'list' %></li>
   </ul>    
 </div>

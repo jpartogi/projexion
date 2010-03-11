@@ -2,7 +2,7 @@
     <script type="text/javascript">
       $(document).ready(function(){
         var update_position = function(id, direction){
-            $.post('<%= url_for :action => :update_position, :controller => :task_statuses %>',
+            $.post('<%= url_for :action => :update_position, :controller => :feature_statuses %>',
                     {"id": id, "direction": direction }, callback, 'html');
         }
 
@@ -39,6 +39,6 @@
 
 <div id="sidebar">
   <ul>
-    <li><%= link_to 'Add New Task Status', new_admin_task_status_path, :class => 'add' %></li>
+    <li><%= link_to 'Add New Feature Status', new_admin_feature_status_path, :class => 'add' %></li>
   </ul>
 </div>

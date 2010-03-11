@@ -4,32 +4,32 @@
     <div>
         <p>
           <%= label_tag :display_name %><br />
-          <%= h @task_status.display_name %>
+          <%= @feature_status.display_name %>
         </p>
 
         <p>
           <%= label_tag :key %><br />
-          <%= h @task_status.key %>
+          <%= @feature_status.key %>
         </p>
 
         <p>
           <%= label_tag :default_status %><br />
-          <%= h @task_status.default_status %>
+          <%= @feature_status.default_status %>
         </p>
 
         <p>
           <%= label_tag :color, 'Background color' %><br />
           <%# TODO: Make this label wider and higher with no corner %>
-          <span style="background-color:<%= @task_status.color %>" class="status <%= h @task_status.key %>"><%= h @task_status.color %></span>
+          <span style="background-color:#<%= @feature_status.color %>" class="status <%= @feature_status.key %>"><%= @feature_status.color %></span>
         </p>
     </div>
 </div>
 
 <div id="sidebar">
   <ul>
-    <li><%= link_to 'Task Statuses', admin_task_statuses_path, :class => 'list' %></li>
-    <li><%= link_to 'Edit Task Status', edit_admin_task_status_path(@task_status), :class => 'edit'  %></li>
-    <li><%= link_to 'Delete Task Status', admin_task_status_path(@task_status),
+    <li><%= link_to 'Feature Statuses', admin_feature_statuses_path, :class => 'list' %></li>
+    <li><%= link_to 'Edit Feature Status', edit_admin_feature_status_path(@feature_status), :class => 'edit'  %></li>
+    <li><%= link_to 'Delete Feature Status', admin_feature_status_path(@feature_status),
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
   </ul>    
 </div>
