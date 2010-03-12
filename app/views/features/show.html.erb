@@ -7,11 +7,17 @@
     <p class="success"><span ><%= flash[:notice] %></span></p>
     
     <div id="feature" style="float:left; width:45%;">
+
       <script type="text/javascript">
         $(document).ready(function(){
             $('.card').corner();
+            $('.status').corner();
         });
       </script>
+
+      <div class="feature status" style="background-color:<%= '#' + @feature.feature_status.color %>">
+        <%= @feature.feature_status.display_name %>
+      </div>
 
       <div class="card">
         <div class="title"><strong>Business value</strong></div>
@@ -159,7 +165,7 @@
                         <td style="text-align:center;">
                            <%= link_to task.user.login, user_path(task.user.login) %>
                         </td>
-                        <td width="20%" class="status <%= task.task_status.key %>" style="background-color:<%= '#' + task.task_status.color %>">
+                        <td width="20%" class="status" style="background-color:<%= '#' + task.task_status.color %>">
                           <input type="hidden" class="tsid" name="task_status_id" value="<%= task.task_status.id %>" />
                           <span><%= task.task_status.display_name %></span>
                         </td>

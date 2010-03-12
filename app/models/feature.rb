@@ -8,10 +8,15 @@ class Feature < ActiveRecord::Base
   
   validates_presence_of :user_story
 
+  before_create :set_default_status
   after_save :add_event
   
   def acceptances=(acceptances)
     @acceptances = acceptances 
+  end
+
+  def set_default_status
+    self.feature_status = FeatureStatus.first(:conditions => {:default_status => true})
   end
 
   def add_event

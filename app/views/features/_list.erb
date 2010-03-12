@@ -13,6 +13,7 @@
     <tr>
       <th>&nbsp;</th>
       <th>User Story</th>
+      <th>Status</th>
       <th>Sprint</th>
       <th>Release</th>
       <th>Story points</th>
@@ -30,17 +31,24 @@
             <img src="/images/icons/application_view_detail.png">
           <% end %>
         </td>
+        <td class="status" style="text-align:center;background-color:<%= '#' + feature.feature_status.color %>">
+          <%= feature.feature_status.display_name %>
+        </td>
         <td>
-          <%= feature.sprint.span_date %>
-          <% link_to project_sprint_path(@project.code, feature.sprint) do %>
-            <img src="/images/icons/application_view_detail.png">
-          <% end %>
+          <% unless feature.sprint.nil? %>
+            <%= feature.sprint.span_date %>
+             <% link_to project_sprint_path(@project.code, feature.sprint) do %>
+             <img src="/images/icons/application_view_detail.png">
+            <% end %>
+          <% end %>    
           <%# TODO: Add combobox ajax update if null/empty %>
         </td>
         <td>
-          <%= feature.release.version_number %>
-          <% link_to project_release_path(@project.code, feature.release) do %>
-            <img src="/images/icons/application_view_detail.png">
+          <% unless feature.release.nil? %>
+            <%= feature.release.version_number %>
+              <% link_to project_release_path(@project.code, feature.release) do %>
+              <img src="/images/icons/application_view_detail.png">
+            <% end %>
           <% end %>
           <%# TODO: Add combobox ajax update if null/empty %>
         </td>
