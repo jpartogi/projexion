@@ -16,7 +16,7 @@ class FeatureStatus < ActiveRecord::Base
     default = FeatureStatus.default_status
 
     unless default.nil?
-      if self.default_status and not @bypass
+      if self.default_status and not @@bypass
         # Change the current default status to make sure there's only one default status
         default.default_status = false
         default.save
@@ -36,8 +36,16 @@ class FeatureStatus < ActiveRecord::Base
     self.position = status.position
     status.position = position
 
+    @@bypass = true
+
+    if self.position.eql? 1
+      self.default_status = true
+      default = FeatureStatus.default_status
+      default.default_status = false
+      default.save
+    end
+
     FeatureStatus.transaction do
-      @bypass = true
       self.save
       status.save
     end
