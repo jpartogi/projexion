@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   add_index "events", ["id", "project_id", "user_id"], :name => "events_idx"
 
   create_table "feature_statuses", :force => true do |t|
-    t.string   "display_name",   :limit => 45,                :null => false
-    t.string   "key",            :limit => 45,                :null => false
-    t.integer  "position",       :limit => 3,  :default => 1, :null => false
-    t.string   "color",          :limit => 6,                 :null => false
-    t.boolean  "default_status",                              :null => false
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.string   "display_name",   :limit => 45,                    :null => false
+    t.string   "key",            :limit => 45,                    :null => false
+    t.integer  "position",       :limit => 3,  :default => 1,     :null => false
+    t.string   "color",          :limit => 6,                     :null => false
+    t.boolean  "default_status",               :default => false, :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
   create_table "features", :force => true do |t|

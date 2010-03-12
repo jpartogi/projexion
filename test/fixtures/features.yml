@@ -1,5 +1,5 @@
 one:
-  id: 9999
+  id: 1
   user_story: As a team member I want to add product feature
   business_value: 9.99
   story_points: 5
@@ -7,9 +7,10 @@ one:
   sprint_id: 9999
   release_id: 9999
   project_id: 9999
+  feature_status_id: 1
 
 two:
-  id: 10000
+  id: 2
   user_story: As a team member I want to modify product feature
   business_value: 9.99
   story_points: 5
@@ -18,3 +19,4 @@ two:
   release_id: 9999
   project_id: 9999
   accepted: true
+  feature_status_id: 1

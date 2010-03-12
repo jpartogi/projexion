@@ -4,7 +4,7 @@ class Admin::FeatureStatusesController < ApplicationController
   before_filter :require_user
 
   def index
-    @feature_statuses = FeatureStatus.find(:all, :order => "position")
+    @feature_statuses = FeatureStatus.all(:order => "position")
   end
 
   def show
@@ -65,14 +65,11 @@ class Admin::FeatureStatusesController < ApplicationController
   end
 
   def update_position
-    id = params[:id]
-    direction = params[:direction]
+    @feature_status = FeatureStatus.find(params[:id])
+    
+    @feature_status.update_position(params[:direction])
 
-    @feature_status = FeatureStatus.find(id)
-
-    @feature_status.update_position(direction)
-
-    @feature_statuses = FeatureStatus.find(:all, :order => "position")
+    @feature_statuses = FeatureStatus.all(:order => "position")
 
     respond_with(@feature_statuses) do |format|
       format.html { render :partial => 'list' }
