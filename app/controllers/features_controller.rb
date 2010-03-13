@@ -62,7 +62,7 @@ class FeaturesController < ApplicationController
     end
 
     #In the end we need to paginate it.
-    @features = @features.paginate(:page => params[:page], :order => 'id DESC', :per_page =>1)
+    @features = @features.paginate(:page => params[:page], :order => 'id DESC', :per_page =>20)
   end
 
   def edit
@@ -120,14 +120,17 @@ class FeaturesController < ApplicationController
     end
   end
 
-  def accept
+  def update_status
     @feature = Feature.find(params[:id])
+    @feature_status = FeatureStatus.find(params[:status_id])
 
-    @feature.accepted = !@feature.accepted
+    @feature.feature_status = @feature_status
 
-    respond_with(@feature) do |format|
+    respond_with(@feature, @feature_status) do |format|
       if @feature.save
-        format.json { render :json => @feature }
+        format.json { render :json => {:feature => @feature, :feature_status => @feature_status} }
+      else
+        format.json  { render :json => @feature_status.errors, :status => :unprocessable_entity }
       end
     end
   end

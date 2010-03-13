@@ -3,10 +3,16 @@ Projexion::Application.routes.draw do |map|
 
   resources :users, :except => [:index, :destroy] do
   	member do
-  	  get :change_password
+  	  put :change_password
   	end
   end
-  
+
+  resources :feature_statuses do
+    member do
+      post :get_options
+    end
+  end
+
   resources :user_sessions
   map.login  '/login',  :controller => "user_sessions", :action => "new"
   map.logout '/logout', :controller => 'user_sessions', :action => 'destroy'
@@ -57,7 +63,7 @@ Projexion::Application.routes.draw do |map|
     resources :projects  
     resources :project_roles
     resources :project_members
-    resources :feature_statuses  
+    resources :feature_statuses
     resources :task_statuses
     resources :meeting_types  
   end

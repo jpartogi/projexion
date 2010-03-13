@@ -53,17 +53,6 @@ class Admin::FeatureStatusesController < ApplicationController
     end
   end
 
-  # Ajax actions
-  def get_options
-    @task = Task.find(params[:task_id])
-
-    @feature_statuses = FeatureStatus.find(:all)
-
-    respond_with(@task, @feature_statuses) do |format|
-      format.html { render :partial => 'options' }
-    end
-  end
-
   def update_position
     @feature_status = FeatureStatus.find(params[:id])
     

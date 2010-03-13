@@ -90,30 +90,8 @@
   <% unless @features.empty? %>
   <div>
     <h2>Product Features</h2>
-
-    <script type="text/javascript">
-      $(document).ready(function(){
-        var update_list = function(){
-            var accepted = $('#accepted-filter').val();
-            $.post('<%= list_project_feature_path(@project.code)  %>', {"accepted": accepted}, function(response){
-                $('#features').replaceWith(response);
-            }, 'html');
-        };  
-
-        $('#filter-button').click(update_list);
-      });
-    </script>
-
-    <div>
-        <select id="accepted-filter" name="accepted">
-          <option value="all">All</option>
-          <option value="true">Accepted</option>
-          <option value="false">Not Accepted</option>
-        </select>
-        <button id="filter-button">Show</button>
-    </div>
     <%= render :partial => "features/list" %>
-    <span style="float:right"><%= link_to 'More', project_features_path(@project.code) %></span>
+    <span style="float:right"><%= link_to 'Show All', project_features_path(@project.code) %></span>
     <div style="clear:both"></div>
   </div>
   <% end %>

@@ -1,17 +1,44 @@
 <script type="text/javascript">
     $(document).ready(function(){
-        $('input:checkbox[name=features]').click(function(){
-            var feature_id = $(this).val();
+        var callback_status = function(data){
+            var feature_status = data.feature_status.feature_status;
+            var feature = data.feature.feature;
 
-            $.post('<%= url_for :action => :accept, :controller => :features %>',
-                   {"id" : feature_id}, 'json');
-        });
+            var original = $('#feature_' + feature.id + " .status");
+            var clone = original.clone();
+            clone = clone.empty().append(feature_status.display_name);
+            clone.css('background-color', '#'+feature_status.color);
+            clone.click(onClickStatus);
+            original.replaceWith(clone);
+        }
+        
+        var onClickStatus = function(){
+            var feature_id = $(this).parent().find(".feature-id").val();
+
+            var clone = $(this).clone();
+            var current = $(this);
+
+            $.post("<%= url_for :action => :get_options, :controller => :feature_statuses %>", {feature_id: feature_id}, function(response){
+                current.replaceWith(response);
+
+                $(".status option").click(function () {
+                    var status_id = $(this).val();
+
+                    $.post("<%= url_for :action => :update_status, :controller => :features %>",
+                        {"status_id": status_id, "id": feature_id },
+                        callback_status, "json");
+                });
+                
+            }, 'html');
+
+        };
+
+        $('.status').click(onClickStatus);
     });
 </script>
 
 <table width="100%" id="features">
     <tr>
-      <th>&nbsp;</th>
       <th>User Story</th>
       <th>Status</th>
       <th>Sprint</th>
@@ -23,8 +50,8 @@
       
     <% unless @features.empty? %>
     <% for feature in @features %>
-    <tr>
-        <td><%= check_box_tag :features, feature.id, feature.accepted %></td>
+    <tr id="feature_<%=feature.id %>">
+        <input type="hidden" class="feature-id" name="feature-id" value="<%= feature.id %>"/>
         <td>
           <%= feature.user_story %>
           <% link_to project_feature_path(@project.code, feature) do %>
