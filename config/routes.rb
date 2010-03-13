@@ -7,12 +7,6 @@ Projexion::Application.routes.draw do |map|
   	end
   end
 
-  resources :feature_statuses do
-    member do
-      post :get_options
-    end
-  end
-
   resources :user_sessions
   map.login  '/login',  :controller => "user_sessions", :action => "new"
   map.logout '/logout', :controller => 'user_sessions', :action => 'destroy'

@@ -53,17 +53,6 @@ class Admin::TaskStatusesController < ApplicationController
     end
   end
 
-  # Ajax actions
-  def get_options
-    @task = Task.find(params[:task_id])
-
-    @task_statuses = TaskStatus.find(:all)
-
-    respond_with(@task, @task_statuses) do |format|
-      format.html { render :partial => 'options' }
-    end
-  end
-
   def update_position
     id = params[:id]
     direction = params[:direction]
