@@ -9,7 +9,7 @@ class Sprint < ActiveRecord::Base
   end
 
   def generate_velocities
-    features = Feature.all( :conditions => { :sprint_id => self.id, :accepted => true } )
+    features = Feature.all( :conditions => { :sprint_id => self.id, :feature_status_id => FeatureStatus.last_status } )
 
     velocities = 0
     features.each do |feature|

@@ -86,5 +86,8 @@ class FeatureStatus < ActiveRecord::Base
       FeatureStatus.first(:conditions => {:position => 1})
     end
 
+    def last_status
+      FeatureStatus.last(:order => :position)
+    end
   end
 end
