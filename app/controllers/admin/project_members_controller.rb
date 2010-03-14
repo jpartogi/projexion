@@ -15,7 +15,7 @@ class Admin::ProjectMembersController < ApplicationController
 
     respond_with(@project_member) do |format|
       if @project_member.save
-        format.html { redirect_to admin_user_path(@project_member.user), :notice => 'User was successfully added.' }
+        format.html { redirect_to admin_user_path(@project_member.user), :notice => 'User was successfully updated.' }
       end
     end
   end
