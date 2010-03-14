@@ -1,0 +1,9 @@
+<td class="sprint" style="text-align:center;">
+    <select>
+        <% for sprint in @sprints %>
+        <option <% unless @feature.sprint.nil? %><% if @feature.sprint.id == sprint.id %>selected="selected"<% end %><% end %> value="<%= sprint.id %>">
+          <%= sprint.span_date %>
+        </option>
+        <% end %>
+    </select>
+</td>

@@ -134,4 +134,30 @@ class FeaturesController < ApplicationController
       end
     end
   end
+
+  def update_sprint
+    @sprint = Sprint.find(params[:id])
+    @feature = Feature.find(params[:parent_id])
+    @feature.sprint = @sprint
+    @project = @feature.project
+
+    respond_to do |format|
+      if @feature.save
+        format.html { render :partial => 'sprints/label' }
+      end
+    end
+  end
+
+  def update_release
+    @release = Release.find(params[:id])
+    @feature = Feature.find(params[:parent_id])
+    @feature.release = @release
+    @project = @feature.project
+
+    respond_to do |format|
+      if @feature.save
+        format.html { render :partial => 'releases/label' }
+      end
+    end
+  end
 end

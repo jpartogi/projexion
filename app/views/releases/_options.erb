@@ -1,0 +1,9 @@
+<td class="release" style="text-align:center;">
+    <select>
+        <% for release in @releases %>
+        <option value="<%= release.id %>">
+          <%= release.version_number %>
+        </option>
+        <% end %>
+    </select>
+</td>

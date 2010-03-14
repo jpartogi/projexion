@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'jquery.comboEdit' %>
 <script type="text/javascript">
     $(document).ready(function(){
         var callback_status = function(data){
@@ -34,9 +35,22 @@
         };
 
         $('.status').click(onClickStatus);
-    });
-</script>
 
+        $('.release').comboEdit({
+            getComboBoxURL: "<%= url_for :action => :get_options, :controller => :releases %>",
+            submitURL: "<%= url_for :action => :update_release, :controller => :features %>",
+            parentIdClass: 'feature-id'
+        });
+
+        $('.sprint').comboEdit({
+            getComboBoxURL: "<%= url_for :action => :get_options, :controller => :sprints %>",
+            submitURL: "<%= url_for :action => :update_sprint, :controller => :features %>",
+            parentIdClass: 'feature-id'
+        });
+
+    });    
+
+ </script>
 <table width="100%" id="features">
     <tr>
       <th>User Story</th>
@@ -61,23 +75,21 @@
         <td class="status" style="text-align:center;background-color:<%= '#' + feature.feature_status.color %>">
           <%= feature.feature_status.display_name %>
         </td>
-        <td>
+        <td class="sprint" style="text-align:center;">
           <% unless feature.sprint.nil? %>
             <%= feature.sprint.span_date %>
              <% link_to project_sprint_path(@project.code, feature.sprint) do %>
              <img src="/images/icons/application_view_detail.png">
             <% end %>
-          <% end %>    
-          <%# TODO: Add combobox ajax update if null/empty %>
+          <% end %>
         </td>
-        <td>
+        <td class="release" style="text-align:center;">
           <% unless feature.release.nil? %>
             <%= feature.release.version_number %>
               <% link_to project_release_path(@project.code, feature.release) do %>
               <img src="/images/icons/application_view_detail.png">
             <% end %>
           <% end %>
-          <%# TODO: Add combobox ajax update if null/empty %>
         </td>
         <td style="text-align:center;"><%= feature.story_points %></td>
         <td style="text-align:center;"><%= feature.business_value %></td>

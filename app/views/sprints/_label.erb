@@ -1,0 +1,8 @@
+<td class="sprint" style="text-align:center;">
+<% unless @sprint.span_date.nil? %>
+    <%= @sprint.span_date %>
+     <% link_to project_sprint_path(@project.code, @sprint) do %>
+     <img src="/images/icons/application_view_detail.png">
+    <% end %>
+<% end %>
+</td>

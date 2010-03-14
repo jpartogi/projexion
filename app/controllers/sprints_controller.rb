@@ -112,4 +112,17 @@ class SprintsController < ApplicationController
       format.json { render :json => @plots }
     end
   end
+
+  #Ajax options
+  def get_options
+    @feature = Feature.find(params[:parent_id])
+
+    @project = @feature.project
+
+    @sprints = @project.active_sprints
+
+    respond_with(@sprints) do |format|
+      format.html { render :partial => 'options' }  
+    end
+  end
 end

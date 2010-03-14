@@ -77,4 +77,16 @@ class ReleasesController < ApplicationController
     respond_with(@project, @releases)
   end
 
+  # Ajax  actions
+  def get_options
+    @feature = Feature.find(params[:parent_id])
+    @project = @feature.project
+
+    @releases = @project.active_releases
+
+    respond_with(@sprints) do |format|
+      format.html { render :partial => 'options' }
+    end
+  end
+
 end
