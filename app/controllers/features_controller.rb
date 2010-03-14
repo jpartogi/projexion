@@ -42,6 +42,7 @@ class FeaturesController < ApplicationController
     @project = Project.find_by_code(params[:project_id])
     @sprints = Sprint.find_all_by_project_id(@project, :order => 'start_date desc')
     @releases = Release.find_all_by_project_id(@project)
+    @feature_statuses = FeatureStatus.all
 
     @features = @project.features
     if params[:feature]
@@ -52,13 +53,16 @@ class FeaturesController < ApplicationController
       end
 
       unless conditions[:sprint_id].empty?
-        @features = @features.where(['sprint_id = ?', conditions[:sprint_id]])
+        @features = @features.where({:sprint_id => conditions[:sprint_id]})
       end
 
       unless conditions[:release_id].empty?
-        @features = @features.where(['release_id = ?', conditions[:release_id]])
+        @features = @features.where({:release_id => conditions[:release_id]})
       end
 
+      unless conditions[:feature_status_id].empty?
+        @features = @features.where({:feature_status_id => conditions[:feature_status_id]})
+      end
     end
 
     #In the end we need to paginate it.

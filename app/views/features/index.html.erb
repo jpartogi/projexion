@@ -4,11 +4,20 @@
   
   <div>
     <% form_for @feature, :url => project_features_path(@project.code), :html => { :method => :get }  do |f| %>
+        <div style="float:left">
         <p>
             <%= f.label :user_story %><br/>
             <%= f.text_field :user_story %>
         </p>
 
+         <p>
+            <%= f.label :status %><br/>
+            <%= f.collection_select(:feature_status_id, @feature_statuses, :id, :display_name, {:include_blank => true}) %>
+        </p>
+
+        </div>
+
+        <div style="float:left; margin-left: 5em;">
         <p>
             <%= f.label :release %><br/>
             <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %>
@@ -18,7 +27,10 @@
           <%= f.label :sprint %><br/>
           <%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}) %>
         </p>
+        </div>
 
+        <div style="clear:both"></div>
+        
         <p>
             <%= f.submit 'Search' %>
         </p>
