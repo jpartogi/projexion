@@ -47,12 +47,12 @@ h3 { font: bold 15px Helvetica; }
 #content li { line-height: 2em; }
 #content h2, #content label { font: bold 16px Helvetica; letter-spacing:-0.7px; }
 #content label { margin-bottom:1em; }
-#content form input[type='text'],
-  #content form input[type='password'],
+#content form input[type='text'], #users_form form input[type='text'],
+  #content form input[type='password'],  #users_form form input[type='password'],
   #content form textarea{ padding:5px; border:1px solid #ccc; font:12px verdana;
     background: #fff url('/images/input-bg.gif') repeat-x top left; }
 #content input[type='submit']{ float:left; }
-#content p { margin-bottom: 1em; }
+#content p, #users_form p{ margin-bottom: 1em; }
 #content th { font: bold 13px Verdana; padding: 0.5em; background: #f4f4f4; border:2px solid white; }
 #content td { padding: 0.2em; border-bottom: 1px solid #f4f4f4; }
 #content td a { text-decoration:none; }
@@ -74,12 +74,10 @@ li.info-list { margin: 1em 0 1em 0; }
 #sidebar h2 { margin: .5em 0 1em .25em; }
 
 #users_form { width: 100%; padding-top: 1em;  }
-#users_form fieldset { margin: 0 auto 0 auto; padding: 1em; border: 1px solid #eee; width: 450px; }
+#users_form fieldset { margin: 0 auto 0 auto; padding: 1em; border: 1px solid #eee; width: 25%; }
 #users_form legend { font: bold 17px Helvetica,serif; color:#666; letter-spacing: -1px; border: 1px solid #eee; padding: 4px;
     background: #f4f4f4; border-bottom-color: #999; border-right-color: #999; }
 #users_form label { font: bold 15px Helvetica; letter-spacing: -1px; color: #666; text-transform:capitalize; }
-#users_form input[type='text'],
-#users_form input[type='password'] { width:100%; font: bold 1em Arial; border: 1px solid #eee; padding: 3px;  margin-bottom: 1em;  }
 #users_form input[type='submit'] { padding: 2px 10px; }
 #errorExplanation { font: 11px verdana, sans-serif; color: #be0b0b; margin-bottom: 1em; background-color: #ffe1da; padding:5px; }
 #errorExplanation li { background: url('/images/icons/exclamation.png') 6px 50% no-repeat; border-color: #f34f4f; color: #be0b0b; padding: 5px; text-indent: 20px;}
