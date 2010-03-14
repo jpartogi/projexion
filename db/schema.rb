@@ -44,17 +44,16 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "features", :force => true do |t|
-    t.text     "user_story",                                                          :null => false
+    t.text     "user_story",                                       :null => false
     t.decimal  "business_value",    :precision => 10, :scale => 0
     t.integer  "story_points"
     t.integer  "priority"
-    t.datetime "created_at",                                                          :null => false
-    t.datetime "updated_at",                                                          :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.integer  "sprint_id"
     t.integer  "release_id"
-    t.integer  "project_id",                                                          :null => false
-    t.boolean  "accepted",                                         :default => false, :null => false
-    t.integer  "feature_status_id",                                                   :null => false
+    t.integer  "project_id",                                       :null => false
+    t.integer  "feature_status_id",                                :null => false
   end
 
   add_index "features", ["id", "sprint_id", "release_id", "project_id"], :name => "features_idx"
@@ -110,6 +109,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",               :null => false
     t.string   "vision",                   :null => false
   end
+
+  add_index "projects", ["code"], :name => "projects_uq", :unique => true
 
   create_table "releases", :force => true do |t|
     t.string   "version_number", :limit => 20, :null => false

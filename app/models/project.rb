@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   validates_presence_of :name, :vision
-  #validates_uniqueness_of :code #TODO Manually validates uniqueness and presence of code :-(
+  validates_uniqueness_of :code
 
   has_many :project_members
   has_many :users, :through => :project_members
