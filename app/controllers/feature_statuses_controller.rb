@@ -3,7 +3,7 @@ class FeatureStatusesController < ApplicationController
   
   # Ajax actions
   def get_options
-    @feature = Feature.find(params[:feature_id])
+    @feature = Feature.find(params[:parent_id])
 
     @feature_statuses = FeatureStatus.all
 

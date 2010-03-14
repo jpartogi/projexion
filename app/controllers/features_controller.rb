@@ -121,16 +121,14 @@ class FeaturesController < ApplicationController
   end
 
   def update_status
-    @feature = Feature.find(params[:id])
-    @feature_status = FeatureStatus.find(params[:status_id])
+    @feature = Feature.find(params[:parent_id])
+    @feature_status = FeatureStatus.find(params[:id])
 
     @feature.feature_status = @feature_status
 
     respond_with(@feature, @feature_status) do |format|
       if @feature.save
-        format.json { render :json => {:feature => @feature, :feature_status => @feature_status} }
-      else
-        format.json  { render :json => @feature_status.errors, :status => :unprocessable_entity }
+        format.html { render :partial => 'feature_statuses/label' }
       end
     end
   end

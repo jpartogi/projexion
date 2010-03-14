@@ -1,40 +1,12 @@
 <%= javascript_include_tag 'jquery.comboEdit' %>
 <script type="text/javascript">
     $(document).ready(function(){
-        var callback_status = function(data){
-            var feature_status = data.feature_status.feature_status;
-            var feature = data.feature.feature;
-
-            var original = $('#feature_' + feature.id + " .status");
-            var clone = original.clone();
-            clone = clone.empty().append(feature_status.display_name);
-            clone.css('background-color', '#'+feature_status.color);
-            clone.click(onClickStatus);
-            original.replaceWith(clone);
-        }
         
-        var onClickStatus = function(){
-            var feature_id = $(this).parent().find(".feature-id").val();
-
-            var clone = $(this).clone();
-            var current = $(this);
-
-            $.post("<%= url_for :action => :get_options, :controller => :feature_statuses %>", {feature_id: feature_id}, function(response){
-                current.replaceWith(response);
-
-                $(".status option").click(function () {
-                    var status_id = $(this).val();
-
-                    $.post("<%= url_for :action => :update_status, :controller => :features %>",
-                        {"status_id": status_id, "id": feature_id },
-                        callback_status, "json");
-                });
-                
-            }, 'html');
-
-        };
-
-        $('.status').click(onClickStatus);
+        $('.status').comboEdit({
+            getComboBoxURL: "<%= url_for :action => :get_options, :controller => :feature_statuses %>",
+            submitURL: "<%= url_for :action => :update_status, :controller => :features %>",
+            parentIdClass: 'feature-id'
+        });
 
         $('.release').comboEdit({
             getComboBoxURL: "<%= url_for :action => :get_options, :controller => :releases %>",
