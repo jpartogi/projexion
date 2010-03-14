@@ -12,7 +12,6 @@
       Product Features for <%= @project.name %>
     </h1>
     <%= render :partial => "features/list" %>
-    <%# TODO: Paginate list %>
   </div>
 
   <script type="text/javascript">
@@ -23,7 +22,8 @@
   <div id="info-box" style="float:right">
     <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
     <strong>Release:</strong>&nbsp;<%= @release.version_number %><br/>
-    <strong>Estimate release date:</strong> <%= @release.estimate_date %>  
+    <strong>Estimate release date:</strong> <%= @release.estimate_date %><br/>
+    <% if @release.goal %><strong>Goal:</strong>&nbsp;<%= @release.goal %><% end %>
   </div>
 
   <div style="clear:both"></div>

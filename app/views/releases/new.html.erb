@@ -13,6 +13,11 @@
         </p>
 
         <p>
+          <%= f.label :goal, 'Release goal' %><br />
+          <%= f.text_field :goal, :size => 45 %>
+        </p>
+
+        <p>
           <%= f.submit 'Save', :class=> 'save_btn' %>
         </p>
       <% end %>

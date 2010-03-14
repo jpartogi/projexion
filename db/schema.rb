@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   create_table "releases", :force => true do |t|
     t.string   "version_number", :limit => 20, :null => false
     t.date     "estimate_date"
+    t.text     "goal"
     t.integer  "project_id",                   :null => false
     t.datetime "cancelled_at"
     t.datetime "released_at"

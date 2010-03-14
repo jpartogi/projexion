@@ -9,13 +9,15 @@
         <th>Version</th>
         <th>Estimate release date</th>
         <th>Released date</th>
+        <th>Release goal</th>
         <th>&nbsp;</th>
       </tr>
     <% for release in @releases %>
         <tr>
-            <td style="text-align:center;"><%= h release.version_number %></td>
-            <td style="text-align:center;"><%= h release.estimate_date %></td>
-            <td style="text-align:center;"><%= h release.released_at %></td>
+            <td style="text-align:center;"><%= release.version_number %></td>
+            <td style="text-align:center;"><%= release.estimate_date %></td>
+            <td style="text-align:center;"><%= release.released_at %></td>
+            <td style="text-align:center;"><%= release.goal %></td>
             <td>
                 <% link_to project_release_path(@project.code, release.id) do %>
                     <img src="/images/icons/application_view_detail.png">
