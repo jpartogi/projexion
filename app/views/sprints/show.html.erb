@@ -23,7 +23,7 @@
   <div id="info-box" style="float:right">
     <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
     <strong>Sprint:</strong>&nbsp;<%= @sprint.span_date %><br/>
-    <% if @sprint.goal %><strong>Goal:</strong> <%= @sprint.goal %><% end %>
+    <% if not @sprint.goal.empty? %><strong>Goal:</strong> <%= @sprint.goal %><% end %>
   </div>
 
   <div style="clear:both"></div>

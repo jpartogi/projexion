@@ -23,7 +23,7 @@
     <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
     <strong>Release:</strong>&nbsp;<%= @release.version_number %><br/>
     <strong>Estimate release date:</strong> <%= @release.estimate_date %><br/>
-    <% if @release.goal %><strong>Goal:</strong>&nbsp;<%= @release.goal %><% end %>
+    <% if not @release.goal.empty? %><strong>Goal:</strong>&nbsp;<%= @release.goal %><% end %>
   </div>
 
   <div style="clear:both"></div>

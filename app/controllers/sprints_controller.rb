@@ -105,7 +105,7 @@ class SprintsController < ApplicationController
     
     @sprint = Sprint.find(params[:id]) || Sprint.new
     
-    @plots = TaskDaily.plots(:conditions => { :project_code => params[:project_id] })
+    @plots = TaskDaily.plots(:conditions => { :project_id => params[:project_id] })
 
     respond_with(@plots) do |format|
       format.html
