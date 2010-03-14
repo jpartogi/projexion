@@ -9,9 +9,14 @@ class Project < ActiveRecord::Base
   has_many :sprints
 
   def active_sprints
-    self.sprints.reject do |sprint|
-      Date.today > sprint.end_date or not sprint.cancelled_at.nil?
-    end
+#    self.sprints.reject do |sprint|
+#      Date.today > sprint.end_date or not sprint.cancelled_at.nil?
+#    end
+    self.sprints.where(['end_date > ?', Date.today])
+  end
+
+  def current_sprint
+    self.sprints.where(['start_date <= ? and end_date > ?', Date.today, Date.today])
   end
 
   def active_releases

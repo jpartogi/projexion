@@ -17,10 +17,9 @@ class ProjectsController < ApplicationController
     @sprints = @project.active_sprints
 
     @features = @project.features
-    @features = @features.where({ :sprint_id => @sprints })
-
-
-    respond_with(@project, @features)
+    @sprint = @project.current_sprint
+    @sprint = Sprint.find(@sprint)
+    @features = @features.where(["sprint_id in (?)", @sprint])
   end
 
   def destroy
