@@ -9,10 +9,7 @@ class Project < ActiveRecord::Base
   has_many :sprints
 
   def active_sprints
-#    self.sprints.reject do |sprint|
-#      Date.today > sprint.end_date or not sprint.cancelled_at.nil?
-#    end
-    self.sprints.where(['end_date > ?', Date.today])
+    self.sprints.where(['end_date > ? and cancelled_at is null', Date.today])
   end
 
   def current_sprint
@@ -20,9 +17,7 @@ class Project < ActiveRecord::Base
   end
 
   def active_releases
-    self.releases.reject do |release|
-      not release.released_at.nil?
-    end
+    self.releases.where(['released_at is null'])
   end
 
   def manager
