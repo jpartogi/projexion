@@ -10,7 +10,8 @@
                        {"offset" : offset}, function(response){
                 
                 $('#events').append(response);
-
+                $('.info-list').corner();
+                
                 offset += 10;
 
             }, 'html');
