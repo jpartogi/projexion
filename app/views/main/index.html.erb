@@ -1,7 +1,20 @@
 <% content_for :title do %><title>Your Dashboard - Projexion</title><% end %>
 <script type="text/javascript">
+    var offset = parseInt(<%= params[:next_offset] %>);
+
     $(document).ready(function(){
        $('.info-list').corner();
+
+       $('.more').click(function(){
+            $.post('<%= url_for :action => :more, :controller => :events %>',
+                       {"offset" : offset}, function(response){
+                
+                $('#events').append(response);
+
+                offset += 10;
+
+            }, 'html');
+       });
     });
   </script>
 <div id="content">
@@ -10,25 +23,13 @@
     <div style="float:left">
       <h1>Latest events</h1>
       <% unless @events.empty? %>
-      <ul>
-          <% @events.each do |event| %>
-          <li class="info-list">
-            <% if event.model.eql? 'Task' %>
-              <% link_to ({:controller => event.model.downcase + 's', :action => :show, :id => event.model_id}),:rel => 'facebox' do%> 
-                <%= event.model %>&nbsp;<%= event.action %>
-              <% end %>
-            <% else %>
-              <% link_to ({:controller => event.model.downcase + 's', :action => :show, :id => event.model_id}) do%> 
-                <%= event.model %>&nbsp;<%= event.action %>
-              <% end %>
-            <% end %>
-            in&nbsp;<%= link_to event.project.name, project_path(event.project.code) %>&nbsp;
-            by&nbsp;<%= link_to event.user.login, user_path(event.user.login) %>
-            &nbsp;<%= time_ago_in_words(event.created_at) %>&nbsp;ago.
-          </li>
-          <% end %>
-         <%# TODO: Only fetch 10, the rest fetch using ajax %>   
+
+      <ul id="events">
+          <%= render :partial => "events/list" %>
       </ul>
+      <div class="more">
+        More  
+      </div>
       <% else %>
         <p class="info">
             No events so far.

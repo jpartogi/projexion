@@ -24,9 +24,7 @@ h3 { font: bold 15px Helvetica; }
     padding:0; border: 0; margin: 1px; }
 
 .status { color: white; text-align: center; font-weight: bold; vertical-align: middle; }
-.queued { background: #002aa2; }
-.inprogress { background: #cb0000; }
-.done { background: #228200; }
+.more { border: 1px solid #9bb8d9; color: #406299; padding:5px; text-align: center; }
 
 .inline { background: white; border:none; border-bottom: 1px solid #ccc; font: 12px Verdana; width:100%; }
 

@@ -5,8 +5,10 @@ class MainController < ApplicationController
     def index
       @projects = current_user.projects
 
-      @events = Event.find(:all, :conditions => { :project_id => @projects },  :order => "created_at DESC")
+      params[:next_offset] = 11
 
-      @meetings = Meeting.find(:all, :conditions => ["start_time > ? and project_id in (?)", Time.now, @projects], :order => 'start_time')
+      @events = Event.all(:conditions => { :project_id => @projects },  :order => "created_at DESC", :limit => 10)
+
+      @meetings = Meeting.all(:conditions => ["start_time > ? and project_id in (?)", Time.now, @projects], :order => 'start_time')
     end
 end

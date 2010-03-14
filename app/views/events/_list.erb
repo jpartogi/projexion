@@ -1,0 +1,16 @@
+<% @events.each do |event| %>
+  <li class="info-list">
+    <% if event.model.eql? 'Task' %>
+      <% link_to ({:controller => event.model.downcase + 's', :action => :show, :id => event.model_id}),:rel => 'facebox' do%>
+        <%= event.model %>&nbsp;<%= event.action %>
+      <% end %>
+    <% else %>
+      <% link_to ({:controller => event.model.downcase + 's', :action => :show, :id => event.model_id}) do%>
+        <%= event.model %>&nbsp;<%= event.action %>
+      <% end %>
+    <% end %>
+    in&nbsp;<%= link_to event.project.name, project_path(event.project.code) %>&nbsp;
+    by&nbsp;<%= link_to event.user.login, user_path(event.user.login) %>
+    &nbsp;<%= time_ago_in_words(event.created_at) %>&nbsp;ago.
+  </li>
+<% end %>
