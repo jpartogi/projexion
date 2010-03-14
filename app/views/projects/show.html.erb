@@ -89,7 +89,7 @@
 
   <% unless @features.empty? %>
   <div>
-    <h2>Product Features</h2>
+    <h2>Product Features in Current Sprint</h2>
     <%= render :partial => "features/list" %>
     <span style="float:right"><%= link_to 'Show All', project_features_path(@project.code) %></span>
     <div style="clear:both"></div>

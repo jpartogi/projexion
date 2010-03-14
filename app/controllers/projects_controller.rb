@@ -10,13 +10,15 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find_by_code(params[:id])
 
-    @features = @project.features
-
     @manager = @project.manager
 
     @releases = @project.active_releases
 
     @sprints = @project.active_sprints
+
+    @features = @project.features
+    @features = @features.where({ :sprint_id => @sprints })
+
 
     respond_with(@project, @features)
   end
