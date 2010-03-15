@@ -48,7 +48,7 @@
   <ul>
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
     <li><%= link_to 'Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
-    <li><%= link_to 'Back to Sprint', project_sprint_path(@project.code, @sprint), :class => 'dashboard' %></li>
+    <li><%= link_to 'Show Sprint', project_sprint_path(@project.code, @sprint), :class => 'dashboard' %></li>
   </ul>
 
   <div class="block">
