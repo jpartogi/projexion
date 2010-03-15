@@ -37,7 +37,8 @@
     <li><%= link_to 'Edit Release', edit_project_release_path(@project.code, @release), :class => 'edit' %></li>
     <li><%= link_to 'Release Project', release_project_release_path(@project.code, @release), :class => 'accept', :method => :put, 
                     :confirm => "Are you sure?" %></li>
-    <% end %>    
+    <% end %>
+    <li><%= link_to 'Release Burndown', burndown_project_release_path(@project.code, @release), :class => 'chart' %></li>
   </ul>
   <%# TODO: Add meeting link %>
 </div>

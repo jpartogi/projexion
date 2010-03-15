@@ -4,7 +4,7 @@ one:
   business_value: 9.99
   story_points: 5
   priority: 1
-  sprint_id: 9999
+  sprint_id: 1
   release_id: 9999
   project_id: 9999
   feature_status_id: 1
@@ -15,8 +15,7 @@ two:
   business_value: 9.99
   story_points: 5
   priority: 1
-  sprint_id: 9999
+  sprint_id: 1
   release_id: 9999
   project_id: 9999
-  accepted: true
   feature_status_id: 1

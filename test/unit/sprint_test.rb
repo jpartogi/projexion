@@ -6,7 +6,7 @@ class SprintTest < ActiveSupport::TestCase
 
   context "A Sprint instance" do
     should "generate velocities" do
-      sprint = Sprint.find(9999)
+      sprint = sprints(:one)
       
       sprint.generate_velocities
     end

@@ -112,6 +112,15 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
 
   add_index "projects", ["code"], :name => "projects_uq", :unique => true
 
+  create_table "release_snapshots", :force => true do |t|
+    t.integer  "project_id", :null => false
+    t.integer  "release_id", :null => false
+    t.integer  "sprint_id",  :null => false
+    t.integer  "total",      :null => false
+    t.datetime "updated_at"
+    t.datetime "created_at"
+  end
+
   create_table "releases", :force => true do |t|
     t.string   "version_number", :limit => 20, :null => false
     t.date     "estimate_date"

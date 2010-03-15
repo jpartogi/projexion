@@ -15,6 +15,8 @@ Projexion::Application.routes.draw do |map|
 
   match 'projects/:project_id/sprints/burndown' => 'sprints#burndown', :as => :burndown
 
+  match 'projects/:project_id/releases/burndown' => 'releases#burndown', :as => :burndown_release # For ajax
+
   resources :projects do
     resources :features do
       resources :tasks, :acceptances
@@ -27,6 +29,7 @@ Projexion::Application.routes.draw do |map|
     resources :releases do
       member do
         put :release
+        get :burndown
       end
     end
 

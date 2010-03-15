@@ -1,6 +1,19 @@
 one:
-  id: 9999
+  id: 1
   start_date: 2009-10-10
-  end_date: 2009-10-10
+  end_date: 2009-10-17
+  project_id: 9999
+  goal: Create a usable product
+
+two:
+  id: 2
+  start_date: 2009-10-18
+  end_date: 2009-10-27
+  project_id: 9999
+
+three:
+  id: 3
+  start_date: 2009-10-28
+  end_date: 2009-11-10
   project_id: 9999
   goal: Create a usable product

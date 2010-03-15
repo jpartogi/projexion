@@ -89,4 +89,19 @@ class ReleasesController < ApplicationController
     end
   end
 
+  def burndown
+    @project = Project.find_by_code(params[:project_id])
+
+    @releases = @project.releases # For the release dropdown selector
+
+    @release = Release.find(params[:id]) || Release.new
+
+    @plots = ReleaseSnapshot.plots(:conditions => {:project_id => @project, :release_id => @release})
+
+    respond_with(@plots) do |format|
+      format.html # This is for displaying the page itself
+      format.json { render :json => @plots } # This is for returning back the data
+    end
+  end
+
 end
