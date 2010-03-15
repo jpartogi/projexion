@@ -12,5 +12,18 @@ class ReleaseSnapshotTest < ActiveSupport::TestCase
 
       assert_equal plots.size, 3
     end
+
+    should "generate" do
+      release = releases(:one)
+
+      assert ReleaseSnapshot.generate(release)
+
+      sprint = sprints(:one)
+      sprint.start_date = Date.today
+      sprint.save
+      
+      snapshots = ReleaseSnapshot.all
+      assert_equal snapshots.size, 4
+    end
   end
 end

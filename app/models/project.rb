@@ -16,6 +16,10 @@ class Project < ActiveRecord::Base
     self.sprints.where(['start_date <= ? and end_date > ?', Date.today, Date.today])
   end
 
+  def latest_sprint
+    self.sprints.where(['end_date = (select max(end_date) from sprints)'])
+  end
+
   def active_releases
     self.releases.where(['released_at is null'])
   end
