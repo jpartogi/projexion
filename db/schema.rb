@@ -134,6 +134,16 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
 
   add_index "releases", ["id", "project_id"], :name => "releases_idx"
 
+  create_table "sprint_snapshots", :force => true do |t|
+    t.integer   "project_id",  :null => false
+    t.integer   "total",       :null => false
+    t.date      "last_update", :null => false
+    t.timestamp "updated",     :null => false
+    t.integer   "sprint_id",   :null => false
+    t.datetime  "updated_at",  :null => false
+    t.datetime  "created_at",  :null => false
+  end
+
   create_table "sprints", :force => true do |t|
     t.date     "start_date",                               :null => false
     t.date     "end_date",                                 :null => false
@@ -146,15 +156,6 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   add_index "sprints", ["id", "project_id"], :name => "sprints_idx"
-
-  create_table "task_dailies", :force => true do |t|
-    t.integer  "project_id",  :null => false
-    t.integer  "total_tasks", :null => false
-    t.date     "last_update", :null => false
-    t.datetime "tstamp",      :null => false
-    t.datetime "updated_at",  :null => false
-    t.datetime "created_at",  :null => false
-  end
 
   create_table "task_statuses", :force => true do |t|
     t.string   "display_name",   :limit => 100,                :null => false

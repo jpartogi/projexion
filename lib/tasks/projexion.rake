@@ -1,10 +1,10 @@
 namespace :projexion do
   require File.expand_path('../../../config/application',  __FILE__)
 
-  namespace :tasks do
-    task :daily => :environment do
+  namespace :sprints do
+    task :snapshot => :environment do
       
-      TaskDaily.sum_daily_tasks
+      SprintSnapshot.job
     end
   end
 

@@ -5,7 +5,7 @@ class TaskStatus < ActiveRecord::Base
   before_update :check_and_update_default_status
   
   def set_next_position
-    last_status = TaskStatus.find(:last, :order => "position")
+    last_status =  TaskStatus.last_status
 
     unless last_status.nil?
       self.position = last_status.position + 1
@@ -50,6 +50,10 @@ class TaskStatus < ActiveRecord::Base
 
     def default_status
       TaskStatus.first(:conditions => {:default_status => true})
+    end
+
+    def last_status
+      TaskStatus.last(:order => :position)
     end
 
   end

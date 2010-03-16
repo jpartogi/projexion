@@ -28,15 +28,4 @@ class TaskTest < ActiveSupport::TestCase
       assert !task.save
     end
   end
-
-  context "Task daily instance" do
-    should "update daily sum" do
-      assert TaskDaily.sum_daily_tasks
-
-      task_daily = TaskDaily.first(:conditions => {:last_update => Date.today})
-
-      assert task_daily.total_tasks, 2
-    end
-
-  end
 end

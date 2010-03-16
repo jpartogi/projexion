@@ -8,7 +8,7 @@ class FeatureStatus < ActiveRecord::Base
   DIRECTION_DOWN = 'down'
 
   def set_next_position
-    last_status = FeatureStatus.last(:order => "position")
+    last_status = FeatureStatus.last_status
 
     unless last_status.nil?
       self.position = last_status.position + 1

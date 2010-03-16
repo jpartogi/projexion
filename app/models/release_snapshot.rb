@@ -5,7 +5,6 @@ class ReleaseSnapshot < ActiveRecord::Base
 
   class << self
     def generate(release)
-
       project = release.project
       features = release.features
 
