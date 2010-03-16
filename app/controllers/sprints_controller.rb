@@ -76,6 +76,7 @@ class SprintsController < ApplicationController
     @project = Project.find_by_code(params[:project_id])
     
     @sprints = @project.sprints
+    @sprints = @sprints.paginate(:page => params[:page], :order => 'start_date desc', :per_page =>20)
   end
 
   def generate_velocities

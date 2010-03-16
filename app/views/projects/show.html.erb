@@ -51,6 +51,9 @@
         <% link_to project_release_path(@project.code, release.id) do %>
             <img src="/images/icons/application_view_detail.png">
         <% end %>
+        <% link_to burndown_project_release_path(@project.code, release.id) do %>
+            <img src="/images/icons/chart_line.png">
+        <% end %>
       </li>
     <% end %>
     </ul>
@@ -70,9 +73,12 @@
     <% for sprint in @sprints %>
         <li>
           <%= sprint.span_date %>
-            <% link_to project_sprint_path(@project.code, sprint.id) do %>
-                <img src="/images/icons/application_view_detail.png">
-            <% end %>
+          <% link_to project_sprint_path(@project.code, sprint.id) do %>
+              <img src="/images/icons/application_view_detail.png">
+          <% end %>
+          <% link_to burndown_project_sprint_path(@project.code, sprint.id) do %>
+            <img src="/images/icons/chart_line.png">
+        <% end %>
         </li>
     <% end %>
     </ul>
@@ -106,8 +112,8 @@
     <li><%= link_to 'Book a meeting', new_project_meeting_path(@project.code), :class => 'add' %></li>
     <li><%= link_to 'Features', project_features_path(@project.code), :class => 'list' %></li>
     <li><%= link_to 'Releases', project_releases_path(@project.code), :class => 'list' %></li>
-    <li><%= link_to 'Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
     <li><%= link_to 'Meetings', project_meetings_path(@project.code), :class => 'list' %></li>
+    <li><%= link_to 'Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
     <li><%= link_to 'Sprint Taskboard', taskboard_project_sprint_path(@project.code, @sprint.id), :class => 'taskboard' %></li>
     <li><%= link_to 'Sprint Burndown', burndown_project_sprint_path(@project.code, @sprint.id), :class => 'chart' %></li>
   </ul>
