@@ -43,5 +43,17 @@ class ReleaseSnapshot < ActiveRecord::Base
 
       return plots
     end
+
+    def job
+      projects = Project.all
+
+      projects.each do |project|
+        releases = project.active_releases
+
+        releases.each do |release|
+          generate(release)
+        end
+      end
+    end
   end
 end
