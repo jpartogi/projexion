@@ -7,6 +7,10 @@ class FeatureStatus < ActiveRecord::Base
   DIRECTION_UP = 'up'
   DIRECTION_DOWN = 'down'
 
+  def hash_color
+    '#'+self.color
+  end
+  
   def set_next_position
     last_status = FeatureStatus.last_status
 

@@ -15,7 +15,7 @@
         <div style="float:left; width:<%= @column_width %>;"><h3>Features</h3></div>
         <% for task_status in @task_statuses %>
             <div style="float:left; width:<%= @column_width %>;">
-                <h3 style="background-color: <%= '#'+task_status.color %>; text-align:center; color:#fff;">
+                <h3 style="background-color: <%= task_status.hash_color %>; text-align:center; color:#fff;">
                   <%= task_status.display_name %>
                 </h3>
             </div>

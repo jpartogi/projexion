@@ -3,7 +3,11 @@ class TaskStatus < ActiveRecord::Base
 
   before_create :check_and_update_default_status, :set_next_position
   before_update :check_and_update_default_status
-  
+
+  def hash_color
+    '#'+self.color  
+  end
+
   def set_next_position
     last_status =  TaskStatus.last_status
 

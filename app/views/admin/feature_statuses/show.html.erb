@@ -1,6 +1,10 @@
 <div id="content">
     <p class="success"><span><%= flash[:notice] %></span></p>
-
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('span.status').corner();
+      });
+    </script>
     <div>
         <p>
           <%= label_tag :display_name %><br />
@@ -19,8 +23,7 @@
 
         <p>
           <%= label_tag :color, 'Background color' %><br />
-          <%# TODO: Make this label wider and higher with no corner %>
-          <span style="background-color:#<%= @feature_status.color %>" class="status <%= @feature_status.key %>"><%= @feature_status.color %></span>
+          <span style="width:25%;background-color:<%= @feature_status.hash_color %>" class="status"><%= @feature_status.color %></span>
         </p>
     </div>
 </div>

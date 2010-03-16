@@ -15,7 +15,7 @@
         });
       </script>
 
-      <div class="feature status" style="background-color:<%= '#' + @feature.feature_status.color %>">
+      <div class="feature status" style="background-color:<%= @feature.feature_status.hash_color %>">
         <%= @feature.feature_status.display_name %>
       </div>
 
@@ -165,7 +165,7 @@
                         <td style="text-align:center;">
                            <%= link_to task.user.login, user_path(task.user.login) %>
                         </td>
-                        <td width="20%" class="status" style="background-color:<%= '#' + task.task_status.color %>">
+                        <td width="20%" class="status" style="background-color:<%= task.task_status.hash_color %>">
                           <input type="hidden" class="tsid" name="task_status_id" value="<%= task.task_status.id %>" />
                           <span><%= task.task_status.display_name %></span>
                         </td>
