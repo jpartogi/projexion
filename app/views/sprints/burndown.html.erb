@@ -26,11 +26,11 @@
                 });
             }
 
-            $.getJSON('<%= burndown_path(@project.code) %>', update_data);
+            $.getJSON('<%= burndown_project_sprint_path(@project.code, @sprint) %>', update_data);
 
             var send_data = function(){
                 var sprint_id = $('#sprint_id').val();
-                $.getJSON('<%= burndown_path(@project.code) %>', {'id': sprint_id}, update_data)    
+                $.getJSON('<%= burndown_sprint_path(@project.code) %>', {'id': sprint_id}, update_data)    
             }
 
             $('#filter-button').click(send_data);
@@ -38,7 +38,6 @@
 
     </script>
 
-    <%# TODO: By default display chart from current sprint %>
     <div id="placeholder" style="width:1000px;height:550px;"></div>
 </div>
 
