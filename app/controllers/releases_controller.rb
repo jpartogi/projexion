@@ -73,8 +73,7 @@ class ReleasesController < ApplicationController
     @project = Project.find_by_code(params[:project_id])
 
     @releases = @project.releases
-
-    respond_with(@project, @releases)
+    @releases = @releases.paginate(:page => params[:page], :per_page =>20)
   end
 
   # Ajax  actions
