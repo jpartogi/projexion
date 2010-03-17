@@ -67,12 +67,13 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "meetings", :force => true do |t|
-    t.text     "minutes",         :null => false
+    t.text     "minutes"
     t.binary   "attachment"
     t.datetime "start_time",      :null => false
     t.datetime "end_time",        :null => false
     t.integer  "meeting_type_id", :null => false
     t.text     "location"
+    t.text     "agenda"
     t.integer  "project_id",      :null => false
     t.integer  "sprint_id"
     t.datetime "cancelled_at"

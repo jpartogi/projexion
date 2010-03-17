@@ -51,13 +51,13 @@ class MeetingsController < ApplicationController
 
     @project = Project.find_by_code(params[:project_id])
 
-    #TODO: Find sprint based on start_time, if not found leave it null
-
-    #@sprint = Sprint.find(:conditions => '')
+    @sprint = Sprint.first(:conditions => ['start_date < ? and end_date > ? and project_id = ?',
+                            @meeting.start_time, @meeting.end_time, @project])
 
     #TODO: Send email to project members
     
     @meeting.project = @project
+    @meeting.sprint = @sprint
 
     respond_with(@meeting) do |format|
       if @meeting.save
