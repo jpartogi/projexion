@@ -27,6 +27,23 @@
   </div>
 
   <div style="clear:both"></div>
+
+  <div>
+    <h1>Scheduled meetings</h1>
+    <table>
+    <% @meetings.each do |meeting| %>
+        <tr>
+          <td><strong><%= meeting.meeting_type.name %></strong></td>
+          <td><%= meeting.start_time %>&nbsp;-&nbsp;<%= meeting.end_time %></td>
+          <td>
+            <% link_to project_meeting_path(@project.code, meeting.id) do %>
+            <img src="/images/icons/application_view_detail.png">
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </table>
+  </div>
 </div>
 
 <div id="sidebar">
