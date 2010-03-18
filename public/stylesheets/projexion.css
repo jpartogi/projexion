@@ -23,7 +23,7 @@ h3 { font: bold 15px Helvetica; }
 .save_btn { text-indent: -1000em; width:75px; height: 25px; background: transparent url('/images/save.png') no-repeat center top;
     padding:0; border: 0; margin: 1px; }
 
-.status { color: white; text-align: center; font-weight: bold;  min-height:25px; display:block; }
+.status { color: white; text-align: center; font-weight: bold;  min-height:15px; vertical-align:middle; }
 .more { border: 1px solid #9bb8d9; color: #406299; padding:5px; text-align: center; }
 
 .inline { background: white; border:none; border-bottom: 1px solid #ccc; font: 12px Verdana; width:100%; }
