@@ -3,7 +3,7 @@ Projexion::Application.routes.draw do |map|
 
   resources :users, :except => [:index, :destroy] do
   	member do
-  	  put :change_password
+  	  get :change_password
   	end
   end
 

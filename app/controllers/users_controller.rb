@@ -53,10 +53,4 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     render :layout => "main"
   end
-
-  #TODO: Only admin are allowed to do this
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-  end
 end
