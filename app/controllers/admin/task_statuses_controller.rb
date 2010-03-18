@@ -2,6 +2,7 @@ class Admin::TaskStatusesController < ApplicationController
   layout 'main'
   respond_to :html
   before_filter :require_user
+  load_and_authorize_resource
   
   def index
     @task_statuses = TaskStatus.find(:all, :order => "position")

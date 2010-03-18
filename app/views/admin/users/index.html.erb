@@ -6,6 +6,7 @@
     <th>Login</th>
     <th>E-mail</th>
     <th>Last login</th>
+    <th>Admin</th>
     <th>&nbsp;</th>
   </tr>
 
@@ -18,6 +19,7 @@
           <%= user.last_login_at %>&nbsp;(<%= time_ago_in_words(user.last_login_at) %> ago)
       <% end %>
     </td>
+    <td style="text-align:center;"><% if user.admin %><img src="/images/icons/accept.png"/><% end %></td>
     <td width="10%" style="text-align:center;">
      <% link_to admin_user_path(user) do %>                                        
         <img src="/images/icons/application_view_detail.png">

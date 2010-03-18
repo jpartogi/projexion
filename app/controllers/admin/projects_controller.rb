@@ -2,18 +2,21 @@ class Admin::ProjectsController < ApplicationController
   layout 'main'
   respond_to :html, :json
   before_filter :require_user
-
+  
   def new
     @project = Project.new
+    unauthorized! if cannot? :create, @project
   end
 
   def edit
     @project = Project.find_by_code(params[:id])
+    unauthorized! if cannot? :edit, @project
   end
 
   def create
     @project = Project.new(params[:project])
-
+    unauthorized! if cannot? :create, @project
+    
     respond_with(@project) do |format|
       if @project.save
         format.html { redirect_to project_path(@project.code), :notice => 'Project was successfully added.' }
@@ -25,6 +28,7 @@ class Admin::ProjectsController < ApplicationController
   
   def update
     @project = Project.find_by_code(params[:id])
+    unauthorized! if cannot? :update, @project
 
     respond_with(@project) do |format|
       if @project.update_attributes(params[:project])

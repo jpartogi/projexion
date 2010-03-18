@@ -1,6 +1,7 @@
 class Admin::ProjectMembersController < ApplicationController
   respond_to :html, :json
   before_filter :require_user
+  load_and_authorize_resource
   
   def new
     @project_member = ProjectMember.new

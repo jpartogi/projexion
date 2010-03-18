@@ -2,6 +2,7 @@ class Admin::MeetingTypesController < ApplicationController
   layout 'main'
   respond_to :html
   before_filter :require_user
+  load_and_authorize_resource
   
   def index
     @meeting_types = MeetingType.all

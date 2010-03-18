@@ -6,7 +6,7 @@
 # At least one dependency must be specified
 
 source 'http://gemcutter.org'
-source "http://gems.github.com"
+#source "http://gems.github.com"
 
 ## Bundle edge rails:
 gem "rails", "3.0.0.beta"
@@ -16,16 +16,19 @@ gem "mysql"
 
 # For security
 gem "authlogic", :git => 'git://github.com/binarylogic/authlogic.git'
+#gem "declarative_authorization", :git => 'git://github.com/stffn/declarative_authorization.git'
+gem "cancan", :git => 'git://github.com/ryanb/cancan.git'
 
 #gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git'
 gem 'will_paginate','3.0.pre'
 
 # For cron jobs
+# TODO: Activate whenever scheduler
 # gem "whenever", "0.4.1", :git => "git://github.com/javan/whenever.git"
 
 # For testing
 group :test do
-  gem "webrat"
+  gem "webrat", "0.7.1.pre", :git => 'git://github.com/brynary/webrat.git'
   gem "shoulda", :git => 'git://github.com/thoughtbot/shoulda.git', :require => nil
   gem "cucumber"
   gem "sqlite3-ruby"

@@ -45,7 +45,7 @@
         <ul style="float:left">
           <li><%= link_to 'Dashboard', root_url %></li>         
           <% if @project != nil and controller_name != 'projects' %><li><%= link_to @project.name, project_path(@project.code) %></li><% end %>
-          <li><%= link_to 'Admin', :controller => :admin %></li>
+          <% if can? :manage, :all %><li><%= link_to 'Admin', :controller => :admin %></li><% end %>
         </ul>
         
         <ul style="float:right">

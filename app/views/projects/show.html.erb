@@ -106,8 +106,10 @@
 <div id="sidebar">
   <ul>
     <%# TODO: Edit and delete only if admin and project manager %>
+    <% if can? :manage, @project %>    
     <li><%= link_to 'Edit Project', edit_admin_project_path(@project.code), :class => 'edit' %></li>
     <li><%= link_to 'Delete Project', admin_project_path(@project.code), :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
+    <% end %>
     <li><%= link_to 'Add New Feature', new_project_feature_path(@project.code), :class => 'add' %></li>
     <li><%= link_to 'Book a meeting', new_project_meeting_path(@project.code), :class => 'add' %></li>
     <li><%= link_to 'Features', project_features_path(@project.code), :class => 'list' %></li>

@@ -21,7 +21,12 @@
     
     <p>
       <%= f.label :email %><br />
-      <%= f.text_field :email %><br />
+      <%= f.text_field :email %>
+    </p>
+
+    <p>
+      <%= f.label :admin %><br/>
+      <%= f.checkbox :admin %>
     </p>
 
     <%= f.submit 'Save', :class=> 'save_btn' %>
