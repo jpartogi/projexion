@@ -27,7 +27,7 @@ class Task < ActiveRecord::Base
   class << self
     def board(*args)
       features = Feature.all(*args)
-      task_statuses = TaskStatus.all(:order => 'position')
+      task_statuses = TaskStatus.all(:order => 'position desc')
 
       features_map = Hash.new
 

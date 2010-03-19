@@ -31,11 +31,12 @@
             </div>
 
             <% statuses.each do |status, tasks| %>
-              <div style="float:left; width:<%= @column_width %>;">
-                <% for task in tasks %>
-                    <div class="task" style="border: 1px solid #ccc; margin: 1pt; padding: 3px"><%= task.description %></div>
-                <% end %>
-              </div>
+            <div style="float:left; width:<%= @column_width %>;">
+               <% for task in tasks %>
+                   <div class="task"><%= task.description %></div>
+               <% end %>
+               &nbsp; 
+            </div>
             <% end %>
             <div style="clear:both"></div>
           </div>
