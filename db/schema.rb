@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
     t.integer  "project_id",                               :null => false
+    t.integer  "release_id",                               :null => false
     t.string   "goal"
     t.datetime "cancelled_at"
   end

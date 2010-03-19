@@ -14,6 +14,11 @@
         </p>
 
         <p>
+          <%= f.label :release %><br/>
+          <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %>
+        </p>
+
+        <p>
           <%= f.label :goal, 'Sprint goal' %><br />
           <%= f.text_field :goal, :size => 45 %>
         </p>

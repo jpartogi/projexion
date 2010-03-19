@@ -1,5 +1,6 @@
 class Sprint < ActiveRecord::Base
   belongs_to :project
+  belongs_to :release
   has_many :features
   
   validates_presence_of :start_date, :end_date

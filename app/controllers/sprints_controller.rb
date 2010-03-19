@@ -21,6 +21,8 @@ class SprintsController < ApplicationController
 
   def new
     @project = Project.find_by_code(params[:project_id])
+
+    @releases = @project.active_releases
     
     @sprint = Sprint.new # For the form
   end
@@ -29,6 +31,8 @@ class SprintsController < ApplicationController
     @sprint = Sprint.find(params[:id])
 
     @project = @sprint.project
+
+    @releases = @project.active_releases
   end
 
   def update

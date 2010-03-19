@@ -7,15 +7,17 @@
     <tr>
       <th>Start date</th>
       <th>End date</th>
+      <th>Release</th>
       <th>Velocities</th>
       <th>Sprint goal</th>
       <th>&nbsp;</th>
     </tr>
     <% for sprint in @sprints %>
       <tr id="<%= sprint.id %>">
-        <td style="text-align:center;"><%= h sprint.start_date %></td>
-        <td style="text-align:center;"><%= h sprint.end_date %></td>
-        <td style="text-align:center;"><%= h sprint.velocities %></td>
+        <td style="text-align:center;"><%= sprint.start_date %></td>
+        <td style="text-align:center;"><%= sprint.end_date %></td>
+        <td style="text-align:center;"><%= sprint.release.version_number %></td>
+        <td style="text-align:center;"><%= sprint.velocities %></td>
         <td><%= sprint.goal %></td>
         <td>
           <% link_to project_sprint_path(@project.code, sprint.id) do %>
