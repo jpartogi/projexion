@@ -78,7 +78,10 @@
           <% end %>
           <% link_to burndown_project_sprint_path(@project.code, sprint.id) do %>
             <img src="/images/icons/chart_line.png">
-        <% end %>
+          <% end %>
+          <% link_to taskboard_project_sprint_path(@project.code, sprint.id) do %>
+            <img src="/images/icons/table.png">
+          <% end %>
         </li>
     <% end %>
     </ul>
@@ -116,7 +119,7 @@
     <li><%= link_to 'Releases', project_releases_path(@project.code), :class => 'list' %></li>
     <li><%= link_to 'Meetings', project_meetings_path(@project.code), :class => 'list' %></li>
     <li><%= link_to 'Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
-    <li><%= link_to 'Sprint Taskboard', taskboard_project_sprint_path(@project.code, @sprint.id), :class => 'taskboard' %></li>
-    <li><%= link_to 'Sprint Burndown', burndown_project_sprint_path(@project.code, @sprint.id), :class => 'chart' %></li>
+    <li><%= link_to 'Current Sprint Taskboard', taskboard_project_sprint_path(@project.code, @sprint.id), :class => 'taskboard' %></li>
+    <li><%= link_to 'Current Sprint Burndown', burndown_project_sprint_path(@project.code, @sprint.id), :class => 'chart' %></li>
   </ul>
 </div>

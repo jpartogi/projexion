@@ -57,6 +57,12 @@
         <% link_to project_sprint_path(@project.code, @feature.sprint.id) do %>
           <img src="/images/icons/application_view_detail.png">
         <% end %>
+        <% link_to burndown_project_sprint_path(@project.code, @feature.sprint.id) do %>
+          <img src="/images/icons/chart_line.png">
+        <% end %>
+        <% link_to taskboard_project_sprint_path(@project.code, @feature.sprint.id) do %>
+          <img src="/images/icons/table.png">
+        <% end %>
       </p>
       <% else %>
       <p class="info">
