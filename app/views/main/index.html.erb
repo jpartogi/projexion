@@ -5,13 +5,17 @@
     $(document).ready(function(){
        $('.info-list').corner();
 
+       $('.more').ajaxStart(function(){
+            $('.more span').replaceWith("<img src='/images/ajax-loader.gif' />");
+       });
+
        $('.more').click(function(){
             $.post('<%= url_for :action => :more, :controller => :events %>',
                        {"offset" : offset}, function(response){
                 
                 $('#events').append(response);
                 $('.info-list').corner();
-                
+                $('.more img').replaceWith("<span>More</span>");
                 offset += 10;
 
             }, 'html');
@@ -29,7 +33,7 @@
           <%= render :partial => "events/list" %>
       </ul>
       <div class="more">
-        More  
+        <span>More</span>
       </div>
       <% else %>
         <p class="info">
