@@ -76,6 +76,12 @@ class ReleasesController < ApplicationController
     @releases = @releases.paginate(:page => params[:page], :per_page =>20)
   end
 
+  def notes
+    @release = Release.find(params[:id])
+
+    @sprints = @release.sprints.order("start_date")
+  end
+
   # Ajax  actions
   def get_options
     @feature = Feature.find(params[:parent_id])

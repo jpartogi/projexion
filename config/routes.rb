@@ -30,6 +30,7 @@ Projexion::Application.routes.draw do |map|
       member do
         put :release
         get :burndown
+        get :notes
       end
     end
 

@@ -1,0 +1,13 @@
+<div id="content">
+    <h1>Release Notes for <%= @release.version_number %></h1>
+    <% for sprint in @sprints %>
+        <h3 style="margin-top:1em"><%= sprint.span_date %></h3>
+
+        <ul>
+        <% for feature in sprint.features %>
+            <li><%= feature.user_story %></li>
+        <% end %>
+        </ul>    
+    <% end %>
+    <%# TODO: Export to CSV button %>
+</div>
