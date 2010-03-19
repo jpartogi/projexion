@@ -6,7 +6,7 @@ class MeetingsController < ApplicationController
   def index
     @project = Project.find_by_code(params[:project_id])
 
-    @meetings = Meeting.all(:conditions => { :project_id => @project.id })
+    @meetings = Meeting.all(:conditions => { :project_id => @project.id }, :order => "start_time desc")
   end
 
   def show
