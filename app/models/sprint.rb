@@ -3,7 +3,7 @@ class Sprint < ActiveRecord::Base
   has_many :features
   
   validates_presence_of :start_date, :end_date
-
+  #TODO: Check if the newly created sprint is within the existing sprint
   def span_date
     "#{self.start_date.to_formatted_s} - #{self.end_date.to_formatted_s}"
   end
