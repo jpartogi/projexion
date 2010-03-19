@@ -47,18 +47,18 @@
         <td class="status" style="text-align:center;background-color:<%= feature.feature_status.hash_color %>">
           <%= feature.feature_status.display_name %>
         </td>
-        <td class="sprint" style="text-align:center;">
+        <td style="text-align:center;">
           <% unless feature.sprint.nil? %>
-            <%= feature.sprint.span_date %>
-             <% link_to project_sprint_path(@project.code, feature.sprint) do %>
+            <span class="sprint"><%= feature.sprint.span_date %></span>
+            <% link_to project_sprint_path(@project.code, feature.sprint) do %>
              <img src="/images/icons/application_view_detail.png">
             <% end %>
           <% end %>
         </td>
-        <td class="release" style="text-align:center;">
+        <td style="text-align:center;">
           <% unless feature.release.nil? %>
-            <%= feature.release.version_number %>
-              <% link_to project_release_path(@project.code, feature.release) do %>
+            <span class="release"><%= feature.release.version_number %></span>
+            <% link_to project_release_path(@project.code, feature.release) do %>
               <img src="/images/icons/application_view_detail.png">
             <% end %>
           <% end %>

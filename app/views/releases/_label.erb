@@ -1,8 +1,5 @@
-<td class="release" style="text-align:center;">
+<span class="release" style="text-align:center;">
 <% unless @release.version_number.nil? %>
     <%= @release.version_number %>
-     <% link_to project_release_path(@project.code, @release) do %>
-     <img src="/images/icons/application_view_detail.png">
-    <% end %>
 <% end %>
-</td>
+</span>

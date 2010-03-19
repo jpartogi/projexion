@@ -1,4 +1,4 @@
-<td class="sprint" style="text-align:center;">
+<span class="sprint" style="text-align:center;">
     <select>
         <% for sprint in @sprints %>
         <option <% unless @feature.sprint.nil? %><% if @feature.sprint.id == sprint.id %>selected="selected"<% end %><% end %> value="<%= sprint.id %>">
@@ -6,4 +6,4 @@
         </option>
         <% end %>
     </select>
-</td>
+</span>

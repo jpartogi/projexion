@@ -9,7 +9,7 @@
 
             var data = {};
 
-            var parent_id = jQuery(this).parent().find("."+options.parentIdClass).val();
+            var parent_id = jQuery(this).parent().parent().find("."+options.parentIdClass).val();
             data.parent_id = parent_id;
 
             jQuery.get(options.getComboBoxURL, data, function(response){
