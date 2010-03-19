@@ -33,7 +33,7 @@
 
     <p>
       <%= label_tag :booked_by %><br/>
-      <%= @meeting.created_by %>
+      <%= link_to @meeting.created_by, user_path(@meeting.created_by) %>
     </p>
   </div>
 </div>

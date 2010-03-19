@@ -19,11 +19,32 @@
         $('#info-box').corner();
     });
   </script>
-  <div id="info-box" style="float:right">
-    <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
-    <strong>Release:</strong>&nbsp;<%= @release.version_number %><br/>
-    <strong>Estimate release date:</strong> <%= @release.estimate_date %><br/>
-    <% if not @release.goal.nil? %><strong>Goal:</strong>&nbsp;<%= @release.goal %><% end %>
+
+  <div style="float:right">
+    <div id="info-box">
+        <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
+        <strong>Release:</strong>&nbsp;<%= @release.version_number %><br/>
+        <strong>Estimate release date:</strong> <%= @release.estimate_date %><br/>
+        <% if not @release.goal.nil? %><strong>Goal:</strong>&nbsp;<%= @release.goal %><% end %>
+    </div>
+
+    <h3 style="margin-top:1em;">Sprints</h3>
+    <ul>
+      <% @release.sprints.each do |sprint| %>
+        <li>
+          <%= sprint.span_date %>
+          <% link_to project_sprint_path(@project.code, sprint.id) do %>
+              <img src="/images/icons/application_view_detail.png">
+          <% end %>
+          <% link_to burndown_project_sprint_path(@project.code, sprint.id) do %>
+            <img src="/images/icons/chart_line.png">
+          <% end %>
+          <% link_to taskboard_project_sprint_path(@project.code, sprint.id) do %>
+            <img src="/images/icons/table.png">
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 
   <div style="clear:both"></div>
