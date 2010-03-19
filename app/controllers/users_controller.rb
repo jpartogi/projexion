@@ -17,8 +17,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	#TODO: Check if it is current user, otherwise redirect
     @user = User.find(params[:id])
+
+    unauthorized! unless @user == current_user
+
     render :layout => "main" 
   end
 
