@@ -28,8 +28,8 @@
 
   <div style="clear:both"></div>
 
-  <div>
-    <h1>Scheduled meetings</h1>
+  <% unless @meetings.empty? %>
+    <h1 style="margin-top:1em;">Scheduled meetings</h1>
     <table>
     <% @meetings.each do |meeting| %>
         <tr>
@@ -43,7 +43,7 @@
         </tr>
     <% end %>
     </table>
-  </div>
+  <% end %>    
 </div>
 
 <div id="sidebar">
