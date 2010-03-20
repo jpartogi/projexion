@@ -27,7 +27,7 @@ class Task < ActiveRecord::Base
   class << self
     def board(*args)
       features = Feature.all(*args)
-      task_statuses = TaskStatus.all(:order => 'position desc')
+      task_statuses = TaskStatus.all(:order => 'position')
 
       features_map = Hash.new
 
@@ -36,7 +36,7 @@ class Task < ActiveRecord::Base
         statuses_map = Hash.new
 
         task_statuses.each do |task_status|
-          
+          puts task_status.display_name
           tasks = Task.all(:conditions => { :feature_id => feature.id, :task_status_id => task_status.id})
           statuses_map.store task_status, tasks
         end

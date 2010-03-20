@@ -96,7 +96,7 @@ class SprintsController < ApplicationController
 
     @sprints = @project.sprints # For the sprint dropdown selector
 
-    @task_statuses = TaskStatus.find(:all)
+    @task_statuses = TaskStatus.all(:order => "position")
 
     id = params[:id] || params[:sprint][:id]
     @sprint = Sprint.find(id) || Sprint.new
