@@ -4,12 +4,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="csrf-token" content="<%= form_authenticity_token %>" />
+    <meta name="csrf-param" content="authenticity_token" />    
     <%= yield :title %> 
 	<title><% unless @project.nil? %><%= @project.name %><% end %>&nbsp;<%= controller.action_name.capitalize %>&nbsp;<%= controller.controller_name.capitalize %>&nbsp;-&nbsp;Projexion</title>
     <%= stylesheet_link_tag 'reset' %> <%# This is loaded first to reset the browser default value %>
 	<%= stylesheet_link_tag 'projexion' %>
     <%= stylesheet_link_tag 'facebox' %>
     <%= javascript_include_tag 'jquery-1.4.1.min' %>
+    <%= javascript_include_tag 'rails' %>
     <%= javascript_include_tag 'jquery.inlineEdit' %>
     <%= javascript_include_tag 'jquery.slugify' %>
     <%= javascript_include_tag 'jquery.tooltip.min' %>
