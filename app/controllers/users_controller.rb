@@ -9,6 +9,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_login(params[:id])
+
+    @tasks = @user.tasks
+
+    @project_members = @user.project_members
+    
     render :layout => "main" 
   end
 

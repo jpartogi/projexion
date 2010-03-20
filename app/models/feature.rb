@@ -5,7 +5,7 @@ class Feature < ActiveRecord::Base
   belongs_to :feature_status
   has_many :tasks
   has_many :acceptances
-  
+  #TODO: Delete cascade or soft delete?
   validates_presence_of :user_story
 
   before_create :set_default_status

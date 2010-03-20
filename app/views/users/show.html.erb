@@ -1,4 +1,5 @@
 <div id="content">
+  <div>
     <p>
       <%= label_tag(:login) %><br />
       <%= @user.login %>
@@ -15,6 +16,57 @@
           <%= @user.last_login_at %>&nbsp;(<%= time_ago_in_words(@user.last_login_at) %> ago)
       <% end %>
     </p>
+  </div>
+
+  <div style="margin-top:2em;">
+      <h2>Assigned Projects</h2>
+      <table width="100%">
+        <tr>
+          <th>Project</th>
+          <th>Role</th>
+          <th>Status</th>
+        </tr>
+        <% @project_members.each do |project_member| %>
+        <tr>
+          <td><%= link_to project_member.project.name, project_path(project_member.project.code) %></td>
+          <td><%= project_member.project_role.name %></td>
+          <td style="text-align:center">
+          	<% if project_member.status.eql? 'A' %>
+          		<img src="/images/icons/accept.png">
+          	<% else %>
+          		<img src="/images/icons/delete.png">
+          	<% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+  </div>
+
+  <div style="margin-top:2em;">
+    <h2>Current Tasks</h2>
+    <table width="100%">
+      <tr>
+        <th>Project</th>
+        <th>Task</th>
+        <th>Feature</th>
+      </tr>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td>
+          <%= link_to task.project.name, project_path(task.project.code) %>
+        </td>
+        <td><%= task.description %></td>
+        <td>
+          <%= task.feature.user_story %>
+          <% link_to project_feature_path(task.project.code, task.feature) do %>
+            <img src="/images/icons/application_view_detail.png">
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+
 </div>
 
 <div id="sidebar">
