@@ -53,8 +53,6 @@ class MeetingsController < ApplicationController
 
     @sprint = Sprint.first(:conditions => ['start_date < ? and end_date > ? and project_id = ?',
                             @meeting.start_time, @meeting.end_time, @project])
-
-    #TODO: Send email to project members
     
     @meeting.project = @project
     @meeting.sprint = @sprint
