@@ -75,10 +75,15 @@ li.info-list { margin: 1em 0 1em 0; }
 #sidebar h2 { margin: .5em 0 1em .25em; }
 
 #users_form { width: 100%; padding-top: 1em;  }
-#users_form fieldset { margin: 0 auto 0 auto; padding: 1em; border: 1px solid #eee; width: 25%; }
+#users_form fieldset { margin: 0 auto 0 auto; padding:1em; border: 1px solid #eee; width: 25%; }
 #users_form legend { font: bold 17px Helvetica,serif; color:#666; letter-spacing: -1px; border: 1px solid #eee; padding: 4px;
     background: #f4f4f4; border-bottom-color: #999; border-right-color: #999; }
 #users_form label { font: bold 15px Helvetica; letter-spacing: -1px; color: #666; text-transform:capitalize; }
+#users_form form input[type='text'], #users_form form input[type='password']{
+    padding:5px; border:1px solid #ccc; font:12px verdana;
+    background: #fff url('/images/input-bg.gif') repeat-x top left;
+    width:95%;
+}
 #users_form input[type='submit'] { padding: 2px 10px; }
 #errorExplanation { font: 11px verdana, sans-serif; color: #be0b0b; margin-bottom: 1em; background-color: #ffe1da; padding:5px; }
 #errorExplanation li { background: url('/images/icons/exclamation.png') 6px 50% no-repeat; border-color: #f34f4f; color: #be0b0b; padding: 5px; text-indent: 20px;}
