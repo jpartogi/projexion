@@ -2,9 +2,11 @@ class Sprint < ActiveRecord::Base
   belongs_to :project
   belongs_to :release
   has_many :features
-  
-  validates_presence_of :start_date, :end_date
-  #TODO: Check if the newly created sprint is within the existing sprint
+
+  validate :start_date_must_not_exists, :end_date_must_not_exists, :start_date_must_be_earlier_than_end_date
+
+  validates_presence_of :start_date, :end_date, :release
+
   def span_date
     "#{self.start_date.to_formatted_s} - #{self.end_date.to_formatted_s}"
   end
@@ -19,5 +21,23 @@ class Sprint < ActiveRecord::Base
 
     self.velocities = velocities
     self.save
+  end
+
+  def start_date_must_not_exists
+    sprints = Sprint.where(["(start_date <= ? and end_date >= ?) and project_id = ?",
+                            self.start_date, self.start_date, self.project])
+
+    errors.add(:start_date, "already exists within existing sprint") if sprints.length > 0
+  end
+
+  def end_date_must_not_exists
+    sprints = Sprint.where(["(start_date <= ? and end_date >= ?) and project_id = ?",
+                            self.end_date, self.end_date, self.project])
+
+    errors.add(:end_date, "already exists within existing sprint") if sprints.length > 0
+  end
+
+  def start_date_must_be_earlier_than_end_date
+    errors.add(:start_date, "must not be later than end date") if self.start_date > self.end_date
   end
 end

@@ -8,6 +8,8 @@ class SprintsController < ApplicationController
     @sprint = Sprint.new(params[:sprint])
     @project = Project.find_by_code(params[:project_id])
     @sprint.project = @project
+    
+    @releases = @project.active_releases # Just in case error message is thrown
 
     respond_with(@sprint) do |format|
       if @sprint.save
