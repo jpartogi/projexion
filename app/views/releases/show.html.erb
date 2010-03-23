@@ -28,7 +28,7 @@
         <% if not @release.goal.nil? %><strong>Goal:</strong>&nbsp;<%= @release.goal %><% end %>
     </div>
 
-    <h3 style="margin-top:1em;">Sprints</h3>
+    <h3 style="margin-top:1em;">Sprints in this release</h3>
     <ul>
       <% @release.sprints.each do |sprint| %>
         <li>

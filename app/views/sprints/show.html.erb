@@ -20,31 +20,32 @@
     });
   </script>
 
-  <div id="info-box" style="float:right">
-    <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
-    <strong>Release:</strong>&nbsp;<%= @sprint.release.version_number %><br/>
-    <strong>Sprint:</strong>&nbsp;<%= @sprint.span_date %><br/>
-    <% if not @sprint.goal.empty? %><strong>Goal:</strong> <%= @sprint.goal %><% end %>
+  <div style="float:right">
+      <div id="info-box">
+        <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
+        <strong>Release:</strong>&nbsp;<%= @sprint.release.version_number %><br/>
+        <strong>Sprint:</strong>&nbsp;<%= @sprint.span_date %><br/>
+        <% if not @sprint.goal.empty? %><strong>Goal:</strong> <%= @sprint.goal %><% end %>
+      </div>
+
+      <% unless @meetings.empty? %>
+        <h1 style="margin-top:1em;">Scheduled meetings in this sprint</h1>
+        <ul>
+        <% @meetings.each do |meeting| %>
+            <li>
+              <%= meeting.start_time %>
+
+                <% link_to project_meeting_path(@project.code, meeting.id) do %>
+                <img src="/images/icons/application_view_detail.png">
+                <% end %>
+
+            </li>
+        <% end %>
+        </ul>
+      <% end %>
   </div>
-
+  
   <div style="clear:both"></div>
-
-  <% unless @meetings.empty? %>
-    <h1 style="margin-top:1em;">Scheduled meetings</h1>
-    <table>
-    <% @meetings.each do |meeting| %>
-        <tr>
-          <td><strong><%= meeting.meeting_type.name %></strong></td>
-          <td><%= meeting.start_time %>&nbsp;-&nbsp;<%= meeting.end_time %></td>
-          <td>
-            <% link_to project_meeting_path(@project.code, meeting.id) do %>
-            <img src="/images/icons/application_view_detail.png">
-            <% end %>
-          </td>
-        </tr>
-    <% end %>
-    </table>
-  <% end %>    
 </div>
 
 <div id="sidebar">
