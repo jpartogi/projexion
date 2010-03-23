@@ -27,12 +27,20 @@ class Sprint < ActiveRecord::Base
     sprints = Sprint.where(["(start_date <= ? and end_date >= ?) and project_id = ?",
                             self.start_date, self.start_date, self.project])
 
+    unless self.new_record?
+      sprints = sprints.where(["id <> ?", self.id])
+    end
+    
     errors.add(:start_date, "already exists within existing sprint") if sprints.length > 0
   end
 
   def end_date_must_not_exists
     sprints = Sprint.where(["(start_date <= ? and end_date >= ?) and project_id = ?",
                             self.end_date, self.end_date, self.project])
+
+    unless self.new_record?
+      sprints = sprints.where(["id <> ?", self.id])
+    end
 
     errors.add(:end_date, "already exists within existing sprint") if sprints.length > 0
   end

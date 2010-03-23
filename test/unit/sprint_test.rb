@@ -25,5 +25,13 @@ class SprintTest < ActiveSupport::TestCase
       assert sprint.invalid?, "Sprint is invalid"
 
     end
+
+    should "not validate against itself during update" do
+      sprint = sprints(:one)
+
+      sprint.start_date = Date.strptime('11/10/2009', "%d/%m/%Y")
+
+      assert sprint.valid?, "Sprint is valid"
+    end
   end
 end

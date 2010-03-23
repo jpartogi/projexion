@@ -41,7 +41,9 @@ class SprintsController < ApplicationController
     @sprint = Sprint.find(params[:id])
 
     @project = @sprint.project
-    
+
+    @releases = @project.active_releases # Just in case error message is thrown
+
     respond_with(@sprint) do |format|
       if @sprint.update_attributes(params[:sprint])
         format.html { redirect_to project_sprint_path(@project.code, @sprint),
