@@ -1,0 +1,34 @@
+<div id="content">
+<p class="success"><span><%= flash[:notice] %></span></p>
+
+<table width="100%">
+  <tr>
+    <th>Display name</th>
+    <th>Priority level</th>
+    <th>Default</th>
+    <th>&nbsp;</th>
+  </tr>
+
+<% @priorities.each do |priority| %>
+  <tr>
+    <td><%= priority.display_name %></td>
+    <td style="text-align:center;"><%= priority.level %></td>
+    <td style="text-align:center;">
+      <% if priority.default %><img src="/images/icons/accept.png"/><% end %>
+    </td>
+    <td>
+    <% link_to admin_priority_path(priority) do %>                                        
+      <img src="/images/icons/application_view_detail.png">
+    <% end %>
+    </td>
+  </tr>
+<% end %>
+
+</table>
+</div>
+
+<div id="sidebar">
+  <ul>
+    <li><%= link_to 'Add New Priority', new_admin_priority_path, :class => 'add' %></li>
+  </ul>
+</div>

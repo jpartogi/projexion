@@ -1,0 +1,61 @@
+<div id="content">
+    <p class="success"><span ><%= flash[:notice] %></span></p>
+
+    <%= stylesheet_link_tag 'colorpicker' %>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $.getScript("<%= javascript_path 'colorpicker' %>", function(){
+            $('#priority_color').ColorPicker({
+                onSubmit: function(hsb, hex, rgb, el) {
+                    $(el).val(hex);
+                    $(el).ColorPickerHide();
+                },
+                onHide: function (colpkr) {
+                    $(colpkr).fadeOut(500);
+                    return false;
+                },
+                onBeforeShow: function () {
+                    $(this).ColorPickerSetColor(this.value);
+                }
+            }).bind('keyup', function(){
+                $(this).ColorPickerSetColor(this.value);
+            });
+        });
+
+      });
+    </script>
+    <% form_for([:admin, @priority]) do |f| %>
+      <%= f.error_messages %>
+        <p>
+          <%= f.label :display_name %><br />
+          <%= f.text_field :display_name %>
+        </p>
+
+        <p>
+          <%= f.label :default_priority %>
+          <%= f.check_box :default %>
+        </p>
+
+        <p>
+          <%= f.label :priority_level %><br/>
+          <%= f.text_field :level, :size => 4 %>
+        </p>
+
+        <p>
+          <%= f.label :color, 'Background color' %><br />
+          <%= f.text_field :color, :size => 7, :maxlength => 7 %>
+        </p>
+
+        <p>
+          <%= f.submit 'Save', :class=> 'save_btn' %>
+        </p>
+     <% end %>
+     <%= button_to 'Cancel', admin_priorities_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+  
+</div>
+
+<div id="sidebar">
+  <ul>
+    <li><%= link_to 'Priorities', admin_priorities_path, :class => 'list' %></li>
+  </ul>
+</div>

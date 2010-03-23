@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.integer  "meeting_type_id", :null => false
     t.text     "location"
     t.text     "agenda"
+    t.text     "additionals"
     t.integer  "project_id",      :null => false
     t.integer  "sprint_id"
     t.datetime "cancelled_at"
@@ -83,6 +84,15 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   add_index "meetings", ["id", "meeting_type_id", "project_id", "sprint_id"], :name => "meetings_idx"
+
+  create_table "priorities", :force => true do |t|
+    t.string   "display_name", :limit => 45,                    :null => false
+    t.string   "color",        :limit => 45,                    :null => false
+    t.string   "level",        :limit => 45,                    :null => false
+    t.boolean  "default",                    :default => false, :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
 
   create_table "project_members", :force => true do |t|
     t.integer  "project_id",                                    :null => false

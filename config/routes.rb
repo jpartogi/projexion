@@ -1,4 +1,6 @@
 Projexion::Application.routes.draw do |map|
+  resources :priorities
+
   resource :main, :admin
 
   resources :users, :except => [:index, :destroy] do
@@ -58,6 +60,7 @@ Projexion::Application.routes.draw do |map|
       end
     end
 
+    resources :priorities  
     resources :projects  
     resources :project_roles
     resources :project_members
