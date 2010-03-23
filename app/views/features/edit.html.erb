@@ -1,35 +1,48 @@
-<div id="content">      
+<div id="content">
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $(':input').tooltip({
+            position: "center right",
+            offset: [-2, 10],
+            effect: "fade",
+            opacity: 0.7,
+            tip: '.tooltip'
+
+        });
+    });
+  </script>
+
   <% form_for @feature, :url => project_feature_path(@project.code, @feature.id)  do |f| %>
     <%= f.error_messages %>
 
     <p>
         <%= f.label :user_story %><br/>
-        <%= f.text_area :user_story, :rows => 4 %><br/>
+        <%= f.text_area :user_story, :rows => 4, :title => user_story_tip %><br/>
     </p>
 
     <p>
         <%= f.label :business_value %><br/>
-        <%= f.text_field :business_value, :size => 6 %><br/>
+        <%= f.text_field :business_value, :size => 12, :title => business_value_tip %><br/>
     </p>
 
     <p>
         <%= f.label :story_points %><br/>
-        <%= f.text_field :story_points, :size => 6 %><br/>
+        <%= f.text_field :story_points, :size => 12, :title => story_points_tip %><br/>
     </p>
 
     <p>
-        <%= f.label :priority %><br/>
-        <%= f.text_field :priority, :size => 6 %><br/>
+        <%= f.label :priority_level %><br/>
+        <%= f.text_field :priority, :size => 12, :title => priority_tip %><br/>
     </p>
 
     <p>
         <%= f.label :sprint %><br/>
-        <%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}) %>
+        <%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}, :title => 'Sprint for implementing this feature') %>
     </p>
 
     <p>
         <%= f.label :release %><br/>
-        <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %>
+        <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}, :title => 'Planned release for this feature') %>
     </p>
 
     <%= f.submit 'Save', :class=> 'save_btn' %>

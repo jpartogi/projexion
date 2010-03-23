@@ -102,3 +102,17 @@ li.info-list { margin: 1em 0 1em 0; }
 /** Plugins */
 #tooltip { position: absolute; z-index: 3000; border: 1px solid #111;	background-color: #eee; padding: 5px; opacity: 0.85; }
 #tooltip h3, #tooltip div { margin: 0; font:12px verdana; }
+.tooltip { 
+    background-color:#000;
+    border:1px solid #fff;
+    padding:5px 10px;
+    display:none;
+    color:#fff;
+    text-align:left;
+    font:10px verdana;
+    min-width:200px;
+
+    /* outline radius for mozilla/firefox only */
+    -moz-box-shadow:0 0 10px #000;
+    -webkit-box-shadow:0 0 10px #000; 
+}

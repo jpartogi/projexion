@@ -1,30 +1,43 @@
 <div id="content">
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $(':input').tooltip({
+            position: "center right",
+            offset: [-2, 10],
+            effect: "fade",
+            opacity: 0.7,
+            tip: '.tooltip'
+
+        });
+    });
+  </script>
   <% form_for @feature, :url => project_features_path(@project.code)  do |f| %>
     <%= f.error_messages %>
 
     <p>  
         <%= f.label :user_story %><br/>
-        <%= f.text_area :user_story, :rows => 4 %><br/>
+        <%= f.text_area :user_story, :rows => 4, :title => user_story_tip %><br/>
     </p>
 
     <p>
         <%= f.label :business_value %><br/>
-        <%= f.text_field :business_value, :size => 6 %><br/>
+        <%= f.text_field :business_value, :size => 12, :title => business_value_tip %><br/>
     </p>
 
     <p>
         <%= f.label :story_points %><br/>
-        <%= f.text_field :story_points, :size => 6 %><br/>
+        <%= f.text_field :story_points, :size => 12, :title => story_points_tip %><br/>
     </p>
 
     <p>
-        <%= f.label :priority %><br/>
-        <%= f.text_field :priority, :size => 6 %><br/>
+        <%= f.label :priority_level %><br/>
+        <%= f.text_field :priority, :size => 12, :title => priority_tip %><br/>
     </p>
 
     <p>
         <%= f.label :acceptance_test %><br/>
-        <%= text_area_tag :acceptance_test, nil, :size => "25x4" %><br/>
+        <%# Acceptance test is dynamically transformed during insertion %>
+        <%= text_area_tag :acceptance_test, nil, :size => "40x4", :title => acceptance_test_tip %><br/>
     </p>
 
     <p>

@@ -18,6 +18,7 @@
     <%= javascript_include_tag 'jquery.tooltip.min' %>
     <%= javascript_include_tag 'jquery.flot.min' %>
     <%= javascript_include_tag 'jquery.corner' %>
+    <%= javascript_include_tag 'tools.tooltip-1.1.3' %>
     <%= javascript_include_tag 'facebox' %>
     <script type="text/javascript">
       $(document).ready(function(){
@@ -32,7 +33,6 @@
         $('#toolbar li a').corner("top");  
       });
     </script>
-
 </head>
 <body>
     <div id="header">
@@ -63,6 +63,7 @@
         <div style="clear:both"></div>
     </div>
 
+    <div class="tooltip"></div>
     <div id="footer">
       <a href="http://github.com/scrum8/projexion">Projexion</a> is a Free Software made by <a href="http://scrum8.com/">Scrum8</a> licensed under <a href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU GPL v3.0</a>. <br/>
       <a href="http://scrum8.com/contact">Contact us</a> for more info on how we can help you with your project.

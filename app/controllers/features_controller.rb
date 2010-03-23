@@ -2,7 +2,8 @@ class FeaturesController < ApplicationController
   layout 'main'
   respond_to :html, :json
   before_filter :require_user
-  
+
+  #TODO: functional test
   def create
     @feature = Feature.new(params[:feature])
     @project = Project.find_by_code(params[:project_id])
@@ -10,11 +11,11 @@ class FeaturesController < ApplicationController
     @feature.acceptances = Acceptance.to_a(params[:acceptance_test])
     
     respond_with(@feature) do |format|
-      if @feature.save_all
+      if @feature.save
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id),
                                   :notice => 'Feature was successfully added.' }
       else
-        format.html { render :action => "show" }
+        format.html { render :action => :new }
       end
     end
   end
