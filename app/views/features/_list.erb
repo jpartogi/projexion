@@ -53,14 +53,18 @@
             <% link_to project_sprint_path(@project.code, feature.sprint) do %>
              <img src="/images/icons/application_view_detail.png">
             <% end %>
+          <% else %>
+            <div class="sprint">&nbsp;</div>
           <% end %>
         </td>
         <td style="text-align:center;">
           <% unless feature.release.nil? %>
-            <span class="release"><%= feature.release.version_number %></span>
+            <span class="release"><%= feature.release.version_number %>&nbsp;</span>
             <% link_to project_release_path(@project.code, feature.release) do %>
               <img src="/images/icons/application_view_detail.png">
             <% end %>
+          <% else %>
+            <div class="release">&nbsp;</div>    
           <% end %>
         </td>
         <td class="number"><%= feature.story_points %></td>
