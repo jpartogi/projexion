@@ -19,7 +19,7 @@
 
         <div style="float:left; margin-left: 5em;">
         <p>
-            <%= f.label :release %><br/>
+            <%= f.label :release_version %><br/>
             <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %>
         </p>
 
