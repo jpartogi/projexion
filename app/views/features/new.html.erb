@@ -45,7 +45,8 @@
     </p>  
   <% end %>
 
-  <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+  <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn',
+                :title => cancel_button_tip %>
 
 </div>
 
