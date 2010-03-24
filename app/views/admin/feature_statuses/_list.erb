@@ -10,7 +10,7 @@
     <input type="hidden" name="id" value="<%= feature_status.id %>" />
     <tr>
         <td><%= link_to feature_status.key, admin_feature_status_path(feature_status) %></td>
-        <td><%= h feature_status.display_name %></td>
+        <td><%= h feature_status.display_name %></td> <%# TODO: Display background color %>
         <td style="text-align:center;"><% if feature_status.default_status %><img src="/images/icons/accept.png"/><% end %></td>
         <td style="text-align:center;">
 

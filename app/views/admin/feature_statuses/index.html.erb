@@ -1,6 +1,7 @@
 <div id="content">
     <script type="text/javascript">
       $(document).ready(function(){
+        <%# TODO: DRY up this javascript %> 
         var update_position = function(id, direction){
             $.post('<%= url_for :action => :update_position, :controller => :feature_statuses %>',
                     {"id": id, "direction": direction }, callback, 'html');

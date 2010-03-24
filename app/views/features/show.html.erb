@@ -30,15 +30,15 @@
       </div>
 
       <div class="card">
-        <div class="title"><strong>Priority value</strong></div>
-        <h2 style="text-align:center"><%= h @feature.priority %></h2>
+        <div class="title"><strong>Priority level</strong></div>
+        <h2 style="text-align:center"><%= h @feature.priority.level %></h2>
       </div>
 
       <div style="clear:both; margin-bottom:1em;"></div>
 
       <% if @feature.release %>
       <p>
-        <%= label_tag (:release) %><br/>
+        <%= label_tag (:release) %><br/>  <%#TODO: Inline combo edit %>
         <%= @feature.release.version_number %>
         <% link_to project_release_path(@project.code, @feature.release.id) do %>
           <img src="/images/icons/application_view_detail.png">
@@ -52,7 +52,7 @@
 
       <% if @feature.sprint %>
       <p>
-        <%= label_tag (:sprint) %><br/>
+        <%= label_tag (:sprint) %><br/> <%#TODO: Inline combo edit %>
         <%= @feature.sprint.span_date %>
         <% link_to project_sprint_path(@project.code, @feature.sprint.id) do %>
           <img src="/images/icons/application_view_detail.png">

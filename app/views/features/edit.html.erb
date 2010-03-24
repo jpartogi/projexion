@@ -32,7 +32,7 @@
 
     <p>
         <%= f.label :priority_level %><br/>
-        <%= f.text_field :priority, :size => 12, :title => priority_tip %><br/>
+        <%= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}, :title => priority_tip) %>
     </p>
 
     <p>

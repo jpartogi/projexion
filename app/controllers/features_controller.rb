@@ -9,6 +9,7 @@ class FeaturesController < ApplicationController
     @project = Project.find_by_code(params[:project_id])
     @feature.project = @project
     @feature.acceptances = Acceptance.to_a(params[:acceptance_test])
+    @priorities = Priority.all(:order => "level")
     
     respond_with(@feature) do |format|
       if @feature.save
@@ -23,6 +24,7 @@ class FeaturesController < ApplicationController
   def new
     @feature = Feature.new
     @project = Project.find_by_code(params[:project_id])
+    @priorities = Priority.all(:order => "level")
   end
 
   def show
@@ -77,11 +79,19 @@ class FeaturesController < ApplicationController
     @sprints = @project.active_sprints
 
     @releases = @project.active_releases
+    @priorities = Priority.all(:order => "level")
   end
 
   def update
     @feature = Feature.find(params[:id])
+    @project = @feature.project
 
+    @sprints = @project.active_sprints
+
+    @releases = @project.active_releases
+
+    @priorities = Priority.all(:order => "level")
+    
     respond_with(@feature) do |format|
       if @feature.update_attributes(params[:feature])
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id),

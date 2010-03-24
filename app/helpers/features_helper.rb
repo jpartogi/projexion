@@ -3,7 +3,7 @@ module FeaturesHelper
     "
     User story is a description of functionality that will be valuable <br/>
     to user or customer of the product. <br/>
-    A good template for user story: <br/>
+    A good template for user story is as such: <br/>
       &nbsp;<em>As a [user_role_of_the_product]<br/>
       &nbsp;I can [do_action_with_the_product]</em>
     "
@@ -13,7 +13,7 @@ module FeaturesHelper
     "
     Acceptance test is a set of criterias that will be used to determine <br/>
     whether a story is fully implemented. <br/>
-    <u>Note</u>: Separate multiple acceptance test with dash. <br/>
+    <u>Note</u>: Separate multiple acceptance test with newline and begin with dash. <br/>
     e.g: <br/>
     - Test with malicious data <br/>
     - Test with multiple concurrent users
@@ -25,7 +25,7 @@ module FeaturesHelper
     Story points are a unit of measure for expressing the overall size of a user story. <br/>
     This can be filled in at later stage after the team has determined the ideal <br/>
     story points for this feature. <br/>
-    <u>Tip</u>: Fibonacci sequence is what mostly used to define story points 
+    <u>Tip</u>: Fibonacci sequence is what mostly used for defining story points 
     "
   end
 
