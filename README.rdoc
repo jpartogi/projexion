@@ -1,8 +1,8 @@
 == Welcome to Projexion
 
-<b>The Scrum based project management tool</b>
+<b>Free and easy to use agile management tool</b>
 
-Currently still under development. Stay tuned.
+Currently still under development. Stay tuned. Our plan is to have a demo on April 2010
 
 Dependencies:
 
