@@ -1,42 +1,45 @@
 <% content_for :title do %><title><%= @project.name %> Search <%= controller.controller_name.capitalize %> - Projexion</title><% end %> 
 <div id="content">
-  <h1>Product Features for <%= @project.name %></h1>
+  <h1>Search Product Features for <%= @project.name %></h1>
   
-  <div>
+  <div class="panel">
     <% form_for @feature, :url => project_features_path(@project.code), :html => { :method => :get }  do |f| %>
-        <div style="float:left">
-        <p>
+        <p style="float:left;">
             <%= f.label :user_story %><br/>
             <%= f.text_field :user_story %>
         </p>
 
-         <p>
+         <p style="float:left; margin-left: 5em;">
             <%= f.label :status %><br/>
             <%= f.collection_select(:feature_status_id, @feature_statuses, :id, :display_name, {:include_blank => true}) %>
         </p>
 
-        </div>
+        <p style="float:left; margin-left: 5em;">
+            <%= f.label :priority_level %><br/>
+            <%= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}) %>
+        </p>
 
-        <div style="float:left; margin-left: 5em;">
-        <p>
+        <p style="float:left; margin-left: 5em;">
             <%= f.label :release_version %><br/>
             <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %>
         </p>
 
-        <p>
+        <p style="float:left; margin-left: 5em;">
           <%= f.label :sprint %><br/>
           <%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}) %>
         </p>
-        </div>
+
         <%# TODO: Search by priority %>
         <div style="clear:both"></div>
-        
+
         <p>
             <%= f.submit 'Search' %>
         </p>
+
     <% end %>
   </div>
 
+  <h1 style="margin-top:2em;">Listing Product Features</h1>
   <%= render :partial => "features/list" %>
   <%= will_paginate @features %>
   

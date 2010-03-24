@@ -46,6 +46,7 @@ class FeaturesController < ApplicationController
     @sprints = Sprint.find_all_by_project_id(@project, :order => 'start_date desc')
     @releases = Release.find_all_by_project_id(@project)
     @feature_statuses = FeatureStatus.all
+    @priorities = Priority.all
 
     @features = @project.features
     if params[:feature]
@@ -66,8 +67,13 @@ class FeaturesController < ApplicationController
       unless conditions[:feature_status_id].empty?
         @features = @features.where({:feature_status_id => conditions[:feature_status_id]})
       end
-    end
 
+      unless conditions[:priority_id].empty?
+        @features = @features.where({:priority_id => conditions[:priority_id]})
+      end
+
+    end
+    #TODO: Order by priority
     #In the end we need to paginate it.
     @features = @features.paginate(:page => params[:page], :order => 'id DESC', :per_page =>20)
   end
