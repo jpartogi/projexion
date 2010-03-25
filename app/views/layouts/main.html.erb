@@ -48,7 +48,7 @@
         <ul style="float:left">
           <li><%= link_to 'Dashboard', root_url %></li>         
           <% if @project != nil and controller_name != 'projects' %><li><%= link_to @project.name, project_path(@project.code) %></li><% end %>
-          <% if can? :manage, :all %><li><%= link_to 'Admin', :controller => :admin %></li><% end %>
+          <% if can? :manage, :all %><li><%= link_to 'Administration', :controller => :admin %></li><% end %>
         </ul>
         
         <ul style="float:right">
@@ -65,8 +65,8 @@
 
     <div class="tooltip"></div>
     <div id="footer">
-      <a href="http://github.com/scrum8/projexion">Projexion</a> is a Free Software made by <a href="http://scrum8.com/">Scrum8</a> licensed under <a href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU GPL v3.0</a>. <br/>
-      <a href="http://scrum8.com/contact">Contact us</a> for more info on how we can help you with your project.
+      <a href="http://github.com/scrum8/projexion">Projexion</a> version <%= APPLICATION[:version] %> is a Free Software sponsored by <a href="http://scrum8.com/">Scrum8</a> licensed under <a href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU GPL v3.0</a>. <br/>
+      <a href="http://projexionist.com/consulting">Contact us</a> for more info on how we can help you with your project.
     </div>
 </body>
 </html>
