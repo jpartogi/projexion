@@ -10,11 +10,11 @@ class ReleaseSnapshot < ActiveRecord::Base
 
       sprint = project.current_sprint
 
-      if sprint.empty?
+      if sprint.nil?
         sprint = project.latest_sprint
       end
 
-      unless sprint.empty?
+      unless sprint.nil?
         features = features.where(['sprint_id = ?',sprint])
       end
 
