@@ -217,4 +217,6 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",                             :null => false
   end
 
+  add_index "users", ["login", "email"], :name => "users_uq", :unique => true
+
 end
