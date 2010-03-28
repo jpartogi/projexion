@@ -28,5 +28,5 @@ production:
   encoding: utf8
   database: projexion
   pool: 5
-  username: 
+  username: projexion 
   password:
