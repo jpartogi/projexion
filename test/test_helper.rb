@@ -4,6 +4,8 @@ require 'rails/test_help'
 
 require 'webrat'
 require "authlogic/test_case" 
+require 'factory_girl'
+require 'factories'
 
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
