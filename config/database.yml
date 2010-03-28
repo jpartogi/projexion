@@ -24,9 +24,9 @@ test:
   pool: 5
 
 production:
-  adapter: postgresql
+  adapter: mysql
   encoding: unicode
   database: projexion
   pool: 5
-  username: rails
+  username: 
   password:
