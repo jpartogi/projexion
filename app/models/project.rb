@@ -9,11 +9,19 @@ class Project < ActiveRecord::Base
   has_many :sprints
 
   def active_sprints
-    self.sprints.where(['end_date > ? and cancelled_at is null', Date.today])
+    self.sprints.where(['end_date > ? and cancelled_at is null', Date.today]).order("start_date")
   end
 
   def current_sprint
-    self.sprints.where(['start_date <= ? and end_date > ?', Date.today, Date.today])
+    sprint = self.sprints.where(['start_date <= ? and end_date >= ?', Date.today, Date.today])
+
+    unless sprint.empty?
+      sprint = sprint.to_a[0]
+    else
+      sprint = nil
+    end
+
+    sprint
   end
 
   def latest_sprint
