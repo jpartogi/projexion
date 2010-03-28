@@ -69,7 +69,7 @@ h3 { font: bold 15px Helvetica; }
 #info-box, .info-list { border: 1px solid #9bb8d9; color: #406299; padding: 5px; background-color: #dedfff; }
 li.info-list { margin: 1em 0 1em 0; }
 
-#sidebar { float:right; width: 20%; min-height: 650px; height:100%; background-color:#E0EAF4; }
+#sidebar { float:right; width: 20%; min-height: 650px; height:100%; background-color:#E0EAF4; border-left: 1px solid #a5c1de; }
 #sidebar a { text-decoration:none; display:block; padding: 0.5em 0.5em 0.5em 1.5em; }
 #sidebar a:hover { background:white; }
 #sidebar .block { margin: 2em 0 0 .5em; }
@@ -90,8 +90,8 @@ li.info-list { margin: 1em 0 1em 0; }
 #errorExplanation li { background: url('/images/icons/exclamation.png') 6px 50% no-repeat; border-color: #f34f4f; color: #be0b0b; padding: 5px; text-indent: 20px;}
 .fieldWithErrors input{ border: 1px solid #f34f4f; }
 
-#footer { color: #fff; font: 10px verdana; padding: 2px 8px; border-top: 1px solid #eee; background-color:#333; min-height:50px }
-#footer a { color:inherit;  }
+#footer { color: #fff; font: 10px verdana; padding: 2px 8px; border-top: 1px solid #eee; background-color:#333; min-height:70px }
+#footer a { color:inherit; }
 
 .success { background: #e2f9e3 url('/images/icons/accept.png') 6px 50% no-repeat; border-color: #9c9; color: #080; padding: 5px; display:none}
 .success span { margin-left: 10px; padding-left: 10px; }
@@ -103,17 +103,5 @@ li.info-list { margin: 1em 0 1em 0; }
 /** Plugins */
 #tooltip { position: absolute; z-index: 3000; border: 1px solid #111;	background-color: #eee; padding: 5px; opacity: 0.85; }
 #tooltip h3, #tooltip div { margin: 0; font:12px verdana; }
-.tooltip { 
-    background-color:#000;
-    border:1px solid #fff;
-    padding:5px 10px;
-    display:none;
-    color:#fff;
-    text-align:left;
-    font:10px verdana;
-    min-width:200px;
-
-    /* outline radius for mozilla/firefox only */
-    -moz-box-shadow:0 0 10px #000;
-    -webkit-box-shadow:0 0 10px #000; 
-}
+.tooltip { background-color:#000; border:1px solid #fff; padding:5px 10px; display:none; color:#fff; text-align:left; font:10px verdana;
+    min-width:200px; -moz-box-shadow:0 0 10px #000; -webkit-box-shadow:0 0 10px #000; }
