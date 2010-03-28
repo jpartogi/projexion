@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.find(:all)
   end
-
+  #TODO: Functional test
   def show
     @project = Project.find_by_code(params[:id])
 
@@ -19,18 +19,7 @@ class ProjectsController < ApplicationController
 
     @features = @project.features
     @sprint = @project.current_sprint
-    @sprint = Sprint.find(@sprint)
     @features = @features.where(["sprint_id in (?)", @sprint])
-  end
-
-  def destroy
-    @project = Project.find(params[:id])
-
-    @project.destroy
-
-    respond_to do |format|
-      format.html { redirect_to projects_path, :notice => 'Project was successfully deleted.' }
-    end
   end
 
 end

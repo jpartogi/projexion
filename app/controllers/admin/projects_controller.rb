@@ -38,4 +38,14 @@ class Admin::ProjectsController < ApplicationController
       end
     end
   end
+  
+  def destroy
+    @project = Project.find_by_code(params[:id])
+
+    @project.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_path, :notice => 'Project was successfully deleted.' }
+    end
+  end
 end
