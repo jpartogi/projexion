@@ -3,10 +3,10 @@ one:
   user_story: As a team member I want to add product feature
   business_value: 9.99
   story_points: 5
-  priority: 1
+  priority_id: 1
   sprint_id: 1
-  release_id: 9999
-  project_id: 9999
+  release_id: 1
+  project_id: 1
   feature_status_id: 1
 
 two:
@@ -14,8 +14,8 @@ two:
   user_story: As a team member I want to modify product feature
   business_value: 9.99
   story_points: 5
-  priority: 1
+  priority_id: 1
   sprint_id: 1
-  release_id: 9999
-  project_id: 9999
+  release_id: 1
+  project_id: 1
   feature_status_id: 1

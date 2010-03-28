@@ -16,7 +16,7 @@ class TaskStatusTest < ActiveSupport::TestCase
     end
 
     should "update the position" do
-      task_status = TaskStatus.find(9999)
+      task_status = task_statuses(:queued)
       
       assert task_status.update_position('down')
       assert_equal task_status.position, 2

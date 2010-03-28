@@ -1,5 +1,5 @@
 queued:
-    id: 9999
+    id: 1
     key: queued
     display_name: Queued
     default_status: true
@@ -7,14 +7,14 @@ queued:
     color: 002aa2
 
 inprogress:
-    id: 10000
+    id: 2
     key: in-progress
     display_name: In Progress
     position: 2
     color: cb0000
 
 done:
-    id: 10001
+    id: 3
     key: done
     display_name: Done
     position: 3

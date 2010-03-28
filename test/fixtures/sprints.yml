@@ -2,7 +2,7 @@ one:
   id: 1
   start_date: 2009-10-10
   end_date: 2009-10-17
-  project_id: 9999
+  project_id: 1
   release_id: 1
   goal: Create a usable product
 
@@ -10,13 +10,13 @@ two:
   id: 2
   start_date: 2009-10-18
   end_date: 2009-10-27
-  project_id: 9999
+  project_id: 1
   release_id: 1
 
 three:
   id: 3
   start_date: 2010-03-15
   end_date: 2010-03-20
-  project_id: 9999
+  project_id: 1
   release_id: 1
   goal: Create a usable product

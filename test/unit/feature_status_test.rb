@@ -22,7 +22,7 @@ class FeatureStatusTest < ActiveSupport::TestCase
     end
 
     should "update the default status" do
-      feature_status = FeatureStatus.find(3)
+      feature_status = feature_statuses(:verified)
 
       feature_status.default_status = true
       assert feature_status.save

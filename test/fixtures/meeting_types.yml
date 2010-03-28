@@ -1,5 +1,23 @@
-retrospective:
+sprint-planning:
   id: 1
+  name: Sprint Planning
+  occurrence: bi-weekly
+  description: Bi-weekly meeting before the Sprint starts to define the Product backlogs for the Sprint
+
+sprint-review:
+  id: 2
+  name: Sprint Review
+  occurrence: bi-weekly
+  description: Bi-weekly meeting after the Sprint has finished to demo what the team have done during the Sprint
+
+retrospective:
+  id: 3
   name: Sprint Retrospective
   occurrence: bi-weekly
   description: Bi-weekly meeting after Sprint to flash back what went well and what to improve
+
+release-planning:
+  id: 4
+  name: Release Planning
+  occurrence: half-yearly
+  description: Meeting before the release has started to define what should be available on the current release  

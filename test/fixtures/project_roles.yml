@@ -1,6 +1,15 @@
 scrum-master:
-  id: 9999
+  id: 1
   name: Scrum Master
   role: To enforce the Scrum process is running
   manager: true
-  
+
+product-owner:
+  id: 2
+  name: Product owner
+  role: To maximize the Product's return on investment
+
+programmer:
+  id: 3
+  name: Programmer
+  role: To create the product from the Product Backlog

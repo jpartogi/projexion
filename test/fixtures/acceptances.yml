@@ -1,4 +1,4 @@
 one: 
-  id: 9999
-  feature_id: 9999
+  id: 1
+  feature_id: 1
   description: Team member should be able to insert new feature

@@ -1,5 +1,5 @@
 admin:
-  id: 9999
+  id: 1
   login: admin
   email: admin@example.com
   password_salt: <%= salt = Authlogic::Random.hex_token %>

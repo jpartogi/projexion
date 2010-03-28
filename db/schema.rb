@@ -47,11 +47,11 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.text     "user_story",                                       :null => false
     t.decimal  "business_value",    :precision => 10, :scale => 0
     t.integer  "story_points"
-    t.integer  "priority"
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
     t.integer  "sprint_id"
     t.integer  "release_id"
+    t.integer  "priority_id",                                      :null => false
     t.integer  "project_id",                                       :null => false
     t.integer  "feature_status_id",                                :null => false
   end
