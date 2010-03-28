@@ -9,7 +9,14 @@ Dependencies:
 Required 3rd party tools
 - Git (http://git-scm.org)
 - MariaDB (http://mariadb.org)
+- Ruby 1.9.1,
+        apt-get install ruby1.9.1 # Otherwise Rails3 won't work
+        apt-get install rdoc-1.9.1
+        apt-get install ruby1.9.1-dev
+        apt-get install libopenssl-ruby1.9.1
 - RubyGems (http://rubygems.org)
+
+ ln /usr/bin/        
 
 Gems:
 - Install Rspec using `gem install rspec`. RSpec is required for bundler.
@@ -25,7 +32,7 @@ Install these native libraries dependencies:
 - libxml2-devel (OpenSUSE) / libxml2-dev (Ubuntu) # For nokogiri
 - libxslt-devel (OpenSUSE) / libxslt-dev (Ubuntu # For nokogiri
 - mysql-devel / libmariadbclient-dev	# For the ruby mysql driver
-- ruby1.9-dev # for building native extensions
+- ruby1.9.1-dev # for building native extensions
 
 Installation:
 
