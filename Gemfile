@@ -28,7 +28,7 @@ gem 'will_paginate','3.0.pre'
 
 # For testing
 group :test do
-  gem "webrat", "0.7.1.pre", :git => 'git://github.com/brynary/webrat.git'
+  #gem "webrat", "0.7.1.pre", :git => 'git://github.com/brynary/webrat.git'
   gem "shoulda", :git => 'git://github.com/thoughtbot/shoulda.git', :require => nil
   gem "cucumber"
   gem "sqlite3-ruby"
