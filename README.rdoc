@@ -21,12 +21,17 @@ The rest of the gems dependencies is picked up using `bundle install vendor` com
 
 Install these native libraries dependencies:
 - sqlite3		# Database for unit testing
-- sqlite3-devel # Database for unit testing
-- libxml2-devel # For nokogiri
-- libxslt-devel # For nokogiri
-- mysql-devel	# For the ruby mysql driver
+- sqlite3-devel (OpenSUSE) / libsqlite3-dev (Ubuntu) # Database for unit testing
+- libxml2-devel (OpenSUSE) / libxml2-dev (Ubuntu) # For nokogiri
+- libxslt-devel (OpenSUSE) / libxslt-dev (Ubuntu # For nokogiri
+- mysql-devel / libmariadbclient-dev	# For the ruby mysql driver
+- ruby1.9-dev # for building native extensions
 
 Installation:
+
+Install database (MariaDB)
+Install bundler
+bundle install vendor
 
 Configuration
 - Change the database configuration values at config/database.yml
