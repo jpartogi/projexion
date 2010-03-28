@@ -18,9 +18,7 @@ class ReleaseSnapshotTest < ActiveSupport::TestCase
 
       assert ReleaseSnapshot.generate(release)
 
-      sprint = sprints(:one)
-      sprint.start_date = Date.today
-      sprint.save
+      sprint = sprints(:current)
       
       snapshots = ReleaseSnapshot.all
       assert_equal snapshots.size, 4
