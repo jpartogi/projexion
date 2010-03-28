@@ -25,7 +25,7 @@ test:
 
 production:
   adapter: mysql
-  encoding: unicode
+  encoding: utf8
   database: projexion
   pool: 5
   username: 
