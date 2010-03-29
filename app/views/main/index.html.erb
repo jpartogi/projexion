@@ -72,7 +72,7 @@
               <% link_to project_meeting_path(meeting.project.code, meeting) do %>
                   <img src="/images/icons/application_view_detail.png">
               <% end %><br/>
-              <strong>Project</strong>:&nbsp;<%= meeting.project.name %><br/>
+              <strong>Project</strong>:&nbsp;<%= link_to meeting.project.name, project_path(meeting.project.code) %><br/>
               <strong>Location</strong>:&nbsp;<%= meeting.location %><br/>
               <strong>Booked by</strong>:&nbsp;<%= link_to meeting.created_by, user_path(meeting.created_by) %><br/>
             </li>
