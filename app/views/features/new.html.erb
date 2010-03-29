@@ -28,12 +28,22 @@
         <%= f.label :story_points %><br/>
         <%= f.text_field :story_points, :size => 12, :title => story_points_tip %><br/>
     </p>
-
+    <%# TODO: Add sprint and release %>
     <p>
         <%= f.label :priority_level %><br/>
         <%= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}, :title => priority_tip) %>
     </p>
 
+    <p>
+        <%= f.label :sprint %><br/>
+        <%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}, :title => 'Sprint for implementing this feature') %>
+    </p>
+
+    <p>
+        <%= f.label :release_version %><br/>
+        <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}, :title => 'Planned release for this feature') %>
+    </p>
+      
     <p>
         <%= f.label :acceptance_test %><br/>
         <%# Acceptance test is dynamically transformed during insertion %>
