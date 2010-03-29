@@ -1,16 +1,17 @@
 <table width="100%" id="feature-statuses">
     <tr>
-        <th>Key</th>
         <th>Display Name</th>
+        <th>Key</th>
         <th width="5%">Default</th>
         <th width="5%"></th>
+        <th width="5%">&nbsp;</th>
     </tr>
 
     <% for feature_status in @feature_statuses %>
     <input type="hidden" name="id" value="<%= feature_status.id %>" />
     <tr>
+        <td style="background-color:<%= feature_status.hash_color %>"><%= h feature_status.display_name %></td>
         <td><%= link_to feature_status.key, admin_feature_status_path(feature_status) %></td>
-        <td><%= h feature_status.display_name %></td> <%# TODO: Display background color %>
         <td style="text-align:center;"><% if feature_status.default_status %><img src="/images/icons/accept.png"/><% end %></td>
         <td style="text-align:center;">
 
@@ -24,7 +25,11 @@
             <img src="/images/icons/arrow_down.png">
           </a>
           <% end %>
-
+        </td>
+        <td style="text-align:center;">
+        <% link_to admin_feature_status_path(feature_status) do %>
+          <img src="/images/icons/application_view_detail.png">
+        <% end %>
         </td>
     </tr>
     <% end %>
