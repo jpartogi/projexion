@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   create_table "priorities", :force => true do |t|
     t.string   "display_name", :limit => 45,                    :null => false
     t.string   "color",        :limit => 45,                    :null => false
-    t.string   "level",        :limit => 45,                    :null => false
+    t.integer  "level",        :limit => 3,                     :null => false
     t.boolean  "default",                    :default => false, :null => false
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
