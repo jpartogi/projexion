@@ -20,7 +20,7 @@
     });
   </script>
 
-  <div style="float:right">
+  <div style="float:right; width:18%;">
       <div id="info-box">
         <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
         <strong>Release:</strong>&nbsp;<%= @sprint.release.version_number %><br/>
@@ -29,7 +29,7 @@
       </div>
 
       <% unless @meetings.empty? %>
-        <h1 style="margin-top:1em;">Scheduled meetings in this sprint</h1>
+        <h1 style="margin-top:1em;">Scheduled meetings</h1>
         <ul>
         <% @meetings.each do |meeting| %>
             <li>
