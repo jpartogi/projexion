@@ -4,12 +4,14 @@
     <table width="100%" id="meeting-types">
         <tr>
           <th>Type</th>
+          <th>Occurrence</th>
           <th>Description</th>
           <th>&nbsp;</th>
         </tr>
         <% for meeting_type in @meeting_types %>
         <tr>
             <td><%= meeting_type.name %></td>
+            <td><%= meeting_type.occurrence %></td>
             <td><%= meeting_type.description %></td>
             <td>
             <% link_to admin_meeting_type_path(meeting_type) do %>                                        
