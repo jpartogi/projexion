@@ -1,10 +1,10 @@
-scrum-master:
+scrum_master:
   id: 1
   name: Scrum Master
   role: To enforce the Scrum process is running
   manager: true
 
-product-owner:
+product_owner:
   id: 2
   name: Product owner
   role: To maximize the Product's return on investment
