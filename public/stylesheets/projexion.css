@@ -1,4 +1,4 @@
-
+body { background-color: #333; }
 a { font-weight: bold; color:#333; }
 a:hover { text-decoration:none; }
 a img { background: white; vertical-align:bottom; }
@@ -43,7 +43,7 @@ h3 { font: bold 15px Helvetica; }
     letter-spacing:-0.8px; background-color: #fff; }
 #toolbar a:hover { background-color: #f4f4f4; }
 
-#middle {  min-height: 650px; width: 100%; }
+#middle {  min-height: 650px; width: 100%; background-color:#fff; }
 
 #content { float:left; padding: 1em; font: 12px Verdana; width: 78%; }
 #content li { line-height: 2em; }
