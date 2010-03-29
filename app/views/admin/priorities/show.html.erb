@@ -1,25 +1,26 @@
 <div id="content">
-    <div>
-        <p>
-          <%= label_tag :display_name %><br />
-          <%= @priority.display_name %>
-        </p>
+  <p class="success"><span><%= flash[:notice] %></span></p>
+  <div>
+    <p>
+      <%= label_tag :display_name %><br />
+      <%= @priority.display_name %>
+    </p>
 
-        <p>
-          <%= label_tag :priority_level %><br />
-          <%= @priority.level %>
-        </p>
+    <p>
+      <%= label_tag :priority_level %><br />
+      <%= @priority.level %>
+    </p>
 
-        <p>
-          <%= label_tag :default %><br />
-          <%= @priority.default %>
-        </p>
+    <p>
+      <%= label_tag :default %><br />
+      <%= @priority.default %>
+    </p>
 
-        <p>
-          <%= label_tag :color, 'Background color' %><br />
-          <span style="padding:2px;background-color:<%= @priority.hash_color %>" class="status"><%= @priority.color %></span>
-        </p>
-    </div>
+    <p>
+      <%= label_tag :color, 'Background color' %><br />
+      <span style="padding:2px;background-color:<%= @priority.hash_color %>" class="status"><%= @priority.color %></span>
+    </p>
+  </div>
 </div>
 
 <div id="sidebar">
