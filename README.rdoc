@@ -41,6 +41,7 @@ Install bundler
 bundle install vendor
 
 Configuration
+- Rename config/database.yml.sample to config/database.yml
 - Change the database configuration values at config/database.yml
 
 
