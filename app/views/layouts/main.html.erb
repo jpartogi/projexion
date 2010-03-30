@@ -38,7 +38,7 @@
 <body>
     <div id="header">
       <div id="title">Projexion</div>
-      <div id="login">Logged in as: <%= @current_user.login %> |
+      <div id="login">Logged in as: <%= @current_user.login %> (<%= link_to 'My Account', edit_user_path(@current_user) %>) |
         <%= link_to "Logout", logout_path , :method => :delete, :confirm => "Are you sure you want to logout?" %>
       </div>
 
@@ -51,10 +51,7 @@
           <% if @project != nil and controller_name != 'projects' %><li><%= link_to @project.name, project_path(@project.code) %></li><% end %>
           <% if can? :manage, :all %><li><%= link_to 'Administration', admin_path %></li><% end %>
         </ul>
-        
-        <ul style="float:right">
-        	<li><%= link_to 'My Account', edit_user_path(@current_user) %></li>
-        </ul>
+        <%# TODO: Project jump shortcut %>
     </div>
     <div style="clear:both;"></div>
     <div id="middle">
