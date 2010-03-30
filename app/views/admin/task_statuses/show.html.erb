@@ -16,10 +16,12 @@
           <%= h @task_status.key %>
         </p>
 
+       <% if @task_status.default_status %>
         <p>
-          <%= label_tag :default_status %><br />
-          <%= h @task_status.default_status %>
+          <%= label_tag :default_status %>
+          <img src="/images/icons/accept.png"/>
         </p>
+        <% end %>
 
         <p>
           <%= label_tag :color, 'Background color' %><br />

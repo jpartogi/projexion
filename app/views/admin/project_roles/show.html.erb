@@ -6,11 +6,13 @@
           <%= label_tag :name %><br />
           <%= @project_role.name %>
         </p>
-        <%# TODO: Show checklist instead if manager %>
+      
+        <% if @project_role.manager %>
         <p>
-          <%= label_tag :manager %><br />
-          <%= @project_role.manager %>
+          <%= label_tag :manager_role %>
+          <img src="/images/icons/accept.png"/>
         </p>
+        <% end %>
 
         <p>
           <%= label_tag :role %><br />
