@@ -3,6 +3,6 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    mail(:to => user.email,  :subject => "Welcome to Projexion Demo")
+    mail(:to => user.email, :subject => "Welcome to Projexion Demo")
   end 
 end
