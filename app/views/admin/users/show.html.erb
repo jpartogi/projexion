@@ -24,8 +24,19 @@
           <% end %>
         </p>
     </div>
-    
-    <div> <%# TODO: Remove user from role / project %>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+        $('.role').comboEdit({
+            getComboBoxURL: "<%= get_options_project_role_path %>",
+            submitURL: "<%= url_for :action => :update_role, :controller => 'admin/project_members' %>",
+            parentIdClass: "project-member-id"
+        });
+        
+    });
+    </script>
+    <div> 
       <h2>Assigned Projects</h2>
       <table width="100%">
         <tr>
@@ -35,9 +46,10 @@
         </tr>
         <% @project_members.each do |project_member| %>
         <tr>
+          <input type="hidden" class="project-member-id" value="<%= project_member.id %>"/>
           <td><%= project_member.project.name %></td>
-          <td><%= project_member.project_role.name %></td>
-          <td style="text-align:center">
+          <td class="role"><%= project_member.project_role.name %></td>
+          <td style="text-align:center"> <%# TODO: Deactivate user %>
           	<% if project_member.status.eql? 'A' %>
           		<img src="/images/icons/accept.png">
           	<% else %>

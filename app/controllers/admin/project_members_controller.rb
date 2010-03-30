@@ -20,4 +20,18 @@ class Admin::ProjectMembersController < ApplicationController
       end
     end
   end
+
+  #Ajax actions
+  def update_role
+    @project_member = ProjectMember.find(params[:parent_id])
+    @project_role = ProjectRole.find(params[:id])
+
+    @project_member.project_role = @project_role
+
+    respond_with(@project_member, @project_role) do |format|
+      if @project_member.save
+        format.html { render :partial => 'project_roles/label' }
+      end
+    end
+  end
 end

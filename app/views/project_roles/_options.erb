@@ -1,0 +1,9 @@
+<td class="role">
+    <select>
+      <% for project_role in @project_roles %>
+        <option <% if @project_member.project_role.id == project_role.id %>selected="selected"<% end %> value="<%= project_role.id %>">
+          <%= project_role.name %>
+        </option>
+      <% end %>
+    </select>
+</td>

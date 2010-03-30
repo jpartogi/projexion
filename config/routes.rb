@@ -69,6 +69,12 @@ Projexion::Application.routes.draw do |map|
     resources :meeting_types  
   end
 
+  resources :project_roles do
+    member do
+      get :get_options
+    end
+  end
+
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|
   #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
