@@ -27,6 +27,7 @@ production:
   adapter: mysql
   encoding: utf8
   database: projexion
+  reconnect: true
   pool: 5
   username: projexion 
   password:
