@@ -52,7 +52,7 @@ class Admin::UsersController < ApplicationController
   	@user.destroy
   	
   	respond_to do |format|
-      format.html { redirect_to admin_users_path, :notice => 'User status was successfully deleted.' }
+      format.html { redirect_to admin_users_path, :notice => 'User was successfully deleted.' }
     end	
   end
 
