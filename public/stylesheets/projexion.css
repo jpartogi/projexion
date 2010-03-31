@@ -39,8 +39,8 @@ h3 { font: bold 15px Helvetica; }
 #toolbar { height:26px; background-color: #6192b8;}
 #toolbar ul { padding: 5px 5px 0 5px; }
 #toolbar li{ padding: 5px 5px 0 5px; float:left; vertical-align:bottom; }
-#toolbar a { padding: 5px 5px 0 5px; text-decoration:none; font:bolder 14px Arial; height:16px; color:#333; text-transform:uppercase;
-    letter-spacing:-0.8px; background-color: #fff; }
+#toolbar a { padding: 5px 5px 0 5px; text-decoration:none; font:10px; height:16px; color:#333; font-weight:bold;
+    letter-spacing:-0.9px; background-color: #fff; font-family:Arial,Geneva,Helvetica,sans-serif; text-shadow:0 1px #aaa;}
 #toolbar a:hover { background-color: #f4f4f4; }
 
 #middle {  min-height: 650px; width: 100%; background-color:#fff; }
