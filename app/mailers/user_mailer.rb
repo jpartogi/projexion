@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "support@projexionist.com"
+  default :from => "Projexion Support <support@projexionist.com>"
 
   def welcome_email(user)
     @user = user
