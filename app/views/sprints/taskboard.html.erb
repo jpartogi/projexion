@@ -1,12 +1,9 @@
 <div id="content">
     <script type="text/javascript">
      $(document).ready(function(){
-         $('.task').corner();
+         $('.task-card').corner();
+         $('.feature-card').corner();
          $('h3').corner();
-         
-         $('.desc').tooltip().click(function(){
-             window.location = $(this).attr('link');
-         });
      });  
     </script>
   
@@ -24,16 +21,29 @@
         <% @task_board.each do |feature, statuses| %>
           <div style="margin-bottom:1em; border-bottom: 1px dashed #ccc">
             <div style="float:left; width:<%= @column_width %>;">
-              <%= feature.user_story %>
-              <% link_to project_feature_path(@project.code, feature.id) do %>
-                <img src="/images/icons/application_view_detail.png">
-              <% end %>
+              <div class="feature-card">
+                <div class="title">
+                  <% link_to project_feature_path(@project.code, feature.id), :title => view_feature_title do %>
+                    <img src="/images/icons/application_view_detail.png">
+                  <% end %>
+                </div>
+                <div style="clear:both"></div>
+                <div class="desc"><%= feature.user_story %></div>
+                <div class="date">Updated: <%= feature.updated_at %></div>
+                <div style="clear:both"></div>
+              </div>  
             </div>
 
             <% statuses.each do |status, tasks| %>
             <div style="float:left; width:<%= @column_width %>;">
                <% for task in tasks %>
-                   <div class="task"><%= task.description %></div>
+                   <div class="task-card">
+                     <div class="title">PIC: <%= task.user.login %></div>
+                     <div style="clear:both"></div>
+                     <div class="desc"><%= task.description %></div>
+                     <div class="date">Updated: <%= task.updated_at %></div>
+                     <div style="clear:both"></div>
+                   </div>
                <% end %>
                &nbsp; 
             </div>

@@ -23,7 +23,15 @@ h3 { font: bold 15px Helvetica; }
 .save_btn { text-indent: -1000em; width:75px; height: 25px; background: transparent url('/images/save.png') no-repeat center top;
     padding:0; border: 0; margin: 1px; }
 
-.task { border: 1px solid #ccc; margin: 1pt; padding: 3px; display:block; }
+.feature-card { border: 1px solid #ccc; background-color: #ffcceb; }
+.feature-card .title { float:right; padding: 2px; }
+.feature-card .desc { padding: 3px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; }
+.feature-card .date { float:right; font-size:10px; padding: 2px; }
+
+.task-card { border: 1px solid #ccc; margin: 1pt; display:block; background-color: #f9ff9c; }
+.task-card .title { float:right; padding: 2px; }
+.task-card .desc { padding: 3px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; }
+.task-card .date { float:right; font-size:10px; padding: 2px; }
 .status { color: white; text-align: center; font-weight: bold;  min-height:15px; vertical-align:middle; }
 .more { border: 1px solid #9bb8d9; color: #406299; padding:5px; text-align: center; cursor:pointer; }
 .number { font: 1.5em "Arial Black"; color:#333; text-align:center; }
