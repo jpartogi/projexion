@@ -1,4 +1,8 @@
 module FeaturesHelper
+  def view_feature_title
+    'View Feature'
+  end
+
   def user_story_tip
     "
     User story is a description of functionality that will be valuable <br/>

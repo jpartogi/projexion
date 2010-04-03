@@ -48,10 +48,10 @@
     <% for release in @releases %>
       <li>
         <%= release.version_number %>
-        <% link_to project_release_path(@project.code, release.id) do %>
+        <% link_to project_release_path(@project.code, release.id), :title => view_release_title do %>
             <img src="/images/icons/application_view_detail.png">
         <% end %>
-        <% link_to burndown_project_release_path(@project.code, release.id) do %>
+        <% link_to burndown_project_release_path(@project.code, release.id), :title => release_burndown_title do %>
             <img src="/images/icons/chart_line.png">
         <% end %>
       </li>
@@ -73,13 +73,13 @@
     <% for sprint in @sprints %>
         <li>
           <%= sprint.span_date %>
-          <% link_to project_sprint_path(@project.code, sprint.id) do %>
+          <% link_to project_sprint_path(@project.code, sprint.id), :title => view_sprint_title do %>
               <img src="/images/icons/application_view_detail.png">
           <% end %>
-          <% link_to burndown_project_sprint_path(@project.code, sprint.id) do %>
+          <% link_to burndown_project_sprint_path(@project.code, sprint.id), :title => sprint_burndown_title do %>
             <img src="/images/icons/chart_line.png">
           <% end %>
-          <% link_to taskboard_project_sprint_path(@project.code, sprint.id) do %>
+          <% link_to taskboard_project_sprint_path(@project.code, sprint.id), :title => sprint_board_title do %>
             <img src="/images/icons/table.png">
           <% end %>
         </li>
