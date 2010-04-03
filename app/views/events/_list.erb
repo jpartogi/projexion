@@ -1,6 +1,6 @@
 <% @events.each do |event| %>
   <li class="info-list">
-    #<%= event.id %><br/>
+    <strong>#<%= event.id %></strong><br/>
     <%= event.model %>&nbsp;<%= event.action %>
     
     in&nbsp;<%= link_to event.project.name, project_path(event.project.code) %>&nbsp;
@@ -8,7 +8,7 @@
     &nbsp;<%= time_ago_in_words(event.created_at) %>&nbsp;ago.
 
     <% unless event.audits.empty? %>
-    <ul>
+    <ul id="audit">
         <% event.audits.each do |audit| %>
             <li>
               <%= audit.changed_field.humanize %>&nbsp;<%= event.action %>.
