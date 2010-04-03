@@ -1,8 +1,6 @@
 Projexion::Application.routes.draw do |map|
   resources :priorities
 
-  resource :main, :admin
-
   resources :users, :except => [:index, :destroy] do
   	member do
   	  get :change_password
@@ -10,9 +8,11 @@ Projexion::Application.routes.draw do |map|
   end
 
   resources :user_sessions
-  map.login  '/login',  :controller => "user_sessions", :action => "new"
-  map.logout '/logout', :controller => 'user_sessions', :action => 'destroy'
+  
+  match 'login' => 'user_sessions#new', :as => 'login'
+  match 'logout' => 'user_sessions#destroy', :as => 'logout'
 
+  match 'admin' => 'admin#index', :as => 'admin'
   match 'projects/:project_id/sprints/taskboard' => 'sprints#taskboard', :as => :taskboard
 
   match 'projects/:project_id/sprints/burndown' => 'sprints#burndown', :as => :burndown_sprint # For ajax
