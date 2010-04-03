@@ -36,17 +36,18 @@ h3 { font: bold 15px Helvetica; }
 #login { font: 11px Verdana; color: white; float:right; padding: 5px; }
 #login a { color:inherit; }
 
-#toolbar { height:26px; background-color: #6192b8;}
+#toolbar { height:27px; background-color: #6192b8;}
 #toolbar ul { padding: 5px 5px 0 5px; }
 #toolbar li{ padding: 5px 5px 0 5px; float:left; vertical-align:bottom; }
 #toolbar a { padding: 5px 5px 0 5px; text-decoration:none; font:10px; height:16px; color:#333; font-weight:bold;
-    letter-spacing:-0.9px; background-color: #fff; font-family:Arial,Geneva,Helvetica,sans-serif; text-shadow:0 1px #aaa;}
+    letter-spacing:-0.9px; background-color: #fff; font-family:Helvetica,sans-serif; text-shadow:0 1px 0 #aaa;}
 #toolbar a:hover { background-color: #f4f4f4; }
 
 #middle {  min-height: 650px; width: 100%; background-color:#fff; }
 
 #content { float:left; padding: 1em; font: 12px Verdana; width: 78%; }
 #content li { line-height: 2em; }
+#content h1 { text-shadow:0 1px #f4f4f4; }
 #content h2, #content label { font: bold 16px Helvetica; letter-spacing:-0.7px; }
 #content label { margin-bottom:1em; }
 #content form input[type='text'], #users_form form input[type='text'],

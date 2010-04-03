@@ -21,10 +21,20 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
 
   add_index "acceptances", ["id", "feature_id"], :name => "acceptances_idx"
 
+  create_table "audits", :force => true do |t|
+    t.string   "old_value",     :null => false
+    t.string   "new_value",     :null => false
+    t.string   "model",         :null => false
+    t.string   "changed_field", :null => false
+    t.integer  "model_id",      :null => false
+    t.string   "event_id"
+    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",    :null => false
+  end
+
   create_table "events", :force => true do |t|
     t.string   "action",                    :null => false
     t.string   "model",      :limit => 100, :null => false
-    t.integer  "model_id",                  :null => false
     t.integer  "project_id",                :null => false
     t.integer  "user_id",                   :null => false
     t.datetime "updated_at",                :null => false
@@ -51,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",                                       :null => false
     t.integer  "sprint_id"
     t.integer  "release_id"
+    t.string   "changes"
     t.integer  "priority_id",                                      :null => false
     t.integer  "project_id",                                       :null => false
     t.integer  "feature_status_id",                                :null => false

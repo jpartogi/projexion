@@ -6,16 +6,16 @@
 # At least one dependency must be specified
 
 source 'http://gemcutter.org'
-#source "http://gems.github.com"
 
 ## Bundle edge rails:
-gem "rails", "3.0.0.beta"
+#gem "rails", "3.0.0.beta"
+gem "rails", :git => 'git://github.com/rails/rails.git'
 
 # Database drivers
 gem "mysql"
 
 # For security
-gem "authlogic", :git => 'git://github.com/binarylogic/authlogic.git'
+gem "authlogic", :git => 'git://github.com/scrum8/authlogic.git'
 #gem "declarative_authorization", :git => 'git://github.com/stffn/declarative_authorization.git'
 gem "cancan", :git => 'git://github.com/ryanb/cancan.git'
 
