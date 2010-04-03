@@ -9,11 +9,23 @@ CREATE TABLE `acceptances` (
   KEY `acceptances_idx` (`id`,`feature_id`)
 ) ENGINE=Maria DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `audits` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `old_value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `new_value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `model` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `changed_field` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `model_id` int(11) NOT NULL,
+  `event_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=Maria DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `action` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `model` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `model_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
@@ -84,7 +96,7 @@ CREATE TABLE `priorities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `display_name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `color` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `level` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `level` int(11) NOT NULL,
   `default` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
@@ -235,5 +247,3 @@ CREATE TABLE `users` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=Maria DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-INSERT INTO schema_migrations (version) VALUES ('20091013000428');
