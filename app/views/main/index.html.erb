@@ -84,5 +84,24 @@
             No scheduled meetings.
          </p>
         <% end %>
-    </div>  
+    </div>
+
+     <div style="float:left;margin-left:5em;">
+        <h1>Your Tasks</h1>
+
+        <% unless @tasks.empty? %>
+          <ul>
+            <% @tasks.each do |task| %>
+              <li class="info-list">
+                <strong>Project</strong>:&nbsp;<%= task.project.name %><br/>
+                <strong>User story</strong>:&nbsp;<%= task.feature.user_story %>
+                <% link_to project_feature_path(task.project.code, task.feature) do %>
+                  <img src="/images/icons/application_view_detail.png">
+                <% end %><br/>
+                <strong>Task</strong>:&nbsp;<%= task.description %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+     </div>  
 </div>

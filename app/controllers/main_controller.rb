@@ -7,8 +7,10 @@ class MainController < ApplicationController
 
       params[:next_offset] = 11
 
-      @events = Event.all(:conditions => { :project_id => @projects },  :order => "created_at DESC", :limit => 10)
+      @events = Event.all(:conditions => {:project_id => @projects},  :order => "created_at DESC", :limit => 10)
 
       @meetings = Meeting.all(:conditions => ["start_time > ? and project_id in (?)", Time.now, @projects], :order => 'start_time')
+
+      @tasks = Task.all(:conditions => {:user_id => current_user})
     end
 end
