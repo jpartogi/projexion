@@ -60,3 +60,6 @@ If you ran the `rake db:seed` command, a default user should have been created f
 You can login to the application using this user account:
 username: admin
 password: admin
+
+Run cron for generating daily sprint burndown:
+bundle exec whenever

@@ -20,7 +20,7 @@
 set :environment, Rails.env
 
 every 1.day do
-  rake "projexion:tasks:daily"
+  rake "projexion:sprints:snapshots"
 end
 
 
