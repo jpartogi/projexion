@@ -31,13 +31,9 @@ class SprintSnapshot < ActiveRecord::Base
       projects = Project.all
 
       projects.each do |project|
-        sprints = project.current_sprint
+        sprint = project.current_sprint
 
-        if sprints.empty?
-          sprints = project.latest_sprint
-        end
-
-        sprints.each do |sprint|
+        unless sprint.nil?
           generate(sprint)
         end
       end
