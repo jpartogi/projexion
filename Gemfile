@@ -25,7 +25,7 @@ gem 'will_paginate','3.0.pre'
 
 # For cron jobs
 # TODO: Activate whenever scheduler
-gem "whenever", "0.4.1", :git => "git://github.com/javan/whenever.git"
+#gem "whenever", "0.4.1", :git => "git://github.com/javan/whenever.git"
 
 # For testing
 group :test do
