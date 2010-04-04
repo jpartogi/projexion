@@ -7,7 +7,6 @@
 
 source 'http://gemcutter.org'
 
-gem "rake"
 ## Bundle edge rails:
 gem "rails", "3.0.0.beta"
 #gem "rails", :git => 'git://github.com/rails/rails.git'
