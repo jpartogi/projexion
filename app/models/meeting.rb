@@ -5,6 +5,8 @@ class Meeting < ActiveRecord::Base
 
   before_create :set_created_by
 
+  validates_presence_of :start_time, :end_time
+
   def set_created_by
     self.created_by = UserSession.current_user.login
   end

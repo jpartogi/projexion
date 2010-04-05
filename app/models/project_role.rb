@@ -3,6 +3,8 @@ class ProjectRole < ActiveRecord::Base
 
   before_save :check_and_update_manager
 
+  validates_presence_of :name
+  
   def check_and_update_manager
     manager = ProjectRole.manager
 

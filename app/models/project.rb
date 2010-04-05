@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  validates_presence_of :name, :vision
+  validates_presence_of :name, :code, :vision
   validates_uniqueness_of :code
 
   has_many :project_members

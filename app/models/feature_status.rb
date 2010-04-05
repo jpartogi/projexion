@@ -4,6 +4,8 @@ class FeatureStatus < ActiveRecord::Base
   before_create :set_next_position
   before_save :check_and_update_default_status
 
+  validates_presence_of :display_name, :key, :color
+
   DIRECTION_UP = 'up'
   DIRECTION_DOWN = 'down'
 
