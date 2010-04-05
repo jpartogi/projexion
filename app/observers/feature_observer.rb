@@ -32,6 +32,6 @@ class FeatureObserver < ActiveRecord::Observer
       event = 'modified'
     end
 
-    event = Event.add event, feature.class.to_s, feature.project
+    event = Event.add event, feature.class.to_s, feature.id, feature.project
   end
 end

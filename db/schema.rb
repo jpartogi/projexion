@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   create_table "events", :force => true do |t|
     t.string   "action",                    :null => false
     t.string   "model",      :limit => 100, :null => false
+    t.integer  "model_id",                  :null => false
     t.integer  "project_id",                :null => false
     t.integer  "user_id",                   :null => false
     t.datetime "updated_at",                :null => false

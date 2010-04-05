@@ -21,7 +21,7 @@ class Task < ActiveRecord::Base
       event = 'modified'
     end
 
-    Event.add event, self.class.to_s, self.project
+    Event.add event, self.class.to_s, self.id, self.project
   end
 
   class << self
