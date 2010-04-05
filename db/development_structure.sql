@@ -26,6 +26,7 @@ CREATE TABLE `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `action` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `model` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `model_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
