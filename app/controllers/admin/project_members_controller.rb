@@ -14,6 +14,10 @@ class Admin::ProjectMembersController < ApplicationController
   def create
     @project_member = ProjectMember.new(params[:project_member])
 
+    @project_roles = ProjectRole.all
+
+    @projects = Project.all
+    
     respond_with(@project_member) do |format|
       if @project_member.save
         format.html { redirect_to admin_user_path(@project_member.user), :notice => 'User was successfully updated.' }
@@ -28,7 +32,7 @@ class Admin::ProjectMembersController < ApplicationController
 
     @project_member.project_role = @project_role
 
-    respond_with(@project_member, @project_role) do |format|
+    respond_to do |format|
       if @project_member.save
         format.html { render :partial => 'project_roles/label' }
       end
