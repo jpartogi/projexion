@@ -25,7 +25,6 @@
     <%= javascript_include_tag 'facebox' %>
     <script type="text/javascript">
       $(document).ready(function(){
-        <%# TODO: This doesn't work. The height of content and sidebar is not equal %>  
         $("#sidebar").height($("#content").height()); //  Make the #sidebar height always the same as #content
         $("a[rel*=facebox]").facebox();
           

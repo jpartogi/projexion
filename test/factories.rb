@@ -14,7 +14,7 @@ Factory.define :release do |release|
   
 end
 
-Factory.define :sprint do |sprint|
+Factory.define :sprint, :class => Sprint do |sprint|
   sprint.start_date Date.today - 2.days
   sprint.end_date Date.today + 12.days
   sprint.release Factory.stub(:release)

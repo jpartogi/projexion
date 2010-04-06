@@ -2,12 +2,11 @@ class ProjectsController < ApplicationController
   layout 'main'
   respond_to :html, :json
   before_filter :require_user
-  #load_and_authorize_resource
   
   def index
     @projects = Project.find(:all)
   end
-  #TODO: Functional test
+
   def show
     @project = Project.find_by_code(params[:id])
 

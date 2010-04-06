@@ -7,9 +7,11 @@ class ProjectTest < ActiveSupport::TestCase
 
   context "Project instance" do
     should "get the current sprint" do
-      project = Factory(:projexion)
-      
+      project = projects(:projexion)
+      Factory(:sprint)
+
       sprint = project.current_sprint
+      assert_equal Date.today-2.days, sprint.start_date
     end
 
     should "get the member project role" do
