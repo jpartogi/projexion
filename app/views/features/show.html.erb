@@ -95,7 +95,7 @@
             'url': "<%= url_for :action => :update_desc, :controller => :tasks %>",
             'name': 'task-id'
         });
-
+        <%# TODO: This is noisy, use the comboEdit library %>
         var click_status = function(){
             var task_id = $(this).parent().find(".task-id").val();
 
