@@ -51,7 +51,7 @@
 <div id="sidebar">
   <ul>
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
-    <li><%= link_to 'Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
+    <li><%= link_to 'Show Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
     <% if @sprint.cancelled_at.nil? %>
     <li><%= link_to 'Edit Sprint', edit_project_sprint_path(@project.code, @sprint), :class => 'edit' %></li>
     <li><%= link_to 'Cancel Sprint', cancel_project_sprint_path(@project.code, @sprint), :class => 'delete',
