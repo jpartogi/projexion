@@ -48,8 +48,10 @@ class Admin::UsersController < ApplicationController
   
   def destroy
   	@user = User.find(params[:id])
-  	
+  	@project_members = @user.project_members
+
   	@user.destroy
+    ProjectMember.destroy(@project_members)
   	
   	respond_to do |format|
       format.html { redirect_to admin_users_path, :notice => 'User was successfully deleted.' }
