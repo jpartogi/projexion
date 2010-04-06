@@ -7,7 +7,7 @@ class FeaturesControllerTest < ActionController::TestCase
   test "show" do
     UserSession.create(users(:admin))
     
-    get(:show, {:project_id => '9999', :id => '1'})
+    get(:show, {:project_id => projects(:projexion).to_param, :id => features(:one).to_param})
 
     assert_response :success
     assert_not_nil assigns(:feature)

@@ -1,15 +1,18 @@
 low:
+  id: 1
   display_name: Low
   color: 5d74ff
   level: 10
   default: true
 
 medium:
-  display_name: Low
+  id: 2
+  display_name: Medium
   color: 3dd573
   level: 50
 
 high:
-  display_name: Low
+  id: 3
+  display_name: High
   color: ff5d5d
   level: 10

@@ -28,7 +28,7 @@
         <%= f.label :story_points %><br/>
         <%= f.text_field :story_points, :size => 12, :title => story_points_tip %><br/>
     </p>
-    <%# TODO: Add sprint and release %>
+
     <p>
         <%= f.label :priority_level %><br/>
         <%= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}, :title => priority_tip) %>
