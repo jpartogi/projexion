@@ -17,8 +17,9 @@ class SprintsControllerTest < ActionController::TestCase
   test "create" do
     UserSession.create(users(:admin))
 
-    post :create, {:project_id => 'PR', :goal => 'Deliver usable product',
-                              :start_date => '1900-01-01', :end_date => '1901-01-01'}
+    post :create, :sprint => {:goal => 'Deliver usable product',
+                              :start_date => '1900-01-01', :end_date => '1901-01-01'},
+                  :project_id => 'PR'
 
     assert_response :success
     assert_not_nil assigns(:sprint)

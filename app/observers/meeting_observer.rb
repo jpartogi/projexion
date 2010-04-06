@@ -6,7 +6,7 @@ class MeetingObserver < ActiveRecord::Observer
       MeetingMailer.create_meeting(user.email, meeting).deliver
     end
 
-    unless meeting.additionals.nil? and meeting.additionals.empty?
+    unless meeting.additionals.nil?
       additionals = meeting.additionals
 
       additionals.split(/,\s*/).each do |additional|
