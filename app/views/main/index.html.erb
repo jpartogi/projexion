@@ -51,7 +51,8 @@
             <% link_to project_path(project.code) do %>
                 <%= project.name %>&nbsp;(<%= project.code %>)
             <% end %><br/>
-            <%= project.vision %>
+            <%= project.vision %><br/>
+            <strong>Your Role</strong>:&nbsp;<%= project.project_member_role(@current_user).name %>
           </li>
           <% end %>
         </ul>
@@ -60,9 +61,7 @@
             You're not in a project yet.
          </p>
         <% end %>
-    </div>
 
-    <div style="float:left;margin-left:5em;">
         <h1>Next Scheduled Meetings</h1>
         <% unless @meetings.empty? %>
          <ul>

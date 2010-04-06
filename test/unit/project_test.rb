@@ -12,5 +12,14 @@ class ProjectTest < ActiveSupport::TestCase
       sprint = project.current_sprint
     end
 
+    should "get the member project role" do
+      project = projects(:projexion)
+      user = users(:admin)
+      scrum_master = project_roles(:scrum_master)
+
+      project_role = project.project_member_role(user)
+
+      assert_equal scrum_master, project_role
+    end
   end
 end

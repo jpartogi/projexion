@@ -47,4 +47,9 @@ class Project < ActiveRecord::Base
       project_member.project_role.eql? ProjectRole.manager
     end
   end
+
+  def project_member_role(user)
+    project_member = self.project_members.where({:user_id => user})[0]
+    project_member.project_role
+  end
 end
