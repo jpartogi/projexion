@@ -13,15 +13,7 @@ class Project < ActiveRecord::Base
   end
 
   def current_sprint
-    sprint = self.sprints.where(['start_date <= ? and end_date >= ?', Date.today, Date.today])
-
-    unless sprint.empty?
-      sprint = sprint.to_a[0]
-    else
-      sprint = nil
-    end
-
-    sprint
+    self.sprints.where(['start_date <= ? and end_date >= ?', Date.today, Date.today])[0]
   end
 
   def latest_sprint
