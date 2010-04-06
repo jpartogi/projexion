@@ -36,6 +36,10 @@ class Project < ActiveRecord::Base
     project_member = self.project_members.where({:project_role_id => ProjectRole.manager})[0]
     project_member.user unless project_member.nil?
   end
+  
+  def manager_exists?
+    false if manager.nil? else true
+  end
 
   def members
     self.project_members.reject do |project_member|

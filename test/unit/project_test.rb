@@ -37,5 +37,11 @@ class ProjectTest < ActiveSupport::TestCase
 
       assert_nil manager
     end
+
+    should "check whether manager exists" do
+      project = projects(:projexion)
+
+      assert project.manager_exists?, "Manager exists for this project"
+    end
   end
 end
