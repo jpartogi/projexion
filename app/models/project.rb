@@ -33,13 +33,8 @@ class Project < ActiveRecord::Base
   end
 
   def manager
-    self.project_members.each do |project_member|
-      if project_member.project_role.eql? ProjectRole.manager
-        return project_member.user
-      end
-    end
-
-    nil
+    project_member = self.project_members.where({:project_role_id => ProjectRole.manager})[0]
+    project_member.user unless project_member.nil?
   end
 
   def members
@@ -50,6 +45,6 @@ class Project < ActiveRecord::Base
 
   def project_member_role(user)
     project_member = self.project_members.where({:user_id => user})[0]
-    project_member.project_role
+    project_member.project_role unless project_member.nil?
   end
 end

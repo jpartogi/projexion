@@ -4,6 +4,12 @@ Factory.define :projexion, :class => Project do |project|
   project.vision 'To be an awesome free Agile project management tool'
 end
 
+Factory.define :dummy, :class => Project do |project|
+  project.name 'dummy'
+  project.code 'dummy'
+  project.vision 'Dummy project'
+end
+
 Factory.define :release do |release|
   
 end

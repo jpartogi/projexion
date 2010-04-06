@@ -21,5 +21,21 @@ class ProjectTest < ActiveSupport::TestCase
 
       assert_equal scrum_master, project_role
     end
+
+    should "get the project manager" do
+      project = projects(:projexion)
+      user = users(:admin)
+
+      manager = project.manager
+
+      assert_equal user, manager
+    end
+
+    should "not get the project manager" do
+      project = Factory(:dummy)
+      manager = project.manager
+
+      assert_nil manager
+    end
   end
 end
