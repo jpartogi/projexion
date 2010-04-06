@@ -1,6 +1,6 @@
 module FeaturesHelper
   def view_feature_title
-    'View Feature'
+    'Show Feature Details'
   end
 
   def user_story_tip

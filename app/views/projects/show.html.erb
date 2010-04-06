@@ -48,10 +48,10 @@
     <% for release in @releases %>
       <li>
         <%= release.version_number %>
-        <% link_to project_release_path(@project.code, release.id), :title => view_release_title do %>
+        <% link_to project_release_path(@project.code, release.id), :title => view_release_title, :rel => :tipsy do %>
             <img src="/images/icons/application_view_detail.png">
         <% end %>
-        <% link_to burndown_project_release_path(@project.code, release.id), :title => release_burndown_title do %>
+        <% link_to burndown_project_release_path(@project.code, release.id), :title => release_burndown_title, :rel => :tipsy do %>
             <img src="/images/icons/chart_line.png">
         <% end %>
       </li>
@@ -73,13 +73,13 @@
     <% for sprint in @sprints %>
         <li>
           <%= sprint.span_date %>
-          <% link_to project_sprint_path(@project.code, sprint.id), :title => view_sprint_title do %>
+          <% link_to project_sprint_path(@project.code, sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
               <img src="/images/icons/application_view_detail.png">
           <% end %>
-          <% link_to burndown_project_sprint_path(@project.code, sprint.id), :title => sprint_burndown_title do %>
+          <% link_to burndown_project_sprint_path(@project.code, sprint.id), :title => sprint_burndown_title, :rel => :tipsy do %>
             <img src="/images/icons/chart_line.png">
           <% end %>
-          <% link_to taskboard_project_sprint_path(@project.code, sprint.id), :title => sprint_board_title do %>
+          <% link_to taskboard_project_sprint_path(@project.code, sprint.id), :title => sprint_board_title, :rel => :tipsy do %>
             <img src="/images/icons/table.png">
           <% end %>
         </li>
@@ -94,7 +94,7 @@
   </div>
   </div>
 
-  <div style="clear:both; margin-bottom:1em;"></div>
+  <div style="clear:both; margin-bottom:1.5em;"></div>
 
   <% unless @features.empty? %>
   <div>
@@ -117,10 +117,10 @@
     <li><%= link_to 'Add New Release', new_project_release_path(@project.code), :class => 'add' %></li>
     <li><%= link_to 'Add New Sprint', new_project_sprint_path(@project.code), :class => 'add' %></li>
     <li><%= link_to 'Book a meeting', new_project_meeting_path(@project.code), :class => 'add' %></li>
-    <li><%= link_to 'Features', project_features_path(@project.code), :class => 'list' %></li>
-    <li><%= link_to 'Releases', project_releases_path(@project.code), :class => 'list' %></li>
-    <li><%= link_to 'Meetings', project_meetings_path(@project.code), :class => 'list' %></li>
-    <li><%= link_to 'Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
+    <li><%= link_to 'Show Features', project_features_path(@project.code), :class => 'list' %></li>
+    <li><%= link_to 'Show Releases', project_releases_path(@project.code), :class => 'list' %></li>
+    <li><%= link_to 'Show Meetings', project_meetings_path(@project.code), :class => 'list' %></li>
+    <li><%= link_to 'Show Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
     <% unless @sprint.nil? %>
     <li><%= link_to 'Current Sprint Taskboard', taskboard_project_sprint_path(@project.code, @sprint), :class => 'taskboard' %></li>
     <li><%= link_to 'Current Sprint Burndown', burndown_project_sprint_path(@project.code, @sprint), :class => 'chart' %></li>

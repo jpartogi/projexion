@@ -1,9 +1,9 @@
 module ReleasesHelper
   def view_release_title
-    'View Release'
+    'Show Release Details'
   end
 
   def release_burndown_title
-    'View Release Burndown Chart'
+    'Show Release Burndown Chart'
   end
 end

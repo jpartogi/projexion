@@ -1,13 +1,13 @@
 module SprintsHelper
   def view_sprint_title
-    'View Sprint'
+    'Show Sprint Details'
   end
 
   def sprint_burndown_title
-    'View Sprint Burndown Chart'
+    'Show Sprint Burndown Chart'
   end
 
   def sprint_board_title
-    'View Sprint Taskboard'
+    'Show Sprint Taskboard'
   end
 end

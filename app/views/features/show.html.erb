@@ -40,7 +40,7 @@
       <p>
         <%= label_tag (:release) %><br/>  <%#TODO: Inline combo edit %>
         <%= @feature.release.version_number %>
-        <% link_to project_release_path(@project.code, @feature.release.id), :title => view_release_title do %>
+        <% link_to project_release_path(@project.code, @feature.release.id), :title => view_release_title, :rel => :tipsy do %>
           <img src="/images/icons/application_view_detail.png">
         <% end %>
       </p>
@@ -54,13 +54,13 @@
       <p>
         <%= label_tag (:sprint) %><br/> <%#TODO: Inline combo edit %>
         <%= @feature.sprint.span_date %>
-        <% link_to project_sprint_path(@project.code, @feature.sprint.id), :title => view_sprint_title do %>
+        <% link_to project_sprint_path(@project.code, @feature.sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
           <img src="/images/icons/application_view_detail.png">
         <% end %>
-        <% link_to burndown_project_sprint_path(@project.code, @feature.sprint.id), :title => sprint_burndown_title do %>
+        <% link_to burndown_project_sprint_path(@project.code, @feature.sprint.id), :title => sprint_burndown_title, :rel => :tipsy do %>
           <img src="/images/icons/chart_line.png">
         <% end %>
-        <% link_to taskboard_project_sprint_path(@project.code, @feature.sprint.id), :title => sprint_board_title do %>
+        <% link_to taskboard_project_sprint_path(@project.code, @feature.sprint.id), :title => sprint_board_title, :rel => :tipsy do %>
           <img src="/images/icons/table.png">
         <% end %>
       </p>

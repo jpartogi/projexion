@@ -39,7 +39,7 @@
         <input type="hidden" class="feature-id" name="feature-id" value="<%= feature.id %>"/>
         <td>
           <%= feature.user_story %>
-          <% link_to project_feature_path(@project.code, feature), :title => view_feature_title do %>
+          <% link_to project_feature_path(@project.code, feature), :title => view_feature_title, :rel => :tipsy do %>
             <img src="/images/icons/application_view_detail.png">
           <% end %>
         </td>
@@ -49,7 +49,7 @@
         <td style="text-align:center;">
           <% unless feature.sprint.nil? %>
             <span class="sprint"><%= feature.sprint.span_date %></span>
-            <% link_to project_sprint_path(@project.code, feature.sprint), :title => view_sprint_title do %>
+            <% link_to project_sprint_path(@project.code, feature.sprint), :title => view_sprint_title, :rel => :tipsy do %>
              <img src="/images/icons/application_view_detail.png">
             <% end %>
           <% else %>
@@ -59,7 +59,7 @@
         <td style="text-align:center;">
           <% unless feature.release.nil? %>
             <span class="release"><%= feature.release.version_number %>&nbsp;</span>
-            <% link_to project_release_path(@project.code, feature.release), :title => view_release_title do %>
+            <% link_to project_release_path(@project.code, feature.release), :title => view_release_title, :rel => :tipsy do %>
               <img src="/images/icons/application_view_detail.png">
             <% end %>
           <% else %>
