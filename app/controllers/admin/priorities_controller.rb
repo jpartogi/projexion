@@ -81,7 +81,7 @@ class Admin::PrioritiesController < ApplicationController
     @priority.destroy
 
     respond_to do |format|
-      format.html { redirect_to(admin_priorities_url) }
+      format.html { redirect_to(admin_priorities_url, :notice => 'Priority was successfully deleted.') }
       format.xml  { head :ok }
     end
   end
