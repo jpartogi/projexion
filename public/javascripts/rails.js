@@ -34,7 +34,7 @@ jQuery(function ($) {
                     $.ajax({
                         url: url,
                         data: data,
-                        dataType: 'script',
+                        dataType: 'json',
                         type: method.toUpperCase(),
                         beforeSend: function (xhr) {
                             el.trigger('ajax:loading', xhr);

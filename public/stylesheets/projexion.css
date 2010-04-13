@@ -89,7 +89,7 @@ li.info-list { margin: 1em 0 1em 0; }
 #sidebar a { text-decoration:none; display:block; padding: 0.5em 0.5em 0.5em 1.5em; font-family: Helvetica; text-shadow: 1px 1px 0 #fff; }
 #sidebar a:hover { background:white; }
 #sidebar .block { margin: 2em 0 0 .5em; }
-#sidebar h2 { margin: .5em 0 1em .25em; }
+#sidebar h2 { margin: .5em 0 1em .25em; font-family: Helvetica; text-shadow: 1px 1px 0 #fff; }
 
 #users_form { width: 100%; padding-top: 1em;  }
 #users_form fieldset { margin: 0 auto 0 auto; padding:1em; border: 1px solid #eee; width: 25%; }

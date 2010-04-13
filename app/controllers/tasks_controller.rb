@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, :json, :js
   before_filter :require_user
   
   def create
@@ -14,8 +14,12 @@ class TasksController < ApplicationController
 
     respond_with(@task) do |format|
       if @task.save
+        format.json { render :json => @task }
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
-                                  :notice => 'Task was successfully added.' }
+                                  :notice => 'Task was successfully added.'}
+      else
+        format.json { render :json => @task.errors, :status => :unprocessable_entity}
+        format.html { render :new }
       end
     end
   end
@@ -65,7 +69,7 @@ class TasksController < ApplicationController
       if @task.save
         format.json { render :json => @task }
       else
-        format.json  { render :json => @task.errors, :status => :unprocessable_entity }
+        format.json { render :json => @task.errors, :status => :unprocessable_entity }
       end
     end
   end
