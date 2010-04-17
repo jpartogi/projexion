@@ -1,17 +1,6 @@
 <div id="content">
     <script type="text/javascript">
       $(document).ready(function(){
-        $('.placeholder').ajaxError(function(e, xhr, settings, exception){
-            $(this).empty();
-            var response = xhr.responseText;
-            var obj = $.parseJSON(response);
-            $.each(obj, function(key, value) {
-              $('.placeholder').wrapInner("<div id='errorExplanation'>"+key.toUpperCase() + " " + value + "</div>");
-              $.noticeAdd(value);  
-            });
-
-        });
-
         $('.placeholder').ajaxSuccess(function(e, xhr, settings, exception){
             if(settings.url === '<%= project_feature_tasks_path(@project.code, @feature) %>'){
               $.facebox.close();
