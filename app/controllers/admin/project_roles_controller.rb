@@ -45,6 +45,12 @@ class Admin::ProjectRolesController < ApplicationController
   end
 
   def destroy
-    
+    @project_role = ProjectRole.find(params[:id])
+
+    @project_role.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_project_roles_path, :notice => 'Project role was successfully deleted.' }
+    end
   end
 end
