@@ -11,11 +11,13 @@
       <%= @priority.level %>
     </p>
 
+    <% if @priority.default %>
     <p>
-      <%= label_tag :default %><br />
-      <%= @priority.default %>
+      <%= label_tag :default_priority %>
+      <img src="/images/icons/accept.png"/>
     </p>
-
+    <% end %>
+    
     <p>
       <%= label_tag :color, 'Background color' %><br />
       <span style="padding:2px;background-color:<%= @priority.hash_color %>" class="status"><%= @priority.color %></span>
