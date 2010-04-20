@@ -1,8 +1,21 @@
 <div id="content">
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.placeholder').ajaxSuccess(function(e, xhr, settings, exception){
+            if(settings.url === '<%= project_feature_acceptances_path(@project.code, @feature) %>'){
+              $.facebox.close();
+              window.location = '<%= project_feature_path(@project.code, @feature) %>';
+            }
+        });
+      });
+    </script>
+
+    <span class="placeholder"></span>
+
     <div id="acceptance">
         <h1>Add New Acceptance Test</h1>
 
-        <% form_for @acceptance, :url => project_feature_acceptances_path(@project.code, @feature.id) do |f| %>
+        <% form_for @acceptance, :url => project_feature_acceptances_path(@project.code, @feature.id), :remote => true do |f| %>
           <%= f.error_messages %>
 
           <p>

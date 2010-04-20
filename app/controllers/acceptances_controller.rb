@@ -22,8 +22,12 @@ class AcceptancesController < ApplicationController
 
     respond_with(@acceptance) do |format|
       if @acceptance.save
+        format.json { render :json => @acceptance }
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
                                   :notice => 'Acceptance test was successfully added.' }
+      else
+        format.json { render :json => @acceptance.errors, :status => :unprocessable_entity}
+        format.html { render :new }
       end
     end
   end

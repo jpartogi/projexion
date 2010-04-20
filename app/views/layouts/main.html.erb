@@ -37,17 +37,7 @@
 
         $('#toolbar li a').corner("top");
 
-        $('*[rel=tipsy]').tipsy({fade: true, gravity: 'n'});
-
-        $('.placeholder').ajaxError(function(e, xhr, settings, exception){
-            $(this).empty();
-            var response = xhr.responseText;
-            var obj = $.parseJSON(response);
-            $.each(obj, function(key, value) {
-              $('.placeholder').wrapInner("<div id='errorExplanation'>"+key.toUpperCase() + " " + value + "</div>");
-            });
-
-        });
+        $('*[rel=tipsy]').tipsy({fade: true, gravity: 's'});
 
       });
     </script>    
