@@ -27,6 +27,10 @@ gem 'will_paginate','3.0.pre'
 # TODO: Activate whenever scheduler
 #gem "whenever", "0.4.1", :git => "git://github.com/javan/whenever.git"
 
+# To run unicorn in production:
+# $ bundle exec vendor/bin/unicorn -E production
+gem 'unicorn'
+
 # For testing
 group :test do
   gem "webrat", "0.7.1.pre", :git => 'git://github.com/brynary/webrat.git'
