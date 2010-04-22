@@ -2,7 +2,9 @@ class ProjectsController < ApplicationController
   layout 'main'
   respond_to :html, :json
   before_filter :require_user
-  
+
+  caches_page :show
+
   def index
     @projects = Project.find(:all)
   end

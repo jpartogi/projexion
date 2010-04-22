@@ -4,6 +4,8 @@ class SprintsController < ApplicationController
   before_filter :require_user
   after_filter :generate_velocities, :only => :show
 
+  caches_page :taskboard
+  
   def create
     @sprint = Sprint.new(params[:sprint])
     @project = Project.find_by_code(params[:project_id])
