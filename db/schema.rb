@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",                     :null => false
   end
 
+  add_index "acceptances", ["description"], :name => "acceptances_desc_idx"
   add_index "acceptances", ["id", "feature_id"], :name => "acceptances_idx"
 
   create_table "audits", :force => true do |t|
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "created_at",                :null => false
   end
 
+  add_index "events", ["action"], :name => "events_action_idx"
   add_index "events", ["id", "project_id", "user_id"], :name => "events_idx"
 
   create_table "feature_statuses", :force => true do |t|
@@ -55,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   create_table "features", :force => true do |t|
-    t.text     "user_story",                                       :null => false
+    t.string   "user_story",                                       :null => false
     t.decimal  "business_value",    :precision => 10, :scale => 0
     t.integer  "story_points"
     t.datetime "created_at",                                       :null => false
@@ -69,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   add_index "features", ["id", "sprint_id", "release_id", "project_id"], :name => "features_idx"
+  add_index "features", ["user_story"], :name => "features_story_idx"
 
   create_table "meeting_types", :force => true do |t|
     t.string   "name",        :limit => 50, :null => false
@@ -115,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",                                    :null => false
   end
 
+  add_index "project_members", ["project_id", "user_id", "project_role_id"], :name => "project_members_idx"
   add_index "project_members", ["project_id", "user_id"], :name => "project_members_uq", :unique => true
 
   create_table "project_roles", :force => true do |t|
@@ -133,7 +137,9 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.string   "vision",                   :null => false
   end
 
+  add_index "projects", ["code"], :name => "projects_code_idx"
   add_index "projects", ["code"], :name => "projects_uq", :unique => true
+  add_index "projects", ["name"], :name => "projects_name_idx"
 
   create_table "release_snapshots", :force => true do |t|
     t.integer  "project_id", :null => false
@@ -156,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   end
 
   add_index "releases", ["id", "project_id"], :name => "releases_idx"
+  add_index "releases", ["version_number"], :name => "releases_version_idx"
 
   create_table "sprint_snapshots", :force => true do |t|
     t.integer   "project_id",  :null => false
@@ -229,6 +236,8 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",                             :null => false
   end
 
+  add_index "users", ["email"], :name => "users_email_idx"
   add_index "users", ["login", "email"], :name => "users_uq", :unique => true
+  add_index "users", ["login"], :name => "users_login_idx"
 
 end
