@@ -3,8 +3,6 @@ class SprintsController < ApplicationController
   respond_to :html, :json
   before_filter :require_user
   after_filter :generate_velocities, :only => :show
-
-  caches_page :taskboard, :show
   
   def create
     @sprint = Sprint.new(params[:sprint])

@@ -3,8 +3,6 @@ class ReleasesController < ApplicationController
   respond_to :html, :json
   before_filter :require_user
 
-  caches_page :show
-
   def create
     @release = Release.new(params[:release])
     @project = Project.find_by_code(params[:project_id])

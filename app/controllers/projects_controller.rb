@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   before_filter :require_user
 
   caches_page :show
+  caches_action :show
 
   def index
     @projects = Project.find(:all)
