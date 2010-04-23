@@ -37,7 +37,7 @@ class FeaturesController < ApplicationController
     @feature = Feature.find(params[:id])
 
     @task = Task.new
-    @tasks = @feature.tasks
+    @tasks = @feature.tasks.includes(:user, :task_status)
 
     @project = @feature.project
     @acceptances = @feature.acceptances
@@ -80,7 +80,7 @@ class FeaturesController < ApplicationController
 
     end
 
-    @features = @features.joins(:priority) # We need to order by priority.level
+    @features = @features.includes(:sprint, :release, :priority) # We need to order by priority.level
     
     #In the end we need to paginate it.
     @features = @features.paginate(:page => params[:page], :order => 'priorities.level desc', :per_page =>20)

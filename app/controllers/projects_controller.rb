@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
 
     @features = @project.features
     @sprint = @project.current_sprint
-    @features = @features.where(["sprint_id in (?)", @sprint])
+    @features = @features.includes(:sprint, :release, :priority).where(["sprint_id in (?)", @sprint])
   end
 
 end

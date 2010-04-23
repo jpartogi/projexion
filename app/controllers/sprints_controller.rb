@@ -4,7 +4,7 @@ class SprintsController < ApplicationController
   before_filter :require_user
   after_filter :generate_velocities, :only => :show
 
-  caches_page :taskboard
+  caches_page :taskboard, :show
   
   def create
     @sprint = Sprint.new(params[:sprint])
@@ -79,7 +79,7 @@ class SprintsController < ApplicationController
     @sprint = Sprint.find(params[:id])
 
     @project = @sprint.project
-    @features = @sprint.features
+    @features = @sprint.features.includes(:sprint, :release, :priority)
 
     @meetings = Meeting.where({:sprint_id => @sprint})
   end

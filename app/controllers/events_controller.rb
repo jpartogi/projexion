@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   def more
     @projects = current_user.projects
 
-    @events = Event.all(:conditions => { :project_id => @projects },  :order => "created_at DESC", :offset => params[:offset], :limit => 10)
-
+    @events = Event.includes(:audits).where(:project_id => @projects).order("events.created_at DESC").limit(10).offset(params[:offset])
   end
 end

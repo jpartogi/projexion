@@ -2,7 +2,9 @@ class ReleasesController < ApplicationController
   layout 'main'
   respond_to :html, :json
   before_filter :require_user
-  
+
+  caches_page :show
+
   def create
     @release = Release.new(params[:release])
     @project = Project.find_by_code(params[:project_id])
@@ -66,7 +68,7 @@ class ReleasesController < ApplicationController
     @release = Release.find(params[:id])
 
     @project = @release.project
-    @features = @release.features
+    @features = @release.features.includes(:sprint, :release, :priority)
   end
 
   def index
