@@ -9,7 +9,7 @@ class Admin::ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find_by_code(params[:id])
+    @project = Project.find(params[:id])
     unauthorized! if cannot? :edit, @project
   end
 
@@ -27,7 +27,7 @@ class Admin::ProjectsController < ApplicationController
   end
   
   def update
-    @project = Project.find_by_code(params[:id])
+    @project = Project.find(params[:id])
     unauthorized! if cannot? :update, @project
 
     respond_with(@project) do |format|

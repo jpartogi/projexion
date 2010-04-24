@@ -1,6 +1,14 @@
 <div id="content">
-    <% form_for ([:admin, @project]), :url => admin_project_path do |f| %>
-      <%= f.error_messages %>
+    <% form_for ([:admin, @project]) do |f| %>
+      <% if f.object.errors.any? %>
+        <div id="errorExplanation">
+          <ul>
+          <% f.object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
 
       <p>
         <%= f.label :name %><br />
@@ -30,7 +38,7 @@
 <div id="sidebar">
   <ul>
     <% if @project.new_record? then %>
-    <li><%= link_to 'Projects', projects_path, :class => 'list' %></li>
+    <li><%= link_to 'Show Projects', projects_path, :class => 'list' %></li>
     <% else %>
     <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
     <% end %>
