@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find_by_code(params[:id])
+    @project = Project.find_by_code(params[:id]) || Project.find(params[:id])
 
     @manager = @project.manager
 

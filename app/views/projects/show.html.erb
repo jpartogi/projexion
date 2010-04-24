@@ -110,8 +110,8 @@
   <ul>
     <%# TODO: Edit and delete only if project manager %>
     <% if can? :manage, @project %>    
-    <li><%= link_to 'Edit Project', edit_admin_project_path(@project.code), :class => 'edit' %></li>
-    <li><%= link_to 'Delete Project', admin_project_path(@project.code), :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
+    <li><%= link_to 'Edit Project', edit_admin_project_path(@project), :class => 'edit' %></li>
+    <li><%= link_to 'Delete Project', admin_project_path(@project), :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <% end %>
     <li><%= link_to 'Add New Feature', new_project_feature_path(@project.code), :class => 'add' %></li>
     <li><%= link_to 'Add New Release', new_project_release_path(@project.code), :class => 'add' %></li>
