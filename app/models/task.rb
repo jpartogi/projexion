@@ -36,7 +36,7 @@ class Task < ActiveRecord::Base
         statuses_map = Hash.new
 
         task_statuses.each do |task_status|
-          puts task_status.display_name
+          logger.debug task_status.display_name
           tasks = Task.includes(:user).where(:feature_id => feature.id, :task_status_id => task_status.id)
           statuses_map.store task_status, tasks
         end
