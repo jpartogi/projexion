@@ -1,7 +1,7 @@
 <div id="users_form">
     <fieldset>
     <legend>Login</legend>
-    <% form_for @user_session do |f|%>
+    <%= form_for @user_session, :url => user_sessions_path do |f|%>
       <%= f.error_messages %>
 
       <p>
