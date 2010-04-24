@@ -2,8 +2,17 @@
     <fieldset>
     <legend>Login</legend>
     <%= form_for @user_session do |f|%>
-      <%= f.error_messages %>
 
+      <% if f.object.errors.any? %>
+        <div id="errorExplanation">
+          <ul>
+          <% f.object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+          
       <p>
         <%= f.label :login, 'Username' %><br />
         <%= f.text_field :login %>
