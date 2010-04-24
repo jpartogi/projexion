@@ -20,6 +20,8 @@
                     var toBeReplaced = jQuery(this).parent().parent();
 
                     data.id = theValue;
+                    data.child_id = theValue;
+                    data.parent_id = parent_id;
 
                     jQuery.post(options.submitURL, data, function(response){
 
