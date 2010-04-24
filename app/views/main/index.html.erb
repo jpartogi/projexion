@@ -68,7 +68,7 @@
             <% @meetings.each do |meeting| %>
             <li class="info-list">
               <strong><%= meeting.meeting_type.name %></strong>
-              <% link_to project_meeting_path(meeting.project.code, meeting) do %>
+              <%= link_to project_meeting_path(meeting.project.code, meeting) do %>
                   <img src="/images/icons/application_view_detail.png">
               <% end %><br/>
               <%= meeting.start_time %>&nbsp;(in <%= distance_of_time_in_words_to_now(meeting.start_time) %>)<br/>
@@ -94,7 +94,7 @@
               <li class="info-list">
                 <strong>Project</strong>:&nbsp;<%= task.project.name %><br/>
                 <strong>User story</strong>:&nbsp;<%= task.feature.user_story %>
-                <% link_to project_feature_path(task.project.code, task.feature) do %>
+                <%= link_to project_feature_path(task.project.code, task.feature) do %>
                   <img src="/images/icons/application_view_detail.png">
                 <% end %><br/>
                 <strong>Task</strong>:&nbsp;<%= task.description %>

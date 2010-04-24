@@ -63,7 +63,7 @@
 
   <div class="block">
       <h2>Select Sprint</h2>
-      <% form_for @sprint, :url => { :action => :taskboard } do |f| %>
+      <%= form_for @sprint, :url => { :action => :taskboard } do |f| %>
         <%= f.collection_select(:id, @sprints, :id, :span_date) %>
 
         <%= f.submit 'Show' %>

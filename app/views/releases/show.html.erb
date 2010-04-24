@@ -33,13 +33,13 @@
       <% @release.sprints.each do |sprint| %>
         <li>
           <%= sprint.span_date %>
-          <% link_to project_sprint_path(@project.code, sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
+          <%= link_to project_sprint_path(@project.code, sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
               <img src="/images/icons/application_view_detail.png">
           <% end %>
-          <% link_to burndown_project_sprint_path(@project.code, sprint.id), :title => sprint_burndown_title, :rel => :tipsy do %>
+          <%= link_to burndown_project_sprint_path(@project.code, sprint.id), :title => sprint_burndown_title, :rel => :tipsy do %>
             <img src="/images/icons/chart_line.png">
           <% end %>
-          <% link_to taskboard_project_sprint_path(@project.code, sprint.id), :title => sprint_board_title, :rel => :tipsy do %>
+          <%= link_to taskboard_project_sprint_path(@project.code, sprint.id), :title => sprint_board_title, :rel => :tipsy do %>
             <img src="/images/icons/table.png">
           <% end %>
         </li>
