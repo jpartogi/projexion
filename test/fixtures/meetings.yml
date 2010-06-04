@@ -1,7 +1,7 @@
 retrospective:
   id: 1
-  start_time: <%= Date.today + 10.days %>
-  end_time: <%= Date.today + 10.days %>
+  start_time: 2010-06-01
+  end_time: 2010-06-01
   meeting_type_id: 1
   location: Meeting room 2nd floor
   project_id: 1

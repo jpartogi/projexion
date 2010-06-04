@@ -20,11 +20,3 @@ three:
   project_id: 1
   release_id: 1
   goal: Create a usable product
-
-
-current:
-  id: 4
-  start_date: <%= Date.today - 2.days %>
-  end_date: <%= Date.today + 12.days %>
-  project_id: 1
-  release_id: 1
