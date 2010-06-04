@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.datetime "updated_at",                                       :null => false
     t.integer  "sprint_id"
     t.integer  "release_id"
-    t.string   "changes"
     t.integer  "priority_id",                                      :null => false
     t.integer  "project_id",                                       :null => false
     t.integer  "feature_status_id",                                :null => false

@@ -29,7 +29,7 @@ gem 'will_paginate','3.0.pre'
 
 # To run unicorn in production:
 # $ bundle exec vendor/bin/unicorn -E production
-gem 'unicorn'
+# gem 'unicorn'
 
 # For testing
 group :test do

@@ -2,54 +2,57 @@
 
 <b>Free and easy to use agile management tool</b>
 
-Currently still under development. Stay tuned. Our plan is to have a demo on April 2010
-
 Dependencies:
 
 Required 3rd party tools
 - Git (http://git-scm.org)
+    sudo apt-get install git-core
 - MariaDB (http://mariadb.org)
-- Ruby 1.9.1,
-        apt-get install ruby1.9.1 # Otherwise Rails3 won't work
-        apt-get install rdoc-1.9.1
-        apt-get install ruby1.9.1-dev
-        apt-get install libopenssl-ruby1.9.1
-- RubyGems (http://rubygems.org)
+    Add mariadb-ourdelta to /etc/apt/sources.list:
+      deb http://master.ourdelta.org/deb/ lucid mariadb-ourdelta
+    sudo apt-get update
+    sudo apt-get install mariadb-server
+    sudo apt-get install libmariadbclient-dev
+- Ruby 1.9.1
+    sudo apt-get install ruby1.9.1 # Otherwise Rails3 won't work. Rack has issues with Ruby 1.9.0 use Ruby 1.9.1
+    sudo apt-get install rdoc1.9.1
+    sudo apt-get install ruby1.9.1-dev
+    sudo apt-get install libopenssl-ruby1.9.1
+    sudo apt-get install zlibg-dev
+- SQLite3
+    sudo apt-get install sqlite3
+    sudo apt-get install libsqlite3-dev
+- Libraries for Nokogiri
+    sudo apt-get install libxml2-dev
+    sudo apt-get install libxslt-dev
+    
+ln -s /usr/bin/ruby1.9.1 /usr/bin/ruby
 
- ln /usr/bin/        
+Install RubyGems (http://rubygems.org)
+    
 
 Gems:
-- Install Rspec using `gem install rspec`. RSpec is required for bundler.
-- Checkout bundler from http://github.com/carlhuda/bundler
-- Run `rake gemspec` from bundler top directory to install bundler
-- Once the gemspec is created, run `gem install bundler.gemspec` 
+- sudo gem install bundler
 
 The rest of the gems dependencies is picked up using `bundle install vendor` command from bundler
 
-Install these native libraries dependencies:
-- sqlite3		# Database for unit testing
-- sqlite3-devel (OpenSUSE) / libsqlite3-dev (Ubuntu) # Database for unit testing
-- libxml2-devel (OpenSUSE) / libxml2-dev (Ubuntu) # For nokogiri
-- libxslt-devel (OpenSUSE) / libxslt-dev (Ubuntu # For nokogiri
-- mysql-devel / libmariadbclient-dev	# For the ruby mysql driver
-- ruby1.9.1-dev # for building native extensions
+Database
+- mysql
+- create database projexion;
+- create user projexion;
+- grant all on projexion.* to 'projexion'@'localhost' identified by 'password';
 
 Installation:
-
-Install database (MariaDB)
-Install bundler
 bundle install vendor
 
 Configuration
 - Rename config/database.yml.sample to config/database.yml
 - Change the database configuration values at config/database.yml
 
-
-Database
-- rake db:create 	# If database has not been created yet
-- rake db:schema:load
-- rake db:fixtures:load (rake db:seed) 		# Optional. To populate sample data.
-
+Rake tasks:    
+- bundle exec rake db:create 	# If database has not been created yet
+- bundle exec rake db:schema:load
+- bundle exec rake db:fixtures:load (or bundle exec rake db:seed) 		# Optional. To populate sample data.
 
 Run the application
 $ script/rails server
@@ -63,3 +66,9 @@ password: admin
 
 Run cron for generating daily sprint burndown:
 bundle exec whenever
+
+Production server:
+Passenger  
+Additional required gem by passenger:
+- sudo gem install rake
+- sudo gem install rack
