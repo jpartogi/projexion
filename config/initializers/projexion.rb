@@ -1,3 +1,3 @@
 require 'yaml'
 
-APPLICATION = YAML.load_file("#{Rails.root}/config/app.yml").symbolize_keys
+APPLICATION = YAML.load_file("#{Rails.root}/config/projexion.yml").symbolize_keys
