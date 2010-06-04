@@ -13,8 +13,7 @@ class MainController < ApplicationController
       @events = Event.includes(:audits).where(:project_id => @projects).order("events.created_at DESC").limit(10)
 
       # TODO: Limit this. Use batch?
-      @meetings = Meeting.includes(:project, :meeting_type).where(["start_time > ? and project_id in (?)", Time.now, @projects])
-                    .order('meetings.start_time')
+      @meetings = Meeting.includes(:project, :meeting_type).where(["start_time > ? and project_id in (?)", Time.now, @projects]).order('meetings.start_time')
 
       # TODO: Limit this. 
       @tasks = Task.includes(:feature, :project).where(:user_id => current_user)
