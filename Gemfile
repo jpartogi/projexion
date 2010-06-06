@@ -27,13 +27,18 @@ gem 'will_paginate','3.0.pre'
 # TODO: Activate whenever scheduler
 #gem "whenever", "0.4.1", :git => "git://github.com/javan/whenever.git"
 
+# If you are running passenger in production, make sure to remark the lines below.
 # To run unicorn in production:
 # $ bundle exec vendor/bin/unicorn -E production
 # gem 'unicorn'
 
+# To run thin in production:
+# $ bundle exec vendor/bin/thin start
+# gem 'thin'
+
 # For testing
 group :test do
-  gem "webrat", "0.7.2.pre", :git => 'git://github.com/brynary/webrat.git'
+  gem "webrat", "0.7.2.pre", :git => 'git://github.com/scrum8/webrat.git'
   gem "shoulda", :git => 'git://github.com/thoughtbot/shoulda.git', :require => nil
   gem "factory_girl", :git => 'git://github.com/thoughtbot/factory_girl.git', :require => nil
   gem "cucumber"
