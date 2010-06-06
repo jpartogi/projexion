@@ -2,9 +2,6 @@ class MainController < ApplicationController
     respond_to :html, :json
     before_filter :require_user, :only => :index
 
-    caches_page :index
-    caches_action :index
-
     def index
       @projects = current_user.projects
 
