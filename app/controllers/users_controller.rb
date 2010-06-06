@@ -2,8 +2,6 @@ class UsersController < ApplicationController
   respond_to :html, :json
   before_filter :require_user, :except => [:new, :create]
 
-  caches_page :new
-
   def index
     @users = User.all
     render :layout => "main" 
