@@ -8,4 +8,5 @@ vendor/
 db/migrate/*
 db/projexion
 config/database.yml
+*.log
 
