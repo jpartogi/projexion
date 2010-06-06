@@ -22,6 +22,8 @@ Required 3rd party tools
 - SQLite3
     sudo apt-get install sqlite3
     sudo apt-get install libsqlite3-dev
+- Mail server - exim4 (http://exim4.org/)    
+    sudo apt-get install exim4
 - Libraries for Nokogiri
     sudo apt-get install libxml2-dev
     sudo apt-get install libxslt-dev
@@ -57,7 +59,7 @@ Rake tasks:
 Run the application
 $ script/rails server
 
-Play around with the application from your web browser at http://localhost:3000
+Play around with the application from your web browser at: http://localhost:3000
 
 If you ran the `rake db:seed` command, a default user should have been created for you.
 You can login to the application using this user account:
@@ -67,8 +69,14 @@ password: admin
 Run cron for generating daily sprint burndown:
 bundle exec whenever
 
-Production server:
-Passenger  
-Additional required gem by passenger:
+Setup mail server:
+- exim4
+  sudo dpkg-reconfigure exim4-config
+  test sending email: exim4 -i "receiver.email@foo.com" message
+
+Production web server:
+1. Passenger (http://modrails.com)
+Additional gem required by passenger:
 - sudo gem install rake
 - sudo gem install rack
+Make sure to disable unicorn and thin on Gemfile when using Passenger on production otherwise you will get funny errors.  
