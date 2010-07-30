@@ -1,6 +1,6 @@
 class MainController < ApplicationController
     respond_to :html, :json
-    before_filter :require_user, :only => :index
+    before_filter :authenticate_user!
 
     def index
       @projects = current_user.projects

@@ -1,15 +1,16 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# This file is auto-generated from the current state of the database. Instead 
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your 
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091013000428) do
+ActiveRecord::Schema.define(:version => 20100730124138) do
 
   create_table "acceptances", :force => true do |t|
     t.string   "description",                    :null => false
@@ -22,6 +23,13 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
   add_index "acceptances", ["description"], :name => "acceptances_desc_idx"
   add_index "acceptances", ["id", "feature_id"], :name => "acceptances_idx"
 
+  create_table "accounts", :force => true do |t|
+    t.string   "subdomain",  :limit => 100, :null => false
+    t.string   "time_zone",  :limit => 100
+    t.datetime "created_at",                :null => false
+    t.text     "updated_at",                :null => false
+  end
+
   create_table "audits", :force => true do |t|
     t.string   "old_value",     :null => false
     t.string   "new_value",     :null => false
@@ -31,6 +39,15 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.string   "event_id"
     t.datetime "updated_at",    :null => false
     t.datetime "created_at",    :null => false
+  end
+
+  create_table "discussions", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.string   "title",      :limit => 100, :null => false
+    t.text     "content",                   :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "events", :force => true do |t|
@@ -106,6 +123,13 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
     t.boolean  "default",                    :default => false, :null => false
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
+  end
+
+  create_table "products", :force => true do |t|
+    t.string  "name",        :limit => 100, :null => false
+    t.text    "description"
+    t.integer "account_id"
+    t.string  "website",     :limit => 256
   end
 
   create_table "project_members", :force => true do |t|
@@ -210,33 +234,24 @@ ActiveRecord::Schema.define(:version => 20091013000428) do
 
   add_index "tasks", ["id", "project_id", "feature_id", "sprint_id", "task_status_id"], :name => "tasks_idx"
 
-  create_table "user_sessions", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "users", :force => true do |t|
-    t.string   "login",                                  :null => false
-    t.string   "email",                                  :null => false
-    t.string   "crypted_password",                       :null => false
-    t.string   "password_salt",                          :null => false
-    t.string   "persistence_token",                      :null => false
-    t.string   "single_access_token",                    :null => false
-    t.string   "perishable_token",                       :null => false
-    t.integer  "login_count",         :default => 0,     :null => false
-    t.integer  "failed_login_count",  :default => 0,     :null => false
-    t.boolean  "admin",               :default => false, :null => false
-    t.datetime "last_request_at"
-    t.datetime "current_login_at"
-    t.datetime "last_login_at"
-    t.string   "current_login_ip"
-    t.string   "last_login_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "account_id",                                          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], :name => "users_email_idx"
-  add_index "users", ["login", "email"], :name => "users_uq", :unique => true
-  add_index "users", ["login"], :name => "users_login_idx"
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

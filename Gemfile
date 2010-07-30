@@ -15,8 +15,9 @@ gem "rails", :git => 'git://github.com/rails/rails.git' # Rails 3.0.0.beta3
 gem "mysql"
 
 # For security
-gem "authlogic", :git => 'git://github.com/scrum8/authlogic.git'
+#gem "authlogic", :git => 'git://github.com/scrum8/authlogic.git'
 #gem "authlogic", :git => 'git://github.com/binarylogic/authlogic.git'
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 #gem "declarative_authorization", :git => 'git://github.com/stffn/declarative_authorization.git'
 gem "cancan", :git => 'git://github.com/ryanb/cancan.git'
 

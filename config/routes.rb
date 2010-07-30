@@ -1,16 +1,10 @@
 Projexion::Application.routes.draw do |map|
-  resources :priorities
-
-  resources :users, :except => [:index, :destroy] do
-  	member do
-  	  get :change_password
-  	end
-  end
-
-  resources :user_sessions
+  devise_for :users, :controllers => { :sessions => 'users/sessions',
+                                       :registrations => 'users/registrations',
+                                       :passwords => 'users/passwords',
+                                       :confirmations => 'users/confirmations'}
   
-  match 'login' => 'user_sessions#new', :as => 'login'
-  match 'logout' => 'user_sessions#destroy', :as => 'logout'
+  resources :priorities
 
   match 'admin' => 'admin#index', :as => 'admin'
   match 'projects/:project_id/sprints/taskboard' => 'sprints#taskboard', :as => :taskboard
@@ -75,6 +69,12 @@ Projexion::Application.routes.draw do |map|
     end
   end
 
+  resources :users, :except => [:index,  :destroy] do
+  	member do
+  	  get :change_password
+  	end
+  end
+
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|
   #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
@@ -82,7 +82,6 @@ Projexion::Application.routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  #map.root :controller => "main"
   root :to => "main#index"
 
   # See how all your routes lay out with "rake routes"
