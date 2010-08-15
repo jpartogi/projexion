@@ -13,13 +13,15 @@ gem "rails", :git => 'git://github.com/rails/rails.git' # Rails 3.0.0.beta3
 
 # Database drivers
 gem "mysql"
+gem 'bson_ext'
+gem 'mongoid', "2.0.0.beta.16"
 
 # For security
 #gem "authlogic", :git => 'git://github.com/scrum8/authlogic.git'
 #gem "authlogic", :git => 'git://github.com/binarylogic/authlogic.git'
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 #gem "declarative_authorization", :git => 'git://github.com/stffn/declarative_authorization.git'
-gem "cancan", :git => 'git://github.com/ryanb/cancan.git'
+gem "cancan"
 
 #gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git'
 gem 'will_paginate','3.0.pre'
@@ -40,8 +42,8 @@ gem 'will_paginate','3.0.pre'
 # For testing
 group :test do
   gem "webrat", "0.7.2.pre", :git => 'git://github.com/scrum8/webrat.git'
-  gem "shoulda", :git => 'git://github.com/thoughtbot/shoulda.git', :require => nil
-  gem "factory_girl", :git => 'git://github.com/thoughtbot/factory_girl.git', :require => nil
+  gem "shoulda"
+  gem "factory_girl"
   gem "cucumber"
   gem "sqlite3-ruby"
   gem "rack-test"
