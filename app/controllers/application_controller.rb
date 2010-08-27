@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # helper :all # include all helpers, all the time
   include UrlHelper
   
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  #protect_from_forgery # See ActionController::RequestForgeryProtection for details
   before_filter :set_current_account
 
   # Scrub sensitive parameters from your log
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   private
     def set_current_account
       unless request.subdomains.empty?
-        @current_account = Account.find_by_subdomain!(request.subdomains.first)
+        @current_account = Account.find_or_initialize_by(:subdomain => request.subdomains.first)
       end
     end
 end

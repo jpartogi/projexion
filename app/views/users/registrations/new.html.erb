@@ -12,6 +12,8 @@
     <div><%= f.label :password %><br />
     <%= f.password_field :password %></div>
 
+    <%= f.hidden_field :account_id, :value => @current_account.id %>
+
     <div><%= f.submit "Register" %></div>
   <% end %>
 

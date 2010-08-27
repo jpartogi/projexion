@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :json
-  before_filter :require_user, :except => [:new, :create]
+  before_filter :authenticate_user!, :except => [:new, :create, :edit, :update]
 
   def index
     @users = User.all
@@ -22,11 +22,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_or_initialize_by(:id => params[:id])
 
-    unauthorized! unless @user == current_user
+    #authorize! @user
 
-    render :layout => "main" 
+    render :layout => "site" 
   end
 
   def create
