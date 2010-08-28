@@ -7,80 +7,88 @@ Projexion::Application.routes.draw do
                                        :confirmations => 'users/confirmations'}
 
     root :to => "main#index"
-    
+
+    resources :priorities
+
+    match 'admin' => 'admin#index', :as => 'admin'
+    match 'projects/:project_id/sprints/taskboard' => 'sprints#taskboard', :as => :taskboard
+
+    match 'projects/:project_id/sprints/burndown' => 'sprints#burndown', :as => :burndown_sprint # For ajax
+
+    match 'projects/:project_id/releases/burndown' => 'releases#burndown', :as => :burndown_release # For ajax
+
+    resources :projects do
+      resources :features do
+        resources :tasks, :acceptances
+
+        member do
+          post :list
+        end
+      end
+
+      resources :releases do
+        member do
+          put :release
+          get :burndown
+          get :notes
+        end
+      end
+
+      resources :sprints do
+        member do
+          get :burndown
+          get :taskboard
+          put :cancel
+        end
+      end
+
+      resources :meetings do
+        member do
+          delete :cancel
+        end
+      end
+    end
+
+    namespace :admin do
+      resources :users do
+        member do
+          get :project
+          put	:activate
+          delete :deactivate
+        end
+
+        collection do
+          post :project
+        end
+      end
+
+      resources :priorities
+      resources :projects do
+        member do
+          get :add_user
+          put :save_user
+        end
+      end
+      resources :project_roles
+      resources :project_members
+      resources :feature_statuses
+      resources :task_statuses
+      resources :meeting_types
+    end
+
+    resources :project_roles do
+      member do
+        get :get_options
+      end
+    end
+
+    resources :users, :except => [:index,  :destroy] do
+      member do
+        get :change_password
+      end
+    end
   end
   
-  resources :priorities
-
-  match 'admin' => 'admin#index', :as => 'admin'
-  match 'projects/:project_id/sprints/taskboard' => 'sprints#taskboard', :as => :taskboard
-
-  match 'projects/:project_id/sprints/burndown' => 'sprints#burndown', :as => :burndown_sprint # For ajax
-
-  match 'projects/:project_id/releases/burndown' => 'releases#burndown', :as => :burndown_release # For ajax
-
-  resources :projects do
-    resources :features do
-      resources :tasks, :acceptances
-
-      member do
-        post :list
-      end
-    end
-
-    resources :releases do
-      member do
-        put :release
-        get :burndown
-        get :notes
-      end
-    end
-
-    resources :sprints do
-      member do
-        get :burndown
-        get :taskboard
-        put :cancel
-      end
-    end
-
-    resources :meetings do
-      member do
-        delete :cancel
-      end
-    end
-  end
-
-  namespace :admin do  
-  	resources :users do
-      member do
-        get :project
-      	put	:activate
-        delete :deactivate
-      end
-    end
-
-    resources :priorities  
-    resources :projects  
-    resources :project_roles
-    resources :project_members
-    resources :feature_statuses
-    resources :task_statuses
-    resources :meeting_types  
-  end
-
-  resources :project_roles do
-    member do
-      get :get_options
-    end
-  end
-
-  resources :users, :except => [:index,  :destroy] do
-  	member do
-  	  get :change_password
-  	end
-  end
-
   resources :accounts
 
   # Sample resource route within a namespace:
