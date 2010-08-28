@@ -1,7 +1,6 @@
 class Admin::ProjectRolesController < ApplicationController
-  layout 'main'
   respond_to :html
-  before_filter :require_user
+  before_filter :authenticate_user!
   load_and_authorize_resource
   	
   def index
@@ -17,11 +16,12 @@ class Admin::ProjectRolesController < ApplicationController
   end
 
   def new
-	@project_role = ProjectRole.new
+	  @project_role = ProjectRole.new
   end
 
   def create
-	@project_role = ProjectRole.new(params[:project_role])
+	  @project_role = ProjectRole.new(params[:project_role])
+    @project_role.account = @current_account
 
     respond_with(@project_role) do |format|
       if @project_role.save

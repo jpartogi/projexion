@@ -1,6 +1,6 @@
 class ProjectRolesController < ApplicationController
   respond_to :html
-  before_filter :require_user
+  before_filter :authenticate_user!
   
   # Ajax actions
   def get_options

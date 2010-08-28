@@ -1,6 +1,6 @@
 class AcceptancesController < ApplicationController
   respond_to :html, :json
-  before_filter :require_user
+  before_filter :authenticate_user!
   
   def new
     @feature = Feature.find(params[:feature_id])

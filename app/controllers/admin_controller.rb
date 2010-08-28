@@ -1,6 +1,5 @@
 class AdminController < ApplicationController
-  layout 'main'
-  before_filter :require_user
+  before_filter :authenticate_user!
   load_and_authorize_resource
   
   def index

@@ -1,10 +1,9 @@
 class MeetingsController < ApplicationController
-  layout 'main'
   respond_to :html, :json
-  before_filter :require_user
+  before_filter :authenticate_user!
 
   def index
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
 
     @meetings = Meeting.all(:conditions => { :project_id => @project.id }, :order => "start_time desc")
   end
@@ -39,24 +38,25 @@ class MeetingsController < ApplicationController
   end
 
   def new
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
 
     @meeting = Meeting.new
 
-    @meeting_types = MeetingType.all
+    @meeting_types = @current_account.meeting_types
   end
 
   def create
     @meeting = Meeting.new(params[:meeting])
 
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
 
-    @sprint = Sprint.first(:conditions => ['start_date < ? and end_date > ? and project_id = ?',
-                            @meeting.start_time, @meeting.end_time, @project])
+    @sprint = Sprint.first(:conditions => {:start_date.lt => @meeting.start_time, :end_date.gt => @meeting.end_time, :project_id => @project.id})
     
     @meeting.project = @project
     @meeting.sprint = @sprint
 
+    @meeting_types = @current_account.meeting_types
+    
     respond_with(@meeting) do |format|
       if @meeting.save
         format.html { redirect_to project_meeting_path(params[:project_id], @meeting),

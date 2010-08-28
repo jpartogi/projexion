@@ -1,15 +1,14 @@
 class FeaturesController < ApplicationController
-  layout 'main'
   respond_to :html, :json
-  before_filter :require_user
+  before_filter :authenticate_user!
 
   #TODO: functional test
   def create
     @feature = Feature.new(params[:feature])
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
     @feature.project = @project
     @feature.acceptances = Acceptance.to_a(params[:acceptance_test])
-    @priorities = Priority.all(:order => "level")
+    @priorities = Priority.asc(:level)
     @sprints = @project.active_sprints
 
     @releases = @project.active_releases
@@ -26,8 +25,8 @@ class FeaturesController < ApplicationController
 
   def new
     @feature = Feature.new
-    @project = Project.find_by_code(params[:project_id])
-    @priorities = Priority.all(:order => "level")
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
+    @priorities = Priority.asc(:level)
     @sprints = @project.active_sprints
 
     @releases = @project.active_releases
@@ -48,7 +47,7 @@ class FeaturesController < ApplicationController
   def index
     @feature = Feature.new(params[:feature]) || Feature.new # for search
 
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
     @sprints = Sprint.find_all_by_project_id(@project, :order => 'start_date desc')
     @releases = Release.find_all_by_project_id(@project)
     @feature_statuses = FeatureStatus.all

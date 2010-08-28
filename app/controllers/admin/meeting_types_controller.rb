@@ -1,7 +1,6 @@
 class Admin::MeetingTypesController < ApplicationController
-  layout 'main'
   respond_to :html
-  before_filter :require_user
+  before_filter :authenticate_user!
   load_and_authorize_resource
   
   def index
@@ -22,6 +21,7 @@ class Admin::MeetingTypesController < ApplicationController
 
   def create
     @meeting_type = MeetingType.new(params[:meeting_type])
+    @meeting_type.account = @current_account
 
     respond_with(@meeting_type) do |format|
       if @meeting_type.save

@@ -1,16 +1,15 @@
 class SprintsController < ApplicationController
-  layout 'main'
   respond_to :html, :json
-  before_filter :require_user
+  before_filter :authenticate_user!
   after_filter :generate_velocities, :only => :show
   
   def create
     @sprint = Sprint.new(params[:sprint])
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
     @sprint.project = @project
     
     @releases = @project.active_releases # Just in case error message is thrown
-
+    puts @sprint.start_date
     respond_with(@sprint) do |format|
       if @sprint.save
         format.html { redirect_to project_sprint_path(params[:project_id], @sprint),
@@ -22,7 +21,7 @@ class SprintsController < ApplicationController
   end
 
   def new
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
 
     @releases = @project.active_releases
     
@@ -77,13 +76,13 @@ class SprintsController < ApplicationController
     @sprint = Sprint.find(params[:id])
 
     @project = @sprint.project
-    @features = @sprint.features.includes(:sprint, :release, :priority)
+    @features = @sprint.features
 
     @meetings = Meeting.where({:sprint_id => @sprint})
   end
 
   def index
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
     
     @sprints = @project.sprints
     @sprints = @sprints.paginate(:page => params[:page], :order => 'start_date desc', :per_page =>20)
@@ -96,7 +95,7 @@ class SprintsController < ApplicationController
   end
 
   def taskboard
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
 
     @sprints = @project.sprints # For the sprint dropdown selector
 
@@ -110,7 +109,7 @@ class SprintsController < ApplicationController
   end
 
   def burndown
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
 
     @sprints = @project.sprints # For the sprint dropdown selector
     

@@ -1,7 +1,6 @@
 class Admin::UsersController < ApplicationController
-  layout 'main'
   respond_to :html, :json
-  before_filter :require_user
+  before_filter :authenticate_user!
   load_and_authorize_resource
   
   def index

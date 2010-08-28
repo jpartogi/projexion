@@ -1,7 +1,6 @@
 class Admin::PrioritiesController < ApplicationController
-  layout 'main'
   respond_to :html
-  before_filter :require_user
+  before_filter :authenticate_user!
   load_and_authorize_resource
   
   # GET /admin_priorities

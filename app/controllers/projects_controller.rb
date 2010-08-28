@@ -1,14 +1,13 @@
 class ProjectsController < ApplicationController
-  layout 'main'
   respond_to :html, :json
-  before_filter :require_user
+  before_filter :authenticate_user!
 
   def index
-    @projects = Project.find(:all)
+    @projects = @current_account.projects
   end
 
   def show
-    @project = Project.find_by_code(params[:id]) || Project.find(params[:id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:id]) || @current_account.projects.find(params[:id])
 
     @manager = @project.manager
 
@@ -18,7 +17,7 @@ class ProjectsController < ApplicationController
 
     @features = @project.features
     @sprint = @project.current_sprint
-    @features = @features.includes(:sprint, :release, :priority).where(["sprint_id in (?)", @sprint])
+    @features = @features.where(:sprint_id => @sprint)
   end
 
 end

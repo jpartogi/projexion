@@ -1,11 +1,10 @@
 class ReleasesController < ApplicationController
-  layout 'main'
   respond_to :html, :json
-  before_filter :require_user
+  before_filter :authenticate_user!
 
   def create
     @release = Release.new(params[:release])
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
     @release.project = @project
 
     respond_to do |format|
@@ -19,7 +18,7 @@ class ReleasesController < ApplicationController
   end
 
   def new
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
     
     @release = Release.new # For the form    
   end
@@ -66,11 +65,11 @@ class ReleasesController < ApplicationController
     @release = Release.find(params[:id])
 
     @project = @release.project
-    @features = @release.features.includes(:sprint, :release, :priority)
+    @features = @release.features
   end
 
   def index
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
 
     @releases = @project.releases
     @releases = @releases.paginate(:page => params[:page], :per_page =>20)
@@ -95,7 +94,7 @@ class ReleasesController < ApplicationController
   end
 
   def burndown
-    @project = Project.find_by_code(params[:project_id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
 
     @releases = @project.releases # For the release dropdown selector
 

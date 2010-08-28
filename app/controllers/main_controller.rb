@@ -6,13 +6,19 @@ class MainController < ApplicationController
       @projects = current_user.projects
 
       params[:next_offset] = 11
+      project_ids = []
+      @projects.each do |project|
+        project_ids << project.id
+      end
       #Events initial list only. The rest is fetched using ajax on EventsController
-      @events = Event.includes(:audits).where(:project_id => @projects).order("events.created_at DESC").limit(10)
-
+      @events = Event.where(:project_id => project_ids).desc("created_at").limit(10)
+              
       # TODO: Limit this. Use batch?
-      @meetings = Meeting.includes(:project, :meeting_type).where(["start_time > ? and project_id in (?)", Time.now, @projects]).order('meetings.start_time')
+#      @meetings = Meeting.where(["start_time > ? and project_id in (?)", Time.now, @projects]).order('meetings.start_time')
+      @meetings = Meeting.where(:project_id => project_ids)
 
       # TODO: Limit this. 
-      @tasks = Task.includes(:feature, :project).where(:user_id => current_user)
+#      @tasks = Task.includes(:feature, :project).where(:user_id => current_user)
+      @tasks = Task.where(:project_id => project_ids)
     end
 end

@@ -1,11 +1,18 @@
 class Admin::ProjectsController < ApplicationController
-  layout 'main'
   respond_to :html, :json
-  before_filter :require_user
-  
+  before_filter :authenticate_user!
+
+  def index
+
+  end
+
+  def show
+    @project = Project.find_or_initialize_by(:code => params[:id])
+  end
+
   def new
     @project = Project.new
-    unauthorized! if cannot? :create, @project
+    #authorize! :create, @project
   end
 
   def edit
@@ -15,7 +22,8 @@ class Admin::ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
-    unauthorized! if cannot? :create, @project
+    @project.account = @current_account
+    #authorize! :create, @project
     
     respond_with(@project) do |format|
       if @project.save
@@ -46,6 +54,24 @@ class Admin::ProjectsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to admin_path, :notice => 'Project was successfully deleted.' }
+    end
+  end
+
+  def add_user
+    @project = Project.find_or_initialize_by(:code => params[:id])
+    @users = @current_account.users
+  end
+
+  def save_user
+    @project = Project.find(params[:id])
+    @project.users << User.find(params[:project][:users])
+    puts User.find(params[:project][:users])
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to admin_project_path(@project.code), :notice => 'User was successfully added.' }  
+      else
+        format.html { render :add_user }
+      end
     end
   end
 end

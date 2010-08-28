@@ -4,10 +4,14 @@ class AccountsController < SiteController
 
   def new
     @account = Account.new
+    @user = User.new
   end
 
   def create
-    @account = Account.new(params[:account])
+    @user = User.new(params[:account][:users_attributes])
+    params[:account].delete :users_attributes
+    @account = Account.create(params[:account])
+    @account.users << @user
 
     respond_to do |format|
       if @account.save
