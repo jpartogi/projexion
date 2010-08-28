@@ -7,6 +7,8 @@ class Priority
   field :level, :type => Integer
   field :default, :type => Boolean
 
+  referenced_in :account
+  
   references_many :features
 
   validates_presence_of :display_name, :color, :level

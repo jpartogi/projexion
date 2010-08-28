@@ -6,6 +6,8 @@ class MeetingType
   field :occurrence
   field :description
 
+  referenced_in :account
+
   references_many :meetings
 
   validates_presence_of :name, :description

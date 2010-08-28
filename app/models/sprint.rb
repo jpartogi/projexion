@@ -2,8 +2,8 @@ class Sprint
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :start_date, :type => Date
-  field :end_date, :type => Date
+  field :start_date, :type => Time
+  field :end_date, :type => Time
   field :velocities, :type => Integer
   field :goal
   field :cancelled_at, :type => Integer
@@ -18,9 +18,9 @@ class Sprint
 #  belongs_to :release
 #  has_many :features
 
-  validate :start_date_must_not_exists, :end_date_must_not_exists, :start_date_must_be_earlier_than_end_date
+  #validate :start_date_must_not_exists, :end_date_must_not_exists, :start_date_must_be_earlier_than_end_date
 
-  validates_presence_of :start_date, :end_date, :release
+  #validates_presence_of :start_date, :end_date, :release
 
   def span_date
     "#{self.start_date.to_formatted_s} - #{self.end_date.to_formatted_s}"
@@ -49,13 +49,12 @@ class Sprint
   end
 
   def start_date_must_be_earlier_than_end_date
-    errors.add(:start_date, "must not be later than end date") if self.start_date > self.end_date
+    errors.add(:start_date, "must not be later than end date") if start_date > end_date
   end
 
   private
     def validate_span_date
-      sprints = Sprint.where(["(start_date <= ? and end_date >= ?) and project_id = ?",
-                            self.end_date, self.end_date, self.project])
+      sprints = Sprint.where(:start_date.lte => self.end_date, :end_date.gte => self.end_date)
 
       unless self.new_record?
         sprints = sprints.where(["id <> ?", self.id])

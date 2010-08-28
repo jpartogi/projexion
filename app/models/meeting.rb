@@ -2,9 +2,11 @@ class Meeting
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  key :start_time, :type => Date
-  key :end_time, :type => Date
-  key :canceled_at, :type => Date
+  field :start_time, :type => Time
+  field :end_time, :type => Time
+  field :canceled_at, :type => Time
+  field :location
+  field :additionals
 
   key :project_id
 
