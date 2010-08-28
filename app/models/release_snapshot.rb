@@ -1,7 +1,10 @@
-class ReleaseSnapshot < ActiveRecord::Base
-  belongs_to :project
-  belongs_to :release
-  belongs_to :sprint
+class ReleaseSnapshot
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  referenced_in :project
+  referenced_in :release
+  referenced_in :sprint
 
   class << self
     def generate(release)

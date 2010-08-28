@@ -1,12 +1,27 @@
-class Feature < ActiveRecord::Base
-  belongs_to :sprint
-  belongs_to :release
-  belongs_to :priority
-  belongs_to :project
-  belongs_to :feature_status
-  has_many :tasks
-  has_many :acceptances
-  #TODO: Delete cascade or soft delete?
+class Feature
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :user_story
+  field :business_value, :type => Float
+  field :story_points, :type => Integer
+  
+  referenced_in :sprint
+  referenced_in :release
+  referenced_in :priority
+  referenced_in :project
+  referenced_in :feature_status
+  references_many :tasks
+  references_many :acceptances
+
+#  belongs_to :sprint
+#  belongs_to :release
+#  belongs_to :priority
+#  belongs_to :project
+#  belongs_to :feature_status
+#  has_many :tasks
+#  has_many :acceptances
+#  #TODO: Delete cascade or soft delete?
 
   validates_presence_of :user_story, :business_value, :story_points, :priority
   validates_numericality_of :business_value, :story_points

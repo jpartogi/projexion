@@ -1,7 +1,22 @@
-class Sprint < ActiveRecord::Base
-  belongs_to :project
-  belongs_to :release
-  has_many :features
+class Sprint
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :start_date, :type => Date
+  field :end_date, :type => Date
+  field :velocities, :type => Integer
+  field :goal
+  field :cancelled_at, :type => Integer
+
+  referenced_in :project
+  referenced_in :release
+
+  references_many :features
+  references_many :meetings
+
+#  belongs_to :project
+#  belongs_to :release
+#  has_many :features
 
   validate :start_date_must_not_exists, :end_date_must_not_exists, :start_date_must_be_earlier_than_end_date
 

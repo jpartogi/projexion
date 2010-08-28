@@ -1,5 +1,13 @@
-class Priority < ActiveRecord::Base
-  has_many :features
+class Priority
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :display_name
+  field :color
+  field :level, :type => Integer
+  field :default, :type => Boolean
+
+  references_many :features
 
   validates_presence_of :display_name, :color, :level
   validates_numericality_of :level

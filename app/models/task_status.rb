@@ -1,5 +1,14 @@
-class TaskStatus < ActiveRecord::Base
-  has_many :tasks
+class TaskStatus
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :display_name
+  field :key
+  field :position, :type => Integer
+  field :default, :type => Boolean
+  field :color
+
+  references_many :tasks
 
   before_create :check_and_update_default_status, :set_next_position
   before_update :check_and_update_default_status

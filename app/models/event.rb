@@ -1,7 +1,9 @@
-class Event < ActiveRecord::Base
-  belongs_to :project
-  belongs_to :user
-  has_many :audits
+class Event
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  referenced_in :project
+  referenced_in :user
 
   # Class methods
   class << self

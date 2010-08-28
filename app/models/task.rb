@@ -1,11 +1,22 @@
-class Task < ActiveRecord::Base
-  belongs_to :project
-  belongs_to :feature
-  belongs_to :sprint
-  belongs_to :task_status
-  belongs_to :user
+class Task
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :description
+
+  referenced_in :project
+  referenced_in :user
+  referenced_in :feature
+  referenced_in :sprint
+  referenced_in :task_status
 
   validates_presence_of :description
+
+#  belongs_to :project
+#  belongs_to :feature
+#  belongs_to :sprint
+#  belongs_to :task_status
+#  belongs_to :user
 
   before_create :set_default_status
   after_save :add_event

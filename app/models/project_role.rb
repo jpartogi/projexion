@@ -1,24 +1,34 @@
-class ProjectRole < ActiveRecord::Base
-  belongs_to :project_member
+class ProjectRole
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  before_save :check_and_update_manager
+  field :name
+  field :manager, :type => Boolean
+  field :role
 
-  validates_presence_of :name
-  
-  def check_and_update_manager
-    manager = ProjectRole.manager
+  references_many :project_member
+  referenced_in :account
 
-    unless manager.nil?
-      if self.manager
-        manager.manager = false
-        manager.save
-      end
-    end
-  end
-  
+#  belongs_to :project_member
+#
+#  before_save :check_and_update_manager
+#
+#  validates_presence_of :name
+#
+#  def check_and_update_manager
+#    manager = ProjectRole.manager
+#
+#    unless manager.nil?
+#      if self.manager
+#        manager.manager = false
+#        manager.save
+#      end
+#    end
+#  end
+#
   class << self
     def manager
-      ProjectRole.first(:conditions => {:manager => true})
+      self.first(:conditions => {:manager => true})
     end
   end
 end

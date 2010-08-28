@@ -1,6 +1,13 @@
-class SprintSnapshot < ActiveRecord::Base
-  belongs_to :project
-  belongs_to :sprint
+class SprintSnapshot
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :total, :type => Integer
+  field :last_update, :type => Date
+  
+
+  referenced_in :project
+  referenced_in :sprint
 
   # Class methods
   class << self

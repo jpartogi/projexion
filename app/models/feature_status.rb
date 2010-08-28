@@ -1,5 +1,14 @@
-class FeatureStatus < ActiveRecord::Base
-  has_many :features
+class FeatureStatu
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :display_name
+  field :key
+  field :position, :type => Integer
+  field :color
+  field :default_status, :type => Boolean
+
+  references_many :features
 
   before_create :set_next_position
   before_save :check_and_update_default_status
@@ -38,10 +47,10 @@ class FeatureStatus < ActiveRecord::Base
     end
 
     self.position = changed_status.position
-    logger.debug "Target position: " + self.position.to_s
+    #logger.debug "Target position: " + self.position.to_s
 
     changed_status.position = position
-    logger.debug "Changed position: " + changed_status.position.to_s
+    #logger.debug "Changed position: " + changed_status.position.to_s
 
     @bypass = true #We want to bypass the interceptor because there are two instance.save
 
@@ -85,15 +94,15 @@ class FeatureStatus < ActiveRecord::Base
   class << self
 
     def default_status
-      FeatureStatus.first(:conditions => {:default_status => true})
+      self.first(:conditions => {:default_status => true})
     end
 
     def first_status
-      FeatureStatus.first(:conditions => {:position => 1})
+      self.first(:conditions => {:position => 1})
     end
 
     def last_status
-      FeatureStatus.last(:order => :position)
+      self.last(:order => :position)
     end
   end
 end
