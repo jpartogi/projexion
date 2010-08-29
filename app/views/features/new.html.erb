@@ -12,7 +12,7 @@
     });
   </script>
   <% form_for @feature, :url => project_features_path(@project.code)  do |f| %>
-    <%= render "shared/error_messages", :target =>
+    <%= render "shared/error_messages", :target => @feature %>
 
     <p>  
         <%= f.label :user_story %><br/>

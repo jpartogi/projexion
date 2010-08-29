@@ -8,6 +8,8 @@ class TaskStatus
   field :default, :type => Boolean
   field :color
 
+  referenced_in :account
+  
   references_many :tasks
 
   before_create :check_and_update_default_status, :set_next_position
@@ -64,11 +66,11 @@ class TaskStatus
   class << self
 
     def default_status
-      TaskStatus.first(:conditions => {:default_status => true})
+      self.first(:conditions => {:default_status => true})
     end
 
     def last_status
-      TaskStatus.last(:order => :position)
+      self.asc(:position).last
     end
 
   end

@@ -8,7 +8,7 @@ class Task
   referenced_in :user
   referenced_in :feature
   referenced_in :sprint
-  referenced_in :task_status
+  referenced_in :task_statuses
 
   validates_presence_of :description
 

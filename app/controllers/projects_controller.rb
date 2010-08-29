@@ -17,7 +17,6 @@ class ProjectsController < ApplicationController
 
     @features = @project.features
     @sprint = @project.current_sprint
-    @features = @features.where(:sprint_id => @sprint)
   end
 
 end

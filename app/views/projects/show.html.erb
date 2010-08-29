@@ -96,14 +96,13 @@
 
   <div style="clear:both; margin-bottom:1.5em;"></div>
 
-  <% unless @features.empty? %>
   <div>
     <h2>Product Features in Current Sprint</h2>
     <%= render :partial => "features/list" %>
     <span style="float:right"><%= link_to 'Show All', project_features_path(@project.code) %></span>
     <div style="clear:both"></div>
   </div>
-  <% end %>
+
 </div>
 
 <div id="sidebar">

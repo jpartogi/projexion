@@ -11,7 +11,7 @@
 
          <p style="float:left; margin-left: 5em;">
             <%= f.label :status %><br/>
-            <%= f.collection_select(:feature_status_id, @feature_statuses, :id, :display_name, {:include_blank => true}) %>
+            <%= f.collection_select(:feature_statuses_id, @feature_statuses, :id, :display_name, {:include_blank => true}) %>
         </p>
 
         <p style="float:left; margin-left: 5em;">

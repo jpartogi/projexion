@@ -5,12 +5,14 @@
 
         <p>
           <%= f.label :start_date %><br />
-          <%= f.date_select :start_date, :order => [:day, :month, :year] %>
+          <%#= f.date_select :start_date, :order => [:day, :month, :year] %>
+          <%= f.text_field :start_date %>
         </p>
 
         <p>
           <%= f.label :end_date %><br />
-          <%= f.date_select :end_date, :order => [:day, :month, :year] %>
+          <%#= f.date_select :end_date, :order => [:day, :month, :year] %>
+          <%= f.text_field :end_date %>
         </p>
 
         <p>

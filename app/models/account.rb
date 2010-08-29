@@ -10,6 +10,8 @@ class Account
   references_many :project_roles
   references_many :meeting_types
   references_many :priorities
+  references_many :task_statuses
+  references_many :feature_statuses
 
   accepts_nested_attributes_for :users
 end

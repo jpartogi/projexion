@@ -6,7 +6,7 @@ class Sprint
   field :end_date, :type => Time
   field :velocities, :type => Integer
   field :goal
-  field :cancelled_at, :type => Integer
+  field :cancelled_at, :type => Time
 
   referenced_in :project
   referenced_in :release
@@ -20,7 +20,7 @@ class Sprint
 
   #validate :start_date_must_not_exists, :end_date_must_not_exists, :start_date_must_be_earlier_than_end_date
 
-  #validates_presence_of :start_date, :end_date, :release
+  validates_presence_of :start_date, :end_date, :release
 
   def span_date
     "#{self.start_date.to_formatted_s} - #{self.end_date.to_formatted_s}"

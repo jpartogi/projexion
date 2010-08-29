@@ -4,12 +4,14 @@
 
         <p>
           <%= f.label :start_time %><br />
-          <%= f.datetime_select :start_time, :order => [:day, :month, :year] %>
+          <%#= f.datetime_select :start_time, :order => [:day, :month, :year] %>
+          <%= f.text_field :start_time %>
         </p>
 
         <p>
           <%= f.label :end_time %><br />
-          <%= f.datetime_select :end_time, :order => [:day, :month, :year] %>
+          <%#= f.datetime_select :end_time, :order => [:day, :month, :year] %>
+          <%= f.text_field :end_time %>
         </p>
 
         <p>

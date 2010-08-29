@@ -9,8 +9,8 @@ class FeaturesController < ApplicationController
     @feature.project = @project
     @feature.acceptances = Acceptance.to_a(params[:acceptance_test])
     @priorities = Priority.asc(:level)
-    @sprints = @project.active_sprints
 
+    @sprints = @project.active_sprints
     @releases = @project.active_releases
     
     respond_with(@feature) do |format|
@@ -36,7 +36,7 @@ class FeaturesController < ApplicationController
     @feature = Feature.find(params[:id])
 
     @task = Task.new
-    @tasks = @feature.tasks.includes(:user, :task_status)
+    @tasks = @feature.tasks
 
     @project = @feature.project
     @acceptances = @feature.acceptances
@@ -48,10 +48,10 @@ class FeaturesController < ApplicationController
     @feature = Feature.new(params[:feature]) || Feature.new # for search
 
     @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
-    @sprints = Sprint.find_all_by_project_id(@project, :order => 'start_date desc')
-    @releases = Release.find_all_by_project_id(@project)
+    @sprints = @project.sprints.desc(:start_date)
+    @releases = @project.releases
     @feature_statuses = FeatureStatus.all
-    @priorities = Priority.all(:order => 'level')
+    @priorities = Priority.asc(:level)
 
     @features = @project.features
     if params[:feature]
@@ -79,10 +79,9 @@ class FeaturesController < ApplicationController
 
     end
 
-    @features = @features.includes(:sprint, :release, :priority) # We need to order by priority.level
-    
+    # We need to order by priority.level
     #In the end we need to paginate it.
-    @features = @features.paginate(:page => params[:page], :order => 'priorities.level desc', :per_page =>20)
+    @features = @features.paginate(:page => params[:page], :per_page =>20)
   end
 
   def edit

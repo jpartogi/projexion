@@ -9,7 +9,7 @@ class SprintsController < ApplicationController
     @sprint.project = @project
     
     @releases = @project.active_releases # Just in case error message is thrown
-    puts @sprint.start_date
+
     respond_with(@sprint) do |format|
       if @sprint.save
         format.html { redirect_to project_sprint_path(params[:project_id], @sprint),
@@ -62,7 +62,7 @@ class SprintsController < ApplicationController
 
     @project = @sprint.project
 
-    @sprint.cancelled_at = Date.today
+    @sprint.cancelled_at = Time.now
 
     respond_with(@sprint) do |format|
       if @sprint.save
@@ -78,7 +78,7 @@ class SprintsController < ApplicationController
     @project = @sprint.project
     @features = @sprint.features
 
-    @meetings = Meeting.where({:sprint_id => @sprint})
+    @meetings = Meeting.where(:sprint_id => @sprint.id)
   end
 
   def index
@@ -89,7 +89,7 @@ class SprintsController < ApplicationController
   end
 
   def generate_velocities
-    if Date.today > @sprint.end_date 
+    if Time.now.beginning_of_day > @sprint.end_date 
       @sprint.generate_velocities
     end
   end

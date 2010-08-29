@@ -32,9 +32,8 @@
       <th>Biz value</th>
       <th>Priority</th>
     </tr>
-      
-    <% unless @features.empty? %>
-    <% for feature in @features %>
+
+    <% @features.each do |feature| %>
     <tr id="feature_<%=feature.id %>">
         <input type="hidden" class="feature-id" name="feature-id" value="<%= feature.id %>"/>
         <td>
@@ -43,8 +42,8 @@
             <img src="/images/icons/application_view_detail.png">
           <% end %>
         </td>
-        <td class="status" style="text-align:center;background-color:<%= feature.feature_status.hash_color %>">
-          <%= feature.feature_status.display_name %>
+        <td class="status" style="text-align:center;background-color:<%= feature.feature_statuses.hash_color %>">
+          <%= feature.feature_statuses.display_name %>
         </td>
         <td style="text-align:center;">
           <% unless feature.sprint.nil? %>
@@ -63,13 +62,12 @@
               <img src="/images/icons/application_view_detail.png">
             <% end %>
           <% else %>
-            <div class="release">&nbsp;</div>    
+            <div class="release">&nbsp;</div>
           <% end %>
         </td>
         <td class="number"><%= feature.story_points %></td>
         <td class="number"><%= feature.business_value %></td>
         <td class="number"><%= feature.priority.level %></td>
     </tr>
-    <% end %>
     <% end %>      
 </table>

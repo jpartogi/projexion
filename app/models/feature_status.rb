@@ -1,4 +1,4 @@
-class FeatureStatu
+class FeatureStatus
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -7,6 +7,8 @@ class FeatureStatu
   field :position, :type => Integer
   field :color
   field :default_status, :type => Boolean
+
+  referenced_in :account
 
   references_many :features
 
@@ -102,7 +104,7 @@ class FeatureStatu
     end
 
     def last_status
-      self.last(:order => :position)
+      self.asc(:position).last
     end
   end
 end

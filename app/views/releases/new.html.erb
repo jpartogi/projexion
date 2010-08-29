@@ -1,7 +1,7 @@
 <div id="content">
   <div id="task">
       <% form_for @release, :url => project_releases_path(@project.code) do |f| %>
-        <%= render "shared/error_messages", :target =>
+        <%= render "shared/error_messages", :target => @release %>
         <p>
           <%= f.label :version_number %><br />
           <%= f.text_field :version_number, :size => 10 %>

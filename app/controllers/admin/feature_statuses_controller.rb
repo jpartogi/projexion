@@ -4,7 +4,7 @@ class Admin::FeatureStatusesController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @feature_statuses = FeatureStatus.all(:order => "position")
+    @feature_statuses = @current_account.feature_statuses.asc(:position)
   end
 
   def show
