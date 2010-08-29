@@ -9,6 +9,7 @@ class AccountsController < SiteController
 
   def create
     @user = User.new(params[:account][:users_attributes])
+    @user.account_role = User::ADMIN
     params[:account].delete :users_attributes
     @account = Account.create(params[:account])
     @account.users << @user
@@ -16,8 +17,7 @@ class AccountsController < SiteController
     respond_to do |format|
       if @account.save
         format.html do
-          host = request.protocol + @account.subdomain + '.' + request.host_with_port
-          redirect_to host
+          redirect_to (request.protocol + @account.subdomain + '.' + request.host_with_port)
         end
       else
         format.html { render :new }

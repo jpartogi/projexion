@@ -17,7 +17,7 @@
           <%= user.last_sign_in_at %>&nbsp;(<%= time_ago_in_words(user.last_sign_in_at) %> ago)
       <% end %>
     </td>
-    <td style="text-align:center;"><% if user.admin %><img src="/images/icons/accept.png"/><% end %></td>
+    <td style="text-align:center;"><% if user.admin? %><img src="/images/icons/accept.png"/><% end %></td>
     <td width="5%" style="text-align:center;">
      <% link_to admin_user_path(user) do %>                                        
         <img src="/images/icons/application_view_detail.png">

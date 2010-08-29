@@ -7,7 +7,7 @@ class Admin::ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find_or_initialize_by(:code => params[:id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:id])
   end
 
   def new
@@ -48,12 +48,12 @@ class Admin::ProjectsController < ApplicationController
   end
   
   def destroy
-    @project = Project.find_by_code(params[:id])
-
-    @project.destroy
+    @project = @current_account.projects.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to admin_path, :notice => 'Project was successfully deleted.' }
+      if @project.destroy
+        format.html { redirect_to admin_path, :notice => 'Project was successfully deleted.' }
+      end
     end
   end
 
@@ -65,7 +65,7 @@ class Admin::ProjectsController < ApplicationController
   def save_user
     @project = Project.find(params[:id])
     @project.users << User.find(params[:project][:users])
-    puts User.find(params[:project][:users])
+
     respond_to do |format|
       if @project.save
         format.html { redirect_to admin_project_path(@project.code), :notice => 'User was successfully added.' }  

@@ -8,12 +8,14 @@ class ProjectRole
 
   references_many :project_member
   referenced_in :account
+ 
+  validates_presence_of :name
 
 #  belongs_to :project_member
 #
 #  before_save :check_and_update_manager
 #
-#  validates_presence_of :name
+
 #
 #  def check_and_update_manager
 #    manager = ProjectRole.manager
@@ -27,8 +29,8 @@ class ProjectRole
 #  end
 #
   class << self
-    def manager
-      self.first(:conditions => {:manager => true})
+    def manager(account)
+      self.first(:conditions => {:manager => true, :account_id => account.id})
     end
   end
 end

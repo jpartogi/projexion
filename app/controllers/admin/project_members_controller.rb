@@ -1,13 +1,11 @@
 class Admin::ProjectMembersController < ApplicationController
   respond_to :html, :json
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  #load_and_authorize_resource
   
   def new
     @project_member = ProjectMember.new
-
-    #@project_roles = ProjectRole.all
-
+    
     @project_roles = @current_account.project_roles
     @projects = @current_account.projects
     @users = @current_account.users

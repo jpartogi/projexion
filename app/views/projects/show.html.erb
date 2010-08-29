@@ -12,7 +12,7 @@
 
     <% unless @manager.nil? %>
       <p>
-       <%= label_tag(ProjectRole.manager.name) %><br/>
+       <%= label_tag(ProjectRole.manager(@current_account).name) %><br/>
        <%= link_to @manager.email, user_path(@manager) %>
       </p>
     <% else %>

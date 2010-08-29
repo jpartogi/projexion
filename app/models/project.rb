@@ -41,7 +41,8 @@ class Project
   end
 
   def manager
-    project_member = self.project_members.where(:project_role_id => ProjectRole.manager.id).first
+    project_member = self.project_members.where(:project_role_id => ProjectRole.manager(self.account).id).first
+
     project_member.user unless project_member.nil?
   end
 
@@ -51,7 +52,7 @@ class Project
 
   def members
     self.project_members.reject do |project_member|
-      project_member.project_role.eql? ProjectRole.manager
+      project_member.project_role.eql? ProjectRole.manager(account)
     end
   end
 

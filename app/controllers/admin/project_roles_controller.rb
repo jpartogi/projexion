@@ -4,7 +4,7 @@ class Admin::ProjectRolesController < ApplicationController
   load_and_authorize_resource
   	
   def index
-	@project_roles = ProjectRole.all
+	  @project_roles = @current_account.project_roles
   end
 
   def show
