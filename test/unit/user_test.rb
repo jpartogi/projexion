@@ -13,8 +13,8 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  def destroy
-    Project.all.destroy
-    User.all.destroy
+  def teardown
+    Project.all.destroy_all
+    User.all.destroy_all
   end
 end
