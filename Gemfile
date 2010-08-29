@@ -8,11 +8,10 @@
 source 'http://gemcutter.org'
 
 ## Bundle edge rails:
-#gem "rails", "3.0.0.beta"
-gem "rails", :git => 'git://github.com/rails/rails.git' # Rails 3.0.0.beta3
+gem "rails", "3.0.0.rc"
+#gem "rails", :git => 'git://github.com/rails/rails.git' # Rails 3.0.0.beta3
 
 # Database drivers
-gem "mysql"
 gem 'bson_ext'
 gem 'mongoid', "2.0.0.beta.16"
 
@@ -30,7 +29,7 @@ gem 'will_paginate','3.0.pre'
 
 # If you are running passenger in production, make sure to remark the lines below.
 # To run unicorn in production:
-# $ bundle exec vendor/bin/unicorn -E production
+# $ bundle exec vendor/ruby/1.9.1/bin/unicorn -E production --port 4000 --daemonize
 gem 'unicorn'
 
 # To run thin in production:
@@ -43,6 +42,5 @@ group :test do
   gem "shoulda"
   gem "factory_girl"
   gem "cucumber"
-  gem "sqlite3-ruby"
   gem "rack-test"
 end
