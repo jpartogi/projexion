@@ -1,9 +1,0 @@
-retrospective:
-  id: 1
-  start_time: 2010-06-01
-  end_time: 2010-06-01
-  meeting_type_id: 1
-  location: Meeting room 2nd floor
-  project_id: 1
-  sprint_id: 1
-  created_by: admin
