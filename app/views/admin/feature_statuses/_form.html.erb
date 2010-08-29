@@ -27,7 +27,7 @@
       });
     </script>
     <% form_for ([:admin, @feature_status]) do |f| %>
-        <%= f.error_messages %>
+        <%= render "shared/error_messages", :target => @feature_status %>
 
         <p>
           <%= f.label :display_name %><br />

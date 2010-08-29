@@ -3,20 +3,25 @@
         <h1>Assign user to a Project</h1>
 
         <% form_for ([:admin, @project_member]) do |f| %>
-            <%= f.error_messages %>
+            <%= render "shared/error_messages", :target => @project_member %>
 
             <p>
                 <%= f.label :project %><br/>
-                <%= f.collection_select(:project_id, @projects, :id, :name, {:include_blank => true}) %>
+                <%= f.collection_select(:project, @projects, :id, :name) %>
             </p>
 
             <p>
-                <%= f.label :project_role %><br/>
-                <%= f.collection_select(:project_role_id, @project_roles, :id, :name, {:include_blank => true}) %>
+                <%= f.label :project %><br/>
+                <%= f.collection_select(:user_id, @users, :id, :email) %>
             </p>
 
-            <%= f.hidden_field(:user_id, :value => params[:user_id]) %>
-          
+        <p>
+                        <%= f.label :project_role %><br/>
+                        <%= f.collection_select(:project_role, @project_roles, :id, :name) %>
+                    </p>
+
+
+          <div>
             <%= f.submit 'Save', :class => 'save_btn' %>
           </div>
 

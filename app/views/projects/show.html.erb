@@ -13,7 +13,7 @@
     <% unless @manager.nil? %>
       <p>
        <%= label_tag(ProjectRole.manager.name) %><br/>
-       <%= link_to @manager.login, user_path(@manager.login) %>
+       <%= link_to @manager.email, user_path(@manager) %>
       </p>
     <% else %>
       <p class="info">
@@ -26,11 +26,11 @@
 
   <div style="float:left; margin-right:2em;">
   	<h2>Project Members</h2>
-  	
-  	<% unless @project.members.empty? %>
+  	                                     
+  	<% unless @project.project_members.empty? %>
   	<ul>
-  	<% @project.members.each do |member| %>
-  		<li><%= link_to member.user.login, user_path(member.user.login) %>&nbsp;(<%= member.project_role.name%>)</li>
+  	<% @project.project_members.each do |member| %>
+  		<li><%= link_to member.user.email, user_path(member.user) %>&nbsp;(<%= member.project_role.name%>)</li>
   	<% end %>
   	</ul>
   	<% else %>

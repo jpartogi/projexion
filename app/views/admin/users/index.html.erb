@@ -3,7 +3,6 @@
 
 <table width="100%">
   <tr>
-    <th>Login</th>
     <th>E-mail</th>
     <th>Last login</th>
     <th>Admin</th>
@@ -12,11 +11,10 @@
 
 <% @users.each do |user| %>
   <tr>
-  	<td><%= user.login %></td>
     <td><%= user.email %></td>
     <td>
-      <% unless user.last_login_at.nil? %>
-          <%= user.last_login_at %>&nbsp;(<%= time_ago_in_words(user.last_login_at) %> ago)
+      <% unless user.last_sign_in_at.nil? %>
+          <%= user.last_sign_in_at %>&nbsp;(<%= time_ago_in_words(user.last_sign_in_at) %> ago)
       <% end %>
     </td>
     <td style="text-align:center;"><% if user.admin %><img src="/images/icons/accept.png"/><% end %></td>

@@ -1,5 +1,20 @@
 <% form_for @account do |f| %>
-  <%= f.text_field :subdomain %>
+  <div>
+    <%= f.label :subdomain %>
+    <%= f.text_field :subdomain %>
+  </div>
+
+  <%= f.fields_for :users, @user do |user| %>
+    <div>
+      <%= user.label :email %><br />
+      <%= user.text_field :email %>
+    </div>
+
+    <div>
+      <%= user.label :password %><br />
+      <%= user.password_field :password %>
+    </div>
+  <% end %>
 
   <%= f.submit %>
 <% end %>

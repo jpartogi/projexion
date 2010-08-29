@@ -2,25 +2,17 @@
     <p class="success"><span><%= flash[:notice] %></span></p>
 
     <div>
-        <p>
-          <%= label_tag :login %><br />
-          <%= h @user.login %>
-        </p>
         
         <p>
           <%= label_tag :email %><br />
           <%= h @user.email %>
         </p>
 
-        <p>
-          <%= label_tag :admin %><br />
-          <%= h @user.admin %>
-        </p>
 
         <p>
-          <%= label_tag(:last_login) %><br />
-          <% unless @user.last_login_at.nil? %>
-              <%= @user.last_login_at %>&nbsp;(<%= time_ago_in_words(@user.last_login_at) %> ago)
+          <%= label_tag(:last_sign_in_at) %><br />
+          <% unless @user.last_sign_in_at.nil? %>
+              <%= @user.last_sign_in_at %>&nbsp;(<%= time_ago_in_words(@user.last_sign_in_at) %> ago)
           <% end %>
         </p>
     </div>
@@ -68,6 +60,6 @@
     <li><%= link_to 'Edit User', edit_admin_user_path(@user), :class => 'edit'  %></li>
     <li><%= link_to 'Delete User', admin_user_path(@user),
                 :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
-    <li><%= link_to 'Assign Project', new_admin_project_member_path(:user_id => @user), :class => 'add', :rel => 'facebox' %></li>
+    <li><%= link_to 'Assign Project', new_admin_project_member_path(:user_id => @user), :class => 'add' %></li>
   </ul>
 </div> 

@@ -2,7 +2,7 @@
 	<p class="success"><span><%= flash[:notice] %></span></p>
 	
 	<% form_for ([:admin, @project_role]) do |f| %>
-        <%= f.error_messages %>
+        <%= render "shared/error_messages", :target => @project_role %>
 
         <p>
             <%= f.label :name %><br/>

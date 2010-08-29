@@ -16,7 +16,7 @@
         <h1>Add New Acceptance Test</h1>
 
         <% form_for @acceptance, :url => project_feature_acceptances_path(@project.code, @feature.id), :remote => true do |f| %>
-          <%= f.error_messages %>
+          <%= render "shared/error_messages", :target => @acceptance %>
 
           <p>
             <%= f.label :description %><br />

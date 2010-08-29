@@ -1,7 +1,7 @@
 <div id="content">
   <div id="sprint">
     <% form_for @sprint, :url => project_sprints_path(@project.code) do |f| %>
-        <%= f.error_messages %>
+        <%= render "shared/error_messages", :target => @sprint %>
 
         <p>
           <%= f.label :start_date %><br />
