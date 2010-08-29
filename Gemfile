@@ -17,8 +17,6 @@ gem 'bson_ext'
 gem 'mongoid', "2.0.0.beta.16"
 
 # For security
-#gem "authlogic", :git => 'git://github.com/scrum8/authlogic.git'
-#gem "authlogic", :git => 'git://github.com/binarylogic/authlogic.git'
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 #gem "declarative_authorization", :git => 'git://github.com/stffn/declarative_authorization.git'
 gem "cancan"
@@ -33,7 +31,7 @@ gem 'will_paginate','3.0.pre'
 # If you are running passenger in production, make sure to remark the lines below.
 # To run unicorn in production:
 # $ bundle exec vendor/bin/unicorn -E production
-# gem 'unicorn'
+gem 'unicorn'
 
 # To run thin in production:
 # $ bundle exec vendor/bin/thin start
