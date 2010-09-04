@@ -3,31 +3,34 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <%= csrf_meta_tag %>
-    <%= yield :title %>
-	  <title><% unless @project.nil? %><%= @project.name %><% end %>&nbsp;<%= controller.action_name.capitalize %>&nbsp;<%= controller.controller_name.capitalize %>&nbsp;-&nbsp;Projexion</title>
-    <%= stylesheet_link_tag 'reset' %> <%# This is loaded first to reset the browser default value %>
-    <%= stylesheet_link_tag 'projexion' %>
-    <%= javascript_include_tag 'jquery-1.4.1.min' %>
-    <%= javascript_include_tag 'rails' %>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta name="google-site-verification" content="IFxHePdjU0QHTfyvzW5iOnC273t7TDjuEMVpBafXp-o" />
+  <%= csrf_meta_tag %>
+	<title><%= yield :title %></title>
+  <%= stylesheet_link_tag 'reset' %> <%# This is loaded first to reset the browser default value %>
+  <%= stylesheet_link_tag 'common' %>
+  <%= stylesheet_link_tag 'site' %>
+  <%= javascript_include_tag 'jquery-1.4.1.min' %>
+  <%= javascript_include_tag 'rails' %>
 </head>
 <body>
+    <div id="wrapper">
     <div id="header">
-      <div id="title">Projexion</div>
-
+      <div id="title"><h1><%= link_to root_path do %>Projexion<% end %></h1></div>
+      <div id="menu">
+        <ul>
+          <li><%= link_to 'Register for your account', new_account_path %>&rarr;</li>
+        </ul>
+      </div>
       <div style="clear:both"></div>
     </div>
 
-    <div style="clear:both;"></div>
-    <div id="middle">
-
+      <div id="middle">
         <%= yield %>
-
-        <div style="clear:both"></div>
-    </div>
-
+      </div>
+      <div style="clear:both"></div>
 
     <%= render :partial => 'layouts/footer' %>
+    </div>  
 </body>
 </html>

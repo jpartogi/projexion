@@ -1,0 +1,7 @@
+#title { float: left; }
+#title h1 { margin-bottom: 10px; }
+#title a { text-decoration: none; }
+#menu { float: right; }
+
+#wrapper { width: 850px; margin: 10px auto 0 auto; }
+#middle { background-color: #fff; min-height: 500px; padding: 10px; }

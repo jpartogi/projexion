@@ -25,5 +25,6 @@ class ApplicationController < ActionController::Base
 
     def set_current_user
       @current_user = current_user
+      @projects = @current_user.projects
     end
 end

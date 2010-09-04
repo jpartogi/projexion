@@ -1,20 +1,26 @@
+<% content_for :title do %>
+  Register for your account : Projexion
+<% end %>
+
+<div id="content">
 <% form_for @account do |f| %>
   <div>
-    <%= f.label :subdomain %>
+    <%= f.label :subdomain, 'Desired subdomain' %>
     <%= f.text_field :subdomain %>
   </div>
 
   <%= f.fields_for :users, @user do |user| %>
     <div>
-      <%= user.label :email %><br />
+      <%= user.label :email %>
       <%= user.text_field :email %>
     </div>
 
     <div>
-      <%= user.label :password %><br />
+      <%= user.label :password %>
       <%= user.password_field :password %>
     </div>
   <% end %>
 
   <%= f.submit %>
 <% end %>
+</div>

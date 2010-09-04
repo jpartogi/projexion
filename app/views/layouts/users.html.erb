@@ -4,22 +4,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-	<title>Projexion</title>
-    <%= stylesheet_link_tag 'reset' %>
+	<title><%= yield :title %></title>
+  <%= stylesheet_link_tag 'reset' %>
+  <%= stylesheet_link_tag 'common' %>
 	<%= stylesheet_link_tag 'projexion' %>
 </head>
 <body>
-    <div id="header">
-      <div id="title">Projexion</div>
 
-      <div style="clear:both"></div>
+  <div id="wrapper">
+    <div id="centered-box">
+      <p class="success"><span ><%= flash[:notice] %></span></p>
+      <%= yield %>
+      <%= render :partial => 'layouts/footer' %>
     </div>
-
-    <div id="middle">
-        <p class="success"><span ><%= flash[:notice] %></span></p>
-        <%= yield %>
-    </div>
-    
-    <%= render :partial => 'layouts/footer' %> 
+  </div>
+     
 </body>
 </html>

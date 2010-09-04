@@ -1,0 +1,32 @@
+<link type="text/css" rel="stylesheet" media="screen" href="http://collaboapp.com/stylesheets/collabo.css">
+
+<body>
+
+    <div id="header">
+      <div id="head_wrapper">
+
+        <span style="font:italic 11px Arial; position:relative; bottom:5px;">BETA</span>
+      </div>
+    </div>
+
+    <div id="neck">
+
+    </div>
+
+    <div id="middle">
+      <div id="wrapper">
+<p>Dear <%= @resource.email %>!</p>
+
+<p>You have been invited by <%= @resource.inviter.email %> to collaborate on a project on Collabo, a tool to help you collaborate with your mates.</p>
+
+<p>To confirm your account please click the link below:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<p>Note:</p>
+<p>If you think you don't want to acknowledge to this invitation, please just ignore this e-mail.</p>
+
+      </div>
+    </div>
+
+</body>        

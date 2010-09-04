@@ -1,4 +1,4 @@
-<% content_for :title do %><title>Your Dashboard - Projexion</title><% end %>
+<% content_for :title do %>Your Dashboard<% end %>
 <script type="text/javascript">
     var offset = parseInt(<%= params[:next_offset] %>);
 
@@ -22,7 +22,7 @@
        });
     });
   </script>
-<div id="content" style="width:95%">
+<div id="content">
 	<p class="success"><span ><%= flash[:notice] %></span></p>
 
     <div style="float:left">
@@ -107,3 +107,5 @@
         <% end %>
      </div>  
 </div>
+
+<div id="sidebar"></div>

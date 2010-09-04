@@ -4,7 +4,7 @@ class User
 
   ADMIN = 'admin'
   MEMBER = 'member'
-  VIEWER = 'viewer'
+  REPORTER = 'reporter'
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable, :timeoutable and :oauthable
@@ -14,7 +14,7 @@ class User
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :account_id, :account_role
 
-  field :account_role, :default => VIEWER
+  field :account_role, :default => REPORTER
 
   referenced_in :account
   references_many :projects, :stored_as => :array, :inverse_of => :users
@@ -26,14 +26,14 @@ class User
 #  has_many :tasks
 
   def admin?
-    account_role.eql? ADMIN
+    self.account_role.eql? ADMIN
   end
 
   def member?
-    account_role.eql? MEMBER
+    self.account_role.eql? MEMBER
   end
 
-  def viewer?
-    account_role.eql? VIEWER
+  def reporter?
+    self.account_role.eql? REPORTER
   end
 end
