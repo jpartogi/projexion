@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:new, :create, :edit, :update]
 
   def index
-    @users = User.all
+    @users = @current_account.users
     render :layout => "main" 
   end
 
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @tasks = @user.tasks
 
     @project_members = @user.project_members
-
+    render :layout => "application" 
   end
 
   def new

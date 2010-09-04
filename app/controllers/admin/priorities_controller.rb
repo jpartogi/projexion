@@ -6,7 +6,7 @@ class Admin::PrioritiesController < ApplicationController
   # GET /admin_priorities
   # GET /admin_priorities.xml
   def index
-    @priorities = Priority.all
+    @priorities = @current_account.priorities
 
     respond_to do |format|
       format.html # index.html.erb

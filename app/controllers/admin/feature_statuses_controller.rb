@@ -58,7 +58,7 @@ class Admin::FeatureStatusesController < ApplicationController
     
     @feature_status.update_position(params[:direction])
 
-    @feature_statuses = FeatureStatus.all(:order => "position")
+    @feature_statuses = @current_account.feature_statuses.asc(:position)
 
     respond_with(@feature_statuses) do |format|
       format.html { render :partial => 'list' }

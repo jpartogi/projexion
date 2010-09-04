@@ -4,7 +4,7 @@ class Admin::MeetingTypesController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @meeting_types = MeetingType.all
+    @meeting_types = @current_account.meeting_types
   end
 
   def new

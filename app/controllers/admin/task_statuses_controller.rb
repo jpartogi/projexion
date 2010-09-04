@@ -4,7 +4,7 @@ class Admin::TaskStatusesController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @task_statuses = TaskStatus.find(:all, :order => "position")
+    @task_statuses = @current_account.task_statuses.asc(:position)
   end
 
   def show

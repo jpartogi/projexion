@@ -5,7 +5,7 @@ class MeetingsController < ApplicationController
   def index
     @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
 
-    @meetings = Meeting.all(:conditions => { :project_id => @project.id }, :order => "start_time desc")
+    @meetings = @project.meetings.desc(:start_time)
   end
 
   def show
@@ -19,7 +19,7 @@ class MeetingsController < ApplicationController
 
     @project = @meeting.project
 
-    @meeting_types = MeetingType.all
+    @meeting_types = @current_account.meeting_types
   end
 
   def update

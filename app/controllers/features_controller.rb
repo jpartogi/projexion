@@ -50,7 +50,7 @@ class FeaturesController < ApplicationController
     @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
     @sprints = @project.sprints.desc(:start_date)
     @releases = @project.releases
-    @feature_statuses = FeatureStatus.all
+    @feature_statuses = @current_account.feature_statuses.asc(:position)
     @priorities = Priority.asc(:level)
 
     @features = @project.features
@@ -91,7 +91,7 @@ class FeaturesController < ApplicationController
     @sprints = @project.active_sprints
 
     @releases = @project.active_releases
-    @priorities = Priority.all(:order => "level")
+    @priorities = @current_account.priorities.asc(:level)
   end
 
   def update
@@ -102,7 +102,7 @@ class FeaturesController < ApplicationController
 
     @releases = @project.active_releases
 
-    @priorities = Priority.all(:order => "level")
+    @priorities = @current_account.priorities.asc(:level)
     
     respond_with(@feature) do |format|
       if @feature.update_attributes(params[:feature])
