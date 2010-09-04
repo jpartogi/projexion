@@ -8,16 +8,15 @@
 source 'http://gemcutter.org'
 
 ## Bundle edge rails:
-gem "rails", "3.0.0.rc"
+gem "rails", "3.0.0"
 #gem "rails", :git => 'git://github.com/rails/rails.git' # Rails 3.0.0.beta3
 
 # Database drivers
 gem 'bson_ext'
-gem 'mongoid', "2.0.0.beta.16"
+gem 'mongoid', "2.0.0.beta.17"
 
 # For security
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
-#gem "declarative_authorization", :git => 'git://github.com/stffn/declarative_authorization.git'
 gem "cancan"
 
 #gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git'
