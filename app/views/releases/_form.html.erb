@@ -1,3 +1,5 @@
+<%= render 'shared/title/form', :target => @release %>
+
 <div id="content">
   <div id="task">
       <% form_for @release, :url => project_release_path(@project.code, @release) do |f| %>

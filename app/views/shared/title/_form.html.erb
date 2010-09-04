@@ -1,0 +1,4 @@
+<% content_for :title do %>
+  <% unless target.persisted? %>Add New<% else %>Edit<% end %>&nbsp;<%= target.class.model_name.human.capitalize %>&nbsp;:&nbsp;
+  <%= @current_account.company.name %>
+<% end %>

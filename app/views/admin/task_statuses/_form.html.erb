@@ -1,3 +1,5 @@
+<%= render 'shared/title/form', :target => @task_status %>
+
 <div id="content">
     <p class="success"><span ><%= flash[:notice] %></span></p>
 
@@ -39,8 +41,8 @@
         </p>
 
         <p>
-          <%= f.label :default_status? %>
-          <%= f.check_box :default_status %>
+          <%= f.label :default %>
+          <%= f.check_box :default %>
         </p>
 
         <p>

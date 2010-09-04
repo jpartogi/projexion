@@ -1,3 +1,5 @@
+<%= render 'shared/title/form', :target => @user %>
+
 <div id="content">
 	<p class="success"><span><%= flash[:notice] %></span></p>
 	
@@ -17,12 +19,6 @@
     <p>
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation %>
-    </p>
-
-
-    <p>
-      <%= f.label :administrator? %>
-      <%= f.check_box :admin %>
     </p>
 
     <%= f.submit 'Save', :class=> 'save_btn' %>

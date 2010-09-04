@@ -1,8 +1,5 @@
-<% content_for :title do %>
-    <title>
-      <%= @project.name %>&nbsp;<%= controller.action_name.capitalize %>&nbsp;<%= controller.controller_name.capitalize %> - Projexion
-    </title>
-<% end %> 
+<% content_for :title do %><%= @project.name %> Feature&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
+
 <div id="content">
     <p class="success"><span ><%= flash[:notice] %></span></p>
     

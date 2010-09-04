@@ -1,3 +1,6 @@
+<%= render 'shared/title/form', :target => @project %>
+
+
 <div id="content">
     <% form_for ([:admin, @project]) do |f| %>
       <% if f.object.errors.any? %>

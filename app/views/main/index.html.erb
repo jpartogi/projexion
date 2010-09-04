@@ -1,4 +1,5 @@
-<% content_for :title do %>Your Dashboard<% end %>
+<% content_for :title do %>Your Dashboard&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
+
 <script type="text/javascript">
     var offset = parseInt(<%= params[:next_offset] %>);
 
