@@ -4,6 +4,13 @@
 
 <div id="content">
 <% form_for @account do |f| %>
+  <%= f.fields_for :companies, @company do |company| %>
+    <div>
+      <%= company.label :name, 'Company Name' %>
+      <%= company.text_field :name %>
+    </div>
+  <% end %>
+
   <div>
     <%= f.label :subdomain, 'Desired subdomain' %>
     <%= f.text_field :subdomain %>
@@ -11,7 +18,7 @@
 
   <%= f.fields_for :users, @user do |user| %>
     <div>
-      <%= user.label :email %>
+      <%= user.label :email, 'Your E-mail' %>
       <%= user.text_field :email %>
     </div>
 
