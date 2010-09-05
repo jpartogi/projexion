@@ -1,0 +1,5 @@
+<ul>
+  <li><%= link_to 'Update my account', edit_user_path(@current_user), :class => 'edit' %></li>
+  <li><%= link_to 'Change Password', change_password_user_path(@current_user), :class => 'edit'  %></li>
+  <li><%= link_to 'My Profile', user_path(@current_user), :class => :detail %></li>
+</ul>

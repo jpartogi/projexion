@@ -11,7 +11,7 @@ form input[type='text'],
   form input[type='password'],
   form textarea { padding:3px; border:1px solid #ccc; font:12px verdana; background: #fff url('/images/input-bg.gif') repeat-x top left; }
 
-form label { margin-top:1em; font: bold 16px Helvetica; letter-spacing:-0.7px; display: block; }
+form label { margin-top:1em; font: bold 18px Helvetica; letter-spacing:-0.7px; display: block; }
 form input[type='submit'] { padding: 2px 10px; margin-top: 1em; font:bold 18px Arial; letter-spacing:-0.7px; }
 
 #search-button { font: 13px Arial; letter-spacing: normal; margin:0; }
