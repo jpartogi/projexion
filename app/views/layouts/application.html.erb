@@ -56,7 +56,7 @@
 <body>
     <div id="header">
       <div id="top-band">
-        <div id="title"><%= link_to 'Projexion', root_path %></div>
+        <div id="title"><% link_to root_path do %><%= @current_account.company.name %>&nbsp;on&nbsp;Projexion<% end %></div>
         <div id="login-info">
           Logged in as: <%= @current_user.email %> (<%= link_to 'My Account', edit_user_path(@current_user) %>) |
           <%= link_to "Logout", destroy_user_session_path, :confirm => "Are you sure you want to logout?" %>
@@ -66,7 +66,7 @@
       <div id="bottom-band">
         <ul id="left-menu">
           <li><%= link_to 'Home', root_path %></li>
-          <% if @project != nil and controller_name != 'projects' %>
+          <% if not @project.nil? and not controller_name.eql? 'projects' %>
           <li><%= link_to project_path(@project.code) do %>Overview<% end %></li>
           <% end %>
         </ul>
@@ -74,6 +74,7 @@
         <ul id="right-menu">
           <% if can? :manage, :all %>
           <li><%= link_to 'Administration', admin_path %></li>
+          <li><%= link_to 'My Profile', user_path(@current_user) %></li>  
           <% end %>
         </ul>
         <div style="clear:both"></div>  

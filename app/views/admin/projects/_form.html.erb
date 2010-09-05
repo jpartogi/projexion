@@ -1,41 +1,34 @@
 <%= render 'shared/title/form', :target => @project %>
 
-
 <div id="content">
-    <% form_for ([:admin, @project]) do |f| %>
-      <% if f.object.errors.any? %>
-        <div id="errorExplanation">
-          <ul>
-          <% f.object.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
+  <p class="success"><span ><%= flash[:notice] %></span></p>
+  
+  <% form_for ([:admin, @project]) do |f| %>
+    <%= render "shared/error_messages", :target => @project %>
 
-      <p>
-        <%= f.label :name %><br />
-        <%= f.text_field :name %>
-      </p>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
 
-      <p>
-        <%= f.label :code %><br />
-        <%= f.text_field :code, :size => 5, :maxlength => 10 %>
-      </p>
+    <div>
+      <%= f.label :code %>
+      <%= f.text_field :code, :size => 5, :maxlength => 10 %>
+    </div>
 
-      <p>
-        <%= f.label :vision %><br/>
-        <%= f.text_field :vision, :size => 45 %>
-      </p>
+    <div>
+      <%= f.label :vision %>
+      <%= f.text_field :vision, :size => 45 %>
+    </div>
 
-      <%= f.submit 'Save', :class=> 'save_btn' %>
-    <% end %>
-    
-    <% if @project.new_record? then %>
-      <%= button_to 'Cancel', admin_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
-    <% else %>
-      <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
-    <% end %>
+    <%= f.submit 'Save', :class=> 'save_btn' %>
+  <% end %>
+
+  <% if @project.new_record? then %>
+    <%= button_to 'Cancel', admin_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+  <% else %>
+    <%#= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+  <% end %>
 </div>
 
 <div id="sidebar">
@@ -43,7 +36,7 @@
     <% if @project.new_record? then %>
     <li><%= link_to 'Show Projects', projects_path, :class => 'list' %></li>
     <% else %>
-    <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
+    <li><%#= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
     <% end %>
   </ul>
 </div>

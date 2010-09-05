@@ -7,23 +7,25 @@ class Admin::ProjectsController < ApplicationController
   end
 
   def show
-    @project = @current_account.projects.find_or_initialize_by(:code => params[:id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:id]) ||  @current_account.projects.find(params[:id])
   end
 
   def new
     @project = Project.new
-    #authorize! :create, @project
+    unauthorized! if cannot? :create, @project
   end
 
   def edit
-    @project = Project.find(params[:id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:id])  ||  @current_account.projects.find(params[:id])
     unauthorized! if cannot? :edit, @project
   end
 
   def create
     @project = Project.new(params[:project])
+
+    unauthorized! if cannot? :create, @project
+    
     @project.account = @current_account
-    #authorize! :create, @project
     
     respond_with(@project) do |format|
       if @project.save
@@ -35,12 +37,12 @@ class Admin::ProjectsController < ApplicationController
   end
   
   def update
-    @project = Project.find(params[:id])
+    @project = @current_account.projects.find(params[:id])
     unauthorized! if cannot? :update, @project
 
     respond_with(@project) do |format|
       if @project.update_attributes(params[:project])
-        format.html { redirect_to project_path(@project.code), :notice => 'Project was successfully updated.' }
+        format.html { redirect_to edit_admin_project_path(@project.code), :notice => 'Project was successfully updated.' }
       else
         format.html { render :action => "edit" }
       end
@@ -58,12 +60,12 @@ class Admin::ProjectsController < ApplicationController
   end
 
   def add_user
-    @project = Project.find_or_initialize_by(:code => params[:id])
+    @project = @current_account.projects.find_or_initialize_by(:code => params[:id])
     @users = @current_account.users
   end
 
   def save_user
-    @project = Project.find(params[:id])
+    @project = @current_account.projects.find(params[:id])
     @project.users << User.find(params[:project][:users])
 
     respond_to do |format|
