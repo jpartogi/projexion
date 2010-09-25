@@ -6,7 +6,7 @@ class FeatureStatus
   field :key
   field :position, :type => Integer, :default => 1
   field :color
-  field :default_status, :type => Boolean
+  field :default, :type => Boolean
 
   referenced_in :account
 
@@ -33,7 +33,7 @@ class FeatureStatus
   end
 
   def check_and_update_default_status
-    if default_status_available? and not @bypass and self.default_status
+    if default_status_available? and not @bypass and self.default
       update_default_status
       self.position = 1
     end
@@ -58,15 +58,15 @@ class FeatureStatus
 
     # Let's make sure first position is always the default status
     if self.position == 1
-      self.default_status = true
+      self.default = true
     else
-      self.default_status = false
+      self.default = false
     end
 
     if changed_status.position == 1
-      changed_status.default_status = true
+      changed_status.default = true
     else
-      changed_status.default_status = false
+      changed_status.default = false
     end
 
     FeatureStatus.transaction do
@@ -79,14 +79,14 @@ class FeatureStatus
 
   private
     def default_status_available?
-      @current_default = FeatureStatus.default_status
+      @current_default = FeatureStatus.default
 
       not @current_default.nil? # reverse it
     end
 
     def update_default_status
       # Change the current default status to make sure there's only one default status
-      @current_default.default_status = false
+      @current_default.default = false
       @current_default.position = self.position
 
       @current_default.save
@@ -95,8 +95,8 @@ class FeatureStatus
   # Class methods
   class << self
 
-    def default_status
-      self.first(:conditions => {:default_status => true})
+    def default
+      self.first(:conditions => {:default => true})
     end
 
     def first_status

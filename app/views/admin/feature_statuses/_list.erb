@@ -12,7 +12,7 @@
     <tr>
         <td style="background-color:<%= feature_status.hash_color %>"><%= h feature_status.display_name %></td>
         <td><%= link_to feature_status.key, admin_feature_status_path(feature_status) %></td>
-        <td style="text-align:center;"><% if feature_status.default_status %><img src="/images/icons/accept.png"/><% end %></td>
+        <td style="text-align:center;"><% if feature_status.default %><img src="/images/icons/accept.png"/><% end %></td>
         <td style="text-align:center;">
 
           <% if not feature_status.eql? @feature_statuses.first %>

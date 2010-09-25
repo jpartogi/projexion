@@ -34,7 +34,7 @@ class Feature
   end
 
   def set_default_status
-    self.feature_statuses = FeatureStatus.first(:conditions => {:default_status => true})
+    self.feature_statuses = FeatureStatus.first(:conditions => {:default => true})
   end
 
   def save_acceptances

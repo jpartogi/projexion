@@ -31,28 +31,29 @@
     <% form_for ([:admin, @feature_status]) do |f| %>
         <%= render "shared/error_messages", :target => @feature_status %>
 
-        <p>
-          <%= f.label :display_name %><br />
+        <div>
+          <%= f.label :display_name %>
           <%= f.text_field :display_name %>
-        </p>
-        <p>
-          <%= f.label :key %><br />
+        </div>
+        
+        <div>
+          <%= f.label :key %>
           <%= f.text_field :key %>
-        </p>
+        </div>
 
-        <p>
-          <%= f.label :default_status? %>
-          <%= f.check_box :default_status %>
-        </p>
+        <div>
+          <%= f.label :default? %>
+          <%= f.check_box :default %>
+        </div>
 
-        <p>
-          <%= f.label :color, 'Background color' %><br />
+        <div>
+          <%= f.label :color, 'Background color' %>
           <%= f.text_field :color, :size => 7, :maxlength => 7 %>
-        </p>
+        </div>
 
-        <p>
+        <div>
           <%= f.submit 'Save', :class=> 'save_btn' %>
-        </p>
+        </div>
      <% end %>
      <%= button_to 'Cancel', admin_feature_statuses_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
 </div>
