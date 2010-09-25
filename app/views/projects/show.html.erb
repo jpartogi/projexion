@@ -1,107 +1,94 @@
-<% content_for :title do %><%= @project.name %>&nbsp;Overview&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
+<% content_for :title do %><%= @project.name %>&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
 
 <div id="content">
   <p class="success"><span ><%= flash[:notice] %></span></p>
 
-  <h1><%= @project.name %>&nbsp;(Code: <%= @project.code %>)</h1>
+  <div id="left">
+    <h1><%= @project.name %></h1>
 
-  <div id="project" style="float:left; margin-right:2em;">
-    <p>
-      <%= label_tag(:vision) %><br/>
+    <div>
       <%= @project.vision %>
-    </p>
+    </div>
 
-    <% unless @manager.nil? %>
-      <p>
-       <%= label_tag(ProjectRole.manager(@current_account).name) %><br/>
-       <%= link_to @manager.email, user_path(@manager) %>
-      </p>
-    <% else %>
-      <p class="info">
-        Please ask your administrator to assign a project manager role to a user for this project.
-      </p>
-    <% end %>
-  </div>
+    <div id="members">
+        <h3>Project Members</h3>
 
-  <div style="float:right;">
-
-  <div style="float:left; margin-right:2em;">
-  	<h2>Project Members</h2>
-  	                                     
-  	<% unless @project.project_members.empty? %>
-  	<ul>
-  	<% @project.project_members.each do |member| %>
-  		<li><%= link_to member.user.email, user_path(member.user) %>&nbsp;(<%= member.project_role.name%>)</li>
-  	<% end %>
-  	</ul>
-  	<% else %>
-  	  <p class="info">
-        No members.
-      </p>	
-  	<% end %>
-  </div>
-  
-  <div style="float:left; margin-right:2em;">
-    <h2>Upcoming Releases</h2>
-
-    <% unless @releases.empty? %>
-    <ul>
-    <% for release in @releases %>
-      <li>
-        <%= release.version_number %>
-        <%= link_to project_release_path(@project.code, release.id), :title => view_release_title, :rel => :tipsy do %>
-            <img src="/images/icons/application_view_detail.png">
+        <% unless @project.project_members.empty? %>
+        <ul>
+        <% @project.project_members.each do |member| %>
+            <li><%= link_to member.user.email, user_path(member.user) %>&nbsp;(<%= member.project_role.name%>)</li>
         <% end %>
-        <%= link_to burndown_project_release_path(@project.code, release.id), :title => release_burndown_title, :rel => :tipsy do %>
-            <img src="/images/icons/chart_line.png">
+        </ul>
+        <% else %>
+          <div class="info">
+            No members.
+          </div>
         <% end %>
-      </li>
-    <% end %>
-    </ul>
-    <%= link_to 'Show all', project_releases_path(@project.code) %>
-    <% else %>
-      <p class="info">
-        No active releases.
-      </p>
-    <% end %>
+    </div>
+
+    <div id="releases">
+        <h3>Upcoming Releases</h3>
+
+        <% unless @releases.empty? %>
+        <ul>
+        <% for release in @releases %>
+          <li>
+            <%= release.version_number %>
+            <%= link_to project_release_path(@project.code, release.id), :title => view_release_title, :rel => :tipsy do %>
+                <img src="/images/icons/application_view_detail.png">
+            <% end %>
+            <%= link_to burndown_project_release_path(@project.code, release.id), :title => release_burndown_title, :rel => :tipsy do %>
+                <img src="/images/icons/chart_line.png">
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+        <%= link_to 'Show all', project_releases_path(@project.code) %>
+        <% else %>
+          <p class="info">
+            No active releases.
+          </p>
+        <% end %>
+    </div>
+
+    <div id="sprints">
+        <h3>Upcoming Sprints</h3>
+    
+        <% unless @sprints.empty? %>
+        <ul>
+        <% for sprint in @sprints %>
+            <li>
+              <%= sprint.span_date %>
+              <%= link_to project_sprint_path(@project.code, sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
+                  <img src="/images/icons/application_view_detail.png">
+              <% end %>
+              <%=link_to burndown_project_sprint_path(@project.code, sprint.id), :title => sprint_burndown_title, :rel => :tipsy do %>
+                <img src="/images/icons/chart_line.png">
+              <% end %>
+              <%= link_to taskboard_project_sprint_path(@project.code, sprint.id), :title => sprint_board_title, :rel => :tipsy do %>
+                <img src="/images/icons/table.png">
+              <% end %>
+            </li>
+        <% end %>
+        </ul>
+        <%= link_to 'Show all', project_sprints_path(@project.code) %>
+        <% else %>
+          <p class="info">
+            No active sprints.
+          </p>
+        <% end %>
+    </div>
   </div>
 
-  <div style="float:left; margin-right:2em;">
-    <h2>Sprints</h2>
+  <div id="right">
+    <h3>Product Features in Current Sprint</h3>
 
-    <% unless @sprints.empty? %>
-    <ul>
-    <% for sprint in @sprints %>
-        <li>
-          <%= sprint.span_date %>
-          <%= link_to project_sprint_path(@project.code, sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
-              <img src="/images/icons/application_view_detail.png">
-          <% end %>
-          <%=link_to burndown_project_sprint_path(@project.code, sprint.id), :title => sprint_burndown_title, :rel => :tipsy do %>
-            <img src="/images/icons/chart_line.png">
-          <% end %>
-          <%= link_to taskboard_project_sprint_path(@project.code, sprint.id), :title => sprint_board_title, :rel => :tipsy do %>
-            <img src="/images/icons/table.png">
-          <% end %>
-        </li>
+    <table width="100%">
+    <% @features.each do |feature| %>
+        <%= render 'features', :target => feature %>
     <% end %>
-    </ul>
-    <%= link_to 'Show all', project_sprints_path(@project.code) %>
-    <% else %>
-      <p class="info">
-        No active sprints.
-      </p>
-    <% end %>
-  </div>
-  </div>
-
-  <div style="clear:both; margin-bottom:1.5em;"></div>
-
-  <div>
-    <h2>Product Features in Current Sprint</h2>
-    <%= render :partial => "features/list" %>
+    </table>  
     <span style="float:right"><%= link_to 'Show All', project_features_path(@project.code) %></span>
-    <div style="clear:both"></div>
   </div>
 
 </div>

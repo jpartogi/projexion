@@ -4,7 +4,7 @@ class FeatureStatus
 
   field :display_name
   field :key
-  field :position, :type => Integer
+  field :position, :type => Integer, :default => 1
   field :color
   field :default_status, :type => Boolean
 
@@ -12,7 +12,7 @@ class FeatureStatus
 
   references_many :features
 
-  before_create :set_next_position
+  before_create :set_position
   before_save :check_and_update_default_status
 
   validates_presence_of :display_name, :key, :color
@@ -24,7 +24,7 @@ class FeatureStatus
     '#'+self.color
   end
   
-  def set_next_position
+  def set_position
     last_status = FeatureStatus.last_status
 
     unless last_status.nil?

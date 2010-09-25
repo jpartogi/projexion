@@ -1,0 +1,22 @@
+<tr id="feature_<%=target.id %>">
+    <input type="hidden" class="feature-id" name="feature-id" value="<%= target.id %>"/>
+    <td width="60%">
+      <%= target.user_story %>
+      <%= link_to project_feature_path(@project.code, target), :title => view_feature_title, :rel => :tipsy do %>
+        <img src="/images/icons/application_view_detail.png">
+      <% end %>
+    </td>
+    <td class="status" style="text-align:center;background-color:<%= target.feature_statuses.hash_color %>">
+      <%= target.feature_statuses.display_name %>
+    </td>
+    <td style="text-align:center;" width="20%">
+      <% unless target.release.nil? %>
+        <span class="release"><%= target.release.version_number %>&nbsp;</span>
+        <%= link_to project_release_path(@project.code, target.release), :title => view_release_title, :rel => :tipsy do %>
+          <img src="/images/icons/application_view_detail.png">
+        <% end %>
+      <% else %>
+        <div class="release">&nbsp;</div>
+      <% end %>
+    </td>
+</tr>

@@ -3,9 +3,9 @@ a { font-weight: bold; color:#333; }
 a:hover { text-decoration:none; }
 a img { background: white; vertical-align:bottom; }
 h1, h2, h3 {  text-shadow: #999 1px 1px 0; }
-h1 { font: bold 25px Helvetica; letter-spacing:-0.75px; margin-bottom:0.8em; }
-h2 { font: bold 23px Helvetica; letter-spacing:-0.7px; margin-bottom:0.8em; }
-h3 { font: bold 20px Helvetica; letter-spacing:-0.7px; margin-bottom:0.7em; }
+h1 { font: bold 25px Helvetica; letter-spacing:-0.75px; margin-bottom:0.2em; }
+h2 { font: bold 22px Helvetica; letter-spacing:-0.7px; margin-bottom:0.2em; }
+h3 { font: bold 18px Helvetica; letter-spacing:-0.7px; margin-bottom:0.2em; }
 
 form input[type='text'],
   form input[type='password'],
