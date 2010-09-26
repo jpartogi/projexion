@@ -91,8 +91,8 @@ li.info-list { margin: 1em 0 1em 0; }
 .info-list strong{ text-shadow: 1px 1px 0 #fff; }
 
 #sidebar { float:left; width: 350px; margin-left: 10px; }
-#sidebar a{ text-decoration:none; display:block; padding: 0.5em 0.5em 0.5em 1.5em; font: bold 16px Helvetica; text-shadow: 1px 1px 0 #fff; }
-#sidebar a:hover { background:white; }
+#sidebar #menu a{ text-decoration:none; display:block; padding: 0.5em 0.5em 0.5em 1.5em; font: bold 16px Helvetica; text-shadow: 1px 1px 0 #fff; }
+#sidebar #menu a:hover { background:white; }
 #sidebar .block { margin: 2em 0 0 .5em; }
 #sidebar h2 { margin: .5em 0 1em .25em; font-family: Helvetica; text-shadow: 1px 1px 0 #fff; }
 
@@ -102,7 +102,7 @@ li.info-list { margin: 1em 0 1em 0; }
 #left { float:left; margin-right:2em; width:40%; }
 #right { float:left; width: 55%; }
 
-#members, #releases, #sprints { margin-top: 1.2em; }
+#members, #releases, #sprints, #meetings { margin-top: 1.2em; }
 
 #error_explanation { font: 11px verdana, sans-serif; color: #be0b0b; margin-bottom: 1em; background-color: #ffe1da; padding:5px; }
 #error_explanation li { background: url('/images/icons/exclamation.png') 6px 50% no-repeat; border-color: #f34f4f; color: #be0b0b; text-indent: 25px;}

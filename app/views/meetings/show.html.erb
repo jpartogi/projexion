@@ -39,8 +39,7 @@
 </div>
 
 <div id="sidebar">
-  <ul>
-    <li><%= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
+  <ul id="menu">
     <li><%= link_to 'Meetings', project_meetings_path(@project.code), :class => 'list' %></li>
     <% if @meeting.cancelled_at.nil? %>
     <li><%= link_to 'Edit Meeting', edit_project_meeting_path(@project.code, @meeting), :class => 'edit'  %></li>

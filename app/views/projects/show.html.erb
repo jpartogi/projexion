@@ -94,7 +94,7 @@
 </div>
 
 <div id="sidebar">
-  <ul>
+  <ul id="menu">
     <%# TODO: Edit and delete only if project manager %>
     <% if can? :manage, @project %>    
     <li><%= link_to 'Edit Project', edit_admin_project_path(@project.code), :class => 'edit' %></li>

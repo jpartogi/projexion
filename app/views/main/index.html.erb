@@ -26,8 +26,9 @@
 <div id="content">
 	<p class="success"><span ><%= flash[:notice] %></span></p>
 
-    <div style="float:left">
-      <h1>Latest events</h1>
+    <div id="left">
+      <h2>Latest events</h2>
+      
       <% unless @events.empty? %>
 
       <ul id="events">
@@ -43,26 +44,33 @@
       <% end %>
     </div>
 
-    <div style="float:left;margin-left:5em;">
-        <h1>Your Projects</h1>
-        <% unless @projects.empty? %>
-        <ul>
-          <% @projects.each do |project| %>
-          <li class="info-list" style="min-width:200px">
-            <% link_to project_path(project.code) do %>
-                <%= project.name %>&nbsp;(<%= project.code %>)
-            <% end %><br/>
-            <%= project.vision %><br/>
-          </li>
-          <% end %>
-        </ul>
+    <div id="right">
+      <div id="tasks">
+        <h3>Your Tasks</h3>
+
+        <% unless @tasks.empty? %>
+          <ul>
+            <% @tasks.each do |task| %>
+              <li class="info-list">
+                <strong>Project</strong>:&nbsp;<%= task.project.name %><br/>
+                <strong>User story</strong>:&nbsp;<%= task.feature.user_story %>
+                <%= link_to project_feature_path(task.project.code, task.feature) do %>
+                  <img src="/images/icons/application_view_detail.png">
+                <% end %><br/>
+                <strong>Task</strong>:&nbsp;<%= task.description %>
+              </li>
+            <% end %>
+          </ul>
         <% else %>
-          <p class="info">
-            You're not in a project yet.
+           <p class="info">
+            You have no tasks yet.
          </p>
         <% end %>
+      </div>
 
-        <h1>Next Scheduled Meetings</h1>
+      <div id="meetings">
+        <h3>Your Meetings</h3>
+
         <% unless @meetings.empty? %>
          <ul>
             <% @meetings.each do |meeting| %>
@@ -83,30 +91,27 @@
             No scheduled meetings.
          </p>
         <% end %>
+      </div>
     </div>
-
-     <div style="float:left;margin-left:5em;">
-        <h1>Your Tasks</h1>
-
-        <% unless @tasks.empty? %>
-          <ul>
-            <% @tasks.each do |task| %>
-              <li class="info-list">
-                <strong>Project</strong>:&nbsp;<%= task.project.name %><br/>
-                <strong>User story</strong>:&nbsp;<%= task.feature.user_story %>
-                <%= link_to project_feature_path(task.project.code, task.feature) do %>
-                  <img src="/images/icons/application_view_detail.png">
-                <% end %><br/>
-                <strong>Task</strong>:&nbsp;<%= task.description %>
-              </li>
-            <% end %>
-          </ul>
-        <% else %>
-           <p class="info">
-            You have no tasks yet.
-         </p>
-        <% end %>
-     </div>  
 </div>
 
-<div id="sidebar"></div>
+<div id="sidebar">
+  <div id="projects">
+    <h3>Your Projects</h3>
+    <% unless @projects.empty? %>
+    <ul>
+      <% @projects.each do |project| %>
+      <li>
+        <% link_to project_path(project.code) do %>
+            <%= project.name %>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p class="info">
+        You're not in a project yet.
+     </p>
+    <% end %>
+  </div>
+</div>
