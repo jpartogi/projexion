@@ -14,9 +14,7 @@ class ProjectRole
 #  belongs_to :project_member
 #
 #  before_save :check_and_update_manager
-#
-
-#
+  
 #  def check_and_update_manager
 #    manager = ProjectRole.manager
 #
@@ -27,10 +25,4 @@ class ProjectRole
 #      end
 #    end
 #  end
-#
-  class << self
-    def manager(account)
-      self.first(:conditions => {:manager => true, :account_id => account.id})
-    end
-  end
 end

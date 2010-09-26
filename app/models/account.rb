@@ -18,4 +18,10 @@ class Account
 
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :companies
+
+  validates_presence_of :subdomain
+
+  def manager_role
+    self.project_roles.where(:manager => true).first
+  end
 end

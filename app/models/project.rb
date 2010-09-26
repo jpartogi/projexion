@@ -45,13 +45,13 @@ class Project
   end
 
   def manager
-    project_member = self.project_members.where(:project_role_id => ProjectRole.manager(self.account).id).first
+    project_member = self.project_members.where(:project_role_id => self.account.manager_role.id).first
 
     project_member.user unless project_member.nil?
   end
 
   def manager_exists?
-    false if manager.nil? else true
+    false if manager.nil?
   end
 
   def members
