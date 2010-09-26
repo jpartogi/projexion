@@ -3,17 +3,12 @@
 <div id="content">
   <p class="success"><span ><%= flash[:notice] %></span></p>
   
-  <% form_for ([:admin, @project]) do |f| %>
+  <%= form_for ([:admin, @project]) do |f| %>
     <%= render "shared/error_messages", :target => @project %>
 
     <div>
       <%= f.label :name %>
       <%= f.text_field :name %>
-    </div>
-
-    <div>
-      <%= f.label :code %>
-      <%= f.text_field :code, :size => 5, :maxlength => 10 %>
     </div>
 
     <div>
@@ -33,10 +28,5 @@
 
 <div id="sidebar">
   <ul>
-    <% if @project.new_record? then %>
-    <li><%= link_to 'Show Projects', projects_path, :class => 'list' %></li>
-    <% else %>
-    <li><%#= link_to 'Project Dashboard', project_path(@project.code), :class => 'dashboard' %></li>
-    <% end %>
   </ul>
 </div>

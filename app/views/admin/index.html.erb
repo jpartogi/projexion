@@ -3,25 +3,14 @@
 <div id="content">
   <p class="success"><span><%= flash[:notice] %></span></p>
   <%# TODO: Add project manager in list %>
-  <table width="100%" id="projects">
-    <tr>
-        <th width="10%">Code</th>
-        <th>Project Name</th>
-        <th>&nbsp;</th>
-    </tr>
 
-    <% for project in @projects %>
-    <tr>
-        <td style="text-align:center;"><%= link_to project.code, project_path(project.code) %></td>
-        <td><%= h project.name %></td>
-        <td>
-          <% link_to project_path(project.code) do %>
-            <img src="/images/icons/application_view_detail.png">
-          <% end %>
-        </td>
-    </tr>
+  <h2><%= @current_account.company.name %> Projects</h2>
+  <ul>
+    <% @projects.each do |project| %>
+    <li><%= link_to project.name, project_path(project.code) %></li>
     <% end %>
-  </table>
+  </ul>
+
 </div>
 
 <div id="sidebar">

@@ -15,14 +15,18 @@ class Project
   references_many :sprints
   references_many :project_members
   
-  validates_presence_of :name, :code, :vision
+  validates_presence_of :name, :vision
   validates_uniqueness_of :code, :scope => :account_id
-#
+
 #  has_many :project_members
 #  has_many :users, :through => :project_members
 #  has_many :features
 #  has_many :releases
 #  has_many :sprints
+
+  def code
+    self.code = self.name.gsub(/\s+/, '-').strip.downcase
+  end
 
   def active_sprints
     self.sprints.where(:end_date.gt => Time.now.beginning_of_day, :cancelled_at => nil).asc(:start_date)
