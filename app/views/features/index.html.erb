@@ -1,7 +1,7 @@
 <% content_for :title do %><%= @project.name %>&nbsp;Features&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
 
 <div id="content">
-  <h1><%= @project.name %>&nbsp;Features</h1>
+  <h1><%= @project.name %>&nbsp;Features    </h1>
   
   <div class="panel">
     <% form_for @feature, :url => project_features_path(@project.code), :html => { :method => :get }  do |f| %>

@@ -16,7 +16,7 @@ gem 'bson_ext'
 gem 'mongoid', "2.0.0.beta.17"
 
 # For security
-gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
+gem 'devise', '1.1.3'
 gem "cancan"
 
 #gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git'
@@ -42,4 +42,9 @@ group :test do
   gem "factory_girl"
   gem "cucumber"
   gem "rack-test"
+end
+
+group :test, :development do
+  gem "rack-test"
+  gem "rspec-rails", ">= 2.0.0.beta.22"
 end

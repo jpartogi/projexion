@@ -10,3 +10,4 @@ db/projexion
 config/database.yml
 *.log
 Gemfile.lock
+.rspec

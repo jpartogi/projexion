@@ -43,9 +43,9 @@ class FeatureStatus
     position = self.position
 
     if direction.eql? DIRECTION_UP
-      changed_status = FeatureStatus.find_by_position(position.to_i - 1)
+      changed_status = FeatureStatus.where(:position => position.to_i - 1).first
     elsif direction.eql? DIRECTION_DOWN
-      changed_status = FeatureStatus.find_by_position(position.to_i + 1)
+      changed_status = FeatureStatus.where(:position => position.to_i + 1).first
     end
 
     self.position = changed_status.position
@@ -69,10 +69,8 @@ class FeatureStatus
       changed_status.default = false
     end
 
-    FeatureStatus.transaction do
-      self.save
-      changed_status.save
-    end
+    self.save
+    changed_status.save
 
     return self
   end

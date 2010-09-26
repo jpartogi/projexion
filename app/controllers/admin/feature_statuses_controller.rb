@@ -8,15 +8,15 @@ class Admin::FeatureStatusesController < ApplicationController
   end
 
   def show
-    @feature_status = FeatureStatus.find(params[:id])
+    @feature_status = @current_account.feature_statuses.find(params[:id])
   end
 
   def edit
-    @feature_status = FeatureStatus.find(params[:id])
+    @feature_status = @current_account.feature_statuses.find(params[:id])
   end
 
   def update
-    @feature_status = FeatureStatus.find(params[:id])
+    @feature_status = @current_account.feature_statuses.find(params[:id])
 
     respond_with(@feature_status) do |format|
       if @feature_status.update_attributes(params[:feature_status])
@@ -28,7 +28,7 @@ class Admin::FeatureStatusesController < ApplicationController
   end
 
   def destroy
-    @feature_status = FeatureStatus.find(params[:id])
+    @feature_status = @current_account.feature_statuses.find(params[:id])
 
     @feature_status.destroy
 
@@ -43,6 +43,7 @@ class Admin::FeatureStatusesController < ApplicationController
 
   def create
     @feature_status = FeatureStatus.new(params[:feature_status])
+    @current_account.feature_statuses << @feature_status
 
     respond_with(@feature_status) do |format|
       if @feature_status.save
@@ -54,7 +55,7 @@ class Admin::FeatureStatusesController < ApplicationController
   end
 
   def update_position
-    @feature_status = FeatureStatus.find(params[:id])
+    @feature_status = @current_account.feature_statuses.find(params[:id])
     
     @feature_status.update_position(params[:direction])
 
