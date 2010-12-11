@@ -10,7 +10,7 @@
       <%= @project.vision %>
     </div>
 
-    <div id="members">
+    <div id="members" class="bbordered">
         <h3>Project Members</h3>
 
         <% unless @project.project_members.empty? %>
@@ -26,14 +26,14 @@
         <% end %>
     </div>
 
-    <div id="releases">
+    <div id="releases" class="bbordered">
         <h3>Upcoming Releases</h3>
 
         <% unless @releases.empty? %>
         <ul>
         <% for release in @releases %>
           <li>
-            <%= release.version_number %>
+            <%= release.version_number %>&nbsp;<% unless release.estimate_date.nil? %>-&nbsp;<%= release.estimate_date %><% end %>
             <%= link_to project_release_path(@project.code, release.id), :title => view_release_title, :rel => :tipsy do %>
                 <img src="/images/icons/application_view_detail.png">
             <% end %>
@@ -43,15 +43,16 @@
           </li>
         <% end %>
         </ul>
-        <%= link_to 'Show all', project_releases_path(@project.code) %>
         <% else %>
           <p class="info">
-            No active releases.
+            There is no active release.
           </p>
         <% end %>
+        <%= link_to 'Show all', project_releases_path(@project.code) %>&nbsp;
+        <%= link_to 'Add New Release', new_project_release_path(@project.code) %>
     </div>
 
-    <div id="sprints">
+    <div id="sprints" class="bbordered">
         <h3>Upcoming Sprints</h3>
     
         <% unless @sprints.empty? %>
@@ -71,24 +72,52 @@
             </li>
         <% end %>
         </ul>
-        <%= link_to 'Show all', project_sprints_path(@project.code) %>
         <% else %>
           <p class="info">
-            No active sprints.
+            There is no active sprint.
           </p>
         <% end %>
+        <%= link_to 'Show all', project_sprints_path(@project.code) %>&nbsp;
+        <%= link_to 'Add new Sprint', new_project_sprint_path(@project.code) %>
     </div>
   </div>
 
   <div id="right">
-    <h3>Product Features in Current Sprint</h3>
+    <div id="sprint" class="bbordered">
+      <h2>Current Sprint</h2>
+      <% unless @sprint.nil? %>
+        <span>
+          Current sprint will end in <%= distance_of_time_in_words Time.now, @sprint.end_date %>&nbsp;(<%= @sprint.end_date.to_formatted_s(:notime) %>)
+          <%= link_to project_sprint_path(@project.code, @sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
+            <img src="/images/icons/application_view_detail.png">
+          <% end %>
+          <%=link_to burndown_project_sprint_path(@project.code, @sprint.id), :title => sprint_burndown_title, :rel => :tipsy do %>
+            <img src="/images/icons/chart_line.png">
+          <% end %>
+          <%= link_to taskboard_project_sprint_path(@project.code, @sprint.id), :title => sprint_board_title, :rel => :tipsy do %>
+            <img src="/images/icons/table.png">
+          <% end %>
+        </span>
+      <% else %>
+        <p class="info">There is no active sprint.</p>
+      <% end %>
+    </div>
 
-    <table width="100%">
-    <% @features.each do |feature| %>
+    <div id="features" class="bbordered">
+    <h3>Product Features</h3>
+    <% unless @features.empty? %>
+      <table width="100%">
+      <% @features.each do |feature| %>
         <%= render 'features', :target => feature %>
+      <% end %>
+      </table>
+    <% else %>
+      <p class="info">There are no features in this sprint yet.</p>
     <% end %>
-    </table>  
-    <span style="float:right"><%= link_to 'Show All', project_features_path(@project.code) %></span>
+
+    <%= link_to 'Show all', project_features_path(@project.code) %>&nbsp;
+    <%= link_to 'Add new Feature', new_project_feature_path(@project.code) %>
+    </div>
   </div>
 
 </div>
@@ -96,21 +125,18 @@
 <div id="sidebar">
   <ul id="menu">
     <%# TODO: Edit and delete only if project manager %>
+    <%# TODO: Add project member %>
     <% if can? :manage, @project %>    
     <li><%= link_to 'Edit Project', edit_admin_project_path(@project.code), :class => 'edit' %></li>
     <li><%= link_to 'Delete Project', admin_project_path(@project.code), :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <% end %>
-    <li><%= link_to 'Add New Feature', new_project_feature_path(@project.code), :class => 'add' %></li>
-    <li><%= link_to 'Add New Release', new_project_release_path(@project.code), :class => 'add' %></li>
-    <li><%= link_to 'Add New Sprint', new_project_sprint_path(@project.code), :class => 'add' %></li>
-    <li><%= link_to 'Book a meeting', new_project_meeting_path(@project.code), :class => 'add' %></li>
-    <li><%= link_to 'Show Features', project_features_path(@project.code), :class => 'list' %></li>
-    <li><%= link_to 'Show Releases', project_releases_path(@project.code), :class => 'list' %></li>
-    <li><%= link_to 'Show Meetings', project_meetings_path(@project.code), :class => 'list' %></li>
-    <li><%= link_to 'Show Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
-    <% unless @sprint.nil? %>
-    <li><%= link_to 'Current Sprint Taskboard', taskboard_project_sprint_path(@project.code, @sprint), :class => 'taskboard' %></li>
-    <li><%= link_to 'Current Sprint Burndown', burndown_project_sprint_path(@project.code, @sprint), :class => 'chart' %></li>
-    <% end %>    
+    <li><%#= link_to 'Add New Feature', new_project_feature_path(@project.code), :class => 'add' %></li>
+    <li><%#= link_to 'Add New Release', new_project_release_path(@project.code), :class => 'add' %></li>
+    <li><%#= link_to 'Add New Sprint', new_project_sprint_path(@project.code), :class => 'add' %></li>
+    <li><%#= link_to 'Book a meeting', new_project_meeting_path(@project.code), :class => 'add' %></li>
+    <li><%#= link_to 'Show Features', project_features_path(@project.code), :class => 'list' %></li>
+    <li><%#= link_to 'Show Releases', project_releases_path(@project.code), :class => 'list' %></li>
+    <li><%#= link_to 'Show Meetings', project_meetings_path(@project.code), :class => 'list' %></li>
+    <li><%#= link_to 'Show Sprints', project_sprints_path(@project.code), :class => 'list' %></li>   
   </ul>
 </div>

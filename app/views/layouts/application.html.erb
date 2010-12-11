@@ -67,7 +67,7 @@
       </div>
       <div id="bottom-band">
         <ul id="left-menu">
-          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Dashboard', root_path %></li>
           <% if not @project.nil? and not controller_name.eql? 'projects' %>
           <li><%= link_to project_path(@project.code) do %>Overview<% end %></li>
           <% end %>
@@ -90,7 +90,7 @@
         <div id="neck">
           <div id="left-neck">
             <div id="breadcrumb">
-              <a href="#">Overview</a>&raquo;
+              <!--<a href="#">Overview</a>&raquo;-->
             </div>
 
             <div id="search">

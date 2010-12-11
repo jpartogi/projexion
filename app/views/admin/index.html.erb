@@ -16,13 +16,17 @@
 <div id="sidebar">
   <ul id="menu">   
     <li><%= link_to 'Add New Project', new_admin_project_path, :class => 'add' %></li>
-  	<li><%= link_to 'Show Users', admin_users_path, :class => 'list' %></li>
-    <li><%= link_to 'Show Priorities', admin_priorities_path, :class => 'list' %></li>
-    <li><%= link_to 'Show Project Roles', admin_project_roles_path, :class => 'list' %></li>
-    <li><%= link_to 'Show Feature Statuses', admin_feature_statuses_path, :class => 'list' %></li>
-    <li><%= link_to 'Show Task Statuses', admin_task_statuses_path, :class => 'list' %></li>
-    <li><%= link_to 'Show Meeting Types', admin_meeting_types_path, :class => 'list' %></li>
-    <%# TODO: Run release snapshot and sprint snapshot manually %>
+  	<%# TODO: Run release snapshot and sprint snapshot manually %>
     <%# TODO: Re-arrange this to be portal like layout %>
+  </ul>
+
+  <h3>Management</h3>
+  <ul>
+    <li><%= link_to 'Users', admin_users_path %></li>
+    <li><%= link_to 'Priorities', admin_priorities_path %></li>
+    <li><%= link_to 'Project Roles', admin_project_roles_path %></li>
+    <li><%= link_to 'Feature Statuses', admin_feature_statuses_path %></li>
+    <li><%= link_to 'Task Statuses', admin_task_statuses_path %></li>
+    <li><%#= link_to 'Meeting Types', admin_meeting_types_path %></li>
   </ul>
 </div>

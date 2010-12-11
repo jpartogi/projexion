@@ -15,39 +15,39 @@
     <%= render "shared/error_messages", :target => @feature %>
 
     <p>  
-        <%= f.label :user_story %><br/>
-        <%= f.text_area :user_story, :rows => 4, :title => user_story_tip %><br/>
+        <%= f.label :user_story %>
+        <%= f.text_area :user_story, :rows => 4, :title => user_story_tip %>
     </p>
 
     <p>
-        <%= f.label :business_value %><br/>
-        <%= f.text_field :business_value, :size => 12, :title => business_value_tip %><br/>
+        <%= f.label :business_value %>
+        <%= f.text_field :business_value, :size => 12, :title => business_value_tip %>
     </p>
 
     <p>
-        <%= f.label :story_points %><br/>
-        <%= f.text_field :story_points, :size => 12, :title => story_points_tip %><br/>
+        <%= f.label :story_points %>
+        <%= f.text_field :story_points, :size => 12, :title => story_points_tip %>
     </p>
 
     <p>
-        <%= f.label :priority_level %><br/>
+        <%= f.label :priority_level %>
         <%= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}, :title => priority_tip) %>
     </p>
 
     <p>
-        <%= f.label :sprint %><br/>
+        <%= f.label :sprint %>
         <%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}, :title => 'Sprint for implementing this feature') %>
     </p>
 
     <p>
-        <%= f.label :release_version %><br/>
+        <%= f.label :release_version %>
         <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}, :title => 'Planned release for this feature') %>
     </p>
       
     <p>
-        <%= f.label :acceptance_tests %><br/>
+        <%= f.label :acceptance_tests %>
         <%# Acceptance test is dynamically transformed during insertion %>
-        <%= text_area_tag :acceptance_test, nil, :size => "40x4", :title => acceptance_test_tip %><br/>
+        <%= text_area_tag :acceptance_test, nil, :size => "40x4", :title => acceptance_test_tip %>
     </p>
 
     <p>

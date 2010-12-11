@@ -3,8 +3,8 @@
 <div id="content">
     <p class="success"><span ><%= flash[:notice] %></span></p>
     
-    <div id="feature" style="float:left; width:45%;">
-
+    <div id="left">
+      <div id="feature">
       <script type="text/javascript">
         $(document).ready(function(){
             $('.card').corner();
@@ -33,23 +33,31 @@
 
       <div style="clear:both; margin-bottom:1em;"></div>
 
+      <div class="bbordered">
+        <h3>User Story</h3>
+        <%= h @feature.user_story %>
+      </div>
+
+      <div id="release" class="bbordered">
+      <h3>Release</h3>  <%#TODO: Inline combo edit %>
       <% if @feature.release %>
-      <p>
-        <%= label_tag (:release) %><br/>  <%#TODO: Inline combo edit %>
+      <div>
         <%= @feature.release.version_number %>
         <%= link_to project_release_path(@project.code, @feature.release.id), :title => view_release_title, :rel => :tipsy do %>
           <img src="/images/icons/application_view_detail.png">
         <% end %>
-      </p>
+      </div>
       <% else %>
       <p class="info">
-        No release has been assigned to this feature. Assign it from <%= link_to 'here', edit_project_feature_path(@project.code, @feature.id) %>.
+        This feature is not in a release.
       </p>
       <% end %>
-
+      </div>
+      
+      <div id="sprint" class="bbordered">
+      <h3>Sprint</h3><%#TODO: Inline combo edit %>
       <% if @feature.sprint %>
       <p>
-        <%= label_tag (:sprint) %><br/> <%#TODO: Inline combo edit %>
         <%= @feature.sprint.span_date %>
         <%= link_to project_sprint_path(@project.code, @feature.sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
           <img src="/images/icons/application_view_detail.png">
@@ -63,15 +71,12 @@
       </p>
       <% else %>
       <p class="info">
-        No sprint has been assigned to this feature. Assign it from <%= link_to 'here', edit_project_feature_path(@project.code, @feature.id) %>.
+        This feature is not in a sprint.
       </p>
       <% end %>
-
-      <p>
-        <%= label_tag (:user_story) %><br/>
-        <%= h @feature.user_story %>
-      </p>
-
+      </div>
+      </div>
+      
       <script type="text/javascript">
         $(document).ready(function(){
             $('input:checkbox[name=acceptances]').click(function(){
@@ -132,11 +137,12 @@
       
     </script>
 
-    <div style="float:left; margin-left:1em; width:45%">
+    <div id="right">
 
-        <div style="margin-bottom:1em;">
+        <div id="tests" class="bbordered">
+            <h3>Acceptance Tests</h3>
+            <%# TODO: Add ajax form for acceptance tests here %>
             <% unless @acceptances.empty? %>
-              <h2>Acceptance Tests</h2>
               <table>
               <% for acceptance in @acceptances %>
               <tr>
@@ -152,13 +158,14 @@
               <% end %>
               </table>
             <% else %>
-              <p class="info">There are no acceptance tests for this feature yet.</p>
+              <p class="info">There is no acceptance test for this feature yet.</p>
             <% end  %>
         </div>
 
-        <div>
+        <div class="bbordered">
+            <h3>Tasks for this feature</h3>
+            <%# TODO: Add form for tasks here %>  
             <% unless @tasks.empty? %>
-                <h2>Tasks for this feature</h2>
 
                 <table id="tasks" width="100%">
                 <% for task in @tasks %>
@@ -182,7 +189,7 @@
                 <% end %>
                 </table>
             <% else %>
-                <p class="info">There are no tasks for this feature yet.</p>
+                <p class="info">There is no task for this feature yet.</p>
             <% end %>
         </div>
       

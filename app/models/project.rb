@@ -33,7 +33,7 @@ class Project
   end
 
   def current_sprint
-    self.sprints.where(:start_date.lte => Time.now.beginning_of_day, :end_date.gte => Time.now.end_of_day).first
+    self.sprints.where(:start_date.lte => Time.now.beginning_of_day, :end_date.gte => Time.now.end_of_day, :cancelled_at => nil).first
   end
 #
 #  def latest_sprint

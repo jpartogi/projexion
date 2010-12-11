@@ -99,8 +99,8 @@ li.info-list { margin: 1em 0 1em 0; }
 #users_form { padding: 1em; background-color: #fff; }
 #users_form form input[type='text'], #users_form form input[type='password']{ width:98%; }
 
-#left { float:left; margin-right:2em; width:40%; }
-#right { float:left; width: 55%; }
+#left { float:left; margin-right:2em; width:45%; }
+#right { float:left; width: 52%; }
 
 #members, #releases, #sprints, #meetings { margin-top: 1.2em; }
 
@@ -114,6 +114,8 @@ li.info-list { margin: 1em 0 1em 0; }
 .small { font: 11px verdana; }
 .number_input { text-align:right; }
 .notice { background: #e2f9e3; color: #080; font: bolder 11px verdana; width: 450px; margin: 0 auto 0 auto; /* border: 1px solid #9c9; */}
+
+.bbordered { margin-bottom: 1em; border-bottom:1px solid #eee; padding-bottom:10px; }
 
 /** Plugins */
 #tooltip { position: absolute; z-index: 3000; border: 1px solid #111;	background-color: #eee; padding: 5px; opacity: 0.85; }

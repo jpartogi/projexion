@@ -26,7 +26,7 @@ class FeaturesController < ApplicationController
   def new
     @feature = Feature.new
     @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
-    @priorities = Priority.asc(:level)
+    @priorities = @current_account.priorities.asc(:level)
     @sprints = @project.active_sprints
 
     @releases = @project.active_releases

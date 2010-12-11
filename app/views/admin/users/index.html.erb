@@ -1,3 +1,5 @@
+<% content_for :title do %>Admin&nbsp;:&nbsp;<%= controller_name.humanize %><% end %>
+
 <div id="content">
 <p class="success"><span><%= flash[:notice] %></span></p>
 
@@ -29,7 +31,7 @@
 </div> 
 
 <div id="sidebar">
-  <ul>
+  <ul id="menu">
     <li><%= link_to 'Add New User', new_admin_user_path, :class => 'add' %></li>
   </ul>
 </div> 

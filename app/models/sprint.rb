@@ -23,7 +23,7 @@ class Sprint
   validates_presence_of :start_date, :end_date, :release
 
   def span_date
-    "#{self.start_date.to_formatted_s} - #{self.end_date.to_formatted_s}"
+    "#{self.start_date.to_formatted_s(:notime)} - #{self.end_date.to_formatted_s(:notime)}"
   end
 
   def generate_velocities

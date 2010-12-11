@@ -68,30 +68,30 @@
         <% end %>
       </div>
 
-      <div id="meetings">
-        <h3>Your Meetings</h3>
+      <!--<div id="meetings">-->
+        <!--<h3>Your Meetings</h3>-->
 
-        <% unless @meetings.empty? %>
-         <ul>
-            <% @meetings.each do |meeting| %>
-            <li class="info-list">
-              <strong><%= meeting.meeting_type.name %></strong>
-              <%= link_to project_meeting_path(meeting.project.code, meeting) do %>
-                  <img src="/images/icons/application_view_detail.png">
-              <% end %><br/>
-              <%= meeting.start_time %>&nbsp;(in <%= distance_of_time_in_words_to_now(meeting.start_time) %>)<br/>
-              <strong>Project</strong>:&nbsp;<%= link_to meeting.project.name, project_path(meeting.project.code) %><br/>
-              <strong>Location</strong>:&nbsp;<%= meeting.location %><br/>
-              <strong>Booked by</strong>:&nbsp;<%= link_to meeting.created_by, user_path(meeting.created_by) %><br/>
-            </li>
-            <% end %>
-         </ul>
-        <% else %>
-         <p class="info">
-            No scheduled meetings.
-         </p>
-        <% end %>
-      </div>
+        <!--<%# unless @meetings.empty? %>-->
+         <!--<ul>-->
+            <!--<%# @meetings.each do |meeting| %>-->
+            <!--<li class="info-list">-->
+              <!--<strong><%#= meeting.meeting_type.name %></strong>-->
+              <!--<%#= link_to project_meeting_path(meeting.project.code, meeting) do %>-->
+                  <!--<img src="/images/icons/application_view_detail.png">-->
+              <%# end %><br/>
+              <!--<%#= meeting.start_time %>&nbsp;(in <%#= distance_of_time_in_words_to_now(meeting.start_time) %>)<br/> -->
+              <!--<strong>Project</strong>:&nbsp;<%#= link_to meeting.project.name, project_path(meeting.project.code) %><br/>-->
+              <!--<strong>Location</strong>:&nbsp;<%#= meeting.location %><br/>-->
+              <!--<strong>Booked by</strong>:&nbsp;<%#= link_to meeting.created_by, user_path(meeting.created_by) %><br/>-->
+            <!--</li>-->
+            <!--<%# end %>-->
+         <!--</ul>-->
+        <!--<%# else %>-->
+         <!--<p class="info">-->
+            <!--No scheduled meetings.-->
+         <!--</p>-->
+        <!--<%# end %>-->
+      <!--</div>-->
     </div>
 </div>
 

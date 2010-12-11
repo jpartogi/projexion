@@ -1,3 +1,5 @@
+<% content_for :title do %>Admin&nbsp;:&nbsp;<%= controller_name.humanize %><% end %>
+
 <div id="content">
     <script type="text/javascript">
       $(document).ready(function(){
@@ -39,7 +41,7 @@
 </div>
 
 <div id="sidebar">
-  <ul>
+  <ul id="menu">
     <li><%= link_to 'Add New Feature Status', new_admin_feature_status_path, :class => 'add' %></li>
   </ul>
 </div>
