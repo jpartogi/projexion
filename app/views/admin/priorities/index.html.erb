@@ -3,34 +3,55 @@
 <div id="content">
 <p class="success"><span><%= flash[:notice] %></span></p>
 
-<table width="100%">
-  <tr>
-    <th>Display name</th>
-    <th>Priority level</th>
-    <th>Default</th>
-    <th>&nbsp;</th>
-  </tr>
+  <div id="left">
+    <% form_for([:admin, @priority]) do |f| %>
+      <%= render "shared/error_messages", :target => @priority %>
+        <p>
+          <%= f.label :display_name %>
+          <%= f.text_field :display_name %>
+        </p>
 
-<% @priorities.each do |priority| %>
-  <tr>
-    <td><%= priority.display_name %></td>
-    <td style="text-align:center;"><%= priority.level %></td>
-    <td style="text-align:center;">
-      <% if priority.default %><img src="/images/icons/accept.png"/><% end %>
-    </td>
-    <td width="5%" style="text-align:center;">
-    <% link_to admin_priority_path(priority) do %>                                        
-      <img src="/images/icons/application_view_detail.png">
+        <p>
+          <%= f.check_box :default %>
+          <%= f.label :default_priority? %>
+        </p>
+
+        <p>
+          <%= f.label :priority_level %>
+          <%= f.text_field :level, :size => 4 %>
+        </p>
+
+        <p>
+          <%= f.label :color, 'Background color' %>
+          <%= f.text_field :color, :size => 7, :maxlength => 7 %>
+        </p>
+
+        <p>
+          <%= f.submit 'Save', :class=> 'save_btn' %>
+        </p>
+     <% end %>
+  </div>
+
+  <div id="right">
+    <table width="100%">
+      <tr>
+        <th>Display name</th>
+        <th>Priority level</th>
+        <th></th>
+      </tr>
+
+    <% @priorities.each do |priority| %>
+      <tr>
+        <td><%= priority.display_name %></td>
+        <td style="text-align:center;"><%= priority.level %></td>
+        <td style="background-color:<%= priority.hash_color %>"></td>
+      </tr>
     <% end %>
-    </td>
-  </tr>
-<% end %>
 
-</table>
+    </table>
+  </div>
 </div>
 
 <div id="sidebar">
-  <ul id="menu">
-    <li><%= link_to 'Add New Priority', new_admin_priority_path, :class => 'add' %></li>
-  </ul>
+  <%= render :partial => 'admin/menu' %>  
 </div>

@@ -68,9 +68,6 @@
       <div id="bottom-band">
         <ul id="left-menu">
           <li><%= link_to 'Dashboard', root_path %></li>
-          <% if not @project.nil? and not controller_name.eql? 'projects' %>
-          <li><%= link_to project_path(@project.code) do %>Overview<% end %></li>
-          <% end %>
         </ul>
         <div style="clear:both"></div> 
         <ul id="right-menu">

@@ -7,6 +7,8 @@ class TaskStatus
   field :position, :type => Integer
   field :default, :type => Boolean
   field :color
+  field :first, :type => Boolean
+  field :last, :type => Boolean
 
   referenced_in :account
   

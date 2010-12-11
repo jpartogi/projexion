@@ -6,6 +6,7 @@ class Admin::PrioritiesController < ApplicationController
   # GET /admin_priorities
   # GET /admin_priorities.xml
   def index
+    @priority = Priority.new
     @priorities = @current_account.priorities
 
     respond_to do |format|

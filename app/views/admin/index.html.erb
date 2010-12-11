@@ -4,29 +4,36 @@
   <p class="success"><span><%= flash[:notice] %></span></p>
   <%# TODO: Add project manager in list %>
 
-  <h2><%= @current_account.company.name %> Projects</h2>
+  <div id="left">
+    <%= form_for ([:admin, @project]) do |f| %>
+    <%= render "shared/error_messages", :target => @project %>
+
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :vision %>
+      <%= f.text_field :vision, :size => 45 %>
+    </div>
+
+    <%= f.submit 'Save', :class=> 'save_btn' %>
+    <% end %>
+  </div>
+
+  <div id="right">
   <ul>
     <% @projects.each do |project| %>
-    <li><%= link_to project.name, project_path(project.code) %></li>
+    <li>
+      <label><%= link_to project.name, project_path(project.code) %></label><br/>
+      <%= project.vision %>
+    </li>
     <% end %>
   </ul>
-
+  </div>
 </div>
 
 <div id="sidebar">
-  <ul id="menu">   
-    <li><%= link_to 'Add New Project', new_admin_project_path, :class => 'add' %></li>
-  	<%# TODO: Run release snapshot and sprint snapshot manually %>
-    <%# TODO: Re-arrange this to be portal like layout %>
-  </ul>
-
-  <h3>Management</h3>
-  <ul>
-    <li><%= link_to 'Users', admin_users_path %></li>
-    <li><%= link_to 'Priorities', admin_priorities_path %></li>
-    <li><%= link_to 'Project Roles', admin_project_roles_path %></li>
-    <li><%= link_to 'Feature Statuses', admin_feature_statuses_path %></li>
-    <li><%= link_to 'Task Statuses', admin_task_statuses_path %></li>
-    <li><%#= link_to 'Meeting Types', admin_meeting_types_path %></li>
-  </ul>
+  <%= render :partial => 'admin/menu' %>
 </div>

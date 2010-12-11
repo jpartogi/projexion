@@ -7,6 +7,8 @@ class FeatureStatus
   field :position, :type => Integer, :default => 1
   field :color
   field :default, :type => Boolean
+  field :first, :type => Boolean
+  field :last, type => Boolean
 
   referenced_in :account
 
@@ -23,7 +25,11 @@ class FeatureStatus
   def hash_color
     '#'+self.color
   end
-  
+
+  def system?
+    self.first? or self.last?
+  end
+
   def set_position
     last_status = FeatureStatus.last_status
 

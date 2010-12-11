@@ -10,13 +10,15 @@ h3 { font: bold 18px Helvetica; letter-spacing:-0.7px; margin-bottom:0.2em; }
 form { padding:0; margin:0; }
 form input[type='text'],
   form input[type='password'],
-  form textarea { padding:3px; border:1px solid #ccc; font:12px verdana; background: #fff url('/images/input-bg.gif') repeat-x top left; }
+  form textarea { padding:3px; border:1px solid #ccc; font:12px verdana; background: #fff url('/images/input-bg.gif') repeat-x top left; margin-bottom:1em; width:99%; }
 
-form label { margin-top:1em; font: bold 18px Helvetica; letter-spacing:-0.7px; display: block; }
+form label { font: bold 18px Helvetica; letter-spacing:-0.7px; display: block; }
 form input[type='submit'] { font: 13px Arial; letter-spacing:-0.7px; }
+form input[type='checkbox'], input[type='radio'] { float: left; }
 
+#search-field { width: 300px; }
 #search-button, .inline-button { font: 13px Arial; letter-spacing: normal; margin:0; }
 
 #centered-box { width: 500px; margin: 0 auto 0 auto; }
-
+div.field, div.actions { margin: 10px 0 10px 0; }
 #footer { color: #333; font: 10px verdana; margin-top: 10px; }

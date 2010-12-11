@@ -2,33 +2,44 @@
 
 <div id="content">
 	<p class="success"><span><%= flash[:notice] %></span></p>
-	
-	<table width="100%">
-        <tr>
-          <th>Name</th>
-          <th>Role</th>
-          <th>Manager</th>
-          <th>&nbsp;</th>
-        </tr>
+
+    <div id="left">
+      <% form_for ([:admin, @project_role]) do |f| %>
+        <%= render "shared/error_messages", :target => @project_role %>
+
+        <p>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+        </p>
+
+		<p>
+          	<%= f.check_box :manager %>
+          	<%= f.label :manager_role?, 'Manager Role' %>
+		</p>
+
+        <p>
+            <%= f.label :role_description %>
+            <%= f.text_area :role, :size => "35x4" %>
+        </p>
+
+        <div class="actions">
+          <%= f.submit 'Save', :class=> 'save_btn' %>
+        </div>
+     <% end %>
+    </div>  
+
+    <div id="right">
+      <ul>
         <% for project_role in @project_roles %>
-        <tr>
-            <td><%= project_role.name %></td>
-            <td><%= project_role.role %></td>
-            <td style="text-align:center;">
-				<% if project_role.manager %><img src="/images/icons/accept.png"/><% end %>
-        	</td>
-            <td width="5%" style="text-align:center;">
-            <% link_to admin_project_role_path(project_role) do %>                                        
-        	  <img src="/images/icons/application_view_detail.png">
-      		<% end %>
-      		</td>
-        </tr>
-        <% end %>  
-    </table>
+        <li>
+          <label><%= project_role.name %>&nbsp;<% if project_role.manager %>(Manager Role)<% end %></label><br/>
+          <%= project_role.role %>
+        </li>
+        <% end %>
+      </ul>
+    </div>  
 </div>
 
 <div id="sidebar">
-  <ul id="menu">
-    <li><%= link_to 'Add New Project Role', new_admin_project_role_path, :class => 'add' %></li>
-  </ul>
+  <%= render :partial => 'admin/menu' %> 
 </div> 

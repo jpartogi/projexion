@@ -36,12 +36,42 @@
     </script>
 
     <p class="success"><span><%= flash[:notice] %></span></p>
-    <%= render :partial => "list" %> 
 
+    <div id="left">
+     <% form_for ([:admin, @feature_status]) do |f| %>
+        <%= render "shared/error_messages", :target => @feature_status %>
+
+        <div>
+          <%= f.label :display_name %>
+          <%= f.text_field :display_name %>
+        </div>
+
+        <div>
+          <%= f.label :key %>
+          <%= f.text_field :key %>
+        </div>
+
+        <div>
+          <%#= f.check_box :default %>
+          <%#= f.label :default?, 'Default Status' %>
+        </div>
+
+        <div>
+          <%= f.label :color, 'Background color' %>
+          <%= f.text_field :color, :size => 7, :maxlength => 7 %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit 'Save', :class=> 'save_btn' %>
+        </div>
+     <% end %>
+    </div>
+
+    <div id="right">
+      <%= render :partial => "list" %>
+    </div>
 </div>
 
 <div id="sidebar">
-  <ul id="menu">
-    <li><%= link_to 'Add New Feature Status', new_admin_feature_status_path, :class => 'add' %></li>
-  </ul>
+  <%= render :partial => 'admin/menu' %>
 </div>

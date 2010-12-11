@@ -35,12 +35,35 @@
     </script>
 
     <p class="success"><span><%= flash[:notice] %></span></p>
-    <%= render :partial => "list" %> 
+    <div id="left">
+      <% form_for ([:admin, @task_status]) do |f| %>
+        <%= render "shared/error_messages", :target => @task_status %>
 
+        <p>
+          <%= f.label :display_name %>
+          <%= f.text_field :display_name %>
+        </p>
+        <p>
+          <%= f.label :key %>
+          <%= f.text_field :key %>
+        </p>
+
+        <p>
+          <%= f.label :color, 'Background color' %>
+          <%= f.text_field :color, :size => 7, :maxlength => 7 %>
+        </p>
+
+        <div class="actions">
+          <%= f.submit 'Save', :class=> 'save_btn' %>
+        </div
+       <% end %>
+    </div>
+
+    <div id="right">
+      <%= render :partial => "list" %> 
+    </div>
 </div>
 
 <div id="sidebar">
-  <ul id="menu">
-    <li><%= link_to 'Add New Task Status', new_admin_task_status_path, :class => 'add' %></li>
-  </ul>
+  <%= render :partial => 'admin/menu' %>
 </div>
