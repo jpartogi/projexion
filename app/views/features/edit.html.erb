@@ -46,13 +46,14 @@
     </p>
 
     <%= f.submit 'Save', :class=> 'save_btn', :title => save_button_tip %>
-  <% end %>
+    &nbsp;or&nbsp;
   <% unless @feature.id == nil %>
-    <%= button_to 'Cancel', project_feature_path(@project.code, @feature.id), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn',
+    <%= link_to 'Cancel', project_feature_path(@project.code, @feature.id), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn',
                   :title => cancel_button_tip %>
-  <% else %>     
-    <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn',
+  <% else %>
+    <%= link_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn',
                   :title => cancel_button_tip %>
+  <% end %>
   <% end %>
 </div>
 

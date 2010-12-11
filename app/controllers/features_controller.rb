@@ -41,6 +41,8 @@ class FeaturesController < ApplicationController
     @project = @feature.project
     @acceptances = @feature.acceptances
     @task_statuses = TaskStatus.find(:all)
+
+    @acceptance = Acceptance.new
   end
 
   #TODO: Functional test

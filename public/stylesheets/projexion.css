@@ -68,20 +68,20 @@
 
 #content { float:left; padding: 10px; font: 12px Verdana; background-color:#fff; width: 950px; min-height: 500px; margin-top: 10px; }
 #content li { line-height: 2em; }
-#content input[type='submit']{ float:left; }
+/*#content input[type='submit']{ float:left; }*/
 #content th { font: bold 13px Verdana; padding: 0.5em; background: #f4f4f4; border:2px solid white; text-shadow: 1px 1px 0 #fff; }
-#content td { padding: 0.2em; border-bottom: 1px solid #f4f4f4; }
+#content td { padding: 0.2em; }
 #content td a { text-decoration:none; }
 #content td a:hover { background: black; color: white; }
 
-#feature .card { float:left; text-align:center; margin-right:1em; border: 1px solid #9bb8d9; color: #123864; background-color: #dedfff; width:30%; }
+#feature .card { float:left; text-align:center; margin-right:5px; border: 1px solid #9bb8d9; color: #123864; background-color: #dedfff; width:132px; }
 #feature .card .title { padding:3px; border-bottom: 1px solid #9bb8d9; }
 #feature .card h2 { font-size:3em }
 
 #releases h2.card { background-color:#eee; text-shadow: 1px 1px 0 #fff; }
 #releases h2.card a { color: #123864; font-family: Helvetica; font-weight: bold; font-size:2em; letter-spacing:-0.6px; text-decoration:none }
 
-.feature{ text-align:center; width:95%; height:25px; margin-bottom: 1em; }
+.feature{ text-align:center; height:25px; margin-bottom: 1em; }
 
 ul#audit { padding-left: 15px; }
 ul#audit li { list-style: disc; }
@@ -99,8 +99,8 @@ li.info-list { margin: 1em 0 1em 0; }
 #users_form { padding: 1em; background-color: #fff; }
 #users_form form input[type='text'], #users_form form input[type='password']{ width:98%; }
 
-#left { float:left; margin-right:2em; width:45%; }
-#right { float:left; width: 52%; }
+#left { float:left; margin-right:2em; width:425px; }
+#right { float:left; width: 500px; }
 
 #members, #releases, #sprints, #meetings { margin-top: 1.2em; }
 

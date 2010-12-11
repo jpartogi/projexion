@@ -52,11 +52,11 @@
 
     <p>
     <%= f.submit 'Save', :class=> 'save_btn', :title => save_button_tip %>
-    </p>  
+    <%= link_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn',
+                :title => cancel_button_tip %>
+    </p>
   <% end %>
 
-  <%= button_to 'Cancel', project_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn',
-                :title => cancel_button_tip %>
 
 </div>
 
