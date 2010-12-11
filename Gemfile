@@ -8,19 +8,19 @@
 source 'http://gemcutter.org'
 
 ## Bundle edge rails:
-gem "rails", "3.0.0"
+gem "rails", "3.0.3"
 #gem "rails", :git => 'git://github.com/rails/rails.git' # Rails 3.0.0.beta3
 
 # Database drivers
 gem 'bson_ext'
-gem 'mongoid', "2.0.0.beta.17"
+gem 'mongoid', "2.0.0.beta.20"
 
 # For security
-gem 'devise', '1.1.3'
+gem 'devise', '1.2.rc'
 gem "cancan"
 
 #gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git'
-gem 'will_paginate','3.0.pre'
+gem 'will_paginate','3.0.pre2'
 
 # For cron jobs
 # TODO: Activate whenever scheduler
