@@ -44,6 +44,7 @@ class Admin::TaskStatusesController < ApplicationController
 
   def create
     @task_status = TaskStatus.new(params[:task_status])
+    @task_status.account = @current_account
 
     respond_with(@task_status) do |format|
       if @task_status.save
