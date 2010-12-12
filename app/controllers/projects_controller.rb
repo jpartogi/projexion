@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
     @sprints = @project.active_sprints
 
     sprint_ids = @sprints.map { |sprint| sprint.id }
-    @features = @project.features.where(:sprint => sprint_ids)
+    @features = @project.features.where(:sprint_id => {"$in" => sprint_ids})
     @sprint = @project.current_sprint
   end
 

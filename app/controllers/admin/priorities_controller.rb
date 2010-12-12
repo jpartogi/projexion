@@ -46,6 +46,7 @@ class Admin::PrioritiesController < ApplicationController
   # POST /admin_priorities.xml
   def create
     @priority = Priority.new(params[:priority])
+    @priority.account = @current_account
 
     respond_to do |format|
       if @priority.save
