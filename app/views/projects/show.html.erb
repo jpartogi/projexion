@@ -16,7 +16,7 @@
         <% unless @project.project_members.empty? %>
         <ul>
         <% @project.project_members.each do |member| %>
-            <li><%= link_to member.user.email, user_path(member.user) %>&nbsp;(<%= member.project_role.name%>)</li>
+            <li><%= link_to member.user.email, user_path(member.user) %>&nbsp;-&nbsp;<%= member.project_role.name%></li>
         <% end %>
         </ul>
         <% else %>
@@ -112,7 +112,7 @@
       <% end %>
       </table>
     <% else %>
-      <p class="info">There are no features in this sprint yet.</p>
+      <p class="info">There is no feature in the current sprint yet.</p>
     <% end %>
 
     <%= link_to 'Show all', project_features_path(@project.code) %>&nbsp;
