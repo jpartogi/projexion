@@ -3,35 +3,58 @@
 <div id="content">
 <p class="success"><span><%= flash[:notice] %></span></p>
 
-<table width="100%">
-  <tr>
-    <th>E-mail</th>
-    <th>Last login</th>
-    <th>Admin</th>
-    <th>&nbsp;</th>
-  </tr>
+  <div id="left">
+    <% form_for ([:admin, @user]) do |f| %>
+      <%= render "shared/error_messages", :target => @user %>
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.email %></td>
-    <td>
-      <% unless user.last_sign_in_at.nil? %>
-          <%= user.last_sign_in_at %>&nbsp;(<%= time_ago_in_words(user.last_sign_in_at) %> ago)
-      <% end %>
-    </td>
-    <td style="text-align:center;"><% if user.admin? %><img src="/images/icons/accept.png"/><% end %></td>
-    <td width="5%" style="text-align:center;">
-     <% link_to admin_user_path(user) do %>                                        
-        <img src="/images/icons/application_view_detail.png">
-      <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
+      <p>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </p>
+
+      <p>
+        <%= f.label :password, f.object.new_record? ? nil : "Change password" %>
+        <%= f.password_field :password %>
+      </p>
+
+      <p>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </p>
+
+      <%= f.submit 'Save', :class=> 'save_btn' %>
+    <% end %>
+  </div>
+
+  <div id="right">
+    <table width="100%">
+      <tr>
+        <th>E-mail</th>
+        <th>Last login</th>
+        <th>Admin</th>
+        <th>&nbsp;</th>
+      </tr>
+
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td>
+          <% unless user.last_sign_in_at.nil? %>
+              <%= user.last_sign_in_at %>&nbsp;(<%= time_ago_in_words(user.last_sign_in_at) %> ago)
+          <% end %>
+        </td>
+        <td style="text-align:center;"><% if user.admin? %><img src="/images/icons/accept.png"/><% end %></td>
+        <td width="5%" style="text-align:center;">
+         <% link_to user_path(user) do %>
+            <img src="/images/icons/application_view_detail.png">
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
 </div> 
 
 <div id="sidebar">
-  <ul id="menu">
-    <li><%= link_to 'Add New User', new_admin_user_path, :class => 'add' %></li>
-  </ul>
+  <%= render :partial => 'admin/menu' %>
 </div> 
