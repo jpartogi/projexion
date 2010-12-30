@@ -1,5 +1,5 @@
 class Admin::TaskStatusesController < ApplicationController
-  respond_to :html
+  respond_to :html, :js, :json, :xml
   before_filter :authenticate_user!
   load_and_authorize_resource
   
@@ -46,11 +46,13 @@ class Admin::TaskStatusesController < ApplicationController
     @task_status = TaskStatus.new(params[:task_status])
     @task_status.account = @current_account
 
-    respond_with(@task_status) do |format|
+    respond_to do |format|
       if @task_status.save
         format.html { redirect_to admin_task_status_path(@task_status), :notice => 'Task status was successfully added.' }
+        format.js
       else
         format.html { render :action => :new }
+        format.js
       end
     end
   end

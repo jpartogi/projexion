@@ -1,16 +1,16 @@
 <div id="content">
   <div id="left">
-    <p>
-      <%= label_tag(:email) %><br />
+    <div class="field_wrapper">
+      <%= label_tag(:email) %>
       <%= @user.email %>
-    </p>
+    </div>
 
-    <p>
-      <%= label_tag(:last_login) %><br />
+    <div class="field_wrapper">
+      <%= label_tag(:last_login) %>
       <% unless @user.last_sign_in_at.nil? %>
           <%= @user.last_sign_in_at %>&nbsp;(<%= time_ago_in_words(@user.last_sign_in_at) %> ago)
       <% end %>
-    </p>
+    </div>
   </div>
 
   <div id="right">

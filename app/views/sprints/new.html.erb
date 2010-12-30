@@ -3,33 +3,33 @@
     <% form_for @sprint, :url => project_sprints_path(@project.code) do |f| %>
         <%= render "shared/error_messages", :target => @sprint %>
 
-        <p>
-          <%= f.label :start_date %><br />
+        <div class="field_wrapper">
+          <%= f.label :start_date %>
           <%#= f.date_select :start_date, :order => [:day, :month, :year] %>
           <%= f.text_field :start_date %>
-        </p>
+        </div>
 
-        <p>
-          <%= f.label :end_date %><br />
+        <div class="field_wrapper">
+          <%= f.label :end_date %>
           <%#= f.date_select :end_date, :order => [:day, :month, :year] %>
           <%= f.text_field :end_date %>
-        </p>
+        </div>
 
-        <p>
-          <%= f.label :release_version %><br/>
+        <div class="field_wrapper">
+          <%= f.label :release_version %>
           <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %>
-        </p>
+        </div>
 
-        <p>
-          <%= f.label :goal, 'Sprint goal' %><br />
+        <div class="field_wrapper">
+          <%= f.label :goal, 'Sprint goal' %>
           <%= f.text_field :goal, :size => 45 %>
-        </p>
+        </div>
 
-        <p>
-          <%= f.submit 'Save', :class=> 'save_btn' %>
-        </p>
+        <div>
+          <%= f.submit 'Save', :class=> 'save_btn' %>&nbsp;or&nbsp;
+          <%= link_to 'Cancel', project_sprints_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
+        </div>
      <% end %>
-     <%= button_to 'Cancel', project_sprints_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
   </div>  
 </div>
 

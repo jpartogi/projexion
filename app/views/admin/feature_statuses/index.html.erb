@@ -38,15 +38,15 @@
     <p class="success"><span><%= flash[:notice] %></span></p>
 
     <div id="left">
-     <% form_for ([:admin, @feature_status]) do |f| %>
+     <% form_for([:admin, @feature_status], :remote => true) do |f| %>
         <%= render "shared/error_messages", :target => @feature_status %>
 
-        <div>
+        <div class="field_wrapper">
           <%= f.label :display_name %>
           <%= f.text_field :display_name %>
         </div>
 
-        <div>
+        <div class="field_wrapper">
           <%= f.label :key %>
           <%= f.text_field :key %>
         </div>
@@ -56,7 +56,7 @@
           <%#= f.label :default?, 'Default Status' %>
         </div>
 
-        <div>
+        <div class="field_wrapper">
           <%= f.label :color, 'Background color' %>
           <%= f.text_field :color, :size => 7, :maxlength => 7 %>
         </div>

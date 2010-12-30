@@ -2,28 +2,28 @@
   <div id="task">
       <% form_for @release, :url => project_releases_path(@project.code) do |f| %>
         <%= render "shared/error_messages", :target => @release %>
-        <p>
-          <%= f.label :version_number %><br />
+        <div class="field_wrapper">
+          <%= f.label :version_number %>
           <%= f.text_field :version_number, :size => 10 %>
-        </p>
+        </div>
 
-        <p>
-          <%= f.label :estimate_date, 'Estimate release date' %><br />
+        <div class="field_wrapper">
+          <%= f.label :estimate_date, 'Estimate release date' %>
           <%#= f.date_select :estimate_date, :order => [:day, :month, :year] %>
           <%= f.text_field :estimate_date %>
-        </p>
+        </div>
 
-        <p>
-          <%= f.label :goal, 'Release goal' %><br />
+        <div class="field_wrapper">
+          <%= f.label :goal, 'Release goal' %>
           <%= f.text_field :goal, :size => 45 %>
-        </p>
+        </div>
 
-        <p>
-          <%= f.submit 'Save', :class=> 'save_btn' %>
-        </p>
+        <div class="field_wrapper">
+          <%= f.submit 'Save', :class=> 'save_btn' %>&nbsp;or&nbsp;
+          <%= link_to 'Cancel', project_releases_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %> 
+        </div>
       <% end %>
 
-      <%= button_to 'Cancel', project_releases_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>  
   </div>
   
 </div>

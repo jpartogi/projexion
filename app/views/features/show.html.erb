@@ -12,37 +12,35 @@
         });
       </script>
 
-      <div class="feature status" style="background-color:<%= @feature.feature_statuses.hash_color %>">
-        <%= @feature.feature_statuses.display_name %>
-      </div>
-
-      <div class="card">
-        <div class="title"><strong>Business value</strong></div>
-        <h2><%= @feature.business_value %></h2>
-      </div>
-
-      <div class="card">
-        <div class="title"><strong>Story points</strong></div>
-        <h2 style="text-align:center"><%= h @feature.story_points %></h2>
-      </div>
-
-      <div class="card">
-        <div class="title"><strong>Priority level</strong></div>
-        <h2 style="text-align:center"><%= h @feature.priority.level %></h2>
-      </div>
-
-      <div style="clear:both; margin-bottom:1em;"></div>
-
       <div class="bbordered">
         <h3>User Story</h3>
         <%= h @feature.user_story %>
       </div>
+        
+      <table width="100%" class="bbordered">
+        <tr>
+          <td><strong>Business value</strong></td>
+          <td><%= @feature.business_value %></td>
+        </tr>
+        <tr>
+          <td><strong>Priority level</strong></td>
+          <td><%= @feature.priority.level %></td>
+        </tr>
+        <tr>
+          <td><strong>Story points</strong></td>
+          <td><%= @feature.story_points %></td>
+        </tr>
+        <tr>
+          <td><strong>Status</strong></td>
+          <td style="background-color:<%= @feature.feature_statuses.hash_color %>"><%= @feature.feature_statuses.display_name %></td>
+        </tr>
+      </table>
 
       <div id="release" class="bbordered">
       <h3>Release</h3>  <%#TODO: Inline combo edit %>
       <% if @feature.release %>
       <div>
-        <%= @feature.release.version_number %>
+        <%= @feature.release.version_number %>&nbsp;<% unless @feature.release.estimate_date.nil? %>-&nbsp;<%= @feature.release.estimate_date %><% end %>
         <%= link_to project_release_path(@project.code, @feature.release.id), :title => view_release_title, :rel => :tipsy do %>
           <img src="/images/icons/application_view_detail.png">
         <% end %>

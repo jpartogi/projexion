@@ -6,7 +6,7 @@
 <% form_for(@current_user) do |f| %>
   <%= render "shared/error_messages", :target => @current_user %>
 
-  <div>
+  <div class="field_wrapper">
     <%= f.label :email %>
     <%= f.text_field :email %>
   </div>

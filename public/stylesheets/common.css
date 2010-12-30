@@ -10,9 +10,9 @@ h3 { font: bold 18px Helvetica; letter-spacing:-0.7px; margin-bottom:0.2em; }
 form { padding:0; margin:0; }
 form input[type='text'],
   form input[type='password'],
-  form textarea { padding:3px; border:1px solid #ccc; font:12px verdana; background: #fff url('/images/input-bg.gif') repeat-x top left; margin-bottom:1em; width:99%; }
+  form textarea { padding:3px; border:1px solid #ccc; font:12px verdana; background: #fff url('/images/input-bg.gif') repeat-x top left; }
 
-form label { font: bold 18px Helvetica; letter-spacing:-0.7px; display: block; }
+label { font: bold 18px Helvetica; letter-spacing:-0.7px; display: block; }
 form input[type='submit'] { font: 13px Arial; letter-spacing:-0.7px; }
 form input[type='checkbox'], input[type='radio'] { float: left; }
 
@@ -21,4 +21,7 @@ form input[type='checkbox'], input[type='radio'] { float: left; }
 
 #centered-box { width: 500px; margin: 0 auto 0 auto; }
 div.field, div.actions { margin: 10px 0 10px 0; }
+
+.field_wrapper { margin-bottom:1em; }
+
 #footer { color: #333; font: 10px verdana; margin-top: 10px; }

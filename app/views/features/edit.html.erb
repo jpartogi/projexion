@@ -15,35 +15,35 @@
   <% form_for @feature, :url => project_feature_path(@project.code, @feature.id)  do |f| %>
     <%= render "shared/error_messages", :target => @feature %>
 
-    <p>
+    <div class="field_wrapper">
         <%= f.label :user_story %>
         <%= f.text_area :user_story, :rows => 4, :title => user_story_tip %>
-    </p>
+    </div>
 
-    <p>
+    <div class="field_wrapper">
         <%= f.label :business_value %>
         <%= f.text_field :business_value, :size => 12, :title => business_value_tip %>
-    </p>
+    </div>
 
-    <p>
+    <div class="field_wrapper">
         <%= f.label :story_points %>
         <%= f.text_field :story_points, :size => 12, :title => story_points_tip %>
-    </p>
+    </div>
 
-    <p>
+    <div class="field_wrapper">
         <%= f.label :priority_level %>
         <%= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}, :title => priority_tip) %>
-    </p>
+    </div>
 
-    <p>
+    <div class="field_wrapper">
         <%= f.label :sprint %>
         <%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}, :title => 'Sprint for implementing this feature') %>
-    </p>
+    </div>
 
-    <p>
+    <div class="field_wrapper">
         <%= f.label :release_version %>
         <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}, :title => 'Planned release for this feature') %>
-    </p>
+    </div>
 
     <%= f.submit 'Save', :class=> 'save_btn', :title => save_button_tip %>
     &nbsp;or&nbsp;

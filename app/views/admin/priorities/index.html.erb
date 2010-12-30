@@ -4,31 +4,31 @@
 <p class="success"><span><%= flash[:notice] %></span></p>
 
   <div id="left">
-    <% form_for([:admin, @priority]) do |f| %>
+    <% form_for([:admin, @priority], :remote => true) do |f| %>
       <%= render "shared/error_messages", :target => @priority %>
-        <p>
+        <div class="field_wrapper">
           <%= f.label :display_name %>
           <%= f.text_field :display_name %>
-        </p>
+        </div>
 
-        <p>
+        <div class="field_wrapper">
           <%= f.check_box :default %>
           <%= f.label :default_priority? %>
-        </p>
+        </div>
 
-        <p>
+        <div class="field_wrapper">
           <%= f.label :priority_level %>
           <%= f.text_field :level, :size => 4 %>
-        </p>
+        </div>
 
-        <p>
+        <div class="field_wrapper">
           <%= f.label :color, 'Background color' %>
           <%= f.text_field :color, :size => 7, :maxlength => 7 %>
-        </p>
+        </div>
 
-        <p>
+        <div>
           <%= f.submit 'Save', :class=> 'save_btn' %>
-        </p>
+        </div>
      <% end %>
   </div>
 

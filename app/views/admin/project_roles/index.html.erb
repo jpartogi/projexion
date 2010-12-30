@@ -4,23 +4,23 @@
 	<p class="success"><span><%= flash[:notice] %></span></p>
 
     <div id="left">
-      <% form_for ([:admin, @project_role]) do |f| %>
+      <% form_for([:admin, @project_role], :remote => true) do |f| %>
         <%= render "shared/error_messages", :target => @project_role %>
 
-        <p>
+        <div class="field_wrapper">
             <%= f.label :name %>
             <%= f.text_field :name %>
-        </p>
+        </div>
 
-		<p>
+		<div class="field_wrapper">
           	<%= f.check_box :manager %>
           	<%= f.label :manager_role?, 'Manager Role' %>
-		</p>
+		</div>
 
-        <p>
+        <div class="field_wrapper">
             <%= f.label :role_description %>
             <%= f.text_area :role, :size => "35x4" %>
-        </p>
+        </div>
 
         <div class="actions">
           <%= f.submit 'Save', :class=> 'save_btn' %>

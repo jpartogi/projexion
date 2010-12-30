@@ -14,7 +14,7 @@ class TaskStatus
   
   references_many :tasks
 
-  before_create :check_and_update_default_status, :set_next_position
+  before_create :check_and_update_default_status#, :set_next_position
   before_update :check_and_update_default_status
 
   validates_presence_of :display_name, :key, :color
