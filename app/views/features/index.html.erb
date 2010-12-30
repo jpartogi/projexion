@@ -1,45 +1,34 @@
 <% content_for :title do %><%= @project.name %>&nbsp;Features&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
 
 <div id="content">
-  <h1><%= @project.name %>&nbsp;Features    </h1>
+  <h1>Search&nbsp;<%= @project.name %>&nbsp;Features</h1>
   
   <div class="panel">
     <% form_for @feature, :url => project_features_path(@project.code), :html => { :method => :get }  do |f| %>
-        <p style="float:left;">
-            <%= f.label :user_story %><br/>
-            <%= f.text_field :user_story %>
-        </p>
-
-         <p style="float:left; margin-left: 5em;">
-            <%= f.label :status %><br/>
-            <%= f.collection_select(:feature_statuses_id, @feature_statuses, :id, :display_name, {:include_blank => true}) %>
-        </p>
-
-        <p style="float:left; margin-left: 5em;">
-            <%= f.label :priority_level %><br/>
-            <%= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}) %>
-        </p>
-
-        <p style="float:left; margin-left: 5em;">
-            <%= f.label :release_version %><br/>
-            <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %>
-        </p>
-
-        <p style="float:left; margin-left: 5em;">
-          <%= f.label :sprint %><br/>
-          <%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}) %>
-        </p>
-
-        <div style="clear:both"></div>
-
-        <p>
-            <%= f.submit 'Search' %>
-        </p>
+    <table width="100%">
+      <tr>
+        <td><strong>User story</strong></td>
+        <td><%= f.text_field :user_story %></td>
+        <td><strong>Priority</strong></td>
+        <td><%= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}) %></td>
+      </tr>
+      <tr>
+        <td><strong>Sprint</strong></td>
+        <td><%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}) %></td>
+        <td><strong>Release</strong></td>
+        <td><%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %></td>
+      </tr>
+      <tr>
+        <td><strong>Status</strong></td>
+        <td><%= f.collection_select(:feature_statuses_id, @feature_statuses, :id, :display_name, {:include_blank => true}) %></td>
+        <td></td>
+        <td style="text-align:right;"><%= f.submit 'Search' %></td>
+      </tr>
+    </table>
 
     <% end %>
   </div>
 
-  <h1 style="margin-top:2em;">Listing Product Features</h1>
   <%= render :partial => "features/list" %>
   <%= will_paginate @features %>
   

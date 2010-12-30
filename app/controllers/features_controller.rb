@@ -71,7 +71,7 @@ class FeaturesController < ApplicationController
         @features = @features.where({:release_id => conditions[:release_id]})
       end
 
-      unless conditions[:feature_status_id].empty?
+      unless conditions[:feature_statuses_id].empty?
         @features = @features.where({:feature_status_id => conditions[:feature_status_id]})
       end
 

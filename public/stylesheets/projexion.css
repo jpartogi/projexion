@@ -29,7 +29,7 @@
 .more { border: 1px solid #9bb8d9; color: #406299; padding:5px; text-align: center; cursor:pointer; }
 .number { font: 1.5em "Arial Black"; color:#333; text-align:center; }
 .inline { background: white; border:none; border-bottom: 1px solid #ccc; font: 12px Verdana; width:100%; }
-.panel{ background: #f4f4f4; padding:10px; border:1px solid #ccc; }
+.panel{ background-color: #f4f4f4; padding:10px; border:1px solid #ccc; margin-bottom:1em; }
 
 #header { background: #06266f; width:100%; }
 
