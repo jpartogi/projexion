@@ -5,18 +5,18 @@
   
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <%= render "shared/error_messages", :target => resource %>
-    <div>
+    <div class="field_wrapper">
       <%= f.label :email %>
       <%= f.text_field :email %>
     </div>
 
-    <div>
+    <div class="field_wrapper">
       <%= f.label :password %>
       <%= f.password_field :password %>
     </div>
 
     <% if devise_mapping.rememberable? -%>
-      <div><%= f.check_box :remember_me %><span>Remember Me</span></div>
+      <div class="field_wrapper"><%= f.check_box :remember_me %><span>Remember Me</span></div>
     <% end -%>
 
     <%= f.hidden_field :account_id, :value => @current_account.id %> 

@@ -6,7 +6,7 @@
   <%= form_for(resource, :as => resource_name, :url => password_path(resource_name)) do |f| %>
     <%= render "shared/error_messages", :target => resource %>
 
-    <div>
+    <div class="field_wrapper">
       <%= f.label :email %>
       <%= f.text_field :email %>
     </div>
