@@ -18,7 +18,6 @@ class MainController < ApplicationController
       @meetings = Meeting.where(:project_id => project_ids)
 
       # TODO: Limit this. 
-#      @tasks = Task.includes(:feature, :project).where(:user_id => current_user)
-      @tasks = Task.where(:project_id => project_ids)
+      @tasks = @current_user.tasks
     end
 end

@@ -2,13 +2,15 @@ class Task
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  field :done
   field :description
 
+  referenced_in :account
   referenced_in :project
   referenced_in :user
   referenced_in :feature
   referenced_in :sprint
-  referenced_in :task_statuses
+  referenced_in :task_statuses # This is actually referring to a task status. Because there is bug, we pluralize it.
 
   validates_presence_of :description
 
@@ -22,7 +24,8 @@ class Task
   after_save :add_event
 
   def set_default_status
-    self.task_status = TaskStatus.find(:first, :conditions => {:default_status => true})
+    #self.task_status = TaskStatus.find(:first, :conditions => {:default_status => true})
+    self.task_statuses = account.task_statuses.find(:first, :conditions => {:default => true})
   end
 
   def add_event

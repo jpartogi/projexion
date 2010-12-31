@@ -7,7 +7,7 @@ class FeaturesController < ApplicationController
     @feature = Feature.new(params[:feature])
     @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
     @feature.project = @project
-    @feature.acceptances = Acceptance.to_a(params[:acceptance_test])
+    #@feature.acceptances = Acceptance.to_a(params[:acceptance_test])
     @priorities = Priority.asc(:level)
 
     @sprints = @project.active_sprints

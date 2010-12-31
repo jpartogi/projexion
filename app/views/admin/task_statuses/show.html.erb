@@ -6,29 +6,29 @@
       });
     </script>
     <div>
-        <p>
-          <%= label_tag :display_name %><br />
+        <div class="field_wrapper">
+          <%= label_tag :display_name %>
           <%= h @task_status.display_name %>
-        </p>
+        </div>
 
-        <p>
-          <%= label_tag :key %><br />
+        <div class="field_wrapper">
+          <%= label_tag :key %>
           <%= h @task_status.key %>
-        </p>
+        </div>
 
-       <% if @task_status.default_status %>
-        <p>
+       <% if @task_status.default %>
+        <div class="field_wrapper">
           <%= label_tag :default_status %>
           <img src="/images/icons/accept.png"/>
-        </p>
+        </div>
         <% end %>
 
-        <p>
-          <%= label_tag :color, 'Background color' %><br />
+        <div class="field_wrapper">
+          <%= label_tag :color, 'Background color' %>
           <span class="status" style="padding:2px;background-color:<%= @task_status.hash_color %>">
             <%= @task_status.color %>
           </span>
-        </p>
+        </div>
     </div>
 </div>
 

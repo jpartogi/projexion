@@ -20,7 +20,7 @@
       <% unless @project_members.empty? %>
       <ul>
         <% @project_members.each do |project_member| %>
-        <li>
+        <li class="bbordered">
           <%= link_to project_member.project.name, project_path(project_member.project.code) %>&nbsp;-&nbsp;
           <%= project_member.project_role.name %>&nbsp;
         </li>
@@ -37,9 +37,12 @@
       <% unless @tasks.empty? %>
       <ul>
         <% @tasks.each do |task| %>
-        <li>
+        <li class="bbordered">
           <%= task.description %>&nbsp;-&nbsp;<%= link_to task.project.name, project_path(task.project.code) %><br/>
           <%= task.feature.user_story %>
+          <%= link_to project_feature_path(task.project.code, task.feature), :title => view_feature_title, :rel => :tipsy do %>
+            <img src="/images/icons/application_view_detail.png">
+          <% end %>
         </li>
         <% end %>
       </ul>

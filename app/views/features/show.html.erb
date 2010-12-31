@@ -179,25 +179,25 @@
             </div>
 
             <% unless @tasks.empty? %>
-
                 <table id="tasks" width="100%">
                 <% for task in @tasks %>
                     <tr id="task_<%= task.id %>">
-                        <input type="hidden" class="task-id" name="task-id" value="<%= task.id %>"/>
-                        <td width="50%" class="desc"><%= task.description %></td>
-                        <td style="text-align:center;">
-                           <%= link_to task.user.login, user_path(task.user.login) %>
-                        </td>
-                        <td width="20%" class="status" style="background-color:<%= task.task_status.hash_color %>">
-                          <input type="hidden" class="tsid" name="task_status_id" value="<%= task.task_status.id %>" />
-                          <span><%= task.task_status.display_name %></span>
-                        </td>
-                        <td width="10%" style="text-align:center;">
-                            <%= link_to project_feature_task_path(@project.code, @feature.id, task.id),
+                      <input type="hidden" class="task-id" name="task-id" value="<%= task.id %>"/>
+                      <td width="5%"><%= check_box_tag :tasks, task.id, task.done, :id => 'task_' + task.id.to_s %></td>
+                      <td width="50%" class="desc"><%= task.description %></td>
+                      <td style="text-align:center;">
+                        <%= link_to task.user.email, user_path(task.user) %>
+                      </td>
+                      <td width="20%" class="status" style="background-color:<%= task.task_statuses.hash_color %>">
+                        <input type="hidden" class="tsid" name="task_status_id" value="<%= task.task_statuses.id %>" />
+                        <span><%= task.task_statuses.display_name %></span>
+                      </td>
+                      <td width="10%" style="text-align:center;">
+                          <%= link_to project_feature_task_path(@project.code, @feature.id, task.id),
                                         :confirm => 'Are you sure?', :method => :delete do %>
                                 <img src="/images/icons/delete.png">
-                            <% end %>
-                        </td>
+                          <% end %>
+                      </td>
                     </tr>
                 <% end %>
                 </table>
