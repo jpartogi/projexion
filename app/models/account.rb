@@ -28,6 +28,10 @@ class Account
   end
 
   def set_defaults
-    TaskStatus.create(:display_name => 'New', :color => '0f0bbb', :default => true, :first => true)
+    TaskStatus.create(:display_name => 'Pooled', :color => '0f0bbb', :default => true, :system => true)
+    TaskStatus.create(:display_name => 'Done', :color => '00ff00', :system => true)
+
+    FeatureStatus.create(:display_name => 'New', :color => '0f0bbb', :default => true, :system => true)
+    FeatureStatus.create(:display_name => 'Done', :color => '00ff00', :system => true)
   end
 end

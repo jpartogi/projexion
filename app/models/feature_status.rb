@@ -7,8 +7,7 @@ class FeatureStatus
   field :position, :type => Integer, :default => 1
   field :color
   field :default, :type => Boolean
-  field :first, :type => Boolean
-  field :last, type => Boolean
+  field :system, :type => Boolean
 
   referenced_in :account
 
