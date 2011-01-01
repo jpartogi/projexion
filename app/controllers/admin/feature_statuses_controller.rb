@@ -1,5 +1,5 @@
 class Admin::FeatureStatusesController < ApplicationController
-  respond_to :html
+  respond_to :html, :js, :json
   before_filter :authenticate_user!
   load_and_authorize_resource
   
@@ -49,8 +49,10 @@ class Admin::FeatureStatusesController < ApplicationController
     respond_with(@feature_status) do |format|
       if @feature_status.save
         format.html { redirect_to admin_feature_status_path(@feature_status), :notice => 'Feature status was successfully added.' }
+        format.js
       else
         format.html { render :action => :new }
+        format.js
       end
     end
   end

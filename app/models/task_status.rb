@@ -14,11 +14,17 @@ class TaskStatus
   
   references_many :tasks
 
-  before_create :check_and_update_default_status#, :set_next_position
-  before_update :check_and_update_default_status
+  #before_create :check_and_update_default_status#, :set_next_position
+  #before_update :check_and_update_default_status
 
-  validates_presence_of :display_name, :key, :color
-  
+  before_create :set_key
+
+  validates_presence_of :display_name, :color
+
+  def set_key
+    self.key = self.display_name.downcase.gsub(/\?|!|@|#|%|&|\*|\(|\)|>|<|\\|\||\{|\}|\[|\]|'|"|\.|,/, '').gsub(/\s+/, '-').strip.slice(0,100)
+  end
+
   def hash_color
     '#'+self.color  
   end

@@ -21,7 +21,13 @@ class Account
 
   validates_presence_of :subdomain
 
+  before_create :set_defaults
+
   def manager_role
     self.project_roles.where(:manager => true).first
+  end
+
+  def set_defaults
+    TaskStatus.create(:display_name => 'New', :color => '0f0bbb', :default => true, :first => true)
   end
 end

@@ -1,7 +1,7 @@
 <table width="100%" id="task-statuses">
     <tr>
         <th>Display Name</th>
-        <th>Key</th>
+        <!--<th>Key</th>-->
         <th width="5%"></th>
         <th width="5%"></th>
         <th width="5%"></th>
@@ -11,10 +11,9 @@
     <input type="hidden" name="id" value="<%= task_status.id %>" />
     <tr>
         <td><%= h task_status.display_name %></td>
-        <td><%= link_to task_status.key, admin_task_status_path(task_status) %></td>
+        <!--<td><%#= link_to task_status.key, admin_task_status_path(task_status) %></td>-->
         <td style="background-color:<%= task_status.hash_color %>"></td>
         <td style="text-align:center;">
-
           <% if not task_status.eql? @task_statuses.first %>
           <a href="#" class="up">
             <img src="/images/icons/arrow_up.png">

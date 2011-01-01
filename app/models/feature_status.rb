@@ -14,14 +14,19 @@ class FeatureStatus
 
   references_many :features
 
-  before_create :set_position
-  before_save :check_and_update_default_status
+#  before_create :set_position
+  before_create :set_key
+#  before_save :check_and_update_default_status
 
   validates_presence_of :display_name, :key, :color
 
   DIRECTION_UP = 'up'
   DIRECTION_DOWN = 'down'
 
+  def set_key
+    self.key = self.display_name.downcase.gsub(/\?|!|@|#|%|&|\*|\(|\)|>|<|\\|\||\{|\}|\[|\]|'|"|\.|,/, '').gsub(/\s+/, '-').strip.slice(0,100)
+  end
+  
   def hash_color
     '#'+self.color
   end

@@ -21,10 +21,9 @@ class Task
 #  belongs_to :user
 
   before_create :set_default_status
-  after_save :add_event
+  # after_save :add_event
 
   def set_default_status
-    #self.task_status = TaskStatus.find(:first, :conditions => {:default_status => true})
     self.task_statuses = account.task_statuses.find(:first, :conditions => {:default => true})
   end
 
