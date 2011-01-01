@@ -19,7 +19,17 @@ Projexion::Application.routes.draw do
 
     resources :projects do
       resources :features do
-        resources :tasks, :acceptances
+        resources :tasks do
+          member do
+            get :check
+          end
+        end
+
+        resources :acceptances do
+          member do
+            get :check
+          end
+        end
 
         member do
           post :list

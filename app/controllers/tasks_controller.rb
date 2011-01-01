@@ -61,6 +61,19 @@ class TasksController < ApplicationController
   end
 
   # Ajax actions
+  def check
+    @task = Task.find(params[:id])
+    puts @task.done
+    @task.done = !@task.done
+    puts !@task.done
+        
+    respond_to do |format|
+      if @task.save
+        format.js
+      end
+    end
+  end
+
   def update_desc
     @task = Task.find(params[:id])
 

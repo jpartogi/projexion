@@ -75,16 +75,6 @@
       </div>
       </div>
       
-      <script type="text/javascript">
-        $(document).ready(function(){
-            $('input:checkbox[name=acceptances]').click(function(){
-                var acceptance_id = $(this).val();
-
-                $.post('<%= url_for :action => :update_acceptance, :controller => :acceptances %>',
-                       {"acceptance_id" : acceptance_id}, null, 'json');
-            });   
-        });
-      </script>
     </div>
 
     <script type="text/javascript">
@@ -151,7 +141,9 @@
               <table width="100%">
               <% for acceptance in @acceptances %>
               <tr>
-                <td width="5%"><%= check_box_tag :acceptances, acceptance.id, acceptance.accepted, :id => 'acceptance_' + acceptance.id.to_s %></td>
+                <td width="5%">
+                  <%= check_box_tag :acceptances, acceptance.id, acceptance.accepted, :id => acceptance.id.to_s, :onclick => "jQuery.getScript('"+ check_project_feature_acceptance_path(@project, @feature, acceptance) + "')" %>
+                </td>
                 <td><%= acceptance.description %></td>
                 <td width="5%" style="text-align:center;">
                     <%= link_to project_feature_acceptance_path(@project.code, @feature.id, acceptance.id),
@@ -183,7 +175,8 @@
                 <% for task in @tasks %>
                     <tr id="task_<%= task.id %>">
                       <input type="hidden" class="task-id" name="task-id" value="<%= task.id %>"/>
-                      <td width="5%"><%= check_box_tag :tasks, task.id, task.done, :id => 'task_' + task.id.to_s %></td>
+                      <td width="5%">
+                        <%= check_box_tag :tasks, task.id, task.done, :id => task.id.to_s, :onclick => "jQuery.getScript('"+ check_project_feature_task_path(@project, @feature, task) + "')" %>                      </td>
                       <td width="50%" class="desc"><%= task.description %></td>
                       <td style="text-align:center;">
                         <%= link_to task.user.email, user_path(task.user) %>

@@ -2,7 +2,7 @@ class Task
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :done
+  field :done, :type => Boolean, :default => false
   field :description
 
   referenced_in :account

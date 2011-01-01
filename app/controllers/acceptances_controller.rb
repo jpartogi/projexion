@@ -44,14 +44,14 @@ class AcceptancesController < ApplicationController
   end
 
   # Ajax actions
-  def update_acceptance
-    @acceptance = Acceptance.find(params[:acceptance_id])
+  def check
+    @acceptance = Acceptance.find(params[:id])
 
     @acceptance.accepted = !@acceptance.accepted
 
     respond_with(@acceptance) do |format|
       if @acceptance.save
-        format.json { render :json => @acceptance }
+        format.js
       end
     end
   end
