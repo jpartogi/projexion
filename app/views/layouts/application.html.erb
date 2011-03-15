@@ -66,16 +66,20 @@
         <div style="clear:both"></div>        
       </div>
       <div id="bottom-band">
-        <ul id="left-menu">
-          <li><%= link_to 'Dashboard', root_path %></li>
-        </ul>
-        <div style="clear:both"></div> 
-        <ul id="right-menu">
-          <% if can? :manage, :all %>
-          <li><%= link_to 'Administration', admin_path %></li>
-          <li><%= link_to 'My Profile', user_path(@current_user) %></li>  
-          <% end %>
-        </ul>
+        <div id="head-menu">
+          <ul>
+            <li><%= link_to 'Dashboard', root_path %></li>
+            <% if can? :manage, :all %>
+            <li><%= link_to 'Administration', admin_path %></li>
+            <li><%= link_to 'My Profile', user_path(@current_user) %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div id="search">
+          <form>
+            <%= text_field_tag :q, nil, :id => 'search-field', :size => 30 %>&nbsp;<%= submit_tag "Search", :name => nil, :id => 'search-button' %>
+          </form>
+        </div>
         <div style="clear:both"></div>  
       </div>
       <div id="stripe"></div>
@@ -88,12 +92,7 @@
           <div id="left-neck">
             <div id="breadcrumb">
               <!--<a href="#">Overview</a>&raquo;-->
-            </div>
-
-            <div id="search">
-              <form>
-                <%= text_field_tag :q, nil, :id => 'search-field', :size => 30 %>&nbsp;<%= submit_tag "Search", :name => nil, :id => 'search-button' %>
-              </form>
+              &nbsp;
             </div>
           </div>
           <div id="right-neck">

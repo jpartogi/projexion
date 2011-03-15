@@ -4,7 +4,7 @@
   <p class="success"><span><%= flash[:notice] %></span></p>
   <%# TODO: Add project manager in list %>
 
-  <div id="left">
+  <div class="left">
     <h2>Add new Project</h2>
     <%= form_for ([:admin, @project]) do |f| %>
     <%= render "shared/error_messages", :target => @project %>
@@ -23,7 +23,7 @@
     <% end %>
   </div>
 
-  <div id="right">
+  <div class="right">
   <h2>Projects</h2>
   <ul>
     <% @projects.each do |project| %>

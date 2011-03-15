@@ -3,7 +3,7 @@
 <div id="content">
 <p class="success"><span><%= flash[:notice] %></span></p>
 
-  <div id="left">
+  <div class="left">
     <% form_for([:admin, @priority], :remote => true) do |f| %>
       <%= render "shared/error_messages", :target => @priority %>
         <div class="field_wrapper">
@@ -32,7 +32,7 @@
      <% end %>
   </div>
 
-  <div id="right">
+  <div class="right">
     <table width="100%">
       <tr>
         <th>Display name</th>

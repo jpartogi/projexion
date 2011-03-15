@@ -3,7 +3,7 @@
 <div id="content">
     <p class="success"><span ><%= flash[:notice] %></span></p>
     
-    <div id="left">
+    <div class="left">
       <div id="feature">
       <script type="text/javascript">
         $(document).ready(function(){
@@ -43,6 +43,9 @@
         <%= @feature.release.version_number %>&nbsp;<% unless @feature.release.estimate_date.nil? %>-&nbsp;<%= @feature.release.estimate_date %><% end %>
         <%= link_to project_release_path(@project.code, @feature.release.id), :title => view_release_title, :rel => :tipsy do %>
           <img src="/images/icons/application_view_detail.png">
+        <% end %>
+        <%= link_to burndown_project_release_path(@project.code, @feature.release), :title => release_burndown_title, :rel => :tipsy do %>
+          <img src="/images/icons/chart_line.png">
         <% end %>
       </div>
       <% else %>
@@ -125,7 +128,7 @@
       
     </script>
 
-    <div id="right">
+    <div class="right">
 
         <div id="tests" class="bbordered">
             <h3>Acceptance Tests</h3>

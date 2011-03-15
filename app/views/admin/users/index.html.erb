@@ -3,7 +3,7 @@
 <div id="content">
 <p class="success"><span><%= flash[:notice] %></span></p>
 
-  <div id="left">
+  <div class="left">
     <% form_for ([:admin, @user]) do |f| %>
       <%= render "shared/error_messages", :target => @user %>
 
@@ -26,7 +26,7 @@
     <% end %>
   </div>
 
-  <div id="right">
+  <div class="right">
     <table width="100%">
       <tr>
         <th>E-mail</th>

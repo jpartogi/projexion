@@ -35,7 +35,7 @@
     </script>
 
     <p class="success"><span><%= flash[:notice] %></span></p>
-    <div id="left">
+    <div class="left">
       <% form_for([:admin, @task_status], :remote => true) do |f| %>
         <%= render "shared/error_messages", :target => @task_status %>
 
@@ -60,7 +60,7 @@
        <% end %>
     </div>
 
-    <div id="right">
+    <div class="right">
       <%= render :partial => "list" %> 
     </div>
 </div>
