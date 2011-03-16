@@ -17,7 +17,7 @@ class User
   field :account_role, :default => REPORTER
 
   referenced_in :account
-  references_many :projects, :stored_as => :array, :inverse_of => :users
+  references_and_referenced_in_many :projects, :inverse_of => :users
   references_many :tasks
   references_many :project_members
   

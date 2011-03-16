@@ -7,7 +7,7 @@ class Project
   field :vision 
 
   referenced_in :account
-  references_many :users, :stored_as => :array, :inverse_of => :projects
+  references_and_referenced_in_many :users, :inverse_of => :projects
   references_many :meetings
   references_many :tasks
   references_many :features

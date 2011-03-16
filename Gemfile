@@ -8,12 +8,12 @@
 source 'http://gemcutter.org'
 
 ## Bundle edge rails:
-gem "rails", "3.0.3"
+gem "rails", "3.0.5"
 #gem "rails", :git => 'git://github.com/rails/rails.git' # Rails 3.0.0.beta3
 
 # Database drivers
 gem 'bson_ext'
-gem 'mongoid', "2.0.0.beta.20"
+gem 'mongoid', "2.0.0.rc.7"
 
 # For security
 gem 'devise', '1.2.rc'
@@ -28,7 +28,7 @@ gem 'will_paginate','3.0.pre2'
 
 # If you are running passenger in production, make sure to remark the lines below.
 # To run unicorn in production:
-# $ bundle exec vendor/ruby/1.9.1/bin/unicorn -E production --port 4000 --daemonize
+# $ bundle exec unicorn -E production --port 6000 --daemonize
 gem 'unicorn'
 
 # To run thin in production:
@@ -37,7 +37,7 @@ gem 'unicorn'
 
 # For testing
 group :test do
-  gem "webrat", "0.7.2.pre", :git => 'git://github.com/scrum8/webrat.git'
+  gem "webrat", "0.7.3"
   gem "shoulda"
   gem "factory_girl"
   gem "cucumber"
@@ -46,5 +46,5 @@ end
 
 group :test, :development do
   gem "rack-test"
-  gem "rspec-rails", ">= 2.0.0.beta.22"
+  gem "rspec-rails", ">= 2.5.0"
 end
