@@ -1,39 +1,31 @@
-<div id="content">
-  <div id="sprint">
-    <% form_for @sprint, :url => project_sprints_path(@project.code) do |f| %>
-        <%= render "shared/error_messages", :target => @sprint %>
+<div id="sprint">
+  <% form_for @sprint, :url => project_sprints_path(@project.code) , :remote => true do |f| %>
+    <%= render "shared/error_messages", :target => @sprint %>
 
-        <div class="field_wrapper">
-          <%= f.label :start_date %>
-          <%#= f.date_select :start_date, :order => [:day, :month, :year] %>
-          <%= f.text_field :start_date %>
-        </div>
+    <div class="field_wrapper">
+      <%= f.label :start_date %>
+      <%#= f.date_select :start_date, :order => [:day, :month, :year] %>
+      <%= f.text_field :start_date %>
+    </div>
 
-        <div class="field_wrapper">
-          <%= f.label :end_date %>
-          <%#= f.date_select :end_date, :order => [:day, :month, :year] %>
-          <%= f.text_field :end_date %>
-        </div>
+    <div class="field_wrapper">
+      <%= f.label :end_date %>
+      <%#= f.date_select :end_date, :order => [:day, :month, :year] %>
+      <%= f.text_field :end_date %>
+    </div>
 
-        <div class="field_wrapper">
-          <%= f.label :release_version %>
-          <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %>
-        </div>
+    <div class="field_wrapper">
+      <%= f.label :release_version %>
+      <%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %>
+    </div>
 
-        <div class="field_wrapper">
-          <%= f.label :goal, 'Sprint goal' %>
-          <%= f.text_field :goal, :size => 45 %>
-        </div>
+    <div class="field_wrapper">
+      <%= f.label :goal, 'Sprint goal' %>
+      <%= f.text_field :goal, :size => 45 %>
+    </div>
 
-        <div>
-          <%= f.submit 'Save', :class=> 'save_btn' %>&nbsp;or&nbsp;
-          <%= link_to 'Cancel', project_sprints_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
-        </div>
-     <% end %>
-  </div>  
-</div>
-
-<div id="sidebar">
-  <ul id="menu">
-  </ul>
+    <div>
+      <%= f.submit 'Save', :class=> 'save_btn' %>
+    </div>
+  <% end %>
 </div>

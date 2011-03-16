@@ -49,7 +49,7 @@
           </p>
         <% end %>
         <%= link_to 'Show all', project_releases_path(@project.code) %>&nbsp;
-        <%= link_to 'Add New Release', new_project_release_path(@project.code) %>
+        <%= link_to 'Add New Release', new_project_release_path(@project.code), :rel => :facebox, :remote => true %>
     </div>
 
     <div id="sprints" class="bbordered">
@@ -78,7 +78,7 @@
           </p>
         <% end %>
         <%= link_to 'Show all', project_sprints_path(@project.code) %>&nbsp;
-        <%= link_to 'Add new Sprint', new_project_sprint_path(@project.code) %>
+        <%= link_to 'Add new Sprint', new_project_sprint_path(@project.code), :rel => :facebox %>
     </div>
   </div>
 

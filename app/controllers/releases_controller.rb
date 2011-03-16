@@ -1,5 +1,5 @@
 class ReleasesController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, :json, :xml, :js
   before_filter :authenticate_user!
 
   def create
@@ -9,10 +9,15 @@ class ReleasesController < ApplicationController
 
     respond_to do |format|
       if @release.save
-        flash[:notice] = 'Release was successfully added.'
-        format.html { redirect_to project_releases_path(params[:project_id]) }
+        format.html { redirect_to project_releases_path(params[:project_id]), :notice => 'Release was successfully added.' }
+        format.js
+        format.json { head :ok }
+        format.xml  { head :ok }
       else
-        format.html { render :action => "new" }   
+        format.html { redirect_to project_path(@project.code) }
+        format.js
+        format.json { head :ok }
+        format.xml  { head :ok }
       end
     end
   end
@@ -20,7 +25,8 @@ class ReleasesController < ApplicationController
   def new
     @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
     
-    @release = Release.new # For the form    
+    @release = Release.new # For the form
+    render :layout => false
   end
 
   def edit

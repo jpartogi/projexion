@@ -1,5 +1,5 @@
 class SprintsController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, :json, :xml, :js
   before_filter :authenticate_user!
   after_filter :generate_velocities, :only => :show
   
@@ -14,8 +14,10 @@ class SprintsController < ApplicationController
       if @sprint.save
         format.html { redirect_to project_sprint_path(params[:project_id], @sprint),
                                   :notice => 'Sprint was successfully added.' }
+        format.js
       else
         format.html { render :action => :new }
+        format.js
       end
     end
   end
@@ -26,6 +28,7 @@ class SprintsController < ApplicationController
     @releases = @project.active_releases
     
     @sprint = Sprint.new # For the form
+    render :layout => false
   end
 
   def edit
