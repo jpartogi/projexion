@@ -23,8 +23,10 @@ class Admin::UsersController < ApplicationController
   end
   
   def create
-	@user = User.new(params[:user])
+	  @user = User.new(params[:user])
 
+    @user.account = @current_account
+    
     respond_to do |format|
       if @user.save
         format.html { redirect_to admin_user_path(@user), :notice => 'User was successfully created.' }

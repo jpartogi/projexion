@@ -69,9 +69,9 @@
         <div id="head-menu">
           <ul>
             <li><%= link_to 'Dashboard', root_path %></li>
+            <li><%= link_to 'My Profile', user_path(@current_user) %></li>
             <% if can? :manage, :all %>
             <li><%= link_to 'Administration', admin_path %></li>
-            <li><%= link_to 'My Profile', user_path(@current_user) %></li>
             <% end %>
           </ul>
         </div>

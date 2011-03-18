@@ -4,16 +4,16 @@ class SprintsController < ApplicationController
   after_filter :generate_velocities, :only => :show
   
   def create
+    @project = @current_account.projects.where(:code => params[:project_id]).first
+
     @sprint = Sprint.new(params[:sprint])
-    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
     @sprint.project = @project
     
     @releases = @project.active_releases # Just in case error message is thrown
 
     respond_with(@sprint) do |format|
       if @sprint.save
-        format.html { redirect_to project_sprint_path(params[:project_id], @sprint),
-                                  :notice => 'Sprint was successfully added.' }
+        format.html { redirect_to project_sprint_path(params[:project_id], @sprint), :notice => 'Sprint was successfully added.' }
         format.js
       else
         format.html { render :action => :new }
@@ -48,8 +48,7 @@ class SprintsController < ApplicationController
 
     respond_with(@sprint) do |format|
       if @sprint.update_attributes(params[:sprint])
-        format.html { redirect_to project_sprint_path(@project.code, @sprint),
-                                  :notice => 'Sprint was successfully updated.' }
+        format.html { redirect_to project_sprint_path(@project.code, @sprint), :notice => 'Sprint was successfully updated.' }
       else
         format.html { render :action => :edit }
       end
@@ -69,8 +68,7 @@ class SprintsController < ApplicationController
 
     respond_with(@sprint) do |format|
       if @sprint.save
-        format.html { redirect_to project_sprint_path(@project.code, @sprint),
-                                :notice => 'Sprint was successfully cancelled.' }
+        format.html { redirect_to project_sprint_path(@project.code, @sprint), :notice => 'Sprint was successfully cancelled.' }
       end
     end
   end
