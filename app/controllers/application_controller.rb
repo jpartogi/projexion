@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include UrlHelper
   
   #protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  before_filter :set_current_account, :set_current_user
+  before_filter :current_account, :set_current_user
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
@@ -16,10 +16,15 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  rescue_from Projexion::Errors::RecordNotFoundError do |exception|
+    render 'shared/errors/404', :layout => false
+  end
+
   private
-    def set_current_account
+    def current_account
       unless request.subdomains.empty?
-        @current_account = Account.find_or_initialize_by(:subdomain => request.subdomains.first)
+        @current_account = Account.first(:conditions => {:subdomain => request.subdomains.first})
+        raise Projexion::Errors::RecordNotFoundError if @current_account.nil?
       end
     end
 
