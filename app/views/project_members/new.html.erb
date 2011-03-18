@@ -1,0 +1,18 @@
+<%= form_for @project_member, :url => project_project_members_path(@project.code), :remote => true do |f| %>
+  <%= render "shared/error_messages", :target => @project_member %>
+
+  <div>
+    <%= f.label :user %>
+    <%= f.collection_select(:user_id, @users, :id, :email) %>
+  </div>
+
+  <div>
+    <%= f.label :project_role %>
+    <%= f.collection_select(:project_role, @project_roles, :id, :name) %>
+  </div>
+
+  <div>
+    <%= f.submit 'Save', :class => 'save_btn' %>
+  </div>
+
+<% end %>

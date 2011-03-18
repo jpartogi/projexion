@@ -57,6 +57,8 @@ Projexion::Application.routes.draw do
           delete :cancel
         end
       end
+
+      resources :project_members
     end
 
     namespace :admin do

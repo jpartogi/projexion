@@ -11,19 +11,20 @@
     </div>
 
     <div id="members" class="bbordered">
-        <h3>Project Members</h3>
+      <h3>Project Members</h3>
 
-        <% unless @project.project_members.empty? %>
-        <ul>
+      <% unless @project.project_members.empty? %>
+      <ul>
         <% @project.project_members.each do |member| %>
             <li><%= link_to member.user.email, user_path(member.user) %>&nbsp;-&nbsp;<%= member.project_role.name%></li>
         <% end %>
-        </ul>
-        <% else %>
-          <div class="info">
-            No members.
-          </div>
-        <% end %>
+      </ul>
+      <% else %>
+        <div class="info">
+          No members.
+        </div>
+      <% end %>
+      <%= link_to 'Add New Project Member', new_project_project_member_path(@project.code), :rel => :facebox, :remote => true %>
     </div>
 
     <div id="releases" class="bbordered">
