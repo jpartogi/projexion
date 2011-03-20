@@ -111,8 +111,7 @@ li.info-list { margin: 1em 0 1em 0; }
 #error_explanation li { background: url('/images/icons/exclamation.png') 6px 50% no-repeat; border-color: #f34f4f; color: #be0b0b; text-indent: 25px;}
 .fieldWithErrors input{ border: 1px solid #f34f4f; }
 
-.success { background: #e2f9e3 url('/images/icons/accept.png') 6px 50% no-repeat; border-color: #9c9; color: #080; padding: 5px; display:none}
-.success span { margin-left: 10px; padding-left: 10px; }
+.success { background: #e2f9e3 url('/images/icons/accept.png') 6px 50% no-repeat; border: 1px solid #9c9; color: #080; padding: 5px; text-indent: 20px; }
 .info { background: url('/images/icons/information.png') 6px 50% no-repeat; color: #406299; padding: 5px; text-indent: 20px; }
 .small { font: 11px verdana; }
 .number_input { text-align:right; }

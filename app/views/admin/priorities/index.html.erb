@@ -1,9 +1,12 @@
 <% content_for :title do %>Admin&nbsp;:&nbsp;<%= controller_name.humanize %><% end %>
 
 <div id="content">
-<p class="success"><span><%= flash[:notice] %></span></p>
 
   <div class="left">
+    <% if flash[:notice] %>
+    <p class="success"><%= flash[:notice] %></p>
+    <% end %>
+
     <%= form_for([:admin, @priority], :remote => true) do |f| %>
       <%= render "shared/error_messages", :target => @priority %>
         <div class="field_wrapper">

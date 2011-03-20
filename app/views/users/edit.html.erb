@@ -1,7 +1,9 @@
 <% content_for :title do %>Update My user account<% end %>
 
 <div id="content">
-<p class="success"><span><%= flash[:notice] %></span></p>
+<% if flash[:notice] %>
+<p class="success"><%= flash[:notice] %></p>
+<% end %>
 
 <%= form_for(@current_user) do |f| %>
   <%= render "shared/error_messages", :target => @current_user %>
@@ -9,6 +11,11 @@
   <div class="field_wrapper">
     <%= f.label :email %>
     <%= f.text_field :email %>
+  </div>
+
+  <div class="field_wrapper">
+    <%= f.label :full_name %>
+    <%= f.text_field :full_name %>
   </div>
 
   <%= f.submit 'Save', :class=> 'save_btn' %>

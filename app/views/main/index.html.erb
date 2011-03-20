@@ -24,28 +24,31 @@
     });
 </script>
 <div id="content">
-	<p class="success"><span ><%= flash[:notice] %></span></p>
+  <% if flash[:notice] %>
+  <p class="success"><%= flash[:notice] %></p>
+  <% end %>
 
-    <div class="left">
-      <h2>Latest events</h2>
+  <div class="left">
+    <h2>Latest events</h2>
       
-      <% unless @events.empty? %>
+    <% unless @events.empty? %>
 
       <ul id="events">
           <%= render :partial => "events/list" %>
       </ul>
+
       <div class="more">
         <span>More</span>
       </div>
-      <% else %>
+    <% else %>
         <p class="info">
             No events so far.
          </p>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
 
-    <div class="right">
-      <div id="tasks">
+  <div class="right">
+    <div id="tasks">
         <h3>Your Tasks</h3>
 
         <% unless @tasks.empty? %>
@@ -65,7 +68,7 @@
             You have no tasks yet.
          </p>
         <% end %>
-      </div>
+    </div>
 
       <!--<div id="meetings">-->
         <!--<h3>Your Meetings</h3>-->
@@ -91,7 +94,7 @@
          <!--</p>-->
         <!--<%# end %>-->
       <!--</div>-->
-    </div>
+  </div>
 </div>
 
 <div id="sidebar">

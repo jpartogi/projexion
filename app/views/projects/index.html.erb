@@ -1,5 +1,7 @@
 <div id="content">
-  <p class="success"><span><%= flash[:notice] %></span></p>
+  <% if flash[:notice] %>
+  <p class="success"><%= flash[:notice] %></p>
+  <% end %>
   
   <table width="100%" id="projects">
     <tr>

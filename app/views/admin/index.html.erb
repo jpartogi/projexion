@@ -1,7 +1,10 @@
 <% content_for :title do %>Admin&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
 
 <div id="content">
-  <p class="success"><span><%= flash[:notice] %></span></p>
+  <% if flash[:notice] %>
+  <p class="success"><%= flash[:notice] %></p>
+  <% end %>
+  
   <%# TODO: Add project manager in list %>
 
   <div class="left">

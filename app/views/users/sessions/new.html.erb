@@ -1,8 +1,13 @@
 <% content_for :title do %>Login&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
 
 <div id="users_form">
+
+  <% if flash[:notice] %>
+  <p class="success"><%= flash[:notice] %></p>
+  <% end %>
+
   <h1>Login</h1>
-  
+
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <%= render "shared/error_messages", :target => resource %>
     <div class="field_wrapper">

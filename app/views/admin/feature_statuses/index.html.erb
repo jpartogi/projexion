@@ -35,10 +35,12 @@
       });
     </script>
 
-    <p class="success"><span><%= flash[:notice] %></span></p>
+  <div class="left">
+    <% if flash[:notice] %>
+    <p class="success"><%= flash[:notice] %></p>
+    <% end %>
 
-    <div class="left">
-     <%= form_for([:admin, @feature_status], :remote => true) do |f| %>
+    <%= form_for([:admin, @feature_status], :remote => true) do |f| %>
         <%= render "shared/error_messages", :target => @feature_status %>
 
         <div class="field_wrapper">
@@ -65,11 +67,11 @@
           <%= f.submit 'Save', :class=> 'save_btn' %>
         </div>
      <% end %>
-    </div>
+  </div>
 
-    <div class="right">
-      <%= render :partial => "list" %>
-    </div>
+  <div class="right">
+    <%= render :partial => "list" %>
+  </div>
 </div>
 
 <div id="sidebar">
