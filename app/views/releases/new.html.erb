@@ -1,5 +1,5 @@
 <div id="task">
-  <% form_for @release, :url => project_releases_path(@project.code), :remote => true do |f| %>
+  <%= form_for @release, :url => project_releases_path(@project.code), :remote => true do |f| %>
     <%= render "shared/error_messages", :target => @release %>
     <div class="field_wrapper">
       <%= f.label :version_number %>

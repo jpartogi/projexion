@@ -28,7 +28,7 @@
 
       });
     </script>
-    <% form_for ([:admin, @task_status]) do |f| %>
+    <%= form_for ([:admin, @task_status]) do |f| %>
         <%= render "shared/error_messages", :target => @task_status %>
 
         <p>

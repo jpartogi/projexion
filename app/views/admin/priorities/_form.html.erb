@@ -26,7 +26,7 @@
 
       });
     </script>
-    <% form_for([:admin, @priority]) do |f| %>
+    <%= form_for([:admin, @priority]) do |f| %>
       <%= render "shared/error_messages", :target => @priority %>
         <p>
           <%= f.label :display_name %><br />

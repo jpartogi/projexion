@@ -36,7 +36,7 @@
 
     <p class="success"><span><%= flash[:notice] %></span></p>
     <div class="left">
-      <% form_for([:admin, @task_status], :remote => true) do |f| %>
+      <%= form_for([:admin, @task_status], :remote => true) do |f| %>
         <%= render "shared/error_messages", :target => @task_status %>
 
         <div class="field_wrapper">

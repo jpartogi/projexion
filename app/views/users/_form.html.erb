@@ -1,7 +1,7 @@
 <div id="users_form">
     <fieldset>
     <legend>Registration</legend>
-    <% form_for(@user) do |f| %>
+    <%= form_for(@user) do |f| %>
       <%= render "shared/error_messages", :target => @user %>
 
       <p>

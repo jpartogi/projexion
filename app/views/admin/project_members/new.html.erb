@@ -2,7 +2,7 @@
     <div id="task">
         <h1>Assign user to a Project</h1>
 
-        <% form_for ([:admin, @project_member]) do |f| %>
+        <%= form_for ([:admin, @project_member]) do |f| %>
             <%= render "shared/error_messages", :target => @project_member %>
 
             <p>

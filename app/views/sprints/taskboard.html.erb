@@ -23,7 +23,7 @@
             <div style="float:left; width:<%= @column_width %>;">
               <div class="feature-card">
                 <div class="title">
-                  <% link_to project_feature_path(@project.code, feature.id), :title => view_feature_title do %>
+                  <%= link_to project_feature_path(@project.code, feature.id), :title => view_feature_title do %>
                     <img src="/images/icons/application_view_detail.png">
                   <% end %>
                 </div>

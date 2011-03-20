@@ -1,6 +1,6 @@
 <div id="content">
   <div id="sprint">
-    <% form_for @sprint, :url => project_sprint_path(@project.code, @sprint) do |f| %>
+    <%= form_for @sprint, :url => project_sprint_path(@project.code, @sprint) do |f| %>
         <%= render "shared/error_messages", :target => @sprint %>
 
         <p>

@@ -21,7 +21,7 @@
     <p>
       <%= label_tag :meeting_type %><br/>
       <%= @meeting.meeting_type.name %>
-      <% link_to admin_meeting_type_path(@meeting.meeting_type.id) do %>
+      <%= link_to admin_meeting_type_path(@meeting.meeting_type.id) do %>
         <img src="/images/icons/application_view_detail.png">
       <% end %>
     </p>

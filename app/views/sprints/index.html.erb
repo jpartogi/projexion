@@ -20,7 +20,7 @@
         <td style="text-align:center;"><%= sprint.velocities %></td>
         <td><%= sprint.goal %></td>
         <td>
-          <% link_to project_sprint_path(@project.code, sprint.id) do %>
+          <%= link_to project_sprint_path(@project.code, sprint.id) do %>
             <img src="/images/icons/application_view_detail.png">
           <% end %>
         </td>

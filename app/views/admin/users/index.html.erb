@@ -4,7 +4,7 @@
 <p class="success"><span><%= flash[:notice] %></span></p>
 
   <div class="left">
-    <% form_for ([:admin, @user]) do |f| %>
+    <%= form_for ([:admin, @user]) do |f| %>
       <%= render "shared/error_messages", :target => @user %>
 
       <div class="field_wrapper">
@@ -45,7 +45,7 @@
         </td>
         <td style="text-align:center;"><% if user.admin? %><img src="/images/icons/accept.png"/><% end %></td>
         <td width="5%" style="text-align:center;">
-         <% link_to user_path(user) do %>
+         <%= link_to user_path(user) do %>
             <img src="/images/icons/application_view_detail.png">
           <% end %>
         </td>

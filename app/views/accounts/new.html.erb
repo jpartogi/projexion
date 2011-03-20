@@ -3,7 +3,7 @@
 <% end %>
 
 <div id="content">
-<% form_for @account do |f| %>
+<%= form_for @account do |f| %>
   <%= f.fields_for :companies, @company do |company| %>
     <div>
       <%= company.label :name, 'Company Name' %>

@@ -13,7 +13,7 @@
         <td style="text-align:center;"><%= link_to project.code, project_path(project.code) %></td>
         <td><%= h project.name %></td>
         <td>
-          <% link_to project_path(project.code) do %>
+          <%= link_to project_path(project.code) do %>
             <img src="/images/icons/application_view_detail.png">
           <% end %>
         </td>

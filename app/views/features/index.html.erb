@@ -4,7 +4,7 @@
   <h1>Search&nbsp;<%= @project.name %>&nbsp;Features</h1>
   
   <div class="panel">
-    <% form_for @feature, :url => project_features_path(@project.code), :html => { :method => :get }  do |f| %>
+    <%= form_for @feature, :url => project_features_path(@project.code), :html => { :method => :get }  do |f| %>
     <table width="100%">
       <tr>
         <td><strong>User story</strong></td>

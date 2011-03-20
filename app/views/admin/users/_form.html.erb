@@ -3,7 +3,7 @@
 <div id="content">
 	<p class="success"><span><%= flash[:notice] %></span></p>
 	
-    <% form_for ([:admin, @user]) do |f| %>
+    <%= form_for ([:admin, @user]) do |f| %>
       <%= render "shared/error_messages", :target => @user %>
     
     <p>

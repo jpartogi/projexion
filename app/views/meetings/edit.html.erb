@@ -1,6 +1,6 @@
 <div id="content">
   <div>
-    <% form_for @meeting, :url => project_meeting_path(@project.code, @meeting) do |f| %>
+    <%= form_for @meeting, :url => project_meeting_path(@project.code, @meeting) do |f| %>
 
         <p>
           <%= f.label :start_time %><br />

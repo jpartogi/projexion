@@ -101,7 +101,7 @@
     <ul>
       <% @projects.each do |project| %>
       <li>
-        <% link_to project_path(project.code) do %>
+        <%= link_to project_path(project.code) do %>
             <%= project.name %>
         <% end %>
       </li>

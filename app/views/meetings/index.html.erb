@@ -21,7 +21,7 @@
         <td><%= meeting.meeting_type.name %></td>
         <td><%= link_to meeting.created_by, user_path(meeting.created_by) %></td>
         <td>
-          <% link_to project_meeting_path(@project.code, meeting.id) do %>
+          <%= link_to project_meeting_path(@project.code, meeting.id) do %>
             <img src="/images/icons/application_view_detail.png">
           <% end %>
         </td>

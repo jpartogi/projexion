@@ -134,7 +134,7 @@
             <h3>Acceptance Tests</h3>
 
             <div>
-              <% form_for @acceptance, :url => project_feature_acceptances_path(@project.code, @feature.id), :remote => true do |f| %>
+              <%= form_for @acceptance, :url => project_feature_acceptances_path(@project.code, @feature.id), :remote => true do |f| %>
                 <%= f.text_field :description %>              
                 <%= f.submit 'Save', :class => 'inline-button' %>
               <% end %>
@@ -167,7 +167,7 @@
 
             <%# TODO: Task form does not work yet. %>  
             <div>
-              <% form_for @task, :url => project_feature_tasks_path(@project.code, @feature), :remote => true do |f| %>          
+              <%= form_for @task, :url => project_feature_tasks_path(@project.code, @feature), :remote => true do |f| %>
                <%= f.text_field :description %>
                <%= f.submit 'Save' %>
               <% end %>
