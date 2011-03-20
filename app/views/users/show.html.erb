@@ -21,8 +21,8 @@
       <ul>
         <% @project_members.each do |project_member| %>
         <li class="bbordered">
-          <%= link_to project_member.project.name, project_path(project_member.project.code) %>&nbsp;-&nbsp;
-          <%= project_member.project_role.name %>&nbsp;
+          <%= project_member.project_role.name %> for
+          <%= link_to project_member.project.name, project_path(project_member.project.code) %>
         </li>
         <% end %>
       </ul>
