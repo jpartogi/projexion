@@ -17,7 +17,7 @@ class FeatureStatus
   before_create :set_key
 #  before_save :check_and_update_default_status
 
-  validates_presence_of :display_name, :key, :color
+  validates_presence_of :display_name, :color
 
   DIRECTION_UP = 'up'
   DIRECTION_DOWN = 'down'

@@ -44,14 +44,14 @@ class Admin::FeatureStatusesController < ApplicationController
 
   def create
     @feature_status = FeatureStatus.new(params[:feature_status])
-    @current_account.feature_statuses << @feature_status
+    @feature_status.account = @current_account
 
     respond_with(@feature_status) do |format|
       if @feature_status.save
-        format.html { redirect_to admin_feature_status_path(@feature_status), :notice => 'Feature status was successfully added.' }
+        format.html { redirect_to admin_feature_statuses_path, :notice => 'Feature status was successfully added.' }
         format.js
       else
-        format.html { render :action => :new }
+        format.html { redirect_to admin_feature_statuses_path }
         format.js
       end
     end
