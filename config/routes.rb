@@ -97,6 +97,7 @@ Projexion::Application.routes.draw do
     resources :users, :except => [:index,  :destroy] do
       member do
         get :change_password
+        put :update_password
       end
     end
   end

@@ -51,4 +51,16 @@ class UsersController < ApplicationController
   def change_password
 
   end
+
+  def update_password
+    respond_to do |format|
+      if @current_user.update_attributes(params[:user])
+        format.html { redirect_to new_user_session_path, :notice => 'Your password has been successfully updated. Please login again.' }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => :change_password }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 end
