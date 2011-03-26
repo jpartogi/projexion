@@ -15,10 +15,11 @@ class FeaturesController < ApplicationController
     
     respond_with(@feature) do |format|
       if @feature.save
-        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id),
-                                  :notice => 'Feature was successfully added.' }
+        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id), :notice => 'Feature was successfully added.' }
+        format.js
       else
         format.html { render :action => :new }
+        format.js
       end
     end
   end
@@ -30,6 +31,8 @@ class FeaturesController < ApplicationController
     @sprints = @project.active_sprints
 
     @releases = @project.active_releases
+
+    render :layout => false
   end
 
   def show

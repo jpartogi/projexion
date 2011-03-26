@@ -16,7 +16,7 @@
       <% unless @project.project_members.empty? %>
       <ul>
         <% @project.project_members.each do |member| %>
-            <li><%= link_to member.user.email, user_path(member.user) %>&nbsp;-&nbsp;<%= member.project_role.name%></li>
+            <li><%= link_to member.user.name, user_path(member.user) %>&nbsp;-&nbsp;<%= member.project_role.name%></li>
         <% end %>
       </ul>
       <% else %>
@@ -50,7 +50,7 @@
           </p>
         <% end %>
         <%= link_to 'Show all', project_releases_path(@project.code) %>&nbsp;
-        <%= link_to 'Add New Release', new_project_release_path(@project.code), :rel => :facebox, :remote => true %>
+        <%= link_to 'Add new Release', new_project_release_path(@project.code), :rel => :facebox, :remote => true %>
     </div>
 
     <div id="sprints" class="bbordered">
@@ -117,7 +117,7 @@
     <% end %>
 
     <%= link_to 'Show all', project_features_path(@project.code) %>&nbsp;
-    <%= link_to 'Add new Feature', new_project_feature_path(@project.code) %>
+    <%= link_to 'Add new Feature', new_project_feature_path(@project.code), :rel => :facebox %>
     </div>
   </div>
 
