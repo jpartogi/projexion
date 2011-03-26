@@ -2,8 +2,9 @@ class Sprint
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :start_date, :type => Time
-  field :end_date, :type => Time
+  field :name
+  field :start_date, :type => Date
+  field :end_date, :type => Date
   field :velocities, :type => Integer
   field :goal
   field :cancelled_at, :type => Time
@@ -14,16 +15,12 @@ class Sprint
   references_many :features
   references_many :meetings
 
-#  belongs_to :project
-#  belongs_to :release
-#  has_many :features
-
   #validate :start_date_must_not_exists, :end_date_must_not_exists, :start_date_must_be_earlier_than_end_date
 
   validates_presence_of :start_date, :end_date, :release
 
   def span_date
-    "#{self.start_date.to_formatted_s(:notime)} - #{self.end_date.to_formatted_s(:notime)}"
+    "#{self.start_date.to_formatted_s(:default)} - #{self.end_date.to_formatted_s(:default)}"
   end
 
   def generate_velocities
