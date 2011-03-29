@@ -9,13 +9,13 @@ class FeatureStatus
   field :default, :type => Boolean
   field :system, :type => Boolean
 
+  scope :ordered, asc(:position)
+
   referenced_in :account
 
   references_many :features
 
-#  before_create :set_position
-  before_create :set_key
-#  before_save :check_and_update_default_status
+  before_create :set_position, :set_key
 
   validates_presence_of :display_name, :color
 
@@ -35,11 +35,17 @@ class FeatureStatus
   end
 
   def set_position
-    last_status = FeatureStatus.last_status
-
     unless last_status.nil?
       self.position = last_status.position + 1
     end
+  end
+
+  def first_status
+    account.feature_statuses.ordered.first
+  end
+
+  def last_status
+    account.feature_statuses.ordered.last
   end
 
   def check_and_update_default_status
@@ -99,20 +105,5 @@ class FeatureStatus
 
       @current_default.save
     end
-  
-  # Class methods
-  class << self
 
-    def default
-      self.first(:conditions => {:default => true})
-    end
-
-    def first_status
-      self.first(:conditions => {:position => 1})
-    end
-
-    def last_status
-      self.asc(:position).last
-    end
-  end
 end

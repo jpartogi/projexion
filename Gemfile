@@ -42,6 +42,7 @@ group :test do
   gem "factory_girl"
   gem "cucumber"
   gem "rack-test"
+  gem "rr"
 end
 
 group :test, :development do

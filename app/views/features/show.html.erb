@@ -1,7 +1,7 @@
 <% content_for :title do %><%= @project.name %> Feature&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
 
 <div id="content">
-    <p class="success"><span ><%= flash[:notice] %></span></p>
+  <% if flash[:notice] %><p class="success"><%= flash[:notice] %></p><% end %>
     
     <div class="left">
       <div id="feature">

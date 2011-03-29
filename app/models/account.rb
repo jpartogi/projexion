@@ -14,6 +14,7 @@ class Account
   references_many :task_statuses
   references_many :feature_statuses
 
+  referenced_in :owner, :class_name => 'User'
   referenced_in :company
 
   accepts_nested_attributes_for :users
@@ -28,10 +29,11 @@ class Account
   end
 
   def set_defaults
-    TaskStatus.create(:display_name => 'Pooled', :color => '0f0bbb', :default => true, :system => true)
-    TaskStatus.create(:display_name => 'Done', :color => '00ff00', :system => true)
+    TaskStatus.create(:display_name => 'Pooled', :color => '0f0bbb',  :account => self, :default => true, :system => true)
+    TaskStatus.create(:display_name => 'Done', :color => '00ff00', :account => self,:system => true)
 
-    FeatureStatus.create(:display_name => 'New', :color => '0f0bbb', :default => true, :system => true)
-    FeatureStatus.create(:display_name => 'Done', :color => '00ff00', :system => true)
+    FeatureStatus.create(:display_name => 'New', :color => '0f0bbb', :default => true, :account => self, :system => true)
+    FeatureStatus.create(:display_name => 'Done', :color => '00ff00', :system => true, :account => self)
   end
+
 end

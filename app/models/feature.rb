@@ -10,7 +10,7 @@ class Feature
   referenced_in :release
   referenced_in :priority
   referenced_in :project
-  referenced_in :feature_statuses
+  referenced_in :feature_statuses # mongoid bug.
   references_many :tasks
   references_many :acceptances
 
@@ -34,7 +34,7 @@ class Feature
   end
 
   def set_default_status
-    self.feature_statuses = FeatureStatus.first(:conditions => {:default => true})
+    self.feature_statuses = self.project.account.feature_statuses.ordered.first
   end
 
   def save_acceptances
