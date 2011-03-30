@@ -1,5 +1,5 @@
 <div id="content">  
-  <p class="success"><span ><%= flash[:notice] %></span></p>
+  <% if flash[:notice] %><p class="success"><%= flash[:notice] %></p><% end %>
 
   <% unless @sprint.cancelled_at.nil? %>
   <p class="info">
@@ -7,48 +7,34 @@
   </p>
   <% end %>    
 
-  <div style="float:left;width:80%">
-    <h1>
-      Product Features for <%= @project.name %>
-    </h1>
-    <%= render :partial => "features/list" %>
-  </div>
+  <%= render :partial => "features/list" %>
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-       $('#info-box').corner();
-    });
-  </script>
-
-  <div style="float:right; width:18%;">
-      <div id="info-box">
-        <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
-        <strong>Release:</strong>&nbsp;<%= @sprint.release.version_number %><br/>
-        <strong>Sprint:</strong>&nbsp;<%= @sprint.span_date %><br/>
-        <% if not @sprint.goal.empty? %><strong>Goal:</strong> <%= @sprint.goal %><% end %>
-      </div>
-
-      <% unless @meetings.empty? %>
-        <h1 style="margin-top:1em;">Scheduled meetings</h1>
-        <ul>
-        <% @meetings.each do |meeting| %>
-            <li>
-              <%= meeting.start_time %>
-
-                <%= link_to project_meeting_path(@project.code, meeting.id) do %>
-                <img src="/images/icons/application_view_detail.png">
-                <% end %>
-
-            </li>
-        <% end %>
-        </ul>
-      <% end %>
-  </div>
-  
-  <div style="clear:both"></div>
 </div>
 
 <div id="sidebar">
+  <div class="box">
+    <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
+    <strong>Release:</strong>&nbsp;<%= @sprint.release.version_number %><br/>
+    <strong>Sprint:</strong>&nbsp;<%= @sprint.span_date %><br/>
+    <% if not @sprint.goal.empty? %><strong>Goal:</strong> <%= @sprint.goal %><% end %>
+  </div>
+
+  <% unless @meetings.empty? %>
+    <h1 style="margin-top:1em;">Scheduled meetings</h1>
+    <ul>
+    <% @meetings.each do |meeting| %>
+        <li>
+          <%= meeting.start_time %>
+
+            <%= link_to project_meeting_path(@project.code, meeting.id) do %>
+            <img src="/images/icons/application_view_detail.png">
+            <% end %>
+
+        </li>
+    <% end %>
+    </ul>
+  <% end %>
+
   <ul id="menu">
     <li><%= link_to 'Show Sprints', project_sprints_path(@project.code), :class => 'list' %></li>
     <% if @sprint.cancelled_at.nil? %>

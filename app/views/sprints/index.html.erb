@@ -1,5 +1,5 @@
  <div id="content">
-  <p class="success"><span ><%= flash[:notice] %></span></p>
+  <% if flash[:notice] %><p class="success"><%= flash[:notice] %></p><% end %>
   
   <div>
     <h1>Sprints in <%= @project.name %></h1>

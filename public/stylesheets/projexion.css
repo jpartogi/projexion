@@ -102,6 +102,7 @@ li.info-list { margin: 1em 0 1em 0; }
 
 .left { float:left; width: 45%; }
 .right { float:right; width: 50%; }
+.box { margin-bottom: 10px; }
 
 #members, #releases, #sprints, #meetings { margin-top: 1.2em; }
 
