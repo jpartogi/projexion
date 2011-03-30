@@ -4,7 +4,7 @@ class TaskStatus
 
   field :display_name
   field :key
-  field :position, :type => Integer
+  field :position, :type => Integer, :default => 1
   field :default, :type => Boolean
   field :color
   field :system, :type => Boolean  
@@ -13,10 +13,14 @@ class TaskStatus
   
   references_many :tasks
 
+  scope :ordered, asc(:position)
+  
   #before_create :check_and_update_default_status#, :set_next_position
   #before_update :check_and_update_default_status
 
-  before_create :set_key
+  #TODO: Before delete, ensure there is at least one status
+
+  before_create :set_position, :set_key
 
   validates_presence_of :display_name, :color
 
@@ -28,12 +32,14 @@ class TaskStatus
     '#'+self.color  
   end
 
-  def set_next_position
-    last_status =  TaskStatus.last_status
-
+  def set_position
     unless last_status.nil?
       self.position = last_status.position + 1
     end
+  end
+
+  def last_status
+    account.task_statuses.ordered.last
   end
 
   def check_and_update_default_status

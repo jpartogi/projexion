@@ -18,9 +18,11 @@ class TasksController < ApplicationController
         format.json { render :json => @task }
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
                                   :notice => 'Task was successfully added.'}
+        format.js
       else
         format.json { render :json => @task.errors, :status => :unprocessable_entity}
         format.html { render :new }
+        format.js
       end
     end
   end

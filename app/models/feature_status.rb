@@ -19,6 +19,8 @@ class FeatureStatus
 
   validates_presence_of :display_name, :color
 
+  #TODO: Before delete, ensure there is at least one status
+  
   DIRECTION_UP = 'up'
   DIRECTION_DOWN = 'down'
 

@@ -14,17 +14,11 @@ class Task
 
   validates_presence_of :description
 
-#  belongs_to :project
-#  belongs_to :feature
-#  belongs_to :sprint
-#  belongs_to :task_status
-#  belongs_to :user
-
   before_create :set_default_status
   # after_save :add_event
 
   def set_default_status
-    self.task_statuses = account.task_statuses.find(:first, :conditions => {:default => true})
+    self.task_statuses = self.project.account.task_statuses.ordered.first
   end
 
   def add_event
