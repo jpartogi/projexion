@@ -180,9 +180,9 @@
                       <input type="hidden" class="task-id" name="task-id" value="<%= task.id %>"/>
                       <td width="5%">
                         <%= check_box_tag :tasks, task.id, task.done, :id => task.id.to_s, :onclick => "jQuery.getScript('"+ check_project_feature_task_path(@project, @feature, task) + "')" %>                      </td>
-                      <td width="50%" class="desc"><%= task.description %></td>
+                      <td width="40%" class="desc"><%= task.description %></td>
                       <td style="text-align:center;">
-                        <%= link_to task.user.email, user_path(task.user) %>
+                        <%= link_to task.user.name, user_path(task.user) %>
                       </td>
                       <td width="20%" class="status" style="background-color:<%= task.task_statuses.hash_color %>">
                         <input type="hidden" class="tsid" name="task_status_id" value="<%= task.task_statuses.id %>" />
