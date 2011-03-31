@@ -1,36 +1,30 @@
 <%= render 'shared/title/form', :target => @release %>
 
 <div id="content">
-  <div id="task">
-      <%= form_for @release, :url => project_release_path(@project.code, @release) do |f| %>
-        <%= render "shared/error_messages", :target => @release %>
-        <p>
-          <%= f.label :version_number %><br />
-          <%= f.text_field :version_number, :size => 10 %>
-        </p>
+  <%= form_for @release, :url => project_release_path(@project.code, @release) do |f| %>
+    <%= render "shared/error_messages", :target => @release %>
+    <div class="field_wrapper">
+      <%= f.label :version_number %>
+      <%= f.text_field :version_number, :size => 10 %>
+    </div>
 
-        <p>
-          <%= f.label :estimate_date, 'Estimate release date' %><br />
-          <%#= f.date_select :estimate_date, :order => [:day, :month, :year] %>
-          <%= f.text_field :estimate_date %>
-        </p>
+    <div class="field_wrapper">
+      <%= f.label :estimate_date, 'Estimate release date' %>
+      <%#= f.date_select :estimate_date, :order => [:day, :month, :year] %>
+      <%= f.text_field :estimate_date %>
+    </div>
 
-        <p>
-          <%= f.label :goal, 'Release goal' %><br />
-          <%= f.text_field :goal, :size => 45 %>
-        </p>
+    <div class="field_wrapper">
+      <%= f.label :goal, 'Release goal' %>
+      <%= f.text_field :goal, :size => 45 %>
+    </div>
 
-        <p>
-          <%= f.submit 'Save', :class=> 'save_btn' %>
-        </p>
-      <% end %>
-
-      <%= button_to 'Cancel', project_releases_path(@project.code), :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
-  </div>
+    <div class="field_wrapper">
+      <%= f.submit 'Save', :class=> 'save_btn' %>
+    </div>
+  <% end %>
 
 </div>
 
 <div id="sidebar">
-  <ul>
-  </ul>
 </div>

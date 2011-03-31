@@ -33,6 +33,6 @@
 
 <div id="sidebar">
   <ul id="menu">
-    <li><%= link_to 'Add New Sprint', new_project_sprint_path(@project.code), :class => 'add' %></li>
+    <li><%= link_to 'Add New Sprint', new_project_sprint_path(@project.code), :class => 'add', :rel => :facebox, :remote => true %></li>
   </ul>
 </div>

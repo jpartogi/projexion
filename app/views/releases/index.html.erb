@@ -1,5 +1,5 @@
 <div id="content">
-  <p class="success"><span ><%= flash[:notice] %></span></p>
+  <% if flash[:notice] %><p class="success"><%= flash[:notice] %></p><% end %>
   
   <div id="releases">
     <h1>Releases in <%= @project.name %></h1>
@@ -8,7 +8,7 @@
     <div style="margin-bottom:1.5em;">
       <h2 class="card"><%= link_to release.version_number, project_release_path(@project.code, release.id) %></h2>
       <div><strong>Estimate release date</strong>:&nbsp;<%= release.estimate_date %></div>
-      <div><strong>Release goal</strong>:&nbsp;<%= release.goal %></div>
+      <% unless release.goal.blank? %><div><strong>Release goal</strong>:&nbsp;<%= release.goal %></div><% end %>
       <% unless release.released_at.nil? %><div><strong>Released at</strong>:&nbsp;<%= release.released_at %></div><% end %>
     </div>
     <% end %>
@@ -20,6 +20,6 @@
 
 <div id="sidebar">
   <ul id="menu">
-    <li><%= link_to 'Add New Release', new_project_release_path(@project.code), :class => 'add' %></li>
+    <li><%= link_to 'Add New Release', new_project_release_path(@project.code), :class => 'add', :rel => :facebox, :remote => true %></li>
   </ul>
 </div>

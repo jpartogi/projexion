@@ -1,5 +1,5 @@
 <div id="content">
-  <p class="success"><span ><%= flash[:notice] %></span></p>
+  <% if flash[:notice] %><p class="success"><%= flash[:notice] %></p><% end %>
 
   <% unless @release.released_at.nil? %>
   <p class="info">
@@ -7,50 +7,16 @@
   </p>
   <% end %>
 
-  <div style="float:left;width:80%">
-    <h1>
-      Product Features for <%= @project.name %>
-    </h1>
-    <%= render :partial => "features/list" %>
-  </div>
-
-  <script type="text/javascript">
-    $(document).ready(function(){
-        $('#info-box').corner();
-    });
-  </script>
-
-  <div style="float:right; width:18%;">
-    <div id="info-box">
-        <strong>Project:</strong>&nbsp;<%= @project.name %><br/>
-        <strong>Release:</strong>&nbsp;<%= @release.version_number %><br/>
-        <strong>Estimate release date:</strong> <%= @release.estimate_date %><br/>
-        <% if not @release.goal.nil? %><strong>Goal:</strong>&nbsp;<%= @release.goal %><% end %>
-    </div>
-
-    <h3 style="margin-top:1em;">Sprints in this release</h3>
-    <ul>
-      <% @release.sprints.each do |sprint| %>
-        <li>
-          <%= sprint.span_date %>
-          <%= link_to project_sprint_path(@project.code, sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
-              <img src="/images/icons/application_view_detail.png">
-          <% end %>
-          <%= link_to burndown_project_sprint_path(@project.code, sprint.id), :title => sprint_burndown_title, :rel => :tipsy do %>
-            <img src="/images/icons/chart_line.png">
-          <% end %>
-          <%= link_to taskboard_project_sprint_path(@project.code, sprint.id), :title => sprint_board_title, :rel => :tipsy do %>
-            <img src="/images/icons/table.png">
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div style="clear:both"></div>
+  <%= render :partial => "features/list" %>
 </div>
 
 <div id="sidebar">
+  <div class="box">
+    <strong>Release:</strong>&nbsp;<%= @release.version_number %><br/>
+    <strong>Estimate release date:</strong> <%= @release.estimate_date %><br/>
+    <% if not @release.goal.nil? %><strong>Release Goal:</strong>&nbsp;<%= @release.goal %><% end %>
+  </div>
+
   <ul id="menu">
     <li><%= link_to 'Show Releases', project_releases_path(@project.code), :class => 'list' %></li>
     <% if @release.released_at.nil? %>
@@ -61,4 +27,26 @@
     <li><%= link_to 'Release Burndown', burndown_project_release_path(@project.code, @release), :class => 'chart' %></li>
   </ul>
   <%# TODO: Add meeting link %>
+
+  <h3 style="margin-top:1em;">Sprints in this release</h3>
+  <ul>
+    <% unless @release.sprints.empty? %>
+    <% @release.sprints.each do |sprint| %>
+      <li>
+        <%= sprint.span_date %>
+        <%= link_to project_sprint_path(@project.code, sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
+          <img src="/images/icons/application_view_detail.png">
+        <% end %>
+        <%= link_to burndown_project_sprint_path(@project.code, sprint.id), :title => sprint_burndown_title, :rel => :tipsy do %>
+          <img src="/images/icons/chart_line.png">
+        <% end %>
+        <%= link_to taskboard_project_sprint_path(@project.code, sprint.id), :title => sprint_board_title, :rel => :tipsy do %>
+          <img src="/images/icons/table.png">
+        <% end %>
+      </li>
+    <% end %>
+    <% else %>
+      <strong>No sprints in this release yet.</strong>
+    <% end %>
+  </ul>
 </div>
