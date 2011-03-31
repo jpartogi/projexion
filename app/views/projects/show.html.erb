@@ -88,7 +88,7 @@
       <h2>Current Sprint</h2>
       <% unless @sprint.nil? %>
         <span>
-          Current sprint will end in <%= distance_of_time_in_words Time.now, @sprint.end_date %>&nbsp;(<%= @sprint.end_date.to_formatted_s(:notime) %>)
+          Current sprint will end in <%= distance_of_time_in_words Time.now, @sprint.end_date %>&nbsp;(<%= @sprint.end_date.to_formatted_s(:default) %>)
           <%= link_to project_sprint_path(@project.code, @sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
             <img src="/images/icons/application_view_detail.png">
           <% end %>
