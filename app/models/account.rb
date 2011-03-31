@@ -34,6 +34,8 @@ class Account
 
     FeatureStatus.create(:display_name => 'New', :color => '0f0bbb', :system => true, :account => self)
     FeatureStatus.create(:display_name => 'Done', :color => '00ff00', :system => true, :account => self)
+
+    #TODO Add priority, project role
   end
 
 end

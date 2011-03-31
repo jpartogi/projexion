@@ -3,8 +3,7 @@
         <th>Display Name</th>
         <!--<th>Key</th>-->
         <th width="5%"></th>
-        <th width="5%"></th>
-        <th width="5%"></th>
+        <th width="10%"></th>
     </tr>
 
     <% for task_status in @task_statuses %>
@@ -24,11 +23,6 @@
             <img src="/images/icons/arrow_down.png">
           </a>
           <% end %>
-        </td>
-        <td style="text-align:center;">
-        <%= link_to admin_task_status_path(task_status) do %>
-          <img src="/images/icons/application_view_detail.png">
-        <% end %>
         </td>
     </tr>
     <% end %>
