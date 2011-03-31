@@ -7,12 +7,17 @@
     <p class="success"><%= flash[:notice] %></p>
     <% end %>
 
-    <%= form_for ([:admin, @user]) do |f| %>
+    <%= form_for([:admin, @user], :remote => true) do |f| %>
       <%= render "shared/error_messages", :target => @user %>
 
       <div class="field_wrapper">
         <%= f.label :email %>
         <%= f.text_field :email %>
+      </div>
+
+      <div class="field_wrapper">
+        <%= f.label :full_name %>
+        <%= f.text_field :full_name %>
       </div>
 
       <div class="field_wrapper">
@@ -34,7 +39,7 @@
       <tr>
         <th>E-mail</th>
         <th>Last login</th>
-        <th>Admin</th>
+        <th>Full name</th>
         <th>&nbsp;</th>
       </tr>
 
@@ -46,7 +51,7 @@
               <%= user.last_sign_in_at %>&nbsp;(<%= time_ago_in_words(user.last_sign_in_at) %> ago)
           <% end %>
         </td>
-        <td style="text-align:center;"><% if user.admin? %><img src="/images/icons/accept.png"/><% end %></td>
+        <td><%= user.full_name %></td>
         <td width="5%" style="text-align:center;">
          <%= link_to user_path(user) do %>
             <img src="/images/icons/application_view_detail.png">
