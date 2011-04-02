@@ -1,14 +1,13 @@
 class FeaturesController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, :json, :js
   before_filter :authenticate_user!
 
   #TODO: functional test
   def create
     @feature = Feature.new(params[:feature])
-    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
+    @project = @current_account.projects.where(:code => params[:project_id]).first
     @feature.project = @project
-    #@feature.acceptances = Acceptance.to_a(params[:acceptance_test])
-    @priorities = Priority.asc(:level)
+    @priorities = @current_account.priorities.asc(:level)
 
     @sprints = @project.active_sprints
     @releases = @project.active_releases
@@ -43,12 +42,11 @@ class FeaturesController < ApplicationController
 
     @project = @feature.project
     @acceptances = @feature.acceptances
-    @task_statuses = TaskStatus.find(:all)
+    @task_statuses = @current_account.task_statuses
 
     @acceptance = Acceptance.new
   end
 
-  #TODO: Functional test
   def index
     @project = @current_account.projects.where(:code => params[:project_id]).first
     @sprints = @project.sprints.desc(:start_date)
@@ -59,12 +57,12 @@ class FeaturesController < ApplicationController
     @features = @project.features
 
     unless params[:user_story].blank?
-      @features = @features.where(:user_story => params[:user_story]) # TODO: Fix this. We need to put keywords in features for searching
+      @features = @features.any_in(:keywords => parameterize(params[:user_story]))
     end
 
     unless params[:status].blank?
       @feature_status = @feature_statuses.where(:display_name => params[:status]).first
-      @features = @features.where(:feature_status_id => @feature_status.id)
+      @features = @features.where(:feature_statuses_id => @feature_status.id)
     end
 
     unless params[:release].blank?
@@ -109,7 +107,7 @@ class FeaturesController < ApplicationController
     
     respond_with(@feature) do |format|
       if @feature.update_attributes(params[:feature])
-        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id),
+        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => @feature.id), 
                                   :notice => 'Feature was successfully updated.' }
       else
         format.html { render :action => "edit" }

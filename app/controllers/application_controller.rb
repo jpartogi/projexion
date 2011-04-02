@@ -32,4 +32,13 @@ class ApplicationController < ActionController::Base
       @current_user = current_user
       @projects = @current_user.projects unless @current_user.nil?
     end
+
+  protected
+    def parameterize(params)
+      result = Array.new
+      params.split.each do |param|
+        result << /#{param.downcase.gsub('*', '.*')}/
+      end
+      result
+    end
 end
