@@ -50,35 +50,31 @@ class FeaturesController < ApplicationController
 
   #TODO: Functional test
   def index
-    @feature = Feature.new(params[:feature]) || Feature.new # for search
-
-    @project = @current_account.projects.find_or_initialize_by(:code => params[:project_id])
+    @project = @current_account.projects.where(:code => params[:project_id]).first
     @sprints = @project.sprints.desc(:start_date)
     @releases = @project.releases
     @feature_statuses = @current_account.feature_statuses.asc(:position)
     @priorities = @current_account.priorities.asc(:level)
 
     @features = @project.features
-    if params[:feature]
-      conditions = params[:feature]
 
-      unless conditions[:user_story].empty?
-        @features = @features.where(['user_story like ?', '%'+conditions[:user_story]+'%'])
-      end
+    unless params[:user_story].blank?
+      @features = @features.where(:user_story => params[:user_story]) # TODO: Fix this. We need to put keywords in features for searching
+    end
 
-      unless conditions[:sprint_id].empty?
-        @features = @features.where({:sprint_id => conditions[:sprint_id]})
-      end
+    unless params[:status].blank?
+      @feature_status = @feature_statuses.where(:display_name => params[:status]).first
+      @features = @features.where(:feature_status_id => @feature_status.id)
+    end
 
-      unless conditions[:release_id].empty?
-        @features = @features.where({:release_id => conditions[:release_id]})
-      end
+    unless params[:release].blank?
+      @release = @releases.where(:version_number => params[:release]).first
+      @features = @features.where(:release_id => @release.id)
+    end
 
-      unless conditions[:feature_statuses_id].empty?
-        @features = @features.where({:feature_status_id => conditions[:feature_status_id]})
-      end
-
-
+    unless params[:sprint].blank?
+      @sprint = @sprints.where(:name => params[:sprint]).first
+      @features = @features.where(:sprint_id => @sprint.id)
     end
 
     unless params[:priority].blank?

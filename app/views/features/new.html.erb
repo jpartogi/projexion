@@ -30,12 +30,12 @@ $(document).ready(function(){
 
   <div class="field_wrapper">
     <%= f.label :priority_level %>
-    <%= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}, :title => priority_tip) %>
+    <%= f.collection_select(:priority_id, @priorities, :id, :display_name, {:include_blank => true}, :title => priority_tip) %>
   </div>
 
   <div class="field_wrapper">
     <%= f.label :sprint %>
-    <%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}, :title => 'Sprint for implementing this feature') %>
+    <%= f.collection_select(:sprint_id, @sprints, :id, :display_name, {:include_blank => true}, :title => 'Sprint for implementing this feature') %>
   </div>
 
   <div class="field_wrapper">

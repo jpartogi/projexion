@@ -8,19 +8,17 @@
         <td><strong>User story</strong></td>
         <td><%= text_field_tag :user_story %></td>
         <td><strong>Priority</strong></td>
-        <td><%#= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}) %>
-        <%= select_tag(:priority, options_from_collection_for_select(@priorities, :name, :display_name)) %>
-        </td>
+        <td><%= select_tag(:priority, options_from_collection_for_select_with_blank(@priorities, :name, :display_name)) %></td>
       </tr>
       <tr>
         <td><strong>Sprint</strong></td>
-        <td><%#= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}) %></td>
+        <td><%= select_tag(:sprint, options_from_collection_for_select_with_blank(@sprints, :name, :display_name)) %></td>
         <td><strong>Release</strong></td>
-        <td><%#= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %></td>
+        <td><%= select_tag(:release, options_from_collection_for_select_with_blank(@releases, :version_number, :version_number)) %></td>
       </tr>
       <tr>
         <td><strong>Status</strong></td>
-        <td><%#= f.collection_select(:feature_statuses_id, @feature_statuses, :id, :display_name, {:include_blank => true}) %></td>
+        <td><%= select_tag(:status, options_from_collection_for_select_with_blank(@feature_statuses, :display_name, :display_name)) %></td>
         <td></td>
         <td style="text-align:right;"><%= submit_tag "Search", :name => nil, :id => 'search-button' %></td>
       </tr>
@@ -37,6 +35,6 @@
 
 <div id="sidebar">
   <ul id="menu">
-    <li><%= link_to 'Add New Feature', new_project_feature_path(@project.code), :class => 'add' %></li>
+    <li><%= link_to 'Add New Feature', new_project_feature_path(@project.code), :class => 'add', :rel => :facebox %></li>
   </ul>  
 </div>
