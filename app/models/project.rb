@@ -18,11 +18,7 @@ class Project
   validates_presence_of :name, :vision
   validates_uniqueness_of :code, :scope => :account_id
 
-#  has_many :project_members
-#  has_many :users, :through => :project_members
-#  has_many :features
-#  has_many :releases
-#  has_many :sprints
+  #TODO: After project create, add initial sprint, release
 
   def code
     self.code = self.name.gsub(/\s+/, '-').strip.downcase
@@ -41,7 +37,7 @@ class Project
 #  end
 #
   def active_releases
-    self.releases.where(:released_at => nil)
+    self.releases.where(:released_at => nil) # TODO : Or current date less than estimate release date?
   end
 
   def manager

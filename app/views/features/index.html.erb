@@ -1,28 +1,28 @@
 <% content_for :title do %><%= @project.name %>&nbsp;Features&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
 
 <div id="content">
-  <h1>Search&nbsp;<%= @project.name %>&nbsp;Features</h1>
-  
   <div class="panel">
-    <%= form_for @feature, :url => project_features_path(@project.code), :html => { :method => :get }  do |f| %>
+    <%= form_tag project_features_path, :method => :get do %>
     <table width="100%">
       <tr>
         <td><strong>User story</strong></td>
-        <td><%= f.text_field :user_story %></td>
+        <td><%= text_field_tag :user_story %></td>
         <td><strong>Priority</strong></td>
-        <td><%= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}) %></td>
+        <td><%#= f.collection_select(:priority_id, @priorities, :id, :priority_level, {:include_blank => true}) %>
+        <%= select_tag(:priority, options_from_collection_for_select(@priorities, :name, :display_name)) %>
+        </td>
       </tr>
       <tr>
         <td><strong>Sprint</strong></td>
-        <td><%= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}) %></td>
+        <td><%#= f.collection_select(:sprint_id, @sprints, :id, :span_date, {:include_blank => true}) %></td>
         <td><strong>Release</strong></td>
-        <td><%= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %></td>
+        <td><%#= f.collection_select(:release_id, @releases, :id, :version_number, {:include_blank => true}) %></td>
       </tr>
       <tr>
         <td><strong>Status</strong></td>
-        <td><%= f.collection_select(:feature_statuses_id, @feature_statuses, :id, :display_name, {:include_blank => true}) %></td>
+        <td><%#= f.collection_select(:feature_statuses_id, @feature_statuses, :id, :display_name, {:include_blank => true}) %></td>
         <td></td>
-        <td style="text-align:right;"><%= f.submit 'Search' %></td>
+        <td style="text-align:right;"><%= submit_tag "Search", :name => nil, :id => 'search-button' %></td>
       </tr>
     </table>
 

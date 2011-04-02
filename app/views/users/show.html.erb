@@ -1,3 +1,5 @@
+<% content_for :title do %><%= @user.name %>&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
+
 <div id="content">
   <div class="left">
     <h1><%= @user.name %></h1>
@@ -49,12 +51,11 @@
         <% end %>
       </ul>
       <% else %>
-        <p class="info">There is not task assigned.</p>
+        <p class="info">There is no task assigned to this user.</p>
       <% end %>
-  </div>
+    </div>
   </div>
 </div>
 
 <div id="sidebar">
-
 </div>

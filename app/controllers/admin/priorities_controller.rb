@@ -1,5 +1,5 @@
 class Admin::PrioritiesController < ApplicationController
-  respond_to :html
+  respond_to :html, :json, :js
   before_filter :authenticate_user!
   load_and_authorize_resource
   
@@ -11,7 +11,7 @@ class Admin::PrioritiesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @priorities }
+      format.json  { render :json => @priorities }
     end
   end
 
@@ -22,7 +22,7 @@ class Admin::PrioritiesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @priority }
+      format.json  { render :json => @priority }
     end
   end
 
@@ -33,7 +33,7 @@ class Admin::PrioritiesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @priority }
+      format.json  { render :json => @priority }
     end
   end
 
@@ -51,10 +51,12 @@ class Admin::PrioritiesController < ApplicationController
     respond_to do |format|
       if @priority.save
         format.html { redirect_to( admin_priority_path(@priority), :notice => 'Priority was successfully created.') }
-        format.xml  { render :xml => @priority, :status => :created, :location => @priority }
+        format.json  { render :json => @priority, :status => :created, :location => @priority }
+        format.js
       else
         format.html { render :action => :new }
-        format.xml  { render :xml => @priority.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @priority.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -67,10 +69,12 @@ class Admin::PrioritiesController < ApplicationController
     respond_to do |format|
       if @priority.update_attributes(params[:priority])
         format.html { redirect_to( admin_priority_path(@priority), :notice => 'Priority was successfully updated.') }
-        format.xml  { head :ok }
+        format.json  { head :ok }
+        format.js
       else
         format.html { render :action => :edit }
-        format.xml  { render :xml => @priority.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @priority.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -83,7 +87,8 @@ class Admin::PrioritiesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(admin_priorities_url, :notice => 'Priority was successfully deleted.') }
-      format.xml  { head :ok }
+      format.json  { head :ok }
+      format.js
     end
   end
 end

@@ -56,7 +56,7 @@ class FeaturesController < ApplicationController
     @sprints = @project.sprints.desc(:start_date)
     @releases = @project.releases
     @feature_statuses = @current_account.feature_statuses.asc(:position)
-    @priorities = Priority.asc(:level)
+    @priorities = @current_account.priorities.asc(:level)
 
     @features = @project.features
     if params[:feature]
@@ -78,10 +78,12 @@ class FeaturesController < ApplicationController
         @features = @features.where({:feature_status_id => conditions[:feature_status_id]})
       end
 
-      unless conditions[:priority_id].empty?
-        @features = @features.where({:priority_id => conditions[:priority_id]})
-      end
 
+    end
+
+    unless params[:priority].blank?
+      @priority = @priorities.where(:name => params[:priority]).first
+      @features = @features.where(:priority_id => @priority.id)
     end
 
     # We need to order by priority.level
