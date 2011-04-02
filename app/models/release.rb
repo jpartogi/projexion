@@ -11,9 +11,6 @@ class Release
   referenced_in :project
   references_many :features
   references_many  :sprints
-#  belongs_to :project
-#  has_many :features
-#  has_many :sprints
   
   validates_presence_of :version_number
 end
