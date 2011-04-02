@@ -28,13 +28,13 @@
     </div>
 
     <div id="releases" class="bbordered">
-        <h3>Upcoming Releases</h3>
+      <h3>Upcoming Releases</h3>
 
-        <% unless @releases.empty? %>
+      <% unless @releases.empty? %>
         <ul>
         <% for release in @releases %>
           <li>
-            <%= release.version_number %>&nbsp;<% unless release.estimate_date.nil? %>-&nbsp;<%= release.estimate_date %><% end %>
+            <%= release.version_number %>&nbsp;<% unless release.estimate_date.nil? %>-&nbsp;(<%= release.estimate_date %>)<% end %>
             <%= link_to project_release_path(@project.code, release.id), :title => view_release_title, :rel => :tipsy do %>
                 <img src="/images/icons/application_view_detail.png">
             <% end %>
@@ -44,23 +44,21 @@
           </li>
         <% end %>
         </ul>
-        <% else %>
-          <p class="info">
-            There is no active release.
-          </p>
-        <% end %>
-        <%= link_to 'Show all', project_releases_path(@project.code) %>&nbsp;
-        <%= link_to 'Add new Release', new_project_release_path(@project.code), :rel => :facebox, :remote => true %>
+      <% else %>
+        <p class="info">There is no active release.</p>
+      <% end %>
+      <%= link_to 'Show all', project_releases_path(@project.code) %>&nbsp;
+      <%= link_to 'Add new Release', new_project_release_path(@project.code), :rel => :facebox, :remote => true %>
     </div>
 
     <div id="sprints" class="bbordered">
-        <h3>Upcoming Sprints</h3>
+      <h3>Upcoming Sprints</h3>
     
-        <% unless @sprints.empty? %>
+      <% unless @sprints.empty? %>
         <ul>
         <% for sprint in @sprints %>
             <li>
-              <%= sprint.span_date %>
+              <%= sprint.name %>&nbsp;(<%= sprint.span_date %>)
               <%= link_to project_sprint_path(@project.code, sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
                   <img src="/images/icons/application_view_detail.png">
               <% end %>
@@ -73,13 +71,11 @@
             </li>
         <% end %>
         </ul>
-        <% else %>
-          <p class="info">
-            There is no active sprint.
-          </p>
-        <% end %>
-        <%= link_to 'Show all', project_sprints_path(@project.code) %>&nbsp;
-        <%= link_to 'Add new Sprint', new_project_sprint_path(@project.code), :rel => :facebox %>
+      <% else %>
+        <p class="info">There is no active sprint.</p>
+      <% end %>
+      <%= link_to 'Show all', project_sprints_path(@project.code) %>&nbsp;
+      <%= link_to 'Add new Sprint', new_project_sprint_path(@project.code), :rel => :facebox %>
     </div>
   </div>
 
