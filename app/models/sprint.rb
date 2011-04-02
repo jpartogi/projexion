@@ -17,10 +17,14 @@ class Sprint
 
   #validate :start_date_must_not_exists, :end_date_must_not_exists, :start_date_must_be_earlier_than_end_date
 
-  validates_presence_of :start_date, :end_date, :release
+  validates_presence_of :name, :start_date, :end_date, :release
 
   def span_date
     "#{self.start_date.to_formatted_s(:default)} - #{self.end_date.to_formatted_s(:default)}"
+  end
+
+  def display_name
+    "#{self.name} (#{self.span_date})"
   end
 
   def generate_velocities

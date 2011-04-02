@@ -2,6 +2,11 @@
   <%= render "shared/error_messages", :target => @sprint %>
 
   <div class="field_wrapper">
+    <%= f.label :name, 'Sprint name' %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field_wrapper">
     <%= f.label :start_date %>
     <%#= f.date_select :start_date, :order => [:day, :month, :year] %>
     <%= f.text_field :start_date %>
