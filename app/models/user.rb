@@ -23,12 +23,7 @@ class User
   references_many :project_members
 
   def name
-    unless full_name.blank?
-      name = full_name
-    else
-      name = truncate_email
-    end
-    name
+    full_name.blank? ? truncate_email : full_name
   end
 
   def truncate_email

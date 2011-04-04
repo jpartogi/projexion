@@ -17,9 +17,6 @@ class Account
   referenced_in :owner, :class_name => 'User'
   referenced_in :company
 
-  accepts_nested_attributes_for :users
-  accepts_nested_attributes_for :companies
-
   validates_presence_of :subdomain
 
   before_create :set_defaults
