@@ -6,7 +6,7 @@ Projexion::Application.routes.draw do
                                        :passwords => 'users/passwords',
                                        :confirmations => 'users/confirmations'}
 
-    root :to => "main#index"
+    root :to => redirect("/users/sign_in")
 
     resources :priorities
 
@@ -17,6 +17,10 @@ Projexion::Application.routes.draw do
 
     match 'projects/:project_id/releases/burndown' => 'releases#burndown', :as => :burndown_release # For ajax
 
+    namespace :user do
+      root :to => "main#index"
+    end
+    
     resources :projects do
       resources :features do
         resources :tasks do
@@ -111,7 +115,8 @@ Projexion::Application.routes.draw do
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  root :to => "site#index"
+
+    root :to => "users/sessions#show"
 
   # See how all your routes lay out with "rake routes"
 

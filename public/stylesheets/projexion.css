@@ -7,14 +7,7 @@
 .taskboard { background: url('/images/icons/table.png') no-repeat center left !important; vertical-align:middle; }
 .chart { background: url('/images/icons/chart_line.png') no-repeat center left !important; vertical-align:middle; }
 .detail { background: url('/images/icons/application_view_detail.png') no-repeat center left !important; vertical-align:middle; }
-/*
-.submit_btn { text-indent: -1000em; width:75px; height: 27px; background: transparent url('/images/submit.png') no-repeat center top;
-    padding:0; border: 0; margin: 1px; }
-.cancel_btn { text-indent: -1000em; width:75px; height: 25px; background: transparent url('/images/cancel.png') no-repeat center top;
-    padding:0; border: 0; margin: 1px; }
-.save_btn { text-indent: -1000em; width:75px; height: 25px; background: transparent url('/images/save.png') no-repeat center top;
-    padding:0; border: 0; margin: 1px; }
- */
+
 .feature-card { border: 1px solid #ccc; background-color: #ffcceb; }
 .feature-card .title { float:right; padding: 2px; }
 .feature-card .desc { padding: 3px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; }
@@ -108,15 +101,13 @@ li.info-list { margin: 1em 0 1em 0; }
 
 .inline_field, #acceptance_description, #task_description { width: 425px; }
 
-#error_explanation { font: 11px verdana, sans-serif; color: #be0b0b; margin-bottom: 1em; background-color: #ffe1da; padding:5px; }
-#error_explanation li { background: url('/images/icons/exclamation.png') 6px 50% no-repeat; border-color: #f34f4f; color: #be0b0b; text-indent: 25px;}
+#error_explanation { font: 11px verdana, sans-serif; color: #be0b0b; margin-bottom: 1em; background-color: #ffe1da; padding:5px; border: solid 1px #f34f4f; }
+#error_explanation li { background: url('/images/icons/exclamation.png') 6px 50% no-repeat; border-color: #f34f4f; color: #be0b0b; text-indent: 25px; padding:3px;}
 .fieldWithErrors input{ border: 1px solid #f34f4f; }
 
-.success { background: #e2f9e3 url('/images/icons/accept.png') 6px 50% no-repeat; border: 1px solid #9c9; color: #080; padding: 5px; text-indent: 20px; }
-.info { background: url('/images/icons/information.png') 6px 50% no-repeat; color: #406299; padding: 5px; text-indent: 20px; }
-.small { font: 11px verdana; }
-.number_input { text-align:right; }
-.notice { background: #e2f9e3; color: #080; font: bolder 11px verdana; width: 450px; margin: 0 auto 0 auto; /* border: 1px solid #9c9; */}
+.success, .alert { padding:5px; text-indent: 20px; margin-bottom: 10px; font-size: 11px; }
+.success { background: #e2f9e3 url('/images/icons/accept.png') 6px 50% no-repeat; border: solid 1px #9c9; color: #080; }
+.alert { background: #ffe1da url('/images/icons/exclamation.png')6px 50% no-repeat; border: solid 1px #f34f4f; color:#be0b0b; }
 
 .bbordered { margin-bottom: 1em; border-bottom:1px solid #eee; padding-bottom:10px; }
 

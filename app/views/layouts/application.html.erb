@@ -56,7 +56,7 @@
       <div id="top-band">
         <div id="title"><%= link_to root_path do %><%= @current_account.company.name %>&nbsp;on&nbsp;Projexion<% end %></div>
         <div id="login-info">
-          Logged in as: <%= @current_user.name %> (<%= link_to 'My Account', edit_user_path(@current_user) %>) |
+          Logged in as: <%= link_to @current_user.name, edit_user_path(@current_user) %>&nbsp;|
           <%= link_to "Logout", destroy_user_session_path, :confirm => "Are you sure you want to logout?" %>
         </div>
         <div style="clear:both"></div>        

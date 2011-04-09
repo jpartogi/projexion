@@ -1,6 +1,6 @@
 class MainController < ApplicationController
     respond_to :html, :json
-    before_filter :authenticate_user!
+    before_filter :authenticate_user!, :only =>[:index]
 
     def index
       @projects = current_user.projects
@@ -20,4 +20,8 @@ class MainController < ApplicationController
       # TODO: Limit this. 
       @tasks = @current_user.tasks
     end
+
+  def show
+    
+  end
 end
