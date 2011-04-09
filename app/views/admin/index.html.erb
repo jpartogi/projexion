@@ -1,40 +1,37 @@
 <% content_for :title do %>Admin&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
 
 <div id="content">
-  <% if flash[:notice] %>
-  <p class="success"><%= flash[:notice] %></p>
-  <% end %>
-  
   <%# TODO: Add project manager in list %>
 
   <div class="left">
-    <h2>Add new Project</h2>
+    <% if flash[:notice] %><p class="success"><%= flash[:notice] %></p><% end %>
+
     <%= form_for ([:admin, @project]) do |f| %>
-    <%= render "shared/error_messages", :target => @project %>
+      <%= render "shared/error_messages", :target => @project %>
 
-    <div class="field_wrapper">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
+      <div class="field_wrapper">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
 
-    <div class="field_wrapper">
-      <%= f.label :vision %>
-      <%= f.text_field :vision, :size => 45 %>
-    </div>
+      <div class="field_wrapper">
+        <%= f.label :vision %>
+        <%= f.text_field :vision, :size => 45 %>
+      </div>
 
-    <%= f.submit 'Save', :class=> 'save_btn' %>
+      <%= f.submit 'Save', :class=> 'save_btn' %>
     <% end %>
   </div>
 
   <div class="right">
-  <h2>Projects</h2>
-  <ul>
-    <% @projects.each do |project| %>
-    <li class="bbordered">
-      <h3><%= link_to project.name, project_path(project.code) %></h3>
-      <%= project.vision %>
-    </li>
-    <% end %>
+    <h2>Projects</h2>
+    <ul>
+      <% @projects.each do |project| %>
+      <li class="bbordered">
+        <h3><%= link_to project.name, project_path(project.code) %></h3>
+        <%= project.vision %>
+      </li>
+      <% end %>
   </ul>
   </div>
 </div>

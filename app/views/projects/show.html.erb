@@ -16,7 +16,7 @@
       <% unless @project.project_members.empty? %>
       <ul>
         <% @project.project_members.each do |member| %>
-            <li><%= link_to member.user.name, user_path(member.user) %>&nbsp;-&nbsp;<%= member.project_role.name%></li>
+            <li><%= link_to member.user.name, user_path(member.user) %></li>
         <% end %>
       </ul>
       <% else %>

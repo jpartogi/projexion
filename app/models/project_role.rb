@@ -1,4 +1,5 @@
 class ProjectRole
+  #TODO:Remove project role as it is no longer relevant
   include Mongoid::Document
   include Mongoid::Timestamps
 

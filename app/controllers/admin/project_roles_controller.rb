@@ -1,5 +1,5 @@
 class Admin::ProjectRolesController < ApplicationController
-  respond_to :html
+  respond_to :html, :json, :js
   before_filter :authenticate_user!
   load_and_authorize_resource
   	
@@ -27,8 +27,10 @@ class Admin::ProjectRolesController < ApplicationController
     respond_with(@project_role) do |format|
       if @project_role.save
         format.html { redirect_to admin_project_role_path(@project_role), :notice => 'Project role was successfully added.' }
+        format.js
       else
         format.html { render :action => :new }
+        format.js
       end
     end
   end
