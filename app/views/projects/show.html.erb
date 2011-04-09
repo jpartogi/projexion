@@ -16,7 +16,7 @@
       <% unless @project.project_members.empty? %>
       <ul>
         <% @project.project_members.each do |member| %>
-            <li><%= link_to member.user.name, user_path(member.user) %></li>
+            <li><%= link_to member.user.name, user_path(member.user) %>&nbsp;-&nbsp;<%= member.project_role.name%></li>
         <% end %>
       </ul>
       <% else %>
@@ -24,7 +24,7 @@
           No members.
         </div>
       <% end %>
-      <%= link_to 'Add New Project Member', new_project_project_member_path(@project.code), :rel => :facebox, :remote => true %>
+      <%= link_to 'Add new Member', new_project_project_member_path(@project.code), :rel => :facebox, :remote => true %>
     </div>
 
     <div id="releases" class="bbordered">

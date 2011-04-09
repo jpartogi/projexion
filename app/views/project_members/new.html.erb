@@ -1,12 +1,12 @@
 <%= form_for @project_member, :url => project_project_members_path(@project.code), :remote => true do |f| %>
   <%= render "shared/error_messages", :target => @project_member %>
 
-  <div>
+  <div class="field_wrapper">
     <%= f.label :user %>
     <%= f.collection_select(:user_id, @users, :id, :name) %>
   </div>
 
-  <div>
+  <div class="field_wrapper">
     <%= f.label :project_role %>
     <%= f.collection_select(:project_role, @project_roles, :id, :name) %>
   </div>
