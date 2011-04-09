@@ -35,31 +35,17 @@
   </div>
 
   <div class="right">
-    <table width="100%">
-      <tr>
-        <th>E-mail</th>
-        <th>Last login</th>
-        <th>Full name</th>
-        <th>&nbsp;</th>
-      </tr>
+    <h2>Users</h2>
 
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td>
-          <% unless user.last_sign_in_at.nil? %>
-              <%= user.last_sign_in_at %>&nbsp;(<%= time_ago_in_words(user.last_sign_in_at) %> ago)
-          <% end %>
-        </td>
-        <td><%= user.full_name %></td>
-        <td width="5%" style="text-align:center;">
-         <%= link_to user_path(user) do %>
-            <img src="/images/icons/application_view_detail.png">
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-    </table>
+    <ul>
+      <% @users.each do |user| %>
+      <li class="bbordered">
+        <h3><%= link_to user.name, user_path(user) %></h3>
+        <em>Last login <%= time_ago_in_words(user.last_sign_in_at)%>&nbsp;ago&nbsp;(<%= user.last_sign_in_at %>)</em>
+      </li>
+      <% end %>
+    </ul>
+
   </div>
 </div> 
 
