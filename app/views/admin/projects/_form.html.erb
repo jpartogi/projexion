@@ -1,7 +1,7 @@
 <%= render 'shared/title/form', :target => @project %>
 
 <div id="content">
-  <p class="success"><span ><%= flash[:notice] %></span></p>
+  <% if notice %><p class="success"><%= flash[:notice] %></p><%end %>
   
   <%= form_for ([:admin, @project]) do |f| %>
     <%= render "shared/error_messages", :target => @project %>
@@ -17,7 +17,7 @@
     </div>
 
     <%= f.submit 'Save', :class=> 'save_btn' %>
-    &nbsp;or&nbsp; 
+    or 
     <% if @project.new_record? then %>
       <%= link_to 'Cancel', admin_path, :confirm => "Are you sure?", :method => :get, :class=> 'cancel_btn' %>
     <% else %>
