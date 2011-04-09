@@ -1,32 +1,32 @@
 <table width="100%" id="feature-statuses">
-    <tr>
-      <th>Display Name</th>
-      <!--<th>Key</th>-->
-      <th width="5%"></th>
-      <th width="10%"></th>
-    </tr>
+  <tr>
+    <th>Display Name</th>
+    <th width="5%"></th>
+    <th width="10%"></th>
+    <th width="10%"></th>
+  </tr>
 
-    <% for feature_status in @feature_statuses %>
-    <input type="hidden" name="id" value="<%= feature_status.id %>" />
-    <tr>
-        <td>
-          <%= feature_status.display_name %>
-        </td>
-        <!--<td><%#= feature_status.key %></td>-->
-        <td style="background-color:<%= feature_status.hash_color %>"></td>
-        <td style="text-align:center;">
+  <% for feature_status in @feature_statuses %>
+  <input type="hidden" name="id" value="<%= feature_status.id %>" />
+  <tr>
+    <td>
+      <%= feature_status.display_name %>
+    </td>
+    <td style="background-color:<%= feature_status.hash_color %>"></td>
+    <td style="text-align:center;">
 
-          <% if not feature_status.eql? @feature_statuses.first %>
-          <a href="#" class="up">
-            <img src="/images/icons/arrow_up.png">
-          </a>
-          <% end %>
-          <% if not feature_status.eql? @feature_statuses.last %>
-          <a href="#" class="down">
-            <img src="/images/icons/arrow_down.png">
-          </a>
-          <% end %>
-        </td>
-    </tr>
-    <% end %>
+      <% if not feature_status.eql? @feature_statuses.first %>
+      <a href="#" class="up">
+        <img src="/images/icons/arrow_up.png">
+      </a>
+      <% end %>
+      <% if not feature_status.eql? @feature_statuses.last %>
+      <a href="#" class="down">
+        <img src="/images/icons/arrow_down.png">
+      </a>
+      <% end %>
+    </td>
+    <td><%= link_to 'Delete', [:admin, feature_status], :method => :delete, :remote => true %></td>
+  </tr>
+  <% end %>
 </table>

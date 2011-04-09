@@ -31,10 +31,16 @@ class Admin::FeatureStatusesController < ApplicationController
   def destroy
     @feature_status = @current_account.feature_statuses.find(params[:id])
 
-    @feature_status.destroy
-
     respond_to do |format|
-      format.html { redirect_to admin_feature_statuses_path, :notice => 'Feature status was successfully deleted.' }
+      if @feature_status.destroy
+        format.html { redirect_to admin_feature_statuses_path, :notice => 'Feature status was successfully deleted.' }
+        format.js
+        format.json
+      else
+        format.html
+        format.js
+        format.json
+      end
     end
   end
 

@@ -15,12 +15,11 @@ class FeatureStatus
 
   references_many :features
 
-  before_create :set_position, :set_key
-
   validates_presence_of :display_name, :color
 
-  #TODO: Before delete, ensure there is at least one status
-  
+  before_create :set_position, :set_key
+  before_destroy :check_only_record
+
   DIRECTION_UP = 'up'
   DIRECTION_DOWN = 'down'
 
@@ -50,10 +49,10 @@ class FeatureStatus
     account.feature_statuses.ordered.last
   end
 
-  def check_and_update_default_status
-    if default_status_available? and not @bypass and self.default
-      update_default_status
-      self.position = 1
+  def check_only_record
+    if self.account.feature_statuses.length == 1
+      errors.add(:base, "cannot delete the only status")
+      false
     end
   end
 
@@ -93,19 +92,5 @@ class FeatureStatus
     return self
   end
 
-  private
-    def default_status_available?
-      @current_default = FeatureStatus.default
-
-      not @current_default.nil? # reverse it
-    end
-
-    def update_default_status
-      # Change the current default status to make sure there's only one default status
-      @current_default.default = false
-      @current_default.position = self.position
-
-      @current_default.save
-    end
 
 end

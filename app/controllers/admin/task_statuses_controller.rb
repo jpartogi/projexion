@@ -9,15 +9,15 @@ class Admin::TaskStatusesController < ApplicationController
   end
 
   def show
-    @task_status = TaskStatus.find(params[:id])
+    @task_status = @current_account.task_statuses.find(params[:id])
   end
 
   def edit
-    @task_status = TaskStatus.find(params[:id])
+    @task_status = @current_account.task_statuses.find(params[:id])
   end
 
   def update
-    @task_status = TaskStatus.find(params[:id])
+    @task_status = @current_account.task_statuses.find(params[:id])
 
     respond_with(@task_status) do |format|
       if @task_status.update_attributes(params[:task_status])
@@ -29,12 +29,18 @@ class Admin::TaskStatusesController < ApplicationController
   end
 
   def destroy
-    @task_status = TaskStatus.find(params[:id])
-
-    @task_status.destroy
+    @task_status = @current_account.task_statuses.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to admin_task_statuses_path, :notice => 'Task status was successfully deleted.' }
+      if @task_status.destroy
+        format.html { redirect_to admin_task_statuses_path, :notice => 'Task status was successfully deleted.' }
+        format.js
+        format.json
+      else
+        format.html
+        format.js
+        format.json
+      end
     end
   end
 
@@ -61,11 +67,11 @@ class Admin::TaskStatusesController < ApplicationController
     id = params[:id]
     direction = params[:direction]
     
-    @task_status = TaskStatus.find(id)
+    @task_status = @current_account.task_statuses.find(id)
 
     @task_status.update_position(direction)
 
-    @task_statuses = TaskStatus.find(:all, :order => "position")
+    @task_statuses = @current_account.task_statuses.find(:all, :order => "position")
     
     respond_with(@task_statuses) do |format|
       format.html { render :partial => 'list' }      

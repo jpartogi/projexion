@@ -34,38 +34,34 @@
       });
     </script>
 
-    <div class="left">
-      <% if flash[:notice] %>
-      <p class="success"><%= flash[:notice] %></p>
-      <% end %>
+  <div class="left">
+    <% if flash[:notice] %>
+    <p class="success"><%= flash[:notice] %></p>
+    <% end %>
 
-      <%= form_for([:admin, @task_status], :remote => true) do |f| %>
-        <%= render "shared/error_messages", :target => @task_status %>
+    <%= form_for([:admin, @task_status], :remote => true) do |f| %>
+      <%= render "shared/error_messages", :target => @task_status %>
 
-        <div class="field_wrapper">
-          <%= f.label :display_name %>
-          <%= f.text_field :display_name %>
-        </div>
+      <div class="field_wrapper">
+        <%= f.label :display_name %>
+        <%= f.text_field :display_name %>
+      </div>
 
-        <!--<div class="field_wrapper">-->
-          <!--<%#= f.label :key %>-->
-          <!--<%#= f.text_field :key %>-->
-        <!--</div>-->
 
-        <div class="field_wrapper">
-          <%= f.label :color, 'Background color' %>
-          <%= f.text_field :color, :size => 7, :maxlength => 7 %>
-        </div>
+      <div class="field_wrapper">
+        <%= f.label :color, 'Background color' %>
+        <%= f.text_field :color, :size => 7, :maxlength => 7 %>
+      </div>
 
-        <div class="actions">
-          <%= f.submit 'Save', :class=> 'save_btn' %>
-        </div>
-       <% end %>
-    </div>
+      <div class="actions">
+        <%= f.submit 'Save', :class=> 'save_btn' %>
+      </div>
+     <% end %>  
+  </div>
 
-    <div class="right">
-      <%= render :partial => "list" %> 
-    </div>
+  <div class="right">
+    <%= render :partial => "list" %>
+  </div>
 </div>
 
 <div id="sidebar">
