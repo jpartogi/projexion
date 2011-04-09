@@ -1,46 +1,46 @@
 <% content_for :title do %>Admin&nbsp;:&nbsp;<%= controller_name.humanize %><% end %>
 
 <div id="content">
+  
+  <div class="left">
+    <% if flash[:notice] %><p class="success"><%= flash[:notice] %></p><% end %>
 
-    <div class="left">
-       <% if flash[:notice] %>
-      <p class="success"><%= flash[:notice] %></p>
+    <%= form_for([:admin, @project_role], :remote => true) do |f| %>
+      <%= render "shared/error_messages", :target => @project_role %>
+
+      <div class="field_wrapper">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="field_wrapper">
+        <%= f.check_box :manager %>
+        <%= f.label :manager_role?, 'Manager Role' %>
+      </div>
+
+      <div class="field_wrapper">
+        <%= f.label :role_description %>
+        <%= f.text_area :role, :size => "35x4" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit 'Save', :class=> 'save_btn' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="right">
+    <h2>Project Roles</h2>
+    
+    <ul>
+      <% for project_role in @project_roles %>
+      <li class="bbordered">
+        <h3><%= project_role.name %>&nbsp;<% if project_role.manager %>(Manager Role)<% end %></h3>
+        <%= project_role.role %>
+      </li>
       <% end %>
-
-      <%= form_for([:admin, @project_role], :remote => true) do |f| %>
-        <%= render "shared/error_messages", :target => @project_role %>
-
-        <div class="field_wrapper">
-            <%= f.label :name %>
-            <%= f.text_field :name %>
-        </div>
-
-		<div class="field_wrapper">
-          	<%= f.check_box :manager %>
-          	<%= f.label :manager_role?, 'Manager Role' %>
-		</div>
-
-        <div class="field_wrapper">
-            <%= f.label :role_description %>
-            <%= f.text_area :role, :size => "35x4" %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit 'Save', :class=> 'save_btn' %>
-        </div>
-     <% end %>
-    </div>  
-
-    <div class="right">
-      <ul>
-        <% for project_role in @project_roles %>
-        <li class="bbordered">
-          <h3><%= project_role.name %>&nbsp;<% if project_role.manager %>(Manager Role)<% end %></h3>
-          <%= project_role.role %>
-        </li>
-        <% end %>
-      </ul>
-    </div>  
+    </ul>
+  </div>
 </div>
 
 <div id="sidebar">
