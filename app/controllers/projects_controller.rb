@@ -9,8 +9,6 @@ class ProjectsController < ApplicationController
   def show
     @project = @current_account.projects.find_or_initialize_by(:code => params[:id]) || @current_account.projects.find(params[:id])
 
-    @manager = @project.manager
-
     @releases = @project.active_releases
 
     @sprints = @project.active_sprints

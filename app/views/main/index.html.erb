@@ -45,14 +45,14 @@
   <div class="right">
 
     <div id="projects">
-      <h3>Your Projects</h3>
+      <h2>Your Projects</h2>
 
       <% unless @projects.empty? %>
       <ul>
         <% @projects.each do |project| %>
         <li>
           <%= link_to project_path(project.code) do %>
-              <%= project.name %>
+            <h3><%= project.name %></h3>
           <% end %>
         </li>
         <% end %>

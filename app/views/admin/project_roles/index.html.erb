@@ -14,11 +14,6 @@
       </div>
 
       <div class="field_wrapper">
-        <%= f.check_box :manager %>
-        <%= f.label :manager_role?, 'Manager Role' %>
-      </div>
-
-      <div class="field_wrapper">
         <%= f.label :role_description %>
         <%= f.text_area :role, :rows => 4 %>
       </div>
@@ -35,7 +30,7 @@
     <ul>
       <% for project_role in @project_roles %>
       <li class="bbordered">
-        <h3><%= project_role.name %>&nbsp;<% if project_role.manager %>(Manager Role)<% end %></h3>
+        <h3><%= project_role.name %></h3>
         <%= project_role.role %>
       </li>
       <% end %>

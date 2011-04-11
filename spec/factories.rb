@@ -8,17 +8,22 @@ Factory.define :company do |company|
   company.name 'Scrum8'
 end
 
+Factory.define :project_role do |project_role|
+  project_role.name 'Scrum master'
+  project_role.role 'Enforce the Scrum process is running'
+end
+
 Factory.define :account do |account|
   account.subdomain 'scrum8'
-
-  account.association :owner, :factory => :user
 
   account.after_build do |a|
     Factory(:company, :account => a)
 
-    a.users << a.owner
+    a.users << Factory(:user, :account => a)
+    a.owner = a.users.first
     a.feature_statuses << Factory(:feature_status, :account => a)
     a.priorities << Factory(:priority, :account => a)
+    a.project_roles << Factory(:project_role, :account => a)
   end
 end
 

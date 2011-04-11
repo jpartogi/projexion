@@ -2,6 +2,9 @@ class Event
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  field :content
+
+  referenced_in :account
   referenced_in :project
   referenced_in :user
 

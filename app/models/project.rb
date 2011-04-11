@@ -39,17 +39,7 @@ class Project
   def active_releases
     self.releases.where(:released_at => nil) # TODO : Or current date less than estimate release date?
   end
-
-  def manager
-    project_member = self.project_members.where(:project_role_id => self.account.manager_role.id).first
-
-    project_member.user unless project_member.nil?
-  end
-
-  def manager_exists?
-    false if manager.nil?
-  end
-
+  
   def members
     self.project_members.reject do |project_member|
       project_member.project_role.eql? ProjectRole.manager(account)
