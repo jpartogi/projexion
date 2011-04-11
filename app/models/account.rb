@@ -8,6 +8,7 @@ class Account
   references_many :users
   references_many :companies
   references_many :projects
+  references_many :events
   references_many :project_roles
   references_many :meeting_types
   references_many :priorities
@@ -21,18 +22,19 @@ class Account
 
   before_create :set_defaults
 
-  def manager_role
-    self.project_roles.where(:manager => true).first
-  end
-
   def set_defaults
-    TaskStatus.create(:display_name => 'Pooled', :color => '0f0bbb',  :account => self, :system => true)
-    TaskStatus.create(:display_name => 'Done', :color => '00ff00', :account => self,:system => true)
+    TaskStatus.create(:display_name => 'Pooled', :color => '0f0bbb', :account => self)
+    TaskStatus.create(:display_name => 'Done', :color => '00ff00', :account => self)
 
-    FeatureStatus.create(:display_name => 'New', :color => '0f0bbb', :system => true, :account => self)
-    FeatureStatus.create(:display_name => 'Done', :color => '00ff00', :system => true, :account => self)
+    FeatureStatus.create(:display_name => 'New', :color => '0f0bbb', :account => self)
+    FeatureStatus.create(:display_name => 'Done', :color => '00ff00', :account => self)
 
-    #TODO Add priority, project role
+    Priority.create(:name => 'Low', :color => '0f0bbb', :level => 10)
+    Priority.create(:name => 'High', :color => '00ff00', :level => 30)
+
+    ProjectRole.create(:name => 'Scrum Master', :role => 'Enforce the scrum process is running')
+    ProjectRole.create(:name => 'Product Owner', :role => 'Maximize product\'s ROI')
+    ProjectRole.create(:name => 'Developer', :role => 'Develop the product')
   end
 
 end
