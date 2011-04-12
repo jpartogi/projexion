@@ -17,6 +17,8 @@ class Account
   referenced_in :owner, :class_name => 'User'
   referenced_in :company
 
+  index :subdomain, :unique => true
+
   validates_presence_of :subdomain
   validates_uniqueness_of :subdomain
 
