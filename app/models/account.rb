@@ -31,12 +31,14 @@ class Account
     FeatureStatus.create(:display_name => 'New', :color => '0f0bbb', :account => self)
     FeatureStatus.create(:display_name => 'Done', :color => '00ff00', :account => self)
 
-    Priority.create(:name => 'Low', :color => '0f0bbb', :level => 10)
-    Priority.create(:name => 'High', :color => '00ff00', :level => 30)
+    Priority.create(:name => 'Low', :color => '0f0bbb', :level => 10, :account => self)
+    Priority.create(:name => 'High', :color => '00ff00', :level => 30, :account => self)
 
-    ProjectRole.create(:name => 'Scrum Master', :role => 'Enforce the scrum process is running')
-    ProjectRole.create(:name => 'Product Owner', :role => 'Maximize product\'s ROI')
-    ProjectRole.create(:name => 'Developer', :role => 'Develop the product')
+    ProjectRole.create(:name => 'Scrum Master', :role => 'Enforce the scrum process is running', :account => self)
+    ProjectRole.create(:name => 'Product Owner', :role => 'Maximize product\'s ROI', :account => self)
+    ProjectRole.create(:name => 'Developer', :role => 'Develop the product', :account => self)
+
+    Project.create(:name => 'Test', :vision => 'Just for testing purposes.', :account => self)
   end
 
 end
