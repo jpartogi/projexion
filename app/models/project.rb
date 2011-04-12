@@ -17,7 +17,7 @@ class Project
   validates_presence_of :name, :vision
   validates_uniqueness_of :code, :scope => :account_id
 
-  #TODO: After project create, add initial sprint, release
+  before_create :set_defaults
 
   def code
     self.code = self.name.gsub(/\s+/, '-').strip.downcase
@@ -48,5 +48,11 @@ class Project
   def project_member_role(user)
     project_member = self.project_members.where({:user_id => user})[0]
     project_member.project_role unless project_member.nil?
+  end
+
+  def set_defaults
+    release = Release.create(:version_number =>'0.1.0', :goal => 'Release initial product.', :project => self)
+
+    Sprint.create(:name => '1st sprint', :start_date => Time.now, :end_date => Time.now + 1.fortnights, :release => release, :project => self)
   end
 end

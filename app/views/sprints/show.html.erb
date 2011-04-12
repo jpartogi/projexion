@@ -13,9 +13,13 @@
 
 <div id="sidebar">
   <div class="box">
-    <strong>Release:</strong>&nbsp;<%= @sprint.release.version_number %><br/>
+    <strong>Release:</strong>&nbsp;<%= @sprint.release.version_number %>
+    <%= link_to project_release_path(@project.code, @sprint.release), :title => view_release_title, :rel => :tipsy do %>
+      <img src="/images/icons/application_view_detail.png">
+    <% end %>
+    <br/>
     <strong>Sprint:</strong>&nbsp;<%= @sprint.span_date %><br/>
-    <% if not @sprint.goal.empty? %><strong>Sprint Goal:</strong> <%= @sprint.goal %><% end %>
+    <% unless @sprint.goal.blank? %><strong>Sprint Goal:</strong> <%= @sprint.goal %><% end %>
   </div>
 
   <ul id="menu">

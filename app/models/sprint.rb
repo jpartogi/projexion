@@ -19,7 +19,7 @@ class Sprint
   validates_presence_of :name, :start_date, :end_date, :release
 
   def span_date
-    "#{self.start_date.to_formatted_s(:default)} - #{self.end_date.to_formatted_s(:default)}"
+    "#{self.start_date.to_formatted_s(:notime)} - #{self.end_date.to_formatted_s(:notime)}"
   end
 
   def display_name

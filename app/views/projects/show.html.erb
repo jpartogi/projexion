@@ -84,7 +84,7 @@
       <h2>Current Sprint</h2>
       <% unless @sprint.nil? %>
         <span>
-          Current sprint will end in <%= distance_of_time_in_words Time.now, @sprint.end_date %>&nbsp;(<%= @sprint.end_date.to_formatted_s(:default) %>)
+          Current sprint will end in <%= distance_of_time_in_words Time.now, @sprint.end_date %>&nbsp;(<%= @sprint.end_date.to_formatted_s(:notime) %>)
           <%= link_to project_sprint_path(@project.code, @sprint.id), :title => view_sprint_title, :rel => :tipsy do %>
             <img src="/images/icons/application_view_detail.png">
           <% end %>
@@ -121,17 +121,9 @@
 
 <div id="sidebar">
   <ul id="menu">
-    <%# TODO: Edit and delete only if project manager %>
-    <%# TODO: Add project member %>
     <% if can? :manage, @project %>    
     <li><%= link_to 'Edit Project', edit_admin_project_path(@project.code), :class => 'edit' %></li>
     <li><%= link_to 'Delete Project', admin_project_path(@project), :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></li>
     <% end %>
-    <li><%#= link_to 'Add New Feature', new_project_feature_path(@project.code), :class => 'add' %></li>
-    <li><%#= link_to 'Add New Release', new_project_release_path(@project.code), :class => 'add' %></li>
-    <li><%#= link_to 'Add New Sprint', new_project_sprint_path(@project.code), :class => 'add' %></li>
-    <li><%#= link_to 'Show Features', project_features_path(@project.code), :class => 'list' %></li>
-    <li><%#= link_to 'Show Releases', project_releases_path(@project.code), :class => 'list' %></li>
-    <li><%#= link_to 'Show Sprints', project_sprints_path(@project.code), :class => 'list' %></li>   
   </ul>
 </div>
