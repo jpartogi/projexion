@@ -5,24 +5,24 @@
 <div id="content">
 <%= form_for @account do |f| %>
   <%= f.fields_for :companies, @company do |company| %>
-    <div>
+    <div class="field_wrapper">
       <%= company.label :name, 'Company Name' %>
       <%= company.text_field :name %>
     </div>
   <% end %>
 
-  <div>
+  <div class="field_wrapper">
     <%= f.label :subdomain, 'Desired subdomain' %>
     <%= f.text_field :subdomain %>
   </div>
 
   <%= f.fields_for :users, @user do |user| %>
-    <div>
+    <div class="field_wrapper">
       <%= user.label :email, 'Your E-mail' %>
       <%= user.text_field :email %>
     </div>
 
-    <div>
+    <div class="field_wrapper">
       <%= user.label :password %>
       <%= user.password_field :password %>
     </div>
