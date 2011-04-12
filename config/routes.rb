@@ -56,12 +56,6 @@ Projexion::Application.routes.draw do
         end
       end
 
-      resources :meetings do
-        member do
-          delete :cancel
-        end
-      end
-
       resources :project_members
     end
 
@@ -89,7 +83,6 @@ Projexion::Application.routes.draw do
       resources :project_members
       resources :feature_statuses
       resources :task_statuses
-      resources :meeting_types
     end
 
     resources :project_roles do

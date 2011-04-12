@@ -13,7 +13,6 @@ class Sprint
   referenced_in :release
 
   references_many :features
-  references_many :meetings
 
   #validate :start_date_must_not_exists, :end_date_must_not_exists, :start_date_must_be_earlier_than_end_date
 

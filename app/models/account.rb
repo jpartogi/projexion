@@ -10,7 +10,6 @@ class Account
   references_many :projects
   references_many :events
   references_many :project_roles
-  references_many :meeting_types
   references_many :priorities
   references_many :task_statuses
   references_many :feature_statuses

@@ -79,7 +79,6 @@ class SprintsController < ApplicationController
     @project = @sprint.project
     @features = @sprint.features
 
-    @meetings = Meeting.where(:sprint_id => @sprint.id)
   end
 
   def index

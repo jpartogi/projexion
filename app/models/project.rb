@@ -8,7 +8,6 @@ class Project
 
   referenced_in :account
   references_and_referenced_in_many :users, :inverse_of => :projects
-  references_many :meetings
   references_many :tasks
   references_many :features
   references_many :releases
