@@ -79,4 +79,7 @@ Production web server:
 Additional gem required by passenger:
 - sudo gem install rake
 - sudo gem install rack
-Make sure to disable unicorn and thin on Gemfile when using Passenger on production otherwise you will get funny errors.  
+Make sure to disable unicorn and thin on Gemfile when using Passenger on production otherwise you will get funny errors.
+
+
+rake db:mongoid:create_indexes
