@@ -22,6 +22,8 @@ class User
   references_many :tasks
   references_many :project_members
 
+  validates_uniqueness_of :email, :scope => :account_id
+  
   def name
     full_name.blank? ? truncate_email : full_name
   end

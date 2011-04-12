@@ -19,6 +19,7 @@ class Account
   referenced_in :company
 
   validates_presence_of :subdomain
+  validates_uniqueness_of :subdomain
 
   before_create :set_defaults
 
