@@ -11,6 +11,9 @@ class FeaturesController < ApplicationController
 
     @sprints = @project.active_sprints
     @releases = @project.active_releases
+
+    @feature.creator = current_user
+    @feature.updater = current_user
     
     respond_with(@feature) do |format|
       if @feature.save
@@ -35,16 +38,18 @@ class FeaturesController < ApplicationController
   end
 
   def show
-    @feature = Feature.find(params[:id])
+    @project = @current_account.projects.where(:code => params[:project_id]).first
+
+    @feature = @project.features.find(params[:id])
 
     @task = Task.new
     @tasks = @feature.tasks
 
-    @project = @feature.project
+    @acceptance = Acceptance.new
     @acceptances = @feature.acceptances
+
     @task_statuses = @current_account.task_statuses
 
-    @acceptance = Acceptance.new
   end
 
   def index
@@ -86,8 +91,9 @@ class FeaturesController < ApplicationController
   end
 
   def edit
-    @feature = Feature.find(params[:id])
-    @project = @feature.project
+    @project = @current_account.projects.where(:code => params[:project_id]).first
+
+    @feature = @project.features.find(params[:id])
 
     @sprints = @project.active_sprints
 
@@ -96,14 +102,17 @@ class FeaturesController < ApplicationController
   end
 
   def update
-    @feature = Feature.find(params[:id])
-    @project = @feature.project
+    @project = @current_account.projects.where(:code => params[:project_id]).first
+
+    @feature = @project.features.find(params[:id])
 
     @sprints = @project.active_sprints
 
     @releases = @project.active_releases
 
     @priorities = @current_account.priorities.asc(:level)
+
+    @feature.updater = current_user
     
     respond_with(@feature) do |format|
       if @feature.update_attributes(params[:feature])
@@ -116,13 +125,15 @@ class FeaturesController < ApplicationController
   end
 
   def destroy
-    @feature = Feature.find(params[:id])
+    @project = @current_account.projects.where(:code => params[:project_id]).first
 
-    @feature.destroy
+    @feature = @project.features.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to project_path(params[:project_id]),
+      if @feature.destroy
+        format.html { redirect_to project_path(params[:project_id]),
                                 :notice => 'Feature was successfully deleted.' }
+      end
     end
   end
 
@@ -149,7 +160,7 @@ class FeaturesController < ApplicationController
   end
 
   def update_status
-    @feature = Feature.find(params[:parent_id])
+    @feature = @current_account.features.find(params[:parent_id])
     @feature_status = FeatureStatus.find(params[:id])
 
     @feature.feature_status = @feature_status

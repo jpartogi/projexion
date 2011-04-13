@@ -28,6 +28,10 @@ class User
     full_name.blank? ? truncate_email : full_name
   end
 
+  def user_id
+    id
+  end
+
   def truncate_email
     self.email.partition('@').first
   end

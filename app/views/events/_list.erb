@@ -1,20 +1,6 @@
 <% @events.each do |event| %>
-  <li class="info-list">
-    <strong>#<%= event.id %></strong><br/>
-    <%= event.model %>&nbsp;<%= event.action %>
-    
-    in&nbsp;<%= link_to event.project.name, project_path(event.project.code) %>&nbsp;
-    by&nbsp;<%= link_to event.user.login, user_path(event.user.login) %>
-    &nbsp;<%= time_ago_in_words(event.created_at) %>&nbsp;ago.
-
-    <% unless event.audits.empty? %>
-    <ul id="audit">
-        <% event.audits.each do |audit| %>
-            <li>
-              <%= audit.changed_field.humanize %>&nbsp;<%= event.action %>.
-            </li>
-        <% end %>
-    </ul>
-    <% end %>
+  <li class="bbordeered">
+    <div><%= raw event.description %></div>
+    <em class="post-info"><%= time_ago_in_words event.created_at %>&nbsp;ago.</em>
   </li>
 <% end %>

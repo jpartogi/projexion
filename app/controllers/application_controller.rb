@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
     def set_current_user
       @current_user = current_user
-      @projects = @current_user.projects unless @current_user.nil?
+      @projects = @current_user.projects unless current_user.nil?
     end
 
   protected

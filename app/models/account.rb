@@ -8,7 +8,6 @@ class Account
   references_many :users
   references_many :companies
   references_many :projects
-  references_many :events
   references_many :project_roles
   references_many :priorities
   references_many :task_statuses

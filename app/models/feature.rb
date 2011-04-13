@@ -2,6 +2,11 @@ class Feature
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  include Mongoid::Userstamps
+  include Mongoid::Eventable
+
+  include Rails.application.routes.url_helpers
+
   field :user_story
   field :business_value, :type => Float
   field :story_points, :type => Integer
@@ -27,5 +32,17 @@ class Feature
 
   def set_keywords
     self.keywords = self.user_story.downcase.split(KEYWORD_FILTER_MATCHER)
+  end
+
+  def slug
+    project_feature_path(self.project.code, self)
+  end
+
+  def title
+    id.to_s.slice(0,7).concat('...')
+  end
+
+  def account
+    self.project.account
   end
 end
