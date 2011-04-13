@@ -50,10 +50,11 @@
       <% unless @projects.empty? %>
       <ul>
         <% @projects.each do |project| %>
-        <li>
+        <li class="bbordered">
           <%= link_to project_path(project.code) do %>
             <h3><%= project.name %></h3>
           <% end %>
+          <%= project.vision %>
         </li>
         <% end %>
       </ul>
