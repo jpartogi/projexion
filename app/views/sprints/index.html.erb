@@ -14,8 +14,8 @@
     </tr>
     <% for sprint in @sprints %>
       <tr id="<%= sprint.id %>">
-        <td style="text-align:center;"><%= sprint.start_date %></td>
-        <td style="text-align:center;"><%= sprint.end_date %></td>
+        <td style="text-align:center;"><%= sprint.start_date.to_formatted_s(:notime) %></td>
+        <td style="text-align:center;"><%= sprint.end_date.to_formatted_s(:notime) %></td>
         <td style="text-align:center;"><%= sprint.release.version_number %></td>
         <td style="text-align:center;"><%= sprint.velocities %></td>
         <td><%= sprint.goal %></td>
