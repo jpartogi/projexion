@@ -5,7 +5,7 @@ class Task
   field :done, :type => Boolean, :default => false
   field :description
 
-  referenced_in :account
+#  referenced_in :account
   referenced_in :project
   referenced_in :user
   referenced_in :feature

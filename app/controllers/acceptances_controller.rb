@@ -1,5 +1,5 @@
 class AcceptancesController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, :json, :js
   before_filter :authenticate_user!
   
   def new
@@ -25,21 +25,27 @@ class AcceptancesController < ApplicationController
         format.json { render :json => @acceptance }
         format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
                                   :notice => 'Acceptance test was successfully added.' }
+        format.js
       else
         format.json { render :json => @acceptance.errors, :status => :unprocessable_entity}
         format.html { render :new }
+        format.js
       end
     end
   end
 
   def destroy
-    @acceptance = Acceptance.find(params[:id])
-
-    @acceptance.destroy
+    @project = @current_account.projects.where(:code => params[:project_id]).first
+    @feature = @project.features.find(params[:feature_id])
+    @acceptance = @feature.acceptances.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
+      if @acceptance.destroy
+        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
                                 :notice => 'Acceptance test was successfully deleted.' }
+        format.js
+        format.json
+      end
     end
   end
 

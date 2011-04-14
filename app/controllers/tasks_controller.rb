@@ -4,10 +4,11 @@ class TasksController < ApplicationController
   
   def create
     @task = Task.new(params[:task])
-    @feature = Feature.find(params[:feature_id])
-    @project = @feature.project
 
-    @task.account = @current_account
+    @project = @current_account.projects.where(:code => params[:project_id]).first
+    @feature = @project.features.find(params[:feature_id])
+
+#    @task.account = @current_account
     @task.user = current_user
     @task.feature = @feature
     @task.project = @feature.project
@@ -27,6 +28,7 @@ class TasksController < ApplicationController
     end
   end
 
+  # Remove?
   def new
     @feature = Feature.find(params[:feature_id])
     @project = @feature.project
@@ -42,7 +44,9 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
+    @project = @current_account.projects.where(:code => params[:project_id]).first
+    @feature = @project.features.find(params[:feature_id])
+    @task = @feature.tasks.find(params[:id])
   end
 
   def edit
@@ -52,13 +56,17 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
-
-    @task.destroy
+    @project = @current_account.projects.where(:code => params[:project_id]).first
+    @feature = @project.features.find(params[:feature_id])
+    @task = @feature.tasks.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
+      if @task.destroy
+        format.html { redirect_to project_feature_path(:code => params[:project_id], :id => params[:feature_id]),
                                 :notice => 'Task was successfully deleted.' }
+        format.json
+        format.js
+      end
     end
   end
 
