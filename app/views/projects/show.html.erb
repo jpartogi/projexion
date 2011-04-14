@@ -28,7 +28,7 @@
     </div>
 
     <div id="releases" class="bbordered">
-      <h3>Upcoming Releases</h3>
+      <h3>Active Releases</h3>
 
       <% unless @releases.empty? %>
         <ul>
@@ -52,7 +52,7 @@
     </div>
 
     <div id="sprints" class="bbordered">
-      <h3>Upcoming Sprints</h3>
+      <h3>Active Sprints</h3>
     
       <% unless @sprints.empty? %>
         <ul>
@@ -101,7 +101,7 @@
     </div>
 
     <div id="features" class="bbordered">
-    <h3>Product Features</h3>
+    <h3>Product Features in Current Sprint</h3>
     <% unless @features.empty? %>
       <table width="100%">
       <% @features.each do |feature| %>
