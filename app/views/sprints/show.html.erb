@@ -18,7 +18,8 @@
       <img src="/images/icons/application_view_detail.png">
     <% end %>
     <br/>
-    <strong>Sprint:</strong>&nbsp;<%= @sprint.span_date %><br/>
+    <strong>Sprint Date:</strong>&nbsp;<%= @sprint.span_date %><br/>
+    <strong>Sprint Name:</strong>&nbsp;<%= @sprint.name %><br/>
     <% unless @sprint.goal.blank? %><strong>Sprint Goal:</strong> <%= @sprint.goal %><% end %>
   </div>
 
