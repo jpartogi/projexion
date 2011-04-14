@@ -11,7 +11,7 @@ class MainController < ApplicationController
       project_ids << project.id
     end
     #Events initial list only. The rest is fetched using ajax on EventsController
-    @events = @current_account.events.desc(:created_at)            
+    @events = @current_account.events.desc(:created_at).limit(20)            
 
     # TODO: Limit this.
     @tasks = @current_user.tasks

@@ -65,4 +65,6 @@ class Event
 
   Account.send(:references_many, :events)
   User.send(:references_many, :events)
+
+  index [[:created_at, Mongo::DESCENDING]], :background => true
 end
