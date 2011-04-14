@@ -75,11 +75,10 @@
     <% unless @tasks.empty? %>
       <ul>
         <% @tasks.each do |task| %>
-          <li class="bbordered">
-            <%= task.description %>&nbsp;-&nbsp;<%= link_to task.project.name, project_path(task.project.code) %><br/>
-            <%= task.feature.user_story %>
+          <li>
+            <%= task.description %>&nbsp;-&nbsp;        
             <%= link_to project_feature_path(task.project.code, task.feature), :title => view_feature_title, :rel => :tipsy do %>
-              <img src="/images/icons/application_view_detail.png">
+              <%= task.feature.title %>
             <% end %>
           </li>
         <% end %>
