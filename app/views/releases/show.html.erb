@@ -13,8 +13,8 @@
 <div id="sidebar">
   <div class="box">
     <strong>Release:</strong>&nbsp;<%= @release.version_number %><br/>
-    <strong>Estimate release date:</strong> <%= @release.estimate_date %><br/>
-    <% if not @release.goal.nil? %><strong>Release Goal:</strong>&nbsp;<%= @release.goal %><% end %>
+    <% unless @release.estimate_date.nil? %><strong>Estimate release date:</strong> <%= @release.estimate_date.to_formatted_s(:notime) %><br/><% end %>
+    <% unless @release.goal.nil? %><strong>Release Goal:</strong>&nbsp;<%= @release.goal %><% end %>
   </div>
 
   <ul id="menu">
