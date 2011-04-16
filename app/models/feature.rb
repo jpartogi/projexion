@@ -17,8 +17,8 @@ class Feature
   referenced_in :priority
   referenced_in :project
   referenced_in :feature_statuses # mongoid bug.
-  references_many :tasks
-  references_many :acceptances
+  references_many :tasks, :dependent => :destroy
+  references_many :acceptances, :dependent => :destroy
 
   validates_presence_of :user_story, :business_value, :story_points, :priority
   validates_numericality_of :business_value, :story_points

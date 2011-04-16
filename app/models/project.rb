@@ -8,11 +8,11 @@ class Project
 
   referenced_in :account
   references_and_referenced_in_many :users, :inverse_of => :projects
-  references_many :tasks
-  references_many :features
-  references_many :releases
-  references_many :sprints
-  references_many :project_members
+  references_many :tasks, :dependent => :destroy
+  references_many :features, :dependent => :destroy
+  references_many :releases, :dependent => :destroy
+  references_many :sprints, :dependent => :destroy
+  references_many :project_members, :dependent => :destroy
   
   validates_presence_of :name, :vision
   validates_uniqueness_of :code, :scope => :account_id

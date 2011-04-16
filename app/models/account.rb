@@ -5,13 +5,13 @@ class Account
   field :subdomain
   field :time_zone
 
-  references_many :users
-  references_many :companies
-  references_many :projects
-  references_many :project_roles
-  references_many :priorities
-  references_many :task_statuses
-  references_many :feature_statuses
+  references_many :users, :dependent => :destroy
+  references_many :companies, :dependent => :destroy
+  references_many :projects, :dependent => :destroy
+  references_many :project_roles, :dependent => :destroy
+  references_many :priorities, :dependent => :destroy
+  references_many :task_statuses, :dependent => :destroy
+  references_many :feature_statuses, :dependent => :destroy
 
   referenced_in :owner, :class_name => 'User'
   referenced_in :company
