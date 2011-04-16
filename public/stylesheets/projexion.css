@@ -97,7 +97,7 @@ li.info-list { margin: 1em 0 1em 0; }
 .right { float:right; width: 50%; }
 .box { margin-bottom: 10px; }
 
-#members, #releases, #sprints { margin-top: 1.2em; }
+#members { margin-top: 1.2em; }
 
 .inline_field, #acceptance_description, #task_description { width: 425px; }
 
