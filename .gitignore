@@ -11,3 +11,4 @@ config/database.yml
 *.log
 Gemfile.lock
 .rspec
+*.DS_Store

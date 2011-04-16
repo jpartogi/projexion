@@ -3,7 +3,6 @@ class AdminController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @project = Project.new
-    @projects = @current_account.projects
   end
+
 end

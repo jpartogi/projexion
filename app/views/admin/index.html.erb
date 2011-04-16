@@ -1,37 +1,25 @@
-<% content_for :title do %>Admin&nbsp;:&nbsp;<%= @current_account.company.name %><% end %>
+<% content_for :title do %>Admin&nbsp;:&nbsp;Account<% end %>
 
 <div id="content">
+  <% if flash[:notice] %><p class="success"><%= flash[:notice] %></p><% end %>
 
-  <div class="left">
-    <% if flash[:notice] %><p class="success"><%= flash[:notice] %></p><% end %>
+  <div id="left">
+  <%= form_for([:admin, @current_account]) do |f| %>
+    <%= render "shared/error_messages", :target => @current_account %>
 
-    <%= form_for ([:admin, @project]) do |f| %>
-      <%= render "shared/error_messages", :target => @project %>
+    <div class="field_wrapper">
+      <%= f.label :time_zone %>
+      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.all %>
+    </div>
 
-      <div class="field_wrapper">
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-      </div>
-
-      <div class="field_wrapper">
-        <%= f.label :vision %>
-        <%= f.text_field :vision, :size => 45 %>
-      </div>
-
-      <%= f.submit 'Save', :class=> 'save_btn' %>
-    <% end %>
+    <div class="actions">
+      <%= f.submit 'Save' %>
+    </div>
+  <% end %>
   </div>
 
-  <div class="right">
-    <h2>Projects</h2>
-    <ul>
-      <% @projects.each do |project| %>
-      <li class="bbordered">
-        <h3><%= link_to project.name, project_path(project.code) %></h3>
-        <%= project.vision %>
-      </li>
-      <% end %>
-  </ul>
+  <div id="right">
+
   </div>
 </div>
 

@@ -3,7 +3,8 @@ class Admin::ProjectsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-
+    @project = Project.new
+    @projects = @current_account.projects
   end
 
   def show
@@ -29,7 +30,7 @@ class Admin::ProjectsController < ApplicationController
     
     respond_with(@project) do |format|
       if @project.save
-        format.html { redirect_to project_path(@project.code), :notice => 'Project was successfully added.' }
+        format.html { redirect_to project_path(@project.code), :notice => 'Project was successfully created.' }
       else
         format.html { render :action => "new" }
       end
@@ -54,7 +55,7 @@ class Admin::ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.destroy
-        format.html { redirect_to admin_path, :notice => 'Project was successfully deleted.' }
+        format.html { redirect_to admin_projects_path, :notice => 'Project was successfully deleted.' }
       end
     end
   end

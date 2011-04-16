@@ -79,6 +79,7 @@ Projexion::Application.routes.draw do
           put :save_user
         end
       end
+      resources :accounts
       resources :project_roles
       resources :project_members
       resources :feature_statuses
