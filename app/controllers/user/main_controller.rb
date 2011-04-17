@@ -1,4 +1,4 @@
-class MainController < ApplicationController
+class User::MainController < ApplicationController
   respond_to :html, :json
   before_filter :authenticate_user!, :only =>[:index]
 

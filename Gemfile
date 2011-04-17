@@ -29,11 +29,11 @@ gem 'will_paginate','3.0.pre2'
 # If you are running passenger in production, make sure to remark the lines below.
 # To run unicorn in production:
 # $ bundle exec unicorn -E production --port 6000 --daemonize
-gem 'unicorn'
+# gem 'unicorn'
 
 # To run thin in production:
-# $ bundle exec vendor/bin/thin start
-# gem 'thin'
+# $ bundle exec thin start -e production -p 6000 --daemonize
+gem 'thin'
 
 # For testing
 group :test do

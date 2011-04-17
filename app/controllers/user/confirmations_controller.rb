@@ -1,4 +1,4 @@
-class Users::ConfirmationsController < Devise::ConfirmationsController
+class User::ConfirmationsController < Devise::ConfirmationsController
   layout 'users'
 
   # GET /resource/confirmation/new

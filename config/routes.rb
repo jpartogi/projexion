@@ -1,13 +1,14 @@
 Projexion::Application.routes.draw do
 
   constraints(Subdomain) do
-    devise_for :users, :controllers => { :sessions => 'users/sessions',
-                                       :registrations => 'users/registrations',
-                                       :passwords => 'users/passwords',
-                                       :confirmations => 'users/confirmations'}
+    devise_for :users, :controllers => { :sessions => 'user/sessions',
+                                       :registrations => 'user/registrations',
+                                       :passwords => 'user/passwords',
+                                       :confirmations => 'user/confirmations'}
 
     root :to => redirect("/users/sign_in")
-
+#    root :to => "main#index"
+    
     resources :priorities
 
     match 'admin' => 'admin#index', :as => 'admin'
@@ -16,10 +17,6 @@ Projexion::Application.routes.draw do
     match 'projects/:project_id/sprints/burndown' => 'sprints#burndown', :as => :burndown_sprint # For ajax
 
     match 'projects/:project_id/releases/burndown' => 'releases#burndown', :as => :burndown_release # For ajax
-
-    namespace :user do
-      root :to => "main#index"
-    end
     
     resources :projects do
       resources :features do
@@ -97,6 +94,10 @@ Projexion::Application.routes.draw do
         get :change_password
         put :update_password
       end
+    end
+    
+    namespace :user do
+      root :to => "main#index"
     end
   end
   
